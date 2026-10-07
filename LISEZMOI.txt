@@ -1,4 +1,4 @@
-AG Production — site antoineguillou.fr
+AG Production — site antoineguillou.com
 
 À mettre tel quel sur GitHub (dépôt « agproduction-site »), y compris le fichier caché .pages.yml.
 Le mode d'emploi complet (mise en ligne, ajout de films et de photos) est dans le document
@@ -12,5 +12,5 @@ Le mode d'emploi complet (mise en ligne, ajout de films et de photos) est dans l
 
 Remarque : le site ne s'affiche pas par double-clic sur index.html. Pour le voir, utilise son adresse en ligne.
 
-  CNAME           adresse du site pour GitHub Pages (antoineguillou.fr)
+  CNAME           adresse du site pour GitHub Pages (antoineguillou.com)
   .nojekyll       indique à GitHub Pages de publier les fichiers tels quels
