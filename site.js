@@ -181,7 +181,7 @@ async function load(name){
       <div class="case-body">
         <div class="case-lead"><p>${esc(c.accroche)}</p>
           ${c.citation ? `<blockquote><p>« ${esc(c.citation)} »</p>${c.citation_auteur ? `<cite>${esc(c.citation_auteur)}</cite>` : ""}</blockquote>` : ""}</div>
-        <dl>${[["Contexte",c.contexte],["Dispositif",c.dispositif],["Résultat",c.resultat]].filter(x => x[1]).map(([t,d]) => `<div><dt>${t}</dt><dd>${esc(d)}</dd></div>`).join("")}</dl>
+        <dl>${[["Contexte",c.contexte],["Dispositif",c.dispositif],["Résultat",c.resultat]].filter(x => x[1]).map(([t,d]) => `<div class="k-${t.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase()}"><dt>${t}</dt><dd>${esc(d)}</dd></div>`).join("")}</dl>
       </div>
       ${cells.length ? `<div class="case-strip" style="--n:${cells.length}">${cells.join("")}</div>` : ""}`;
     caseEl.style.animation = "none"; caseEl.offsetHeight; caseEl.style.animation = "";
@@ -206,12 +206,6 @@ async function load(name){
     <span class="plus"><svg viewBox="0 0 14 14"><path d="M7 1v12M1 7h12"/></svg></span>
   </button>`).join("");
 
-  /* Rails horizontaux sur mobile (savoir-faire, méthode, tirages) : barre de progression */
-  ["#skills", ".steps", "#faGrid"].forEach(sel => { const rail = document.querySelector(sel); if (!rail) return;
-    const bar = rail.nextElementSibling && rail.nextElementSibling.classList.contains("sk-bar") ? rail.nextElementSibling.firstElementChild : null; if (!bar) return;
-    const upd = () => { const m = rail.scrollWidth - rail.clientWidth; bar.style.transform = `scaleX(${m > 0 ? (rail.scrollLeft + rail.clientWidth) / rail.scrollWidth : 1})`; };
-    rail.addEventListener("scroll", upd, {passive:true}); window.addEventListener("resize", upd); upd(); });
-
   /* ---------- Photographie ---------- */
   const INITIAL = SITE.series_affichees || 12;
   $("#pgrid").innerHTML = PHOTOS.map((p,i) => `<button class="pcard" type="button" data-p="${i}" ${i >= INITIAL ? "hidden" : ""} aria-label="${esc(p.titre)} — voir la série">
@@ -225,6 +219,12 @@ async function load(name){
     more.textContent = open ? "Voir toutes les séries" : "Réduire";
     if (open) $("#photographie").scrollIntoView({block:"start"});
   });
+
+  /* Rails horizontaux sur mobile (savoir-faire, méthode, tirages) : barre de progression */
+  [".why", "#skills", ".steps", "#pgrid", "#faGrid"].forEach(sel => { const rail = document.querySelector(sel); if (!rail) return;
+    const bar = rail.nextElementSibling && rail.nextElementSibling.classList.contains("sk-bar") ? rail.nextElementSibling.firstElementChild : null; if (!bar) return;
+    const upd = () => { const m = rail.scrollWidth - rail.clientWidth; bar.style.transform = `scaleX(${m > 0 ? (rail.scrollLeft + rail.clientWidth) / rail.scrollWidth : 1})`; };
+    rail.addEventListener("scroll", upd, {passive:true}); window.addEventListener("resize", upd); upd(); });
 
   /* ---------- Références ---------- */
   $("#refs").innerHTML = REFS.map(r => `<li title="${esc(r.nom)}"><img src="${esc(src(r.logo))}" alt="${esc(r.nom)}" loading="lazy" style="max-height:calc(var(--lh) * ${Number(r.taille) || 1})" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="word" hidden>${esc(r.nom)}</span></li>`).join("");
