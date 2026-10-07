@@ -206,6 +206,10 @@ async function load(name){
     <span class="plus"><svg viewBox="0 0 14 14"><path d="M7 1v12M1 7h12"/></svg></span>
   </button>`).join("");
 
+  { const rail = $("#skills"), bar = document.querySelector(".sk-bar i");
+    const upd = () => { const m = rail.scrollWidth - rail.clientWidth; if (bar) bar.style.transform = `scaleX(${m > 0 ? Math.max(1 / SKILLS.length, (rail.scrollLeft + rail.clientWidth) / rail.scrollWidth) : 1})`; };
+    rail.addEventListener("scroll", upd, {passive:true}); upd(); }
+
   /* ---------- Photographie ---------- */
   const INITIAL = SITE.series_affichees || 12;
   $("#pgrid").innerHTML = PHOTOS.map((p,i) => `<button class="pcard" type="button" data-p="${i}" ${i >= INITIAL ? "hidden" : ""} aria-label="${esc(p.titre)} — voir la série">

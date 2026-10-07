@@ -258,6 +258,7 @@ section{scroll-margin-top:60px}
 
 /* Savoir-faire */
 .skills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.sk-bar{display:none}
 .skill{position:relative;aspect-ratio:3/4;border-radius:var(--r-lg);overflow:hidden;border:0;padding:0;cursor:pointer;text-align:left;background:#0e2230;color:#fff}
 .skill img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.7,.2,1)}
 .skill:hover img{transform:scale(1.04)}
@@ -461,6 +462,13 @@ footer .wrap{padding-block:34px calc(24px + env(safe-area-inset-bottom,0px))}
   .pgrid{grid-template-columns:1fr 1fr;gap:16px 12px}
   .why,.skills,.about,.contact{grid-template-columns:1fr}
   .skill{aspect-ratio:4/5}
+  /* Savoir-faire : rail horizontal sur mobile au lieu de 6 cartes empilées */
+  .skills{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin-inline:calc(-1 * var(--g));padding-inline:var(--g);scroll-padding-inline:var(--g);scrollbar-width:none;overscroll-behavior-x:contain}
+  .skills::-webkit-scrollbar{display:none}
+  .skills .skill{flex:none;width:72%;scroll-snap-align:start}
+  .skill .txt strong{font-size:22px}
+  .sk-bar{display:block;margin:18px auto 0;width:min(160px,40%);height:3px;border-radius:3px;background:var(--cloud);overflow:hidden}
+  .sk-bar i{display:block;height:100%;background:var(--ink);transform-origin:left;transform:scaleX(.17);transition:transform .15s linear}
   .steps{grid-template-columns:1fr 1fr}
   .steps li::after{display:none}
   .refs li{flex-basis:calc(100% / 3);height:96px;padding:14px}
@@ -595,6 +603,7 @@ footer .wrap{padding-block:34px calc(24px + env(safe-area-inset-bottom,0px))}
   <section class="sec wrap" id="savoir-faire" aria-labelledby="h-skills">
     <div class="head"><h2 id="h-skills">Un regard.<br>Tous les terrains.</h2><p>Entreprise, sport, voile, événementiel, aérien, mode, produit : je travaille dans tous les domaines et je m'adapte à chaque sujet, à chaque équipe et à chaque contrainte.</p></div>
     <div class="skills" id="skills"></div>
+    <div class="sk-bar" aria-hidden="true"><i></i></div>
   </section>
 
   <!-- MÉTHODE -->
