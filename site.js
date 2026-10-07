@@ -206,9 +206,11 @@ async function load(name){
     <span class="plus"><svg viewBox="0 0 14 14"><path d="M7 1v12M1 7h12"/></svg></span>
   </button>`).join("");
 
-  { const rail = $("#skills"), bar = document.querySelector(".sk-bar i");
-    const upd = () => { const m = rail.scrollWidth - rail.clientWidth; if (bar) bar.style.transform = `scaleX(${m > 0 ? Math.max(1 / SKILLS.length, (rail.scrollLeft + rail.clientWidth) / rail.scrollWidth) : 1})`; };
-    rail.addEventListener("scroll", upd, {passive:true}); upd(); }
+  /* Rails horizontaux sur mobile (savoir-faire, méthode, tirages) : barre de progression */
+  ["#skills", ".steps", "#faGrid"].forEach(sel => { const rail = document.querySelector(sel); if (!rail) return;
+    const bar = rail.nextElementSibling && rail.nextElementSibling.classList.contains("sk-bar") ? rail.nextElementSibling.firstElementChild : null; if (!bar) return;
+    const upd = () => { const m = rail.scrollWidth - rail.clientWidth; bar.style.transform = `scaleX(${m > 0 ? (rail.scrollLeft + rail.clientWidth) / rail.scrollWidth : 1})`; };
+    rail.addEventListener("scroll", upd, {passive:true}); window.addEventListener("resize", upd); upd(); });
 
   /* ---------- Photographie ---------- */
   const INITIAL = SITE.series_affichees || 12;

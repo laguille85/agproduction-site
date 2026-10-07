@@ -466,6 +466,13 @@ footer .wrap{padding-block:34px calc(24px + env(safe-area-inset-bottom,0px))}
   .skills{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin-inline:calc(-1 * var(--g));padding-inline:var(--g);scroll-padding-inline:var(--g);scrollbar-width:none;overscroll-behavior-x:contain}
   .skills::-webkit-scrollbar{display:none}
   .skills .skill{flex:none;width:72%;scroll-snap-align:start}
+  /* Méthode et tirages : même rail */
+  .steps,.fa-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin-inline:calc(-1 * var(--g));padding:0 var(--g);scroll-padding-inline:var(--g);scrollbar-width:none;overscroll-behavior-x:contain;background:none;border-radius:0}
+  .steps::-webkit-scrollbar,.fa-grid::-webkit-scrollbar{display:none}
+  .steps li{flex:none;width:68%;scroll-snap-align:start;background:var(--cloud);border-radius:var(--r-md);padding:22px 22px 26px}
+  .steps li::before{margin-bottom:14px}
+  .fa-grid .fa-card{flex:none;width:72%;scroll-snap-align:start}
+  .fa-band .sk-bar{background:#fff}
   .skill .txt strong{font-size:22px}
   .sk-bar{display:block;margin:18px auto 0;width:min(160px,40%);height:3px;border-radius:3px;background:var(--cloud);overflow:hidden}
   .sk-bar i{display:block;height:100%;background:var(--ink);transform-origin:left;transform:scaleX(.17);transition:transform .15s linear}
@@ -617,6 +624,7 @@ footer .wrap{padding-block:34px calc(24px + env(safe-area-inset-bottom,0px))}
       <li><strong>Post-production</strong><span>Montage, étalonnage et habillage, avec vos retours.</span></li>
       <li><strong>Livraison</strong><span>Film principal, versions courtes, formats réseaux sociaux.</span></li>
     </ol>
+    <div class="sk-bar" aria-hidden="true"><i></i></div>
   </section>
 
   <!-- PHOTOGRAPHIE -->
@@ -640,6 +648,7 @@ footer .wrap{padding-block:34px calc(24px + env(safe-area-inset-bottom,0px))}
     <div class="wrap">
       <div class="head"><h2 id="h-fa">Tirages d'art.</h2><p id="faText"></p></div>
       <div class="fa-grid" id="faGrid"></div>
+      <div class="sk-bar" aria-hidden="true"><i></i></div>
       <div class="center"><a class="pill ghost" href="#contact" id="faAsk">Demander un tirage</a></div>
     </div>
   </section>
