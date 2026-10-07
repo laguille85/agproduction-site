@@ -206,15 +206,25 @@ async function load(name){
     <span class="plus"><svg viewBox="0 0 14 14"><path d="M7 1v12M1 7h12"/></svg></span>
   </button>`).join("");
 
+  { const sk = $("#skills");
+    const sArrows = () => { $("#sprev").disabled = sk.scrollLeft < 8; $("#snext").disabled = sk.scrollLeft + sk.clientWidth > sk.scrollWidth - 8; };
+    const sStep = d => { const c = sk.querySelector(".skill"); sk.scrollBy({left: d * ((c ? c.offsetWidth : 340) + 20) * 2, behavior:"smooth"}); };
+    $("#sprev").addEventListener("click", () => sStep(-1)); $("#snext").addEventListener("click", () => sStep(1));
+    sk.addEventListener("scroll", sArrows, {passive:true}); window.addEventListener("resize", sArrows); sArrows(); }
+
   /* ---------- Photographie ---------- */
-  const pg = $("#pgrid");
-  pg.innerHTML = PHOTOS.map((p,i) => `<button class="pcard" type="button" data-p="${i}" aria-label="${esc(p.titre)} — voir la série">
+  const INITIAL = SITE.series_affichees || 12;
+  $("#pgrid").innerHTML = PHOTOS.map((p,i) => `<button class="pcard" type="button" data-p="${i}" ${i >= INITIAL ? "hidden" : ""} aria-label="${esc(p.titre)} — voir la série">
     <span class="img"><img src="${esc(src(p.couverture))}" alt="" loading="lazy" decoding="async"></span><span class="t">${esc(p.titre)}</span></button>`).join("");
-  const pArrows = () => { $("#pprev").disabled = pg.scrollLeft < 8; $("#pnext").disabled = pg.scrollLeft + pg.clientWidth > pg.scrollWidth - 8; };
-  const pStep = d => { const c = pg.querySelector(".pcard"); pg.scrollBy({left: d * ((c ? c.offsetWidth : 300) + 20) * 3, behavior:"smooth"}); };
-  $("#pprev").addEventListener("click", () => pStep(-1));
-  $("#pnext").addEventListener("click", () => pStep(1));
-  pg.addEventListener("scroll", pArrows, {passive:true}); window.addEventListener("resize", pArrows); pArrows();
+  const more = $("#morePhotos");
+  if (more && PHOTOS.length <= INITIAL) more.hidden = true;
+  if (more) more.addEventListener("click", () => {
+    const open = more.dataset.open === "1";
+    [...$("#pgrid").children].forEach((el,i) => { if (i >= INITIAL) el.hidden = open; });
+    more.dataset.open = open ? "0" : "1";
+    more.textContent = open ? "Voir toutes les séries" : "Réduire";
+    if (open) $("#photographie").scrollIntoView({block:"start"});
+  });
 
   /* Rails horizontaux sur mobile (savoir-faire, méthode, tirages) : barre de progression */
   [".why", "#skills", ".steps", "#pgrid", "#faGrid"].forEach(sel => { const rail = document.querySelector(sel); if (!rail) return;
