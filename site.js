@@ -314,6 +314,7 @@ async function load(name){
 
   /* ---------- Menu mobile ---------- */
   const nav = $("#nav");
+  document.addEventListener("touchstart", () => {}, {passive:true}); // active l'état :active sur iOS
   $("#burger").addEventListener("click", () => { const o = nav.classList.toggle("open"); $("#burger").setAttribute("aria-expanded", o); document.body.style.overflow = o ? "hidden" : ""; });
   document.querySelectorAll("#links a").forEach(a => a.addEventListener("click", () => { nav.classList.remove("open"); $("#burger").setAttribute("aria-expanded","false"); document.body.style.overflow = ""; }));
 

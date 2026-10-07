@@ -386,14 +386,30 @@ footer .wrap{padding-block:34px calc(24px + env(safe-area-inset-bottom,0px))}
 }
 @media (max-width:760px){
   body{font-size:16px}
-  .links{position:fixed;left:0;right:0;top:calc(52px + env(safe-area-inset-top,0px));height:calc(100svh - 52px);flex-direction:column;gap:6px;padding:24px var(--g);
-         background:var(--cloud);font-size:28px;font-weight:600;letter-spacing:-.03em;opacity:0;pointer-events:none;transition:opacity .25s;border-top:1px solid var(--hair)}
+  .links{position:fixed;left:0;right:0;top:calc(52px + env(safe-area-inset-top,0px));height:calc(100svh - 52px);flex-direction:column;gap:8px;padding:18px var(--g) calc(28px + env(safe-area-inset-bottom,0px));
+         background:var(--cloud);font-size:20px;font-weight:600;letter-spacing:-.022em;opacity:0;pointer-events:none;transition:opacity .25s;overflow-y:auto}
   .nav.open{background:var(--cloud);backdrop-filter:none;-webkit-backdrop-filter:none}
-  .links>a{padding:10px 0;border-bottom:1px solid var(--hair);opacity:1}
-  .links>a:last-of-type{border-bottom:0}
+  .links>a{position:relative;display:block;opacity:1;color:var(--ink);background:#fff;border-radius:22px;padding:15px 64px 15px 20px;
+           box-shadow:0 1px 1px rgba(0,0,0,.03),0 6px 20px -12px rgba(0,0,0,.12);-webkit-tap-highlight-color:transparent;
+           transition:background .2s,color .2s,transform .35s cubic-bezier(.2,.7,.2,1),opacity .35s;transform:translateY(10px)}
+  .nav:not(.open) .links>a{opacity:0}
+  .nav.open .links>a{transform:none}
+  .links>a:nth-child(2){transition-delay:0s,0s,.03s,.03s}.links>a:nth-child(3){transition-delay:0s,0s,.06s,.06s}
+  .links>a:nth-child(4){transition-delay:0s,0s,.09s,.09s}.links>a:nth-child(5){transition-delay:0s,0s,.12s,.12s}
+  .links>a:nth-child(6){transition-delay:0s,0s,.15s,.15s}.links>a:nth-child(7){transition-delay:0s,0s,.18s,.18s}
+  .links>a::after{content:attr(data-sub);display:block;font-size:14px;font-weight:400;letter-spacing:-.01em;color:#86868b;margin-top:3px;transition:color .2s}
+  .links>a::before{content:"";position:absolute;right:16px;top:50%;width:32px;height:32px;margin-top:-16px;border-radius:50%;transition:background-color .2s;
+           background:var(--cloud) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230a66d8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E") center/16px no-repeat}
+  .links>a:active{background:var(--tide);color:#fff;transform:scale(.985)}
+  .links>a:active::after{color:rgba(255,255,255,.75)}
+  .links>a:active::before{background-color:#fff}
+  .links>a[href="#contact"]{background:var(--ink);color:#fff}
+  .links>a[href="#contact"]::after{color:rgba(255,255,255,.6)}
+  .links>a[href="#contact"]::before{background-color:#fff}
+  .links>a[href="#contact"]:active{background:var(--tide)}
   .nav.open .links{opacity:1;pointer-events:auto}
   .nav .right{display:none}
-  .m-only{display:flex;gap:22px;margin-top:22px;font-size:17px;font-weight:500;letter-spacing:0}
+  .m-only{display:flex;justify-content:center;gap:22px;margin-top:auto;padding-top:22px;font-size:17px;font-weight:500;letter-spacing:0}
   .m-only a{color:var(--tide)}
   .burger{display:block}
   .reel{height:auto;aspect-ratio:4/5;min-height:0}
@@ -432,7 +448,7 @@ footer .wrap{padding-block:34px calc(24px + env(safe-area-inset-bottom,0px))}
   <div class="wrap">
     <a class="brand" href="#top"><img src="https://cdn.myportfolio.com/29c4e139eedffb206faefd38f3f6bd1d/4ea0e9fd-7a38-434a-b0f5-89aff32a8e5e_rwc_0x0x9890x9890x4096.png?h=bb83528335387cfffb7270d948aa1af1" alt="" width="28" height="28">AG Production</a>
     <nav class="links" id="links" aria-label="Navigation principale">
-      <a href="#films">Films</a><a href="#projets">Projets</a><a href="#clients">Clients</a><a href="#savoir-faire">Savoir-faire</a><a href="#photographie">Photographie</a><a href="#a-propos">À propos</a><a href="#contact">Contact</a>
+      <a href="#films" data-sub="Showreel et réalisations">Films</a><a href="#projets" data-sub="Trois projets racontés en détail">Projets</a><a href="#clients" data-sub="Ils m'ont fait confiance">Clients</a><a href="#savoir-faire" data-sub="Sport, voile, entreprise, drone">Savoir-faire</a><a href="#photographie" data-sub="Reportages et séries photo">Photographie</a><a href="#a-propos" data-sub="Qui je suis, comment je travaille">À propos</a><a href="#contact" data-sub="Parlons de votre projet">Contact</a>
       <span class="m-only"><a class="ig" href="#" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.1" class="dot"/></svg>Instagram</a><a class="li" href="#" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3.5"/><path d="M8 10.5V16M8 7.6v.1M11.5 16v-5.5M11.5 13c0-1.6 1-2.6 2.4-2.6 1.4 0 2.1.9 2.1 2.6V16"/></svg><span class="lbl-txt">LinkedIn</span></a></span>
     </nav>
     <div class="right">
