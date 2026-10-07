@@ -249,12 +249,12 @@ async function load(name){
   function showSeries(){
     const p = series, imgs = p.images || [];
     mode = "photo";
-    const back = p.galerie === "bande" ? `<button type="button" class="g-back" data-back>${icoL}<span>Toutes les photos</span></button>` : "";
+    const back = p._g ? `<button type="button" class="g-back" data-back>${icoL}<span>Toutes les photos</span></button>` : "";
     const html = `<div class="sheet-head">${back}<h3>${esc(p.titre)}</h3></div>
       <div class="gallery"><img src="${esc(src(imgs[k]))}" alt="${esc(p.titre)}, image ${k+1} sur ${imgs.length}"></div>
       <div class="gnav"><span class="num">${k+1} sur ${imgs.length}</span><span class="btns"><button type="button" data-d="-1" aria-label="Image précédente">${icoL}</button><button type="button" data-d="1" aria-label="Image suivante">${icoR}</button></span></div>`;
     if (modal.hidden) openSheet(html); else { sheet.innerHTML = `<button class="x" type="button" aria-label="Fermer">${icoX}</button>` + html; sheet.querySelector(".x").onclick = closeSheet; }
-    sheet.className = "sheet" + (p.galerie === "bande" ? " wide g-sheet g-photo" : "");
+    sheet.className = "sheet" + (p._g ? " wide g-sheet g-photo" : "");
     sheet.querySelectorAll("[data-d]").forEach(b => b.onclick = () => step(+b.dataset.d));
     const bk = sheet.querySelector("[data-back]"); if (bk) bk.onclick = () => showStrip(view, k);
     if (imgs.length > 1) new Image().src = src(imgs[(k+1) % imgs.length]);
@@ -289,7 +289,7 @@ async function load(name){
   let drag = null;
   window.addEventListener("pointermove", e => { if (!drag) return; const dx = e.clientX - drag.x0; if (Math.abs(dx) > 5) { drag.moved = true; drag.el.classList.add("drag"); } if (drag.moved) drag.el.scrollLeft = drag.s0 - dx; });
   window.addEventListener("pointerup", () => { if (!drag) return; drag.el.classList.remove("drag"); drag.el.dataset.moved = drag.moved ? "1" : ""; drag = null; });
-  function openSeries(p){ series = p; k = 0; if (p.galerie === "bande") showStrip("bande"); else showSeries(); }
+  function openSeries(p, grande){ series = p; k = 0; p._g = grande && p.galerie !== "classique"; if (p._g) showStrip("bande"); else showSeries(); }
   function step(d){ if (!series || !(series.images||[]).length) return; k = (k + d + series.images.length) % series.images.length; showSeries(); }
   function showSkill(i){
     const s = SKILLS[i];
@@ -310,7 +310,7 @@ async function load(name){
     const v = e.target.closest("[data-v]"); if (v) { playFilm(+v.dataset.v); return; }
     const cv = e.target.closest("[data-cv]"); if (cv) { const c = CASES[+cv.dataset.cv]; if ((c.vimeo||[]).length) playFilm({ titre: c.titre, categorie: c.client, vimeo: c.vimeo }); return; }
     const ci = e.target.closest("[data-ci]"); if (ci) { const c = CASES[+caseEl.dataset.n]; series = { titre: c.titre, images: [c.couverture, ...(c.images||[])] }; k = +ci.dataset.ci + 1; showSeries(); return; }
-    const p = e.target.closest("[data-p]"); if (p) { openSeries(PHOTOS[+p.dataset.p]); return; }
+    const p = e.target.closest("[data-p]"); if (p) { openSeries(PHOTOS[+p.dataset.p], true); return; }
     const fa = e.target.closest("[data-fa]"); if (fa) { openSeries(PRINTS[+fa.dataset.fa]); return; }
     const s = e.target.closest("[data-s]"); if (s) { showSkill(+s.dataset.s); return; }
     if (e.target.closest(".legalBtn")) showLegal();

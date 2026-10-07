@@ -89,10 +89,10 @@ content:
         type: select
         options:
           values:
+            - value: bande
+              label: Défilement + mosaïque (par défaut)
             - value: classique
               label: Classique (une photo à la fois)
-            - value: bande
-              label: Défilement + mosaïque (pour les grandes séries)
 
   - name: references
     label: Références (logos clients)
