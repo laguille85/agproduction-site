@@ -1,0 +1,87 @@
+[
+  {
+    "nom": "Air France",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/4/44/Air_France_Logo.svg",
+    "taille": 1
+  },
+  {
+    "nom": "Pierre Fabre",
+    "logo": "images/logos/pierre-fabre.png",
+    "taille": 1.35
+  },
+  {
+    "nom": "Europ Assistance",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/4/41/Europ_Assistance_Logo_.png",
+    "taille": 1
+  },
+  {
+    "nom": "Allianz Trade",
+    "logo": "images/logos/allianz-trade.png",
+    "taille": 0.85
+  },
+  {
+    "nom": "MSD",
+    "logo": "images/logos/msd.png",
+    "taille": 0.8
+  },
+  {
+    "nom": "TotalEnergies",
+    "logo": "https://upload.wikimedia.org/wikipedia/fr/f/f7/Logo_TotalEnergies.svg",
+    "taille": 1
+  },
+  {
+    "nom": "Groupe Dubreuil",
+    "logo": "https://upload.wikimedia.org/wikipedia/fr/c/c3/Groupedubreuil.jpg",
+    "taille": 1.25
+  },
+  {
+    "nom": "Enedis",
+    "logo": "images/logos/enedis.png",
+    "taille": 1
+  },
+  {
+    "nom": "Danone",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/f/f4/DANONE_LOGO_HORIZONTAL.png",
+    "taille": 1
+  },
+  {
+    "nom": "TimeForMed",
+    "logo": "images/logos/timeformed.png",
+    "taille": 1.1
+  },
+  {
+    "nom": "Adidas",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg",
+    "taille": 1.1
+  },
+  {
+    "nom": "Puma",
+    "logo": "https://upload.wikimedia.org/wikipedia/fr/7/72/Puma.svg",
+    "taille": 1.1
+  },
+  {
+    "nom": "Brooks",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/3/39/Brooks_sports_logo.png",
+    "taille": 1
+  },
+  {
+    "nom": "Compressport",
+    "logo": "images/logos/compressport.jpg",
+    "taille": 0.85
+  },
+  {
+    "nom": "BWT",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/b/b1/BWT_Logo_2024.svg",
+    "taille": 1
+  },
+  {
+    "nom": "Richemont",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/4/41/Logo_Richemont.svg",
+    "taille": 1
+  },
+  {
+    "nom": "Fédération Française de Cyclisme",
+    "logo": "https://upload.wikimedia.org/wikipedia/fr/9/91/Logo_FFC.svg",
+    "taille": 1.2
+  }
+]

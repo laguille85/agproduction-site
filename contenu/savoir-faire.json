@@ -1,0 +1,68 @@
+[
+  {
+    "surtitre": "Corporate",
+    "titre": "Films de marque et d'entreprise",
+    "image": "https://cdn.myportfolio.com/29c4e139eedffb206faefd38f3f6bd1d/4d6cb79d-d5b5-4ad7-b101-f83df9e6ba17_rw_1200.jpg?h=f81b2b834030761ac13b8b352200b96a",
+    "texte": "Films institutionnels, portraits d'entreprise, témoignages de clients ou de collaborateurs. J'écris le film avec vous, à partir de vos messages, de votre public et de vos canaux de diffusion.",
+    "livrables": [
+      "Film principal et versions courtes",
+      "Formats réseaux sociaux",
+      "Sous-titrage"
+    ]
+  },
+  {
+    "surtitre": "Sport",
+    "titre": "Au plus près des athlètes",
+    "image": "https://cdn.myportfolio.com/29c4e139eedffb206faefd38f3f6bd1d/356e28d5-cc94-47fd-b092-5106a8c8fca3_rw_1920.jpg?h=a380116cdf3ebc50e690e279fc7e31b3",
+    "texte": "Running, triathlon, cyclisme, surf, sports mécaniques. Des images d'action tournées au plus près des athlètes, et des portraits qui montrent ce qu'il y a derrière la performance.",
+    "livrables": [
+      "Films de course et d'événement",
+      "Portraits d'athlètes",
+      "Photos presse et sponsors"
+    ]
+  },
+  {
+    "surtitre": "Voile",
+    "titre": "La course au large, à terre et en mer",
+    "image": "images/savoir-faire/voile-imoca-foils.jpg",
+    "texte": "Tournages à terre, sur l'eau et à bord, du chantier jusqu'au départ de course. Installé aux Sables-d'Olonne, port du Vendée Globe, je connais le rythme et les contraintes des équipes de course au large.",
+    "livrables": [
+      "Films d'équipe et de partenaires",
+      "Contenus pour les sponsors",
+      "Images pour les médias"
+    ]
+  },
+  {
+    "surtitre": "Événements",
+    "titre": "Conférences, salons, aftermovies",
+    "image": "https://cdn.myportfolio.com/29c4e139eedffb206faefd38f3f6bd1d/6d614459-8efa-484b-a9c6-b9ebbca93677_rwc_160x0x1599x1280x1599.jpg?h=07bc11eecb125a27ea78ddbfdbc7b4e4",
+    "texte": "Captation de conférences, interviews, aftermovies, stands sur les salons professionnels en France et à l'étranger. Un dispositif discret qui s'adapte au déroulé de l'événement.",
+    "livrables": [
+      "Captations complètes",
+      "Films résumés et interviews",
+      "Reportage photo"
+    ]
+  },
+  {
+    "surtitre": "Aérien",
+    "titre": "Des images vues du ciel",
+    "image": "https://cdn.myportfolio.com/29c4e139eedffb206faefd38f3f6bd1d/ff38ce89-e8bf-4ece-8aa5-5a71db00bdc5_rwc_211x0x1500x1200x1500.jpg?h=9a2844ffa5909e17508095af7dd477f7",
+    "texte": "Je suis pilote de drone certifié DGAC. Je prends en charge le repérage, l'analyse de la zone de vol et les démarches d'autorisation avant chaque tournage.",
+    "livrables": [
+      "Plans aériens pour vos films",
+      "Photos aériennes",
+      "Démarches réglementaires"
+    ]
+  },
+  {
+    "surtitre": "Photo et post-production",
+    "titre": "De la prise de vue au fichier final",
+    "image": "https://cdn.myportfolio.com/29c4e139eedffb206faefd38f3f6bd1d/86bdaea4-d26f-4c5c-8d4c-a3b8d7dd7970_rwc_224x0x1498x1199x1498.jpg?h=81f2ed94a5e2e723bb166a477a53d385",
+    "texte": "Reportage, portrait, architecture et lifestyle. Je m'occupe du montage, de l'étalonnage, de l'habillage graphique et des déclinaisons.",
+    "livrables": [
+      "Photos retouchées prêtes à publier",
+      "Montage et étalonnage",
+      "Habillage et déclinaisons"
+    ]
+  }
+]

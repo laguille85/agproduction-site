@@ -1,0 +1,359 @@
+# Configuration de l'interface d'administration Pages CMS (https://pagescms.org)
+# Ce fichier décrit les formulaires que tu vois dans app.pagescms.org. Ne pas modifier sans raison.
+
+media:
+  - name: photos
+    label: Photos
+    input: images/photos
+    output: images/photos
+    extensions: [jpg, jpeg, png, webp]
+    rename: safe
+  - name: films
+    label: Vignettes des films
+    input: images/films
+    output: images/films
+    extensions: [jpg, jpeg, png, webp]
+    rename: safe
+  - name: logos
+    label: Logos clients
+    input: images/logos
+    output: images/logos
+    extensions: [svg, png, jpg, jpeg, webp]
+    rename: safe
+  - name: divers
+    label: Autres images et vidéo
+    input: images/savoir-faire
+    output: images/savoir-faire
+    extensions: [jpg, jpeg, png, webp, mp4]
+    rename: safe
+
+content:
+  - name: films
+    label: Films
+    type: file
+    path: contenu/films.json
+    format: json
+    list:
+      collapsible:
+        collapsed: true
+        summary: "{titre}"
+    fields:
+      - name: titre
+        label: Titre du film
+        type: string
+        required: true
+      - name: categorie
+        label: Catégorie (filtre)
+        type: select
+        options:
+          values: [Corporate, Sport, Voile, Marques, Événements, Territoires]
+      - name: vimeo
+        label: Lien(s) Vimeo — un par film, le premier est lu en premier
+        type: string
+        list: true
+        required: true
+      - name: vignette
+        label: Vignette (image 16:10, 1600 px de large conseillé)
+        type: image
+        options:
+          media: films
+
+  - name: photos
+    label: Séries photo
+    type: file
+    path: contenu/photos.json
+    format: json
+    list:
+      collapsible:
+        collapsed: true
+        summary: "{titre}"
+    fields:
+      - name: titre
+        label: Titre de la série (nom du client ou du projet)
+        type: string
+        required: true
+      - name: couverture
+        label: Photo de couverture (format vertical 4:5 conseillé)
+        type: image
+        options:
+          media: photos
+      - name: images
+        label: Photos de la série (dans l'ordre d'affichage)
+        type: image
+        options:
+          media: photos
+          multiple:
+            max: 40
+
+  - name: references
+    label: Références (logos clients)
+    type: file
+    path: contenu/references.json
+    format: json
+    list:
+      collapsible:
+        collapsed: true
+        summary: "{nom}"
+    fields:
+      - name: nom
+        label: Nom du client
+        type: string
+        required: true
+      - name: logo
+        label: Logo (SVG ou PNG sur fond transparent de préférence)
+        type: image
+        options:
+          media: logos
+      - name: taille
+        label: Taille d'affichage (1 = normal, 1.3 = plus grand, 0.8 = plus petit)
+        type: number
+        options:
+          min: 0.5
+          max: 2
+
+  - name: projets
+    label: Projets racontés (les onglets « de près »)
+    type: file
+    path: contenu/projets.json
+    format: json
+    list:
+      collapsible:
+        collapsed: true
+        summary: "{onglet}"
+    fields:
+      - name: onglet
+        label: Nom court de l'onglet (ex. Air France)
+        type: string
+        required: true
+      - name: client
+        label: Client (petit titre)
+        type: string
+      - name: titre
+        label: Titre du projet
+        type: string
+      - name: accroche
+        label: Accroche (une phrase)
+        type: text
+      - name: contexte
+        label: Contexte
+        type: text
+      - name: dispositif
+        label: Dispositif
+        type: text
+      - name: resultat
+        label: Résultat
+        type: text
+      - name: citation
+        label: Citation du client (facultatif)
+        type: text
+      - name: citation_auteur
+        label: Auteur de la citation
+        type: string
+      - name: couverture
+        label: Grande image (format cinéma conseillé)
+        type: image
+        options:
+          media: divers
+      - name: vimeo
+        label: Lien(s) Vimeo — le premier est lu en premier
+        type: string
+        list: true
+      - name: images
+        label: Images sous le film (2 ou 3 conseillées)
+        type: image
+        list: true
+        options:
+          media: divers
+      - name: serie_photo
+        label: Série photo liée (titre exact de la série, facultatif)
+        type: string
+
+  - name: tirages
+    label: Tirages d'art (séries personnelles)
+    type: file
+    path: contenu/tirages.json
+    format: json
+    list:
+      collapsible:
+        collapsed: true
+        summary: "{titre}"
+    fields:
+      - name: titre
+        label: Titre de la série
+        type: string
+        required: true
+      - name: couverture
+        label: Vignette (format 5:4)
+        type: image
+        options:
+          media: photos
+      - name: encadre
+        label: Vignette au survol — photo encadrée en situation (5:4)
+        type: image
+        options:
+          media: photos
+      - name: images
+        label: Photos de la série
+        type: image
+        list: true
+        options:
+          media: photos
+
+  - name: savoir-faire
+    label: Savoir-faire (les 6 cartes)
+    type: file
+    path: contenu/savoir-faire.json
+    format: json
+    list:
+      collapsible:
+        collapsed: true
+        summary: "{titre}"
+    fields:
+      - name: surtitre
+        label: Petit titre (ex. Corporate)
+        type: string
+      - name: titre
+        label: Titre de la carte
+        type: string
+      - name: image
+        label: Image de fond
+        type: image
+        options:
+          media: divers
+      - name: texte
+        label: Texte du détail
+        type: text
+      - name: livrables
+        label: Livrables (un par ligne)
+        type: string
+        list: true
+
+  - name: site
+    label: Réglages et textes
+    type: file
+    path: contenu/site.json
+    format: json
+    fields:
+      - name: accroche_titre
+        label: Grand titre d'accueil
+        type: string
+      - name: accroche_texte
+        label: Phrase sous le grand titre
+        type: text
+      - name: video_accueil_vimeo
+        label: Vidéo d'accueil depuis Vimeo — lien (si rempli, remplace les fichiers MP4 ci-dessous)
+        type: string
+      - name: video_accueil
+        label: Vidéo d'accueil — H.264, 1920 × 1080 (obligatoire, moins de 25 Mo)
+        type: file
+        options:
+          media: divers
+      - name: video_accueil_hevc
+        label: Vidéo d'accueil — HEVC/H.265, 2560 × 1440 (facultatif, meilleure qualité, moins de 25 Mo)
+        type: file
+        options:
+          media: divers
+      - name: video_accueil_mobile
+        label: Vidéo d'accueil — version mobile 1280 × 720 (facultatif, plus légère)
+        type: file
+        options:
+          media: divers
+      - name: video_accueil_image
+        label: Image affichée avant le chargement de la vidéo
+        type: image
+        options:
+          media: divers
+      - name: email
+        label: Adresse e-mail de contact
+        type: string
+      - name: instagram
+        label: Lien Instagram
+        type: string
+      - name: linkedin
+        label: Lien LinkedIn
+        type: string
+      - name: chiffre_annees
+        label: Chiffre clé « années d'expérience » (affiché « Plus de … ans »)
+        type: number
+      - name: chiffre_projets
+        label: Chiffre clé « projets tournés »
+        type: number
+      - name: chiffre_clients
+        label: Chiffre clé « clients » (affiché « Plus de … »)
+        type: number
+      - name: photo_chiffres_annees
+        label: Chiffres — photo « 8 ans »
+        type: image
+        options:
+          media: divers
+      - name: photo_chiffres_drone
+        label: Chiffres — photo « Pilote de drone certifié »
+        type: image
+        options:
+          media: divers
+      - name: photo_chiffres_interlocuteur
+        label: Chiffres — photo « 1 seul interlocuteur » (portrait)
+        type: image
+        options:
+          media: divers
+      - name: photo_chiffres_port
+        label: Chiffres — photo « Les Sables-d'Olonne »
+        type: image
+        options:
+          media: divers
+      - name: a_propos_titre
+        label: À propos — titre
+        type: string
+      - name: portrait
+        label: À propos — portrait
+        type: image
+        options:
+          media: divers
+      - name: a_propos_intro
+        label: À propos — phrase en gras
+        type: text
+      - name: a_propos_paragraphes
+        label: À propos — paragraphes
+        type: text
+        list: true
+      - name: domaines
+        label: À propos — domaines d'activité
+        type: string
+        list: true
+      - name: tirages_texte
+        label: Tirages d'art — texte d'introduction
+        type: text
+      - name: series_affichees
+        label: Nombre de séries photo affichées avant « Voir toutes les séries »
+        type: number
+      - name: web3forms_cle
+        label: Clé Web3Forms du formulaire de contact
+        type: string
+      - name: mentions
+        label: Mentions légales
+        type: object
+        fields:
+          - name: forme
+            label: Forme juridique (ex. SARL)
+            type: string
+          - name: capital
+            label: Capital social (en euros)
+            type: string
+          - name: adresse
+            label: Adresse du siège
+            type: string
+          - name: telephone
+            label: Téléphone
+            type: string
+          - name: rcs
+            label: RCS (ville et numéro)
+            type: string
+          - name: siret
+            label: SIRET
+            type: string
+          - name: tva
+            label: Numéro de TVA intracommunautaire
+            type: string
+          - name: hebergeur
+            label: Hébergeur (nom, adresse, téléphone)
+            type: text

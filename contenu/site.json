@@ -1,0 +1,49 @@
+{
+  "accroche_titre": "Films. Photos. Drone.",
+  "accroche_texte": "Filmer l'effort, raconter les marques. En France comme à l'étranger.",
+  "video_accueil_vimeo": "https://vimeo.com/1230822337",
+  "video_accueil": "https://cdn.myportfolio.com/v1/ccvproxy/NI2WqQutQxr?width=1920&type=mp4&h=9eda03f1153fa9e0fb43a5470591c83f",
+  "video_accueil_hevc": "",
+  "video_accueil_mobile": "",
+  "video_accueil_image": "https://i.vimeocdn.com/video/2205828587-892b95b6f37d433055c3120a1aafc3c6ced88e7cdc805a1fe9aed7a619dcadf4-d_1920x1080",
+  "email": "guillouantoine85@gmail.com",
+  "instagram": "https://www.instagram.com/aguillouphotography/",
+  "linkedin": "https://www.linkedin.com/in/antoine-guillou-14a02628",
+  "chiffre_annees": 10,
+  "chiffre_projets": 300,
+  "chiffre_clients": 50,
+  "photo_chiffres_annees": "https://cdn.myportfolio.com/29c4e139eedffb206faefd38f3f6bd1d/4192ab9d-c58c-4364-a379-95f75c889b23_rw_1200.jpg?h=166000e3c8c357dc77a3c8e70d1ad077",
+  "photo_chiffres_drone": "https://cdn.myportfolio.com/29c4e139eedffb206faefd38f3f6bd1d/af4daa8f-aa3b-4448-a84a-f23416fa9f13_rw_1200.jpg?h=8de05b716d75d6c08bc1051af43189f4",
+  "photo_chiffres_interlocuteur": "images/savoir-faire/antoine-portrait-2.jpg",
+  "photo_chiffres_port": "images/savoir-faire/sables-olonne-soir.jpg",
+  "a_propos_titre": "Je m'appelle Antoine Guillou.",
+  "portrait": "https://cdn.myportfolio.com/29c4e139eedffb206faefd38f3f6bd1d/2651ec78-10f2-4f8b-bc25-98595ab9c1f1_rw_1200.png?h=7f6c6194f529ef27d2c7a8de3f24e13b",
+  "a_propos_intro": "Je suis photographe, vidéaste et pilote de drone certifié par la DGAC.",
+  "a_propos_paragraphes": [
+    "Véritable couteau suisse, je m'adapte aux différents projets, que ce soit en photo ou en vidéo. Dans chaque domaine, j'assure moi-même la prise de vue, la post-production et le montage.",
+    "Curieux et passionné, j'aime participer à de nouveaux projets, échanger, construire de nouvelles histoires…",
+    "Mes projets m'amènent à me déplacer partout en France et à l'étranger."
+  ],
+  "domaines": [
+    "Sport",
+    "Lifestyle",
+    "Événementiel",
+    "Corporate",
+    "Architecture",
+    "Music",
+    "Brand content"
+  ],
+  "series_affichees": 12,
+  "web3forms_cle": "",
+  "mentions": {
+    "forme": "SARL",
+    "capital": "2 000",
+    "adresse": "",
+    "telephone": "",
+    "rcs": "La Roche-sur-Yon 100 476 118",
+    "siret": "100 476 118 00011",
+    "tva": "FR90100476118",
+    "hebergeur": ""
+  },
+  "tirages_texte": "Je photographie ce qui me fascine : l'océan, la montagne, la ville. Ces images sont disponibles en tirage d'art. Formats et finitions sur demande."
+}

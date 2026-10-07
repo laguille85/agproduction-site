@@ -1,0 +1,16 @@
+AG Production — site antoineguillou.fr
+
+À mettre tel quel sur GitHub (dépôt « agproduction-site »), y compris le fichier caché .pages.yml.
+Le mode d'emploi complet (mise en ligne, ajout de films et de photos) est dans le document
+« Mettre en ligne et gérer le site AG Production ».
+
+  index.html      mise en page (ne pas modifier)
+  site.js         fonctionnement (ne pas modifier)
+  contenu/        films, séries photo, références, savoir-faire, réglages : modifiables dans Pages CMS
+  images/         photos, logos, vignettes : déposées via Pages CMS
+  .pages.yml      configuration de l'interface d'administration Pages CMS
+
+Remarque : le site ne s'affiche pas par double-clic sur index.html. Pour le voir, utilise son adresse en ligne.
+
+  CNAME           adresse du site pour GitHub Pages (antoineguillou.fr)
+  .nojekyll       indique à GitHub Pages de publier les fichiers tels quels
