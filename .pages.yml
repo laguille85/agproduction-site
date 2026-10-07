@@ -83,7 +83,16 @@ content:
         options:
           media: photos
           multiple:
-            max: 40
+            max: 60
+      - name: galerie
+        label: Présentation de la série
+        type: select
+        options:
+          values:
+            - value: classique
+              label: Classique (une photo à la fois)
+            - value: bande
+              label: Défilement + mosaïque (pour les grandes séries)
 
   - name: references
     label: Références (logos clients)

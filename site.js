@@ -227,7 +227,7 @@ async function load(name){
      Fenêtre : films, séries, détails, mentions légales
      ========================================================= */
   const modal = $("#modal"), sheet = $("#sheet"), reel = $("#reel");
-  let lastFocus = null, series = null, k = 0;
+  let lastFocus = null, series = null, k = 0, mode = "photo", view = "bande";
   function openSheet(html, wide){
     lastFocus = document.activeElement;
     sheet.className = "sheet" + (wide ? " wide" : "");
@@ -248,13 +248,48 @@ async function load(name){
   }
   function showSeries(){
     const p = series, imgs = p.images || [];
-    const html = `<div class="sheet-head"><h3>${esc(p.titre)}</h3></div>
+    mode = "photo";
+    const back = p.galerie === "bande" ? `<button type="button" class="g-back" data-back>${icoL}<span>Toutes les photos</span></button>` : "";
+    const html = `<div class="sheet-head">${back}<h3>${esc(p.titre)}</h3></div>
       <div class="gallery"><img src="${esc(src(imgs[k]))}" alt="${esc(p.titre)}, image ${k+1} sur ${imgs.length}"></div>
       <div class="gnav"><span class="num">${k+1} sur ${imgs.length}</span><span class="btns"><button type="button" data-d="-1" aria-label="Image précédente">${icoL}</button><button type="button" data-d="1" aria-label="Image suivante">${icoR}</button></span></div>`;
     if (modal.hidden) openSheet(html); else { sheet.innerHTML = `<button class="x" type="button" aria-label="Fermer">${icoX}</button>` + html; sheet.querySelector(".x").onclick = closeSheet; }
+    sheet.className = "sheet" + (p.galerie === "bande" ? " wide g-sheet g-photo" : "");
     sheet.querySelectorAll("[data-d]").forEach(b => b.onclick = () => step(+b.dataset.d));
+    const bk = sheet.querySelector("[data-back]"); if (bk) bk.onclick = () => showStrip(view, k);
     if (imgs.length > 1) new Image().src = src(imgs[(k+1) % imgs.length]);
   }
+  /* Grandes séries : bande qui défile (plusieurs photos à la fois) ou mosaïque */
+  function showStrip(v = "bande", focus = 0){
+    const p = series, imgs = p.images || [];
+    mode = "strip"; view = v;
+    const pics = imgs.map((u,i) => `<button type="button" class="g-pic" data-gi="${i}" style="--i:${Math.min(i,12)}" aria-label="Agrandir la photo ${i+1} sur ${imgs.length}"><img src="${esc(src(u))}" alt="" loading="${i < 6 ? "eager" : "lazy"}" decoding="async" onload="this.parentNode.style.aspectRatio=this.naturalWidth+'/'+this.naturalHeight"></button>`).join("");
+    const html = `<div class="sheet-head g-head"><div><h3>${esc(p.titre)}</h3><small>${imgs.length} photos</small></div>
+        <div class="g-views" role="group" aria-label="Affichage"><button type="button" data-view="bande" aria-pressed="${v==="bande"}">Défilement</button><button type="button" data-view="mosaique" aria-pressed="${v==="mosaique"}">Mosaïque</button></div></div>
+      ${v === "bande"
+        ? `<div class="g-strip" tabindex="0" aria-label="Photos de la série, faites défiler">${pics}</div>
+           <div class="gnav g-ctl"><span class="g-bar"><i></i></span><span class="btns"><button type="button" data-sd="-1" aria-label="Photos précédentes">${icoL}</button><button type="button" data-sd="1" aria-label="Photos suivantes">${icoR}</button></span></div>`
+        : `<div class="g-mosaic">${pics}</div>`}`;
+    if (modal.hidden) openSheet(html, true); else { sheet.innerHTML = `<button class="x" type="button" aria-label="Fermer">${icoX}</button>` + html; sheet.querySelector(".x").onclick = closeSheet; }
+    sheet.className = "sheet wide g-sheet";
+    sheet.querySelectorAll("[data-view]").forEach(b => b.onclick = () => showStrip(b.dataset.view));
+    sheet.querySelectorAll("[data-gi]").forEach(b => b.onclick = () => { k = +b.dataset.gi; showSeries(); sheet.scrollTop = 0; });
+    const strip = sheet.querySelector(".g-strip");
+    if (strip) {
+      const bar = sheet.querySelector(".g-bar i");
+      const upd = () => { const m = strip.scrollWidth - strip.clientWidth; bar.style.transform = `scaleX(${m > 0 ? Math.max(.06, strip.scrollLeft / m) : 1})`; };
+      strip.addEventListener("scroll", upd, {passive:true}); upd();
+      sheet.querySelectorAll("[data-sd]").forEach(b => b.onclick = () => strip.scrollBy({left: +b.dataset.sd * strip.clientWidth * .8, behavior: "smooth"}));
+      /* glisser à la souris */
+      strip.addEventListener("pointerdown", e => { if (e.pointerType !== "mouse" || e.button) return; drag = { el: strip, x0: e.clientX, s0: strip.scrollLeft, moved: false }; });
+      strip.addEventListener("click", e => { if (strip.dataset.moved === "1") { e.stopPropagation(); e.preventDefault(); strip.dataset.moved = ""; } }, true);
+      if (focus) { const el = strip.children[focus]; if (el) strip.scrollLeft = el.offsetLeft - 24; }
+    } else if (focus) { const el = sheet.querySelector(`[data-gi="${focus}"]`); if (el) el.scrollIntoView({block:"center"}); }
+  }
+  let drag = null;
+  window.addEventListener("pointermove", e => { if (!drag) return; const dx = e.clientX - drag.x0; if (Math.abs(dx) > 5) { drag.moved = true; drag.el.classList.add("drag"); } if (drag.moved) drag.el.scrollLeft = drag.s0 - dx; });
+  window.addEventListener("pointerup", () => { if (!drag) return; drag.el.classList.remove("drag"); drag.el.dataset.moved = drag.moved ? "1" : ""; drag = null; });
+  function openSeries(p){ series = p; k = 0; if (p.galerie === "bande") showStrip("bande"); else showSeries(); }
   function step(d){ if (!series || !(series.images||[]).length) return; k = (k + d + series.images.length) % series.images.length; showSeries(); }
   function showSkill(i){
     const s = SKILLS[i];
@@ -275,20 +310,21 @@ async function load(name){
     const v = e.target.closest("[data-v]"); if (v) { playFilm(+v.dataset.v); return; }
     const cv = e.target.closest("[data-cv]"); if (cv) { const c = CASES[+cv.dataset.cv]; if ((c.vimeo||[]).length) playFilm({ titre: c.titre, categorie: c.client, vimeo: c.vimeo }); return; }
     const ci = e.target.closest("[data-ci]"); if (ci) { const c = CASES[+caseEl.dataset.n]; series = { titre: c.titre, images: [c.couverture, ...(c.images||[])] }; k = +ci.dataset.ci + 1; showSeries(); return; }
-    const p = e.target.closest("[data-p]"); if (p) { series = PHOTOS[+p.dataset.p]; k = 0; showSeries(); return; }
-    const fa = e.target.closest("[data-fa]"); if (fa) { series = PRINTS[+fa.dataset.fa]; k = 0; showSeries(); return; }
+    const p = e.target.closest("[data-p]"); if (p) { openSeries(PHOTOS[+p.dataset.p]); return; }
+    const fa = e.target.closest("[data-fa]"); if (fa) { openSeries(PRINTS[+fa.dataset.fa]); return; }
     const s = e.target.closest("[data-s]"); if (s) { showSkill(+s.dataset.s); return; }
     if (e.target.closest(".legalBtn")) showLegal();
   });
   document.addEventListener("keydown", e => {
     if (modal.hidden) return;
     if (e.key === "Escape") closeSheet();
+    if (mode === "strip") { const st = sheet.querySelector(".g-strip"); if (st && (e.key === "ArrowLeft" || e.key === "ArrowRight")) { e.preventDefault(); st.scrollBy({left:(e.key === "ArrowLeft" ? -1 : 1) * st.clientWidth * .8, behavior:"smooth"}); } return; }
     if (e.key === "ArrowLeft") step(-1);
     if (e.key === "ArrowRight") step(1);
   });
   let tx = null;
   sheet.addEventListener("touchstart", e => { tx = e.touches[0].clientX; }, {passive:true});
-  sheet.addEventListener("touchend", e => { if (tx === null || !series) return; const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1); tx = null; });
+  sheet.addEventListener("touchend", e => { if (tx === null || !series || mode !== "photo") return; const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1); tx = null; });
 
   /* ---------- Vidéo d'ouverture ---------- */
   const wrapR = $("#reelWrap");
