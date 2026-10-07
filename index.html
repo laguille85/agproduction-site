@@ -212,9 +212,9 @@ section{scroll-margin-top:60px}
 .case-lead blockquote{margin:clamp(24px,3vw,36px) 0 0;padding-left:18px;border-left:2px solid var(--tide);color:var(--graphite);font-size:17px;line-height:1.45}
 .case-lead blockquote p{font-size:inherit;font-weight:400;letter-spacing:-.01em;line-height:inherit}
 .case-lead cite{display:block;margin-top:8px;font-style:normal;font-size:14px;font-weight:600;color:var(--ink)}
-.case dl{margin:0;display:grid}
-.case dl div{display:grid;grid-template-columns:120px minmax(0,1fr);gap:20px;padding:20px 0;border-top:1px solid var(--hair)}
-.case dl div:first-child{border-top:0;padding-top:4px}
+.case dl{margin:0;display:grid;gap:16px;align-content:start}
+.case dl div{display:grid;grid-template-columns:110px minmax(0,1fr);gap:20px;padding:4px 24px}
+.case dl div.k-dispositif{background:var(--cloud);border-radius:var(--r-md);padding:22px 24px}
 .case dt{font-size:14px;font-weight:600;color:var(--tide);padding-top:3px}
 .case dd{margin:0;color:var(--graphite);font-size:17px;line-height:1.5}
 .case-strip{display:grid;grid-template-columns:repeat(var(--n,3),minmax(0,1fr));gap:16px}
@@ -241,7 +241,10 @@ section{scroll-margin-top:60px}
 .fa-card small{display:block;color:var(--graphite);font-size:13px;font-weight:400;margin-top:2px}
 
 /* Photographie */
-.pgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px 20px}
+.pgrid{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(230px,22vw,310px);align-items:start;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;outline:0;
+      padding-inline:max(var(--g),calc((100vw - var(--max)) / 2 + var(--g)));scroll-padding-inline:max(var(--g),calc((100vw - var(--max)) / 2 + var(--g)));padding-bottom:6px;scrollbar-width:none;overscroll-behavior-x:contain}
+.pgrid::-webkit-scrollbar{display:none}
+.pgrid .pcard{scroll-snap-align:start}
 .pcard{background:none;border:0;padding:0;cursor:pointer;text-align:left;display:grid;gap:12px}
 .pcard .img{aspect-ratio:4/5;border-radius:var(--r-md);overflow:hidden;background:var(--cloud)}
 .pcard img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
@@ -411,7 +414,6 @@ footer .wrap{padding-block:34px calc(24px + env(safe-area-inset-bottom,0px))}
 @media (max-width:1000px){
   .bento{grid-template-columns:repeat(2,minmax(0,1fr))}
   .t-a{grid-column:span 2;grid-row:auto;min-height:380px}
-  .pgrid{grid-template-columns:repeat(3,minmax(0,1fr))}
   .fa-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .why,.skills{grid-template-columns:repeat(2,minmax(0,1fr))}
   .steps{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -460,7 +462,6 @@ footer .wrap{padding-block:34px calc(24px + env(safe-area-inset-bottom,0px))}
   .fa-grid{grid-template-columns:1fr 1fr;gap:10px}
   .bento .t-e{min-height:420px}
   .bento .t-f{min-height:320px}
-  .pgrid{grid-template-columns:1fr 1fr;gap:16px 12px}
   .why,.skills,.about,.contact{grid-template-columns:1fr}
   .skill{aspect-ratio:4/5}
   /* Savoir-faire : rail horizontal sur mobile au lieu de 6 cartes empilées */
@@ -475,14 +476,12 @@ footer .wrap{padding-block:34px calc(24px + env(safe-area-inset-bottom,0px))}
   .fa-grid .fa-card{flex:none;width:72%;scroll-snap-align:start}
   .fa-band .sk-bar{background:#fff}
   /* Pourquoi moi + photographie : rails aussi */
-  .why,.pgrid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin-inline:calc(-1 * var(--g));padding:0 var(--g);scroll-padding-inline:var(--g);scrollbar-width:none;overscroll-behavior-x:contain}
-  .why::-webkit-scrollbar,.pgrid::-webkit-scrollbar{display:none}
+  .why{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin-inline:calc(-1 * var(--g));padding:0 var(--g);scroll-padding-inline:var(--g);scrollbar-width:none;overscroll-behavior-x:contain}
+  .why::-webkit-scrollbar{display:none}
   .why article{flex:none;width:70%;scroll-snap-align:start;padding:22px 22px 24px;grid-template-columns:1fr;row-gap:12px}
   .why svg{grid-row:auto;width:30px;height:30px}
-  .pgrid{align-items:flex-start}
-  .pgrid .pcard{flex:none;width:62%;scroll-snap-align:start}
-  .pgrid .pcard[hidden]{display:grid}
-  #morePhotos{display:none}
+  .pgrid{grid-auto-columns:62%;gap:12px;padding-inline:var(--g);scroll-padding-inline:var(--g)}
+  .p-ctl{display:none}
   /* En détail : texte sur la photo, dispositif sur fond gris */
   .case-cover{aspect-ratio:1/1;display:block;background:#111}
   .case-cover img{position:absolute;inset:0;aspect-ratio:auto;height:100%;z-index:-2}
@@ -651,11 +650,11 @@ footer .wrap{padding-block:34px calc(24px + env(safe-area-inset-bottom,0px))}
   </section>
 
   <!-- PHOTOGRAPHIE -->
-  <section class="sec wrap" id="photographie" aria-labelledby="h-photo">
-    <div class="head"><h2 id="h-photo">La photographie.</h2><p>Marque, sport, événementiel, mode, produit, reportage, architecture : toutes les démarches photographiques. Chaque série s'ouvre en plein écran.</p></div>
-    <div class="pgrid" id="pgrid"></div>
+  <section class="sec" id="photographie" aria-labelledby="h-photo">
+    <div class="wrap head"><h2 id="h-photo">La photographie.</h2><p>Marque, sport, événementiel, mode, produit, reportage, architecture : toutes les démarches photographiques. Chaque série s'ouvre en plein écran.</p></div>
+    <div class="pgrid" id="pgrid" tabindex="0" aria-label="Séries photo"></div>
     <div class="sk-bar" aria-hidden="true"><i></i></div>
-    <div class="center"><button class="pill ghost" type="button" id="morePhotos">Voir toutes les séries</button></div>
+    <div class="wrap"><div class="rail-ctl p-ctl"><button type="button" id="pprev" aria-label="Séries précédentes"><svg viewBox="0 0 14 14"><path d="M9 2L4 7l5 5"/></svg></button><button type="button" id="pnext" aria-label="Séries suivantes"><svg viewBox="0 0 14 14"><path d="M5 2l5 5-5 5"/></svg></button></div></div>
   </section>
 
   <!-- À PROPOS -->
