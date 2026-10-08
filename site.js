@@ -362,6 +362,9 @@ async function load(name){
 
   /* ---------- Menu mobile ---------- */
   const nav = $("#nav");
+  /* Photos : pas de clic droit « Enregistrer l'image », pas de glisser-déposer */
+  document.addEventListener("contextmenu", e => { if (e.target.closest("img, picture, .g-pic, .gallery, .pcard .img, .fa-card .img, .skill, .case-cover, .case-strip, .tile")) e.preventDefault(); });
+  document.addEventListener("dragstart", e => { if (e.target.tagName === "IMG") e.preventDefault(); });
   document.addEventListener("touchstart", () => {}, {passive:true}); // active l'état :active sur iOS
   $("#burger").addEventListener("click", () => { const o = nav.classList.toggle("open"); $("#burger").setAttribute("aria-expanded", o); document.body.style.overflow = o ? "hidden" : ""; });
   document.querySelectorAll("#links a").forEach(a => a.addEventListener("click", () => { nav.classList.remove("open"); $("#burger").setAttribute("aria-expanded","false"); document.body.style.overflow = ""; }));
