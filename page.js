@@ -176,3 +176,14 @@
     finally { btn.disabled = false; }
   });
 })();
+
+/* Pages projet : le film se lit en grand, à la place de l'image d'en-tête */
+(function(){
+  const pl = document.querySelector(".pp-player"); if (!pl) return;
+  const vids = JSON.parse(pl.dataset.vimeo || "[]"), frame = pl.querySelector(".pp-frame"), tabs = document.querySelectorAll(".pp-reels button");
+  const url = v => { const s = String(v), id = (s.match(/(?:video\/|vimeo\.com\/|^)(\d{5,})/) || [])[1], h = (s.match(/[?&]h=([0-9a-f]+)/i) || s.match(/vimeo\.com\/\d+\/([0-9a-f]{6,})/i) || [])[1];
+    const p = new URLSearchParams({ autoplay: "1", dnt: "1", title: "0", byline: "0", portrait: "0" }); if (h) p.set("h", h); return `https://player.vimeo.com/video/${id}?${p}`; };
+  const play = r => { frame.innerHTML = `<iframe src="${url(vids[r])}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="${pl.dataset.title || "Film"}"></iframe>`; pl.classList.add("on"); tabs.forEach((b,i) => b.setAttribute("aria-pressed", i === r)); };
+  pl.querySelector(".pp-play").addEventListener("click", () => play(0));
+  tabs.forEach((b,i) => b.addEventListener("click", () => play(i)));
+})();

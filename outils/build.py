@@ -383,10 +383,15 @@ def build_photo_case(idx, c, others, kind="photo"):
         a = c["animation"]
         anim = (f'<section class="pg-sec wrap"><div class="case-anim pp-anim"><video poster="{e(img(c.get("animation_affiche") or c.get("couverture")))}" autoplay muted loop playsinline preload="metadata" aria-label="Animation {e(c.get("titre"))}">'
                 f'<source src="{e(img(a))}" type="video/mp4">' + (f'<source src="{e(img(a[:-4] + ".webm"))}" type="video/webm">' if a.endswith(".mp4") else "") + '</video></div></section>')
-    films = ""
+    films, cover_html = "", ""
     if kind == "film" and c.get("vimeo"):
-        films = films_block([{"titre": c.get("titre"), "categorie": c.get("client"), "vignette": c.get("couverture"), "vimeo": c.get("vimeo")}],
-                            "Le film" if len(c.get("vimeo") or []) < 2 else "Les films")
+        vids = [str(v) for v in c.get("vimeo") or [] if vimeo_id(v)]
+        n = len(vids)
+        tabs = ("<div class=\"pp-reels\">" + "".join(f'<button type="button" data-r="{i}" aria-pressed="{"true" if i == 0 else "false"}">Film {i + 1}</button>' for i in range(n)) + "</div>") if n > 1 else ""
+        cover_html = (f'<figure class="pp-cover pp-player" data-vimeo="{e(json.dumps(vids))}" data-title="{e(c.get("titre"))}">'
+                      f'<button type="button" class="pp-play" aria-label="Lire le film {e(c.get("titre"))}"><img src="{e(cover)}" alt="{e(c.get("titre"))} — {e(c.get("client"))}" fetchpriority="high"{pos}>'
+                      f'<span class="pp-btn">{PLAY}<span>{"Lire le film" if n < 2 else "Lire les " + str(n) + " films"}</span></span></button><div class="pp-frame"></div></figure>'
+                      f'<div class="wrap">{tabs}</div>')
 
     def dims(u):
         try:
@@ -402,10 +407,10 @@ def build_photo_case(idx, c, others, kind="photo"):
     section, anchor = ("Photographie", "/#photographie") if kind == "photo" else ("Projets", "/#projets")
     body = (f'<section class="pg-hero wrap">{crumbs([section, c.get("titre")])}<p class="eyebrow">{e(c.get("client"))}</p><h1>{e(c.get("titre"))}</h1>'
             f'<p class="lede">{e(c.get("accroche"))}</p></section>'
-            f'<figure class="pp-cover"><img src="{e(cover)}" alt="{e(c.get("titre"))} — {e(c.get("client"))}" fetchpriority="high"{pos}></figure>'
-            f'<section class="pg-sec wrap"><div class="pp-steps">{steps}</div></section>'
+            + (cover_html if kind == "film" and c.get("vimeo") else f'<figure class="pp-cover"><img src="{e(cover)}" alt="{e(c.get("titre"))} — {e(c.get("client"))}" fetchpriority="high"{pos}></figure>')
+            + f'<section class="pg-sec wrap"><div class="pp-steps">{steps}</div></section>'
             + quote + films + anim
-            + (f'<section class="pg-sec wrap"><div class="pp-head"><h2>{gal_title}</h2><span>{len(imgs)} photo{"s" if len(imgs) > 1 else ""}</span></div><div class="pp-masonry">{shots}</div></section>' if imgs else "")
+            + (f'<section class="pg-sec wrap"><div class="pp-head"><h2>{gal_title}</h2><span>{len(imgs)} photo{"s" if len(imgs) > 1 else ""}</span></div><div class="pp-masonry">{shots}</div></section>' if imgs and (kind == "photo" or len(imgs) >= 4) else "")
             + cta_block("Photographie" if kind == "photo" else None)
             + (f'<section class="pg-sec wrap"><h2 class="pg-h-sm">Autres projets{" photo" if kind == "photo" else ""}</h2><ul class="pg-links">{more}</ul></section>' if more else ""))
     desc = f'{c.get("client")} : {c.get("accroche")}'[:300]

@@ -651,6 +651,19 @@ footer .wrap{padding-block:34px calc(24px + env(safe-area-inset-bottom,0px))}
 /* ===== Pages projet photo ===== */
 .pp-cover{margin:0 auto;max-width:1600px;padding-inline:clamp(0px,2vw,24px)}
 .pp-cover img{display:block;width:100%;aspect-ratio:21/9;object-fit:cover;border-radius:clamp(0px,1.4vw,24px)}
+.pp-player{position:relative}
+.pp-play{display:block;width:100%;border:0;padding:0;background:#000;cursor:pointer;position:relative;border-radius:clamp(0px,1.4vw,24px);overflow:hidden}
+.pp-play img{display:block;width:100%;aspect-ratio:21/9;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1),opacity .4s}
+.pp-play:hover img{transform:scale(1.02);opacity:.9}
+.pp-btn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.92);color:var(--ink);border-radius:980px;padding:16px 26px 16px 20px;font-size:17px;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,.25);transition:transform .3s}
+.pp-play:hover .pp-btn{transform:translate(-50%,-50%) scale(1.05)}
+.pp-btn svg{width:18px;height:18px;fill:var(--ink)}
+.pp-frame{display:none;aspect-ratio:16/9;background:#000;border-radius:clamp(0px,1.4vw,24px);overflow:hidden}
+.pp-frame iframe{width:100%;height:100%;border:0;display:block}
+.pp-player.on .pp-play{display:none}.pp-player.on .pp-frame{display:block}
+.pp-reels{display:flex;gap:8px;justify-content:center;margin-top:16px}
+.pp-reels button{border:0;border-radius:980px;padding:8px 16px;background:var(--cloud);color:var(--graphite);font:inherit;font-size:14px;font-weight:600;cursor:pointer}
+.pp-reels button[aria-pressed="true"]{background:var(--ink);color:#fff}
 .pp-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,24px)}
 .pp-step{background:var(--cloud);border-radius:var(--r-lg);padding:clamp(24px,2.6vw,36px)}
 .pp-step .n{display:block;font-size:13px;font-weight:600;color:var(--tide);font-variant-numeric:tabular-nums;margin-bottom:18px}
@@ -669,6 +682,8 @@ footer .wrap{padding-block:34px calc(24px + env(safe-area-inset-bottom,0px))}
 .pp-shot:hover img{transform:scale(1.03)}
 @media (max-width:760px){
   .pp-cover img{aspect-ratio:4/3}
+  .pp-play img{aspect-ratio:16/10}
+  .pp-btn{padding:12px 20px 12px 16px;font-size:15px}
   .pp-steps{grid-template-columns:1fr}
   .pp-masonry{columns:2;column-gap:8px}
   .pp-shot{margin-bottom:8px;border-radius:10px}
