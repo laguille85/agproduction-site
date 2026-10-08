@@ -66,6 +66,7 @@ PHOTOS = load("photos", [])
 REFS = load("references", [])
 SKILLS = load("savoir-faire", [])
 CASES = load("projets", [])
+PCASES = load("projets-photo", [])
 PRINTS = load("tirages", [])
 PAGES = load("pages", [])
 
@@ -104,16 +105,19 @@ def render_index_blocks():
     b = {}
     b["segIn"] = "".join(f'<button type="button" data-cat="{e(c)}" aria-pressed="{"true" if i == 0 else "false"}">{e(c)}</button>' for i, c in enumerate(cats))
     b["rail"] = "".join(film_card(f, i) for i, f in enumerate(FILMS))
-    b["caseSeg"] = "".join(f'<button type="button" role="tab" data-case="{i}" aria-pressed="{"true" if i == 0 else "false"}">{e(c.get("onglet") or c.get("client"))}</button>' for i, c in enumerate(CASES))
-    if CASES:
-        c = CASES[0]
-        dl = "".join(f'<div class="k-{slugify(t)}"><dt>{t}</dt><dd>{e(d)}</dd></div>' for t, d in (("Contexte", c.get("contexte")), ("Dispositif", c.get("dispositif")), ("Résultat", c.get("resultat"))) if d)
-        quote = ""
-        if c.get("citation"):
-            quote = f'<blockquote><p>« {e(c["citation"])} »</p>' + (f'<cite>{e(c.get("citation_auteur"))}</cite>' if c.get("citation_auteur") else "") + "</blockquote>"
-        b["case"] = (f'<a class="case-cover" href="/projets/{case_slug(c)}/"><img src="{e(img(c.get("couverture")))}" alt="{e(c.get("titre"))} — {e(c.get("client"))}" loading="lazy" decoding="async">'
-                     f'<span class="cin"><span><small>{e(c.get("client"))}</small><strong>{e(c.get("titre"))}</strong></span></span></a>'
-                     f'<div class="case-body"><div class="case-lead"><p>{e(c.get("accroche"))}</p>{quote}</div><dl>{dl}</dl></div>')
+    def case_blocks(lst, seg, art, label):
+        b[seg] = "".join(f'<button type="button" role="tab" data-case="{i}" aria-pressed="{"true" if i == 0 else "false"}">{e(c.get("onglet") or c.get("client"))}</button>' for i, c in enumerate(lst))
+        if lst:
+            c = lst[0]
+            dl = "".join(f'<div class="k-{slugify(t)}"><dt>{t}</dt><dd>{e(d)}</dd></div>' for t, d in (("Contexte", c.get("contexte")), ("Dispositif", c.get("dispositif")), ("Résultat", c.get("resultat"))) if d)
+            quote = ""
+            if c.get("citation"):
+                quote = f'<blockquote><p>« {e(c["citation"])} »</p>' + (f'<cite>{e(c.get("citation_auteur"))}</cite>' if c.get("citation_auteur") else "") + "</blockquote>"
+            b[art] = (f'<a class="case-cover" href="/projets/{case_slug(c)}/"><img src="{e(img(c.get("couverture")))}" alt="{e(c.get("titre"))} — {e(c.get("client"))}" loading="lazy" decoding="async">'
+                      f'<span class="cin"><span><small>{e(c.get("client"))}</small><strong>{e(c.get("titre"))}</strong></span></span></a>'
+                      f'<div class="case-body"><div class="case-lead"><p>{e(c.get("accroche"))}</p>{quote}</div><dl>{dl}</dl></div>')
+    case_blocks(CASES, "caseSeg", "case", "film")
+    case_blocks(PCASES, "pcaseSeg", "pcase", "photo")
     b["refs"] = "".join(f'<li title="{e(r.get("nom"))}"><img src="{e(img(r.get("logo")))}" alt="{e(r.get("nom"))}" loading="lazy" style="max-height:calc(var(--lh) * {e(r.get("taille") or 1)})"></li>' for r in REFS)
     b["skills"] = "".join(
         f'<button class="skill" type="button" data-s="{i}" aria-label="{e(s.get("titre"))} — en savoir plus"><img src="{e(img(s.get("image")))}" alt="{e(s.get("titre"))}" loading="lazy">'
@@ -304,7 +308,7 @@ def build_service(idx, p):
     return path
 
 
-def build_case(idx, c, others):
+def build_case(idx, c, others, anchor="/#projets"):
     slug = case_slug(c)
     path = f"/projets/{slug}/"
     dl = "".join(f'<div class="k-{slugify(t)}"><dt>{t}</dt><dd>{e(d)}</dd></div>' for t, d in (("Contexte", c.get("contexte")), ("Dispositif", c.get("dispositif")), ("Résultat", c.get("resultat"))) if d)
@@ -331,7 +335,7 @@ def build_case(idx, c, others):
     ld = [{"@context": "https://schema.org", "@type": "CreativeWork", "name": c.get("titre"), "description": c.get("accroche"),
            "url": BASE + path, "image": absurl(c.get("couverture")), "creator": {"@type": "Person", "name": "Antoine Guillou"},
            "sourceOrganization": {"@type": "Organization", "name": "AG Production"}},
-          breadcrumb_ld([("Projets", "/#projets"), (c.get("titre"), path)])]
+          breadcrumb_ld([("Projets", anchor), (c.get("titre"), path)])]
     write(path, page_shell(idx, f'{c.get("titre")} — {c.get("onglet") or c.get("client")} | AG Production', desc, path, body, ld, c.get("couverture")))
     return path
 
@@ -467,6 +471,8 @@ def main():
         urls.append((build_service(idx, p), "0.9"))
     for c in CASES:
         urls.append((build_case(idx, c, [o for o in CASES if o is not c]), "0.7"))
+    for c in PCASES:
+        urls.append((build_case(idx, c, [o for o in PCASES if o is not c], "/#projets-photo"), "0.7"))
     if PART.get("histoires"):
         urls.append((build_particuliers(idx), "0.8"))
     urls.append((build_legal(idx), "0.2"))

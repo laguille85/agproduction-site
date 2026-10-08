@@ -36,9 +36,9 @@ async function load(name){
 }
 
 (async function init(){
-  let SITE, FILMS, PHOTOS, REFS, SKILLS, CASES, PRINTS, PAGES;
+  let SITE, FILMS, PHOTOS, REFS, SKILLS, CASES, PRINTS, PAGES, PCASES;
   try {
-    [SITE, FILMS, PHOTOS, REFS, SKILLS, CASES, PRINTS, PAGES] = await Promise.all(["site","films","photos","references","savoir-faire","projets","tirages","pages"].map(n => load(n).catch(() => (n === "projets" || n === "tirages" || n === "pages") ? [] : Promise.reject(n))));
+    [SITE, FILMS, PHOTOS, REFS, SKILLS, CASES, PRINTS, PAGES, PCASES] = await Promise.all(["site","films","photos","references","savoir-faire","projets","tirages","pages","projets-photo"].map(n => load(n).catch(() => (n === "projets" || n === "tirages" || n === "pages" || n === "projets-photo") ? [] : Promise.reject(n))));
   } catch (e) {
     document.body.insertAdjacentHTML("afterbegin",
       `<p style="margin:0;padding:14px 20px;background:#fff4ce;font:15px/1.4 sans-serif">Le contenu du site ne s'est pas chargé. En local, ouvre le site via un serveur ou son adresse en ligne : un double-clic sur index.html ne suffit pas.</p>`);
@@ -162,36 +162,44 @@ async function load(name){
   rail.addEventListener("scroll", updateArrows, {passive:true});
   renderRail("Tous");
 
-  /* ---------- Projets racontés ---------- */
-  const caseEl = $("#case"), caseSeg = $("#caseSeg");
-  if (!CASES.length) $("#projets").hidden = true;
+  /* ---------- Projets racontés (films, puis photo) ---------- */
   const playIco = '<svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg>';
-  function renderCase(n){
-    const c = CASES[n]; if (!c) return;
-    const vids = c.vimeo || [], imgs = c.images || [];
-    const serie = c.serie_photo ? PHOTOS.findIndex(p => p.titre === c.serie_photo) : -1;
-    const cells = imgs.map((u,i) => `<button type="button" data-ci="${i}" aria-label="Agrandir l'image ${i+1}"><img src="${esc(src(u))}" alt="" loading="lazy" decoding="async"></button>`);
-    if (serie >= 0) cells.push(`<button type="button" class="more" data-p="${serie}"><small>Reportage photo</small><span>Voir la série <svg viewBox="0 0 14 14"><path d="M5 2l5 5-5 5"/></svg></span></button>`);
-    caseSeg.querySelectorAll("button").forEach((b,i) => b.setAttribute("aria-pressed", i === n));
-    caseEl.innerHTML = `
-      <button class="case-cover" type="button" data-cv="${n}" aria-label="Voir le film ${esc(c.titre)}">
-        <img src="${esc(src(c.couverture))}" alt="${esc(c.titre)} — ${esc(c.client)}" loading="lazy" decoding="async">
-        <span class="cin"><span><small>${esc(c.client)}</small><strong>${esc(c.titre)}</strong></span>
-        ${vids.length ? `<span class="go">${playIco}${vids.length > 1 ? `Voir les ${vids.length} films` : "Voir le film"}</span>` : ""}</span>
-      </button>
-      <div class="case-body">
-        <div class="case-lead"><p>${esc(c.accroche)}</p>
-          ${c.citation ? `<blockquote><p>« ${esc(c.citation)} »</p>${c.citation_auteur ? `<cite>${esc(c.citation_auteur)}</cite>` : ""}</blockquote>` : ""}
-          <p class="case-more"><a class="more-link" href="/projets/${slugify((c.onglet || c.client || "") + " " + (c.titre || ""))}/">Voir la page du projet ${icoR}</a></p></div>
-        <dl>${[["Contexte",c.contexte],["Dispositif",c.dispositif],["Résultat",c.resultat]].filter(x => x[1]).map(([t,d]) => `<div class="k-${t.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase()}"><dt>${t}</dt><dd>${esc(d)}</dd></div>`).join("")}</dl>
-      </div>
-      ${cells.length ? `<div class="case-strip" style="--n:${cells.length}">${cells.join("")}</div>` : ""}`;
-    caseEl.style.animation = "none"; caseEl.offsetHeight; caseEl.style.animation = "";
-    caseEl.dataset.n = n;
+  const galIco = '<svg viewBox="0 0 14 14"><rect x="1.5" y="1.5" width="4.5" height="4.5" rx="1"/><rect x="8" y="1.5" width="4.5" height="4.5" rx="1"/><rect x="1.5" y="8" width="4.5" height="4.5" rx="1"/><rect x="8" y="8" width="4.5" height="4.5" rx="1"/></svg>';
+  function setupCases(LIST, el, seg, sec, kind){
+    if (!el || !seg) return;
+    if (!LIST.length) { if (sec) sec.hidden = true; return; }
+    function render(n){
+      const c = LIST[n]; if (!c) return;
+      const vids = c.vimeo || [], imgs = c.images || [];
+      const serie = c.serie_photo ? PHOTOS.findIndex(p => p.titre === c.serie_photo) : -1;
+      const cells = imgs.map((u,i) => `<button type="button" data-ci="${i}" data-kind="${kind}" aria-label="Agrandir l'image ${i+1}"><img src="${esc(src(u))}" alt="" loading="lazy" decoding="async"></button>`);
+      if (serie >= 0) cells.push(`<button type="button" class="more" data-p="${serie}"><small>${kind === "photo" ? "La série complète" : "Reportage photo"}</small><span>Voir la série <svg viewBox="0 0 14 14"><path d="M5 2l5 5-5 5"/></svg></span></button>`);
+      seg.querySelectorAll("button").forEach((b,i) => b.setAttribute("aria-pressed", i === n));
+      const photo = kind === "photo";
+      const coverAttr = photo ? (serie >= 0 ? `data-p="${serie}"` : `data-ci="-1" data-kind="photo"`) : `data-cv="${n}"`;
+      const go = photo ? `<span class="go">${galIco}Voir la série</span>` : (vids.length ? `<span class="go">${playIco}${vids.length > 1 ? `Voir les ${vids.length} films` : "Voir le film"}</span>` : "");
+      el.innerHTML = `
+        <button class="case-cover" type="button" ${coverAttr} aria-label="${photo ? "Voir la série" : "Voir le film"} ${esc(c.titre)}">
+          <img src="${esc(src(c.couverture))}" alt="${esc(c.titre)} — ${esc(c.client)}" loading="lazy" decoding="async">
+          <span class="cin"><span><small>${esc(c.client)}</small><strong>${esc(c.titre)}</strong></span>${go}</span>
+        </button>
+        <div class="case-body">
+          <div class="case-lead"><p>${esc(c.accroche)}</p>
+            ${c.citation ? `<blockquote><p>« ${esc(c.citation)} »</p>${c.citation_auteur ? `<cite>${esc(c.citation_auteur)}</cite>` : ""}</blockquote>` : ""}
+            <p class="case-more"><a class="more-link" href="/projets/${slugify((c.onglet || c.client || "") + " " + (c.titre || ""))}/">Voir la page du projet ${icoR}</a></p></div>
+          <dl>${[["Contexte",c.contexte],["Dispositif",c.dispositif],["Résultat",c.resultat]].filter(x => x[1]).map(([t,d]) => `<div class="k-${t.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase()}"><dt>${t}</dt><dd>${esc(d)}</dd></div>`).join("")}</dl>
+        </div>
+        ${cells.length ? `<div class="case-strip" style="--n:${cells.length}">${cells.join("")}</div>` : ""}`;
+      el.style.animation = "none"; el.offsetHeight; el.style.animation = "";
+      el.dataset.n = n;
+    }
+    seg.innerHTML = LIST.map((c,i) => `<button type="button" role="tab" data-case="${i}">${esc(c.onglet || c.client)}</button>`).join("");
+    seg.addEventListener("click", e => { const b = e.target.closest("[data-case]"); if (b) render(+b.dataset.case); });
+    render(0);
   }
-  caseSeg.innerHTML = CASES.map((c,i) => `<button type="button" role="tab" data-case="${i}">${esc(c.onglet || c.client)}</button>`).join("");
-  caseSeg.addEventListener("click", e => { const b = e.target.closest("[data-case]"); if (b) renderCase(+b.dataset.case); });
-  renderCase(0);
+  const caseEl = $("#case"), pcaseEl = $("#pcase");
+  setupCases(CASES, caseEl, $("#caseSeg"), $("#projets"), "film");
+  setupCases(PCASES, pcaseEl, $("#pcaseSeg"), $("#projets-photo"), "photo");
 
   /* ---------- Tirages d'art : photo, et photo encadrée en situation au survol ---------- */
   if (!PRINTS.length) $("#tirages").hidden = true;
@@ -323,7 +331,7 @@ async function load(name){
   document.addEventListener("click", e => {
     const v = e.target.closest("[data-v]"); if (v) { playFilm(+v.dataset.v); return; }
     const cv = e.target.closest("[data-cv]"); if (cv) { const c = CASES[+cv.dataset.cv]; if ((c.vimeo||[]).length) playFilm({ titre: c.titre, categorie: c.client, vimeo: c.vimeo }); return; }
-    const ci = e.target.closest("[data-ci]"); if (ci) { const c = CASES[+caseEl.dataset.n]; series = { titre: c.titre, images: [c.couverture, ...(c.images||[])] }; k = +ci.dataset.ci + 1; showSeries(); return; }
+    const ci = e.target.closest("[data-ci]"); if (ci) { const ph = ci.dataset.kind === "photo", c = ph ? PCASES[+pcaseEl.dataset.n] : CASES[+caseEl.dataset.n]; series = { titre: c.titre, images: [c.couverture, ...(c.images||[])] }; k = +ci.dataset.ci + 1; showSeries(); return; }
     const p = e.target.closest("[data-p]"); if (p) { openSeries(PHOTOS[+p.dataset.p], true); return; }
     const fa = e.target.closest("[data-fa]"); if (fa) { openSeries(PRINTS[+fa.dataset.fa]); return; }
     const s = e.target.closest("[data-s]"); if (s) { showSkill(+s.dataset.s); return; }

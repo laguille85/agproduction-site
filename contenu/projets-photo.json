@@ -1,0 +1,59 @@
+[
+  {
+    "onglet": "Jeanneau",
+    "client": "Jeanneau",
+    "titre": "Une journée entre amis sur l'eau",
+    "accroche": "Présenter un nouveau bateau sans fiche technique : par une vraie journée de navigation, de wake et de rires.",
+    "contexte": "Jeanneau lançait un nouveau bateau et voulait le montrer vécu, dans son élément, plutôt qu'en photos techniques.",
+    "dispositif": "J'ai photographié une journée entre amis : navigation, wakeboard, moments de détente à bord. Le bateau reste toujours présent dans l'image, mais dans son environnement, au service de l'ambiance.",
+    "resultat": "Une série lifestyle de 18 photos.",
+    "citation": "",
+    "citation_auteur": "",
+    "couverture": "images/photos/jeanneau/jeanneau-02.jpg",
+    "images": [
+      "images/photos/jeanneau/jeanneau-01.jpg",
+      "images/photos/jeanneau/jeanneau-03.jpg",
+      "images/photos/jeanneau/jeanneau-04.jpg",
+      "images/photos/jeanneau/jeanneau-05.jpg"
+    ],
+    "serie_photo": "Jeanneau"
+  },
+  {
+    "onglet": "BWT France",
+    "client": "BWT France",
+    "titre": "Les nouveaux robots de piscine",
+    "accroche": "Un shooting produit où chaque image est une recherche graphique.",
+    "contexte": "BWT France présentait ses nouveaux robots de piscine et avait besoin d'images produit à la hauteur de leur design.",
+    "dispositif": "Un travail de recherche graphique autour de chaque robot : lumière, cadrage et composition pour révéler les lignes et l'esthétique du produit.",
+    "resultat": "Une série de 5 photos produit.",
+    "citation": "",
+    "citation_auteur": "",
+    "couverture": "images/externes/myportfolio-d2ffb8d9-5b3e-45a1-97cb-f344d2081ba7_rwc_211x0x1500x1200x1500.jpg",
+    "images": [
+      "images/externes/myportfolio-42b32cd7-c2fd-41e4-99b2-b4c45135d06c_rw_1200.jpg",
+      "images/externes/myportfolio-8853b579-d404-496b-8659-de6d50c90c00_rw_1200.jpg",
+      "images/externes/myportfolio-a78629d1-6279-448a-b177-a550591d6a52_rw_1200.jpg",
+      "images/externes/myportfolio-a0449c7f-90b6-4a3e-bd20-16cba82a363d_rw_1200.jpg"
+    ],
+    "serie_photo": "BWT France"
+  },
+  {
+    "onglet": "FPM",
+    "client": "FPM",
+    "titre": "Le savoir-faire, de près",
+    "accroche": "Un reportage dans plusieurs entreprises du groupe à travers le monde, au plus près des matières et des gestes.",
+    "contexte": "Le groupe FPM voulait mettre en avant ses métiers et son savoir-faire technique, dans ses différentes entreprises.",
+    "dispositif": "Je me suis rendu sur plusieurs sites du groupe pour photographier les produits, les matériaux et les gestes : le toucher, les textures, les matières nobles.",
+    "resultat": "Un reportage de 10 photos.",
+    "citation": "",
+    "citation_auteur": "",
+    "couverture": "images/externes/myportfolio-86bdaea4-d26f-4c5c-8d4c-a3b8d7dd7970_rwc_224x0x1498x1199x1498.jpg",
+    "images": [
+      "images/externes/myportfolio-e9e39a92-53c5-41c6-b6d9-051b73c9aa38_rw_1200.jpg",
+      "images/externes/myportfolio-4486994d-5b14-4874-bc16-1b5b3099f5b9_rw_1200.jpg",
+      "images/externes/myportfolio-08631262-fb18-4795-a9fb-ba49fe010ea3_rw_1200.jpg",
+      "images/externes/myportfolio-80f2ea37-d143-4c71-a9cd-dec101cc416d_rw_1200.jpg"
+    ],
+    "serie_photo": "FPM"
+  }
+]

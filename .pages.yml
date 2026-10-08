@@ -248,6 +248,59 @@ content:
         label: Série photo liée (titre exact de la série, facultatif)
         type: string
 
+  - name: projets-photo
+    label: Projets photo racontés (« La photo, en détail »)
+    type: file
+    path: contenu/projets-photo.json
+    format: json
+    list:
+      collapsible:
+        collapsed: true
+        summary: "{onglet}"
+    fields:
+      - name: onglet
+        label: Nom court de l'onglet (ex. Air France)
+        type: string
+        required: true
+      - name: client
+        label: Client (petit titre)
+        type: string
+      - name: titre
+        label: Titre du projet
+        type: string
+      - name: accroche
+        label: Accroche (une phrase)
+        type: text
+      - name: contexte
+        label: Contexte
+        type: text
+      - name: dispositif
+        label: Dispositif
+        type: text
+      - name: resultat
+        label: Résultat
+        type: text
+      - name: citation
+        label: Citation du client (facultatif)
+        type: text
+      - name: citation_auteur
+        label: Auteur de la citation
+        type: string
+      - name: couverture
+        label: Grande image (format cinéma conseillé)
+        type: image
+        options:
+          media: divers
+      - name: images
+        label: Images sous la grande photo (3 ou 4 conseillées)
+        type: image
+        list: true
+        options:
+          media: divers
+      - name: serie_photo
+        label: Série photo liée (titre exact de la série, facultatif)
+        type: string
+
   - name: tirages
     label: Tirages d'art (séries personnelles)
     type: file
