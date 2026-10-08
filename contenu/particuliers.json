@@ -110,6 +110,10 @@
       "lieu": "Domaine de la Chopinière, Sainte-Cécile, Vendée",
       "photos": [
         {
+          "image": "/images/particuliers/elise-julien/ej-07.jpg",
+          "cadrage": "50% 40%"
+        },
+        {
           "image": "/images/particuliers/elise-julien/ej-04.jpg",
           "cadrage": "50% 40%"
         },
@@ -136,10 +140,6 @@
           "cadrage": "50% 40%"
         },
         {
-          "image": "/images/particuliers/elise-julien/ej-07.jpg",
-          "cadrage": "50% 40%"
-        },
-        {
           "image": "/images/particuliers/elise-julien/ej-03.jpg",
           "cadrage": "50% 40%"
         },
@@ -152,8 +152,7 @@
           "image": "/images/particuliers/elise-julien/ej-10.jpg",
           "cadrage": "50% 40%"
         }
-      ],
-      "brouillon": true
+      ]
     }
   ]
 }
