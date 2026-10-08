@@ -5,7 +5,8 @@
   --ink:#1d1d1f;         /* texte principal */
   --graphite:#6e6e73;    /* texte secondaire */
   --hair:#d2d2d7;        /* filets */
-  --tide:#86abd2;        /* liens et accent : bleu océan */
+  --tide:#5a86bb;        /* textes et liens : bleu du logo, un peu soutenu pour la lisibilité */
+  --tide-l:#86abd2;      /* icônes et accents : bleu clair des lettres du logo */
   --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI Variable","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   --g:clamp(16px,4vw,48px);
   --max:1180px;
@@ -124,7 +125,7 @@ section{scroll-margin-top:60px}
 .tile .lbl{font-size:14px;font-weight:600;letter-spacing:-.01em;color:var(--graphite)}
 .tile .k{font-size:clamp(64px,7vw,116px);font-weight:700;letter-spacing:-.06em;line-height:.92;display:flex;align-items:flex-start}
 .tile .k .unit{font-size:.36em;letter-spacing:-.02em;margin:.22em 0 0 .18em;font-weight:600}
-.tile .k sup{font-size:.4em;line-height:1;margin:.16em 0 0 .04em;color:var(--tide);-webkit-text-fill-color:var(--tide)}
+.tile .k sup{font-size:.4em;line-height:1;margin:.16em 0 0 .04em;color:var(--tide-l);-webkit-text-fill-color:var(--tide-l)}
 .tile .k.grad{background:linear-gradient(115deg,#1d1d1f 15%,#0a66d8 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .tile .k.place{font-size:clamp(34px,3.4vw,50px);letter-spacing:-.045em;line-height:1}
 .tile p{margin:12px 0 0;font-size:17px;color:var(--graphite);max-width:20em;line-height:1.38}
@@ -230,7 +231,7 @@ section{scroll-margin-top:60px}
 /* Pourquoi */
 .why{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .why article{background:var(--cloud);border-radius:var(--r-md);padding:18px 20px;display:grid;align-content:start;grid-template-columns:26px minmax(0,1fr);column-gap:14px;align-items:start}
-.why svg{width:26px;height:26px;fill:none;stroke:var(--tide);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;grid-row:span 2;margin-top:1px}
+.why svg{width:26px;height:26px;fill:none;stroke:var(--tide-l);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;grid-row:span 2;margin-top:1px}
 .why h3{margin:0 0 4px;font-size:17px;font-weight:600;letter-spacing:-.02em;line-height:1.2}
 .why p{margin:0;color:var(--graphite);font-size:14px;line-height:1.45}
 
@@ -379,7 +380,7 @@ footer .wrap{padding-block:34px calc(24px + env(safe-area-inset-bottom,0px))}
 .detail p{margin:0 0 20px;color:var(--graphite)}
 .detail ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
 .detail li{display:flex;gap:10px;align-items:baseline;font-weight:500}
-.detail li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--tide);transform:translateY(-2px)}
+.detail li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--tide-l);transform:translateY(-2px)}
 .legal{padding:clamp(28px,4vw,52px)}
 .legal h3{margin:0 0 18px;font-size:28px;font-weight:700;letter-spacing:-.03em}
 .legal h4{margin:20px 0 4px;font-size:16px}
@@ -522,7 +523,7 @@ footer .wrap{padding-block:34px calc(24px + env(safe-area-inset-bottom,0px))}
 .pg-faq details{background:var(--cloud);border-radius:var(--r-md);padding:18px 22px}
 .pg-faq summary{cursor:pointer;font-weight:600;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:16px}
 .pg-faq summary::-webkit-details-marker{display:none}
-.pg-faq summary::after{content:"+";color:var(--tide);font-weight:500;font-size:22px;line-height:1;transition:transform .3s}
+.pg-faq summary::after{content:"+";color:var(--tide-l);font-weight:500;font-size:22px;line-height:1;transition:transform .3s}
 .pg-faq details[open] summary::after{transform:rotate(45deg)}
 .pg-faq p{margin:12px 0 0;color:var(--graphite)}
 .pg-cta{background:var(--cloud);border-radius:var(--r-lg);padding:clamp(32px,5vw,64px);text-align:center}
@@ -531,7 +532,7 @@ footer .wrap{padding-block:34px calc(24px + env(safe-area-inset-bottom,0px))}
 .pg-links{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
 .pg-links a{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--cloud);border-radius:var(--r-md);padding:16px 20px;font-weight:600;transition:background .2s}
 .pg-links a:hover{background:#ebebef}
-.pg-links svg{width:12px;height:12px;flex:none;fill:none;stroke:var(--tide);stroke-width:2.2}
+.pg-links svg{width:12px;height:12px;flex:none;fill:none;stroke:var(--tide-l);stroke-width:2.2}
 .pg-legal{max-width:820px}
 .pg-legal h2{font-size:20px;margin:28px 0 6px}
 .pg-legal p{margin:0;color:var(--graphite)}
