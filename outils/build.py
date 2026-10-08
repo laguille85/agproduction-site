@@ -405,8 +405,7 @@ def stories(hs):
     head = (f'<h2 class="pt-h2">{e(hs[0].get("titre"))}.</h2>' if len(hs) == 1 else
             '<h2 class="pt-h2">Quelques histoires.</h2><div class="pt-tabs" role="tablist" aria-label="Choisir un mariage">' + "".join(
                 f'<button type="button" role="tab" aria-selected="{"true" if i == 0 else "false"}" data-s="{i}">'
-                f'<img src="{e(img(thumb(h["photos"][0]["image"])))}" alt="" loading="lazy" style="object-position:{e(h["photos"][0].get("cadrage") or "50% 40%")}">'
-                f'<span><strong>{e(h.get("titre"))}</strong>{len(h["photos"])} photos</span></button>'
+                f'{e(h.get("titre"))}</button>'
                 for i, h in enumerate(hs)) + "</div>")
     return (f'<section class="pt-sec"><div class="wrap">{EYEBROW if len(hs) == 1 else ""}{head}'
             + "".join(viewer(h, i) for i, h in enumerate(hs)) + "</div></section>")
@@ -421,8 +420,8 @@ def build_particuliers(idx):
             + (f'<figure><img src="{e(img(cover))}" alt="Mariés sur la plage au coucher du soleil, en Vendée" fetchpriority="high" style="object-position:{e(PART.get("couverture_cadrage") or "50% 40%")}"></figure>' if cover else "")
             + "</section>" + hist
             + '<section class="pg-sec wrap"><h2>Questions fréquentes</h2><div class="pg-faq">'
-              '<details><summary>Vous déplacez-vous en dehors de la Vendée ?</summary><p>Oui, partout en France. Je suis basé aux Sables-d\'Olonne.</p></details>'
-              '<details><summary>Photo, vidéo ou les deux ?</summary><p>Comme vous préférez. On en parle ensemble selon le déroulé de la journée, avec le drone si le lieu et la réglementation le permettent.</p></details>'
+              '<details><summary>Vous déplacez-vous en dehors de la Vendée ?</summary><p>Je suis basé aux Sables-d\'Olonne et je me déplace partout en France et à l\'étranger.</p></details>'
+              '<details><summary>Photo, vidéo ou les deux ?</summary><p>Comme vous préférez. On en parle ensemble selon le déroulé de la journée, avec le drone si le lieu s\'y prête.</p></details>'
               '<details><summary>Quels sont vos tarifs ?</summary><p>Chaque projet fait l\'objet d\'une proposition sur mesure, selon la durée, le lieu et les prestations choisies.</p></details>'
               '<details><summary>Quand vais-je recevoir mes images ?</summary><p>Je vous indique le délai de livraison dans ma proposition.</p></details></div></section>'
             + f'<section class="sec wrap" id="contact" aria-labelledby="h-contact"><div class="contact"><div>'

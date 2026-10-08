@@ -58,7 +58,7 @@
     },
     {
       "titre": "Anaïs & Maxime",
-      "lieu": "",
+      "lieu": "Boulogne-Billancourt, Île-de-France",
       "photos": [
         {
           "image": "/images/particuliers/mariage-2/m2-01.jpg",
@@ -151,7 +151,7 @@
       "lieu": "Domaine de la Chopinière, Sainte-Cécile, Vendée",
       "photos": [
         {
-          "image": "/images/particuliers/elise-julien/ej-07.jpg",
+          "image": "/images/particuliers/elise-julien/ej-07nb.jpg",
           "cadrage": "50% 40%"
         },
         {
@@ -181,12 +181,24 @@
           "cadrage": "50% 40%"
         },
         {
-          "image": "/images/particuliers/elise-julien/ej-03.jpg",
+          "image": "/images/particuliers/elise-julien/ej-12.jpg",
           "cadrage": "50% 40%"
         },
         {
-          "image": "/images/particuliers/elise-julien/ej-11.jpg",
-          "cadrage": "50% 40%",
+          "image": "/images/particuliers/elise-julien/ej-14.jpg",
+          "cadrage": "50% 40%"
+        },
+        {
+          "image": "/images/particuliers/elise-julien/ej-09.jpg",
+          "cadrage": "50% 40%"
+        },
+        {
+          "image": "/images/particuliers/elise-julien/ej-13.jpg",
+          "cadrage": "50% 40%"
+        },
+        {
+          "image": "/images/particuliers/elise-julien/ej-15.jpg",
+          "cadrage": "50% 30%",
           "portrait": true
         },
         {
