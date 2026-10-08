@@ -1,7 +1,7 @@
 [
   {
     "nom": "Air France",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/4/44/Air_France_Logo.svg",
+    "logo": "images/externes/wikimedia-Air_France_Logo.svg",
     "taille": 1
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "nom": "Europ Assistance",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/4/41/Europ_Assistance_Logo_.png",
+    "logo": "images/externes/wikimedia-Europ_Assistance_Logo_.png",
     "taille": 1
   },
   {
@@ -26,12 +26,12 @@
   },
   {
     "nom": "TotalEnergies",
-    "logo": "https://upload.wikimedia.org/wikipedia/fr/f/f7/Logo_TotalEnergies.svg",
+    "logo": "images/externes/wikimedia-Logo_TotalEnergies.svg",
     "taille": 1
   },
   {
     "nom": "Groupe Dubreuil",
-    "logo": "https://upload.wikimedia.org/wikipedia/fr/c/c3/Groupedubreuil.jpg",
+    "logo": "images/externes/wikimedia-Groupedubreuil.jpg",
     "taille": 1.25
   },
   {
@@ -41,7 +41,7 @@
   },
   {
     "nom": "Danone",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/f/f4/DANONE_LOGO_HORIZONTAL.png",
+    "logo": "images/externes/wikimedia-DANONE_LOGO_HORIZONTAL.png",
     "taille": 1
   },
   {
@@ -51,17 +51,17 @@
   },
   {
     "nom": "Adidas",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg",
+    "logo": "images/externes/wikimedia-Adidas_Logo.svg",
     "taille": 1.1
   },
   {
     "nom": "Puma",
-    "logo": "https://upload.wikimedia.org/wikipedia/fr/7/72/Puma.svg",
+    "logo": "images/externes/wikimedia-Puma.svg",
     "taille": 1.1
   },
   {
     "nom": "Brooks",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/3/39/Brooks_sports_logo.png",
+    "logo": "images/externes/wikimedia-Brooks_sports_logo.png",
     "taille": 1
   },
   {
@@ -71,17 +71,17 @@
   },
   {
     "nom": "BWT",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/b/b1/BWT_Logo_2024.svg",
+    "logo": "images/externes/wikimedia-BWT_Logo_2024.svg",
     "taille": 1
   },
   {
     "nom": "Richemont",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/4/41/Logo_Richemont.svg",
+    "logo": "images/externes/wikimedia-Logo_Richemont.svg",
     "taille": 1
   },
   {
     "nom": "Fédération Française de Cyclisme",
-    "logo": "https://upload.wikimedia.org/wikipedia/fr/9/91/Logo_FFC.svg",
+    "logo": "images/externes/wikimedia-Logo_FFC.svg",
     "taille": 1.2
   }
 ]

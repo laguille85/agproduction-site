@@ -9,7 +9,7 @@
     "resultat": "Deux films : un film de marque pour Pierre Fabre et un film de l'événement au Spi Ouest-France.",
     "citation": "Il est de notre devoir de mettre en lumière l'importance de la prévention.",
     "citation_auteur": "Laboratoires Pierre Fabre",
-    "couverture": "https://cdn.myportfolio.com/29c4e139eedffb206faefd38f3f6bd1d/664adb24-28ce-4cee-ae27-5a9f56cd4b20_rw_1920.png?h=c62a18220d0e07f6f44f3979aba74220",
+    "couverture": "images/externes/myportfolio-664adb24-28ce-4cee-ae27-5a9f56cd4b20_rw_1920.png",
     "vimeo": [
       "https://vimeo.com/1167295918",
       "https://vimeo.com/1167293738"
@@ -30,12 +30,12 @@
     "resultat": "Un film événementiel qui fait revivre la soirée, de la lumière dorée du soir aux dernières notes.",
     "citation": "",
     "citation_auteur": "",
-    "couverture": "https://cdn.myportfolio.com/29c4e139eedffb206faefd38f3f6bd1d/3e57f18c-b354-4b92-9b16-e773c37f3f11_rw_1920.jpg?h=e608e7db838d9fef5c5b4989fe0e439c",
+    "couverture": "images/externes/myportfolio-3e57f18c-b354-4b92-9b16-e773c37f3f11_rw_1920.jpg",
     "vimeo": [
       "https://vimeo.com/1124142602"
     ],
     "images": [
-      "https://cdn.myportfolio.com/29c4e139eedffb206faefd38f3f6bd1d/d33a91cb-1632-46bb-9ed7-a6c295f9833a_rw_1920.jpg?h=05423f2eb90c176abcb7539cdeab7720",
+      "images/externes/myportfolio-d33a91cb-1632-46bb-9ed7-a6c295f9833a_rw_1920.jpg",
       "images/savoir-faire/af-polo-pan.jpg"
     ],
     "serie_photo": ""
@@ -50,14 +50,14 @@
     "resultat": "Deux films et un reportage photo.",
     "citation": "",
     "citation_auteur": "",
-    "couverture": "https://cdn.myportfolio.com/29c4e139eedffb206faefd38f3f6bd1d/7e11192a-ee37-4eca-9429-a048dc46bc43_rw_1920.jpg?h=c8806876a460ba49d46bfe91cca1a9c9",
+    "couverture": "images/externes/myportfolio-7e11192a-ee37-4eca-9429-a048dc46bc43_rw_1920.jpg",
     "vimeo": [
       "https://vimeo.com/1020258847",
       "https://vimeo.com/1020267126"
     ],
     "images": [
-      "https://cdn.myportfolio.com/29c4e139eedffb206faefd38f3f6bd1d/6174be78-ce58-4c0f-a340-2f0f63d64a7b_rw_1920.jpg?h=672e585ede9586544c7678785bf3825b",
-      "https://cdn.myportfolio.com/29c4e139eedffb206faefd38f3f6bd1d/c1723eec-d960-4516-9aa2-da4582640e6b_rw_1920.jpg?h=df82d89304ab73b45c88a73a7d38224c"
+      "images/externes/myportfolio-6174be78-ce58-4c0f-a340-2f0f63d64a7b_rw_1920.jpg",
+      "images/externes/myportfolio-c1723eec-d960-4516-9aa2-da4582640e6b_rw_1920.jpg"
     ],
     "serie_photo": "Rapatriement sanitaire Europ Assistance"
   }
