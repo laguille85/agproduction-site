@@ -26,8 +26,16 @@ def load(name, default=None):
         return json.load(f)
 
 
+NBSP = "\u00a0"
+
+
 def e(s):
-    return html.escape(str(s if s is not None else ""), quote=True)
+    """Échappe le texte et pose les espaces insécables de la typographie française."""
+    t = str(s if s is not None else "")
+    if not re.match(r"^(https?:|/|mailto:)", t):
+        t = re.sub(r" ([:;?!»])", NBSP + r"\1", t)
+        t = t.replace("« ", "«" + NBSP)
+    return html.escape(t, quote=True)
 
 
 def slugify(s):
