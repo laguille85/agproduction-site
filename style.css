@@ -96,6 +96,11 @@ section{scroll-margin-top:60px}
 .seg-in{display:inline-flex;background:var(--cloud);border-radius:980px;padding:4px;gap:2px}
 .seg button{border:0;background:transparent;border-radius:980px;padding:8px 18px;font-size:14px;font-weight:500;color:var(--graphite);cursor:pointer;white-space:nowrap;transition:background .25s,color .25s,box-shadow .25s}
 .seg button[aria-pressed="true"]{background:#fff;color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.seg-in.cs{position:relative;padding:5px;gap:4px}
+.seg-in.cs button{position:relative;z-index:1;padding:11px 24px;font-size:clamp(15px,1.3vw,18px);font-weight:600;letter-spacing:-.015em;transition:color .3s}
+.seg-in.cs button:hover{color:var(--ink)}
+.seg-in.cs button[aria-pressed="true"]{background:transparent;box-shadow:none;color:var(--tide)}
+.seg-in.cs .seg-ind{position:absolute;z-index:0;top:5px;bottom:5px;left:0;width:0;border-radius:980px;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.08);transition:transform .45s cubic-bezier(.2,.7,.2,1),width .45s cubic-bezier(.2,.7,.2,1)}
 
 /* Carrousel des films */
 .rail{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(280px,44vw,560px);gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;
@@ -608,6 +613,9 @@ footer .wrap{padding-block:34px calc(24px + env(safe-area-inset-bottom,0px))}
 .steps.pt-steps{grid-template-columns:repeat(3,minmax(0,1fr))}
 .steps.pt-steps li:nth-child(3)::after{display:none}
 @media (max-width:760px){
+  .seg-in.cs{gap:2px;padding:4px}
+  .seg-in.cs button{padding:9px 10px;font-size:13.5px}
+  .seg-in.cs .seg-ind{top:4px;bottom:4px}
   .pt-tabs{display:flex;width:100%;padding:4px}
   .pt-tabs button{flex:1;padding:10px 4px;font-size:14px}
   .pt-ind{top:4px;bottom:4px}

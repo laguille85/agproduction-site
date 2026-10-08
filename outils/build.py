@@ -124,9 +124,11 @@ def render_index_blocks():
         f'<span class="txt"><small>{e(s.get("surtitre"))}</small><strong>{e(s.get("titre"))}</strong></span>'
         '<span class="plus"><svg viewBox="0 0 14 14"><path d="M7 1v12M1 7h12"/></svg></span></button>' for i, s in enumerate(SKILLS))
     initial = SITE.get("series_affichees") or 12
+    told = {c.get("serie_photo") for c in PCASES if c.get("serie_photo")}
+    grid = [(i, p) for i, p in enumerate(PHOTOS) if p.get("titre") not in told]
     b["pgrid"] = "".join(
-        f'<button class="pcard" type="button" data-p="{i}" {"hidden " if i >= initial else ""}aria-label="{e(p.get("titre"))} — voir la série">'
-        f'<span class="img"><img src="{e(img(p.get("couverture")))}" alt="Série photo {e(p.get("titre"))}" loading="lazy" decoding="async"></span><span class="t">{e(p.get("titre"))}</span></button>' for i, p in enumerate(PHOTOS))
+        f'<button class="pcard" type="button" data-p="{i}" {"hidden " if n >= initial else ""}aria-label="{e(p.get("titre"))} — voir la série">'
+        f'<span class="img"><img src="{e(img(p.get("couverture")))}" alt="Série photo {e(p.get("titre"))}" loading="lazy" decoding="async"></span><span class="t">{e(p.get("titre"))}</span></button>' for n, (i, p) in enumerate(grid))
     b["aboutCopy"] = (f'<h3>{e(SITE.get("a_propos_titre"))}</h3><p><b>{e(SITE.get("a_propos_intro"))}</b></p>'
                       + "".join(f"<p>{e(p)}</p>" for p in SITE.get("a_propos_paragraphes") or [])
                       + '<ul class="chips" aria-label="Domaines d\'activité">' + "".join(f"<li>{e(d)}</li>" for d in SITE.get("domaines") or []) + "</ul>")
@@ -472,7 +474,7 @@ def main():
     for c in CASES:
         urls.append((build_case(idx, c, [o for o in CASES if o is not c]), "0.7"))
     for c in PCASES:
-        urls.append((build_case(idx, c, [o for o in PCASES if o is not c], "/#projets-photo"), "0.7"))
+        urls.append((build_case(idx, c, [o for o in PCASES if o is not c], "/#photographie"), "0.7"))
     if PART.get("histoires"):
         urls.append((build_particuliers(idx), "0.8"))
     urls.append((build_legal(idx), "0.2"))

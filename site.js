@@ -175,6 +175,7 @@ async function load(name){
       const cells = imgs.map((u,i) => `<button type="button" data-ci="${i}" data-kind="${kind}" aria-label="Agrandir l'image ${i+1}"><img src="${esc(src(u))}" alt="" loading="lazy" decoding="async"></button>`);
       if (serie >= 0) cells.push(`<button type="button" class="more" data-p="${serie}"><small>${kind === "photo" ? "La série complète" : "Reportage photo"}</small><span>Voir la série <svg viewBox="0 0 14 14"><path d="M5 2l5 5-5 5"/></svg></span></button>`);
       seg.querySelectorAll("button").forEach((b,i) => b.setAttribute("aria-pressed", i === n));
+      place();
       const photo = kind === "photo";
       const coverAttr = photo ? (serie >= 0 ? `data-p="${serie}"` : `data-ci="-1" data-kind="photo"`) : `data-cv="${n}"`;
       const go = photo ? `<span class="go">${galIco}Voir la série</span>` : (vids.length ? `<span class="go">${playIco}${vids.length > 1 ? `Voir les ${vids.length} films` : "Voir le film"}</span>` : "");
@@ -193,13 +194,16 @@ async function load(name){
       el.style.animation = "none"; el.offsetHeight; el.style.animation = "";
       el.dataset.n = n;
     }
-    seg.innerHTML = LIST.map((c,i) => `<button type="button" role="tab" data-case="${i}">${esc(c.onglet || c.client)}</button>`).join("");
+    seg.classList.add("cs");
+    seg.innerHTML = LIST.map((c,i) => `<button type="button" role="tab" data-case="${i}">${esc(c.onglet || c.client)}</button>`).join("") + '<span class="seg-ind" aria-hidden="true"></span>';
+    function place(){ const b = seg.querySelector('[aria-pressed="true"]'), ind = seg.querySelector(".seg-ind"); if (b && ind) { ind.style.width = b.offsetWidth + "px"; ind.style.transform = `translateX(${b.offsetLeft}px)`; } }
+    addEventListener("resize", place); if (document.fonts) document.fonts.ready.then(place);
     seg.addEventListener("click", e => { const b = e.target.closest("[data-case]"); if (b) render(+b.dataset.case); });
     render(0);
   }
   const caseEl = $("#case"), pcaseEl = $("#pcase");
   setupCases(CASES, caseEl, $("#caseSeg"), $("#projets"), "film");
-  setupCases(PCASES, pcaseEl, $("#pcaseSeg"), $("#projets-photo"), "photo");
+  setupCases(PCASES, pcaseEl, $("#pcaseSeg"), $("#photographie"), "photo");
 
   /* ---------- Tirages d'art : photo, et photo encadrée en situation au survol ---------- */
   if (!PRINTS.length) $("#tirages").hidden = true;
@@ -224,16 +228,18 @@ async function load(name){
 
   /* ---------- Photographie ---------- */
   const INITIAL = SITE.series_affichees || 12;
-  $("#pgrid").innerHTML = PHOTOS.map((p,i) => `<button class="pcard" type="button" data-p="${i}" ${i >= INITIAL ? "hidden" : ""} aria-label="${esc(p.titre)} — voir la série">
+  const TOLD = new Set((PCASES || []).map(c => c.serie_photo).filter(Boolean));   /* séries déjà racontées plus haut */
+  const GRID = PHOTOS.map((p,i) => [p,i]).filter(([p]) => !TOLD.has(p.titre));
+  $("#pgrid").innerHTML = GRID.map(([p,i],n) => `<button class="pcard" type="button" data-p="${i}" ${n >= INITIAL ? "hidden" : ""} aria-label="${esc(p.titre)} — voir la série">
     <span class="img"><img src="${esc(src(p.couverture))}" alt="Série photo ${esc(p.titre)}" loading="lazy" decoding="async"></span><span class="t">${esc(p.titre)}</span></button>`).join("");
   const more = $("#morePhotos");
-  if (more && PHOTOS.length <= INITIAL) more.hidden = true;
+  if (more && GRID.length <= INITIAL) more.hidden = true;
   if (more) more.addEventListener("click", () => {
     const open = more.dataset.open === "1";
     [...$("#pgrid").children].forEach((el,i) => { if (i >= INITIAL) el.hidden = open; });
     more.dataset.open = open ? "0" : "1";
     more.textContent = open ? "Voir toutes les séries" : "Réduire";
-    if (open) $("#photographie").scrollIntoView({block:"start"});
+    if (open) $("#series-photo").scrollIntoView({block:"start"});
   });
 
   /* Rails horizontaux sur mobile (savoir-faire, méthode, tirages) : barre de progression */
