@@ -115,7 +115,11 @@
       im.forEach((e, k) => { e.classList.toggle("on", k === i); if (k === i || k === (i + 1) % im.length) e.querySelectorAll("img").forEach(x => x.loading = "eager"); });
       th.forEach(e => e.classList.toggle("on", slideOf(e) === i));
       st.dataset.k = im[i].dataset.n; cnt.textContent = String(i + 1).padStart(2, "0") + " / " + im.length;
-      const a = th.find(e => slideOf(e) === i); if (a) strip.scrollTo({ left: a.offsetLeft - strip.clientWidth / 2 + a.clientWidth / 2 });
+      const a = th.find(e => slideOf(e) === i);
+      if (a && strip.clientWidth) {   /* vignette active centrée dans la bande, mesurée par rapport à la bande elle-même */
+        const ra = a.getBoundingClientRect(), rs = strip.getBoundingClientRect();
+        strip.scrollTo({ left: Math.max(0, strip.scrollLeft + ra.left - rs.left - (rs.width - ra.width) / 2) });
+      }
       run();
     };
     st.querySelector(".n").addEventListener("click", e => { e.stopPropagation(); go(i + 1); });
