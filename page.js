@@ -86,7 +86,7 @@
 /* Visionneuse de la page Particuliers : défilement automatique, vignettes, glisser */
 (function(){
   document.querySelectorAll(".pt-viewer").forEach(v => {
-    const st = v.querySelector(".pt-stage"), im = [...st.querySelectorAll(":scope > img")], th = [...v.querySelectorAll(".pt-th")],
+    const st = v.querySelector(".pt-stage"), im = [...st.querySelectorAll(":scope > .pt-slide")], th = [...v.querySelectorAll(".pt-th")],
       cnt = st.querySelector(".pt-count"), strip = v.querySelector(".pt-strip"), bar = st.querySelector(".pt-prog i"), D = 5000;
     if (im.length < 2) return;
     const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -95,11 +95,10 @@
     const run = () => { clearTimeout(t); st.classList.remove("run"); void bar.offsetWidth; if (hover || !seen || still) return; st.classList.add("run"); t = setTimeout(() => go(i + 1), D); };
     const go = n => {
       i = (n + im.length) % im.length;
-      im.forEach((e, k) => { e.classList.toggle("on", k === i); if (k === i) e.loading = "eager"; });
+      im.forEach((e, k) => { e.classList.toggle("on", k === i); if (k === i || k === (i + 1) % im.length) e.querySelectorAll("img").forEach(x => x.loading = "eager"); });
       th.forEach((e, k) => e.classList.toggle("on", k === i));
       st.dataset.k = i; cnt.textContent = String(i + 1).padStart(2, "0") + " / " + im.length;
       const a = th[i]; if (a) strip.scrollTo({ left: a.offsetLeft - strip.clientWidth / 2 + a.clientWidth / 2 });
-      new Image().src = im[(i + 1) % im.length].currentSrc || im[(i + 1) % im.length].src;
       run();
     };
     st.querySelector(".n").addEventListener("click", e => { e.stopPropagation(); go(i + 1); });
@@ -112,5 +111,15 @@
     st.addEventListener("touchend", e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) { moved = true; go(i + (dx < 0 ? 1 : -1)); } x0 = null; });
     st.addEventListener("click", e => { if (moved) { e.stopPropagation(); moved = false; } }, true);
     new IntersectionObserver(es => es.forEach(e => { seen = e.isIntersecting; run(); }), { threshold: .4 }).observe(st);
+    v.ptGo = go;
+  });
+  /* Onglets entre les histoires */
+  document.querySelectorAll(".pt-tabs").forEach(tabs => {
+    const sec = tabs.closest("section"), st = [...sec.querySelectorAll(".pt-story")];
+    tabs.querySelectorAll("button").forEach(b => b.addEventListener("click", () => {
+      tabs.querySelectorAll("button").forEach(x => x.setAttribute("aria-selected", x === b));
+      st.forEach((s, k) => s.classList.toggle("on", k === +b.dataset.s));
+      const v = st[+b.dataset.s].querySelector(".pt-viewer"); if (v && v.ptGo) v.ptGo(0);
+    }));
   });
 })();

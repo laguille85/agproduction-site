@@ -370,31 +370,48 @@ def thumb(path):
     return t if os.path.exists(os.path.join(ROOT, t.lstrip("/"))) else path
 
 
-def viewer(h):
+def viewer(h, k=0):
     photos = [x for x in h.get("photos") or [] if x.get("image")]
     if not photos:
         return ""
     t, n = h.get("titre") or "", len(photos)
     full = json.dumps([img(x["image"]) for x in photos], ensure_ascii=False)
-    stage = "".join(
-        f'<img src="{e(img(x["image"]))}" alt="{e(t)}, {e(h.get("lieu") or "")}, photo {i + 1} sur {n}" style="object-position:{e(x.get("cadrage") or "50% 50%")}"'
-        + (' class="on"' if i == 0 else ' loading="lazy"') + ' decoding="async">' for i, x in enumerate(photos))
+
+    def slide(i, x):
+        src, pos = e(img(x["image"])), e(x.get("cadrage") or "50% 50%")
+        lazy = "" if i == 0 else ' loading="lazy"'
+        cls = "pt-slide" + (" por" if x.get("portrait") else "") + (" on" if i == 0 else "")
+        bg = f'<img class="bg" src="{e(img(thumb(x["image"])))}" alt="" aria-hidden="true"{lazy}>' if x.get("portrait") else ""
+        return (f'<div class="{cls}">{bg}<img src="{src}" alt="{e(t)}, {e(h.get("lieu") or "")}, photo {i + 1} sur {n}" '
+                f'style="object-position:{pos}"{lazy} decoding="async"></div>')
+    stage = "".join(slide(i, x) for i, x in enumerate(photos))
     ths = "".join(
-        f'<button class="pt-th{" on" if i == 0 else ""}" type="button" aria-label="Photo {i + 1}"><img src="{e(img(thumb(x["image"])))}" alt="" loading="lazy" style="object-position:{e(x.get("cadrage") or "50% 50%")}"></button>'
+        f'<button class="pt-th{" on" if i == 0 else ""}" type="button" aria-label="Photo {i + 1}"><img src="{e(img(thumb(x["image"])))}" alt="" loading="lazy"></button>'
         for i, x in enumerate(photos))
-    return (f'<section class="pt-sec"><div class="wrap"><p class="pt-eyebrow">Une histoire</p><h2 class="pt-h2">{e(t)}.</h2>'
-            f'<p class="pt-lede">{e(h.get("lieu"))}</p><div class="pt-viewer">'
+    return (f'<div class="pt-story{" on" if k == 0 else ""}" id="histoire-{k + 1}"><p class="pt-lede">{e(h.get("lieu"))}</p><div class="pt-viewer">'
             f'<figure class="pt-stage" data-images="{e(full)}" data-title="{e(t)}" data-k="0">{stage}'
             f'<button class="pt-nav p" type="button" aria-label="Photo précédente"><svg viewBox="0 0 14 14"><path d="M9 2L4 7l5 5"/></svg></button>'
             f'<button class="pt-nav n" type="button" aria-label="Photo suivante">{ARROW}</button>'
             f'<span class="pt-count">01 / {n}</span><span class="pt-prog"><i></i></span></figure>'
-            f'<div class="pt-strip">{ths}</div></div></div></section>')
+            f'<div class="pt-strip">{ths}</div></div></div>')
+
+
+def stories(hs):
+    hs = [h for h in hs if h.get("photos") and not h.get("brouillon")]
+    if not hs:
+        return ""
+    head = (f'<h2 class="pt-h2">{e(hs[0].get("titre"))}.</h2>' if len(hs) == 1 else
+            '<h2 class="pt-h2">Quelques histoires.</h2><div class="pt-tabs" role="tablist">' + "".join(
+                f'<button type="button" role="tab" aria-selected="{"true" if i == 0 else "false"}" data-s="{i}">{e(h.get("titre"))}</button>'
+                for i, h in enumerate(hs)) + "</div>")
+    return (f'<section class="pt-sec"><div class="wrap"><p class="pt-eyebrow">{"Une histoire" if len(hs) == 1 else "Mariages"}</p>{head}'
+            + "".join(viewer(h, i) for i, h in enumerate(hs)) + "</div></section>")
 
 
 def build_particuliers(idx):
     path = "/particuliers/"
     cover = PART.get("couverture")
-    hist = "".join(viewer(h) for h in PART.get("histoires") or [])
+    hist = stories(PART.get("histoires") or [])
     body = (f'<section class="pt-hero"><div class="wrap in"><p class="pt-eyebrow">Particuliers</p><h1>Vos moments, avec le même regard.</h1>'
             f'<p class="lede">Mariages, couples, familles. Photo, vidéo et drone aux Sables-d\'Olonne, en Vendée et partout en France.</p>'
             f'<a class="pill" href="{PART_CTA}">Me parler de votre projet</a></div>'
