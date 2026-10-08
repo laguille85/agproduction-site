@@ -52,6 +52,10 @@
       {
         "question": "Comment obtenir un devis ?",
         "reponse": "Décrivez votre projet, vos dates et le lieu dans le formulaire de contact. Je vous réponds rapidement avec une première proposition."
+      },
+      {
+        "question": "Quels sont vos tarifs ?",
+        "reponse": "Chaque projet fait l'objet d'un devis sur mesure, selon la durée, le lieu et les prestations. Décrivez-moi votre besoin et je vous envoie une proposition rapidement."
       }
     ]
   },
@@ -96,6 +100,14 @@
       {
         "question": "Intervenez-vous en dehors de la Vendée ?",
         "reponse": "Oui, partout en France et à l'étranger. Je suis basé aux Sables-d'Olonne."
+      },
+      {
+        "question": "Vous occupez-vous du montage ?",
+        "reponse": "Oui. J'assure moi-même la prise de vue, le montage et la post-production, et je m'entoure d'une équipe sur les projets d'envergure."
+      },
+      {
+        "question": "Quels sont vos tarifs ?",
+        "reponse": "Chaque projet fait l'objet d'un devis sur mesure, selon la durée, le lieu et les prestations. Décrivez-moi votre besoin et je vous envoie une proposition rapidement."
       }
     ]
   },
@@ -139,6 +151,14 @@
       {
         "question": "Couvrez-vous les événements sportifs partout en France ?",
         "reponse": "Oui. Je suis basé aux Sables-d'Olonne, en Vendée, et je me déplace sur toute la France."
+      },
+      {
+        "question": "Pouvez-vous faire la photo et la vidéo sur le même événement ?",
+        "reponse": "Oui, je peux couvrir la photo, la vidéo et les images aériennes au drone sur la même épreuve."
+      },
+      {
+        "question": "Quels sont vos tarifs ?",
+        "reponse": "Chaque projet fait l'objet d'un devis sur mesure, selon la durée, le lieu et les prestations. Décrivez-moi votre besoin et je vous envoie une proposition rapidement."
       }
     ]
   },
@@ -174,6 +194,18 @@
       {
         "question": "Tournez-vous à bord et sur l'eau ?",
         "reponse": "Oui, à bord, sur l'eau ou au drone, selon le projet et les conditions."
+      },
+      {
+        "question": "Où êtes-vous basé ?",
+        "reponse": "Aux Sables-d'Olonne, port de départ du Vendée Globe. Je me déplace sur tous les ports et toutes les courses, en France et à l'étranger."
+      },
+      {
+        "question": "Faites-vous la photo et la vidéo ?",
+        "reponse": "Oui, photo, vidéo et drone, à terre comme en mer."
+      },
+      {
+        "question": "Quels sont vos tarifs ?",
+        "reponse": "Chaque projet fait l'objet d'un devis sur mesure, selon la durée, le lieu et les prestations. Décrivez-moi votre besoin et je vous envoie une proposition rapidement."
       }
     ]
   },
@@ -205,6 +237,18 @@
       {
         "question": "Peut-on voler partout ?",
         "reponse": "Non : certaines zones sont réglementées. J'analyse la zone de vol en amont et je m'occupe des demandes d'autorisation quand elles sont nécessaires."
+      },
+      {
+        "question": "Êtes-vous un pilote certifié ?",
+        "reponse": "Oui, je suis pilote de drone certifié par la DGAC."
+      },
+      {
+        "question": "Pouvez-vous combiner le drone avec un tournage au sol ?",
+        "reponse": "Oui, je réalise les images aériennes et les images au sol sur le même tournage."
+      },
+      {
+        "question": "Quels sont vos tarifs ?",
+        "reponse": "Chaque projet fait l'objet d'un devis sur mesure, selon la durée, le lieu et les prestations. Décrivez-moi votre besoin et je vous envoie une proposition rapidement."
       }
     ]
   },
@@ -230,7 +274,20 @@
       "Opération Train des neiges"
     ],
     "series": [],
-    "faq": []
+    "faq": [
+      {
+        "question": "Vous déplacez-vous partout en France ?",
+        "reponse": "Oui. Je suis basé aux Sables-d'Olonne, en Vendée, et je couvre des événements partout en France et à l'étranger."
+      },
+      {
+        "question": "Pouvez-vous faire la photo et la vidéo ?",
+        "reponse": "Oui, sur le même événement, avec le drone si le lieu s'y prête."
+      },
+      {
+        "question": "Quels sont vos tarifs ?",
+        "reponse": "Chaque projet fait l'objet d'un devis sur mesure, selon la durée, le lieu et les prestations. Décrivez-moi votre besoin et je vous envoie une proposition rapidement."
+      }
+    ]
   },
   {
     "slug": "photographe",
@@ -263,6 +320,18 @@
       {
         "question": "Faites-vous aussi de la vidéo sur le même shooting ?",
         "reponse": "Oui, je peux réaliser photo, vidéo et drone sur le même tournage."
+      },
+      {
+        "question": "Vous déplacez-vous en dehors de la Vendée ?",
+        "reponse": "Oui. Je suis basé aux Sables-d'Olonne et je travaille partout en France et à l'étranger."
+      },
+      {
+        "question": "Vous occupez-vous de la retouche ?",
+        "reponse": "Oui, je réalise moi-même la sélection et la post-production de toutes les images."
+      },
+      {
+        "question": "Quels sont vos tarifs ?",
+        "reponse": "Chaque projet fait l'objet d'un devis sur mesure, selon la durée, le lieu et les prestations. Décrivez-moi votre besoin et je vous envoie une proposition rapidement."
       }
     ]
   }

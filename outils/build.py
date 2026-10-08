@@ -129,7 +129,7 @@ def render_index_blocks():
     grid = [(i, p) for i, p in enumerate(PHOTOS) if p.get("titre") not in told]
     b["pgrid"] = "".join(
         f'<button class="pcard" type="button" data-p="{i}" {"hidden " if n >= initial else ""}aria-label="{e(p.get("titre"))} — voir la série">'
-        f'<span class="img"><img src="{e(img(p.get("couverture")))}" alt="Série photo {e(p.get("titre"))}" loading="lazy" decoding="async"></span><span class="t">{e(p.get("titre"))}</span></button>' for n, (i, p) in enumerate(grid))
+        f'<span class="img"><img src="{e(img(p.get("couverture")))}" alt="{e(p.get("titre"))} — série photo d’Antoine Guillou, photographe en Vendée" loading="lazy" decoding="async"></span><span class="t">{e(p.get("titre"))}</span></button>' for n, (i, p) in enumerate(grid))
     b["aboutCopy"] = (f'<h3>{e(SITE.get("a_propos_titre"))}</h3><p><b>{e(SITE.get("a_propos_intro"))}</b></p>'
                       + "".join(f"<p>{e(p)}</p>" for p in SITE.get("a_propos_paragraphes") or [])
                       + '<ul class="chips" aria-label="Domaines d\'activité">' + "".join(f"<li>{e(d)}</li>" for d in SITE.get("domaines") or []) + "</ul>")
@@ -304,6 +304,11 @@ def service_image(p):
     return SITE.get("photo_chiffres_port")
 
 
+def faq_ld(pairs):
+    return {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in pairs if q and a]}
+
+
 def build_service(idx, p):
     path = f'/{p["slug"]}/'
     cover = service_image(p)
@@ -324,6 +329,8 @@ def build_service(idx, p):
            "areaServed": [{"@type": "City", "name": "Les Sables-d'Olonne"}, {"@type": "AdministrativeArea", "name": "Vendée"},
                           {"@type": "AdministrativeArea", "name": "Pays de la Loire"}, {"@type": "Country", "name": "France"}]},
           breadcrumb_ld([(p.get("menu"), path)])]
+    if p.get("faq"):
+        ld.append(faq_ld([(q.get("question"), q.get("reponse")) for q in p["faq"]]))
     write(path, page_shell(idx, p.get("titre_seo") or p.get("h1"), p.get("description"), path, body, ld, cover))
     return path
 
@@ -528,7 +535,8 @@ def build_particuliers(idx):
            "description": desc, "url": BASE + path, "provider": {"@type": "ProfessionalService", "name": "AG Production", "url": BASE + "/"},
            "areaServed": [{"@type": "City", "name": "Les Sables-d'Olonne"}, {"@type": "AdministrativeArea", "name": "Vendée"},
                           {"@type": "AdministrativeArea", "name": "Pays de la Loire"}, {"@type": "Country", "name": "France"}]},
-          breadcrumb_ld([("Particuliers", path)])]
+          breadcrumb_ld([("Particuliers", path)]),
+          faq_ld([(html.unescape(re.sub("<[^>]+>", "", q)), html.unescape(re.sub("<[^>]+>", "", a))) for q, a in re.findall(r"<summary>(.*?)</summary><p>(.*?)</p>", body)])]
     write(path, page_shell(idx, "Photographe et vidéaste de mariage en Vendée | AG Production", desc, path, body, ld, cover))
     return path
 

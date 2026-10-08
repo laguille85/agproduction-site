@@ -240,7 +240,7 @@ async function load(name){
   const TOLD = new Set((PCASES || []).map(c => c.serie_photo).filter(Boolean));   /* séries déjà racontées plus haut */
   const GRID = PHOTOS.map((p,i) => [p,i]).filter(([p]) => !TOLD.has(p.titre));
   $("#pgrid").innerHTML = GRID.map(([p,i],n) => `<button class="pcard" type="button" data-p="${i}" ${n >= INITIAL ? "hidden" : ""} aria-label="${esc(p.titre)} — voir la série">
-    <span class="img"><img src="${esc(src(p.couverture))}" alt="Série photo ${esc(p.titre)}" loading="lazy" decoding="async"></span><span class="t">${esc(p.titre)}</span></button>`).join("");
+    <span class="img"><img src="${esc(src(p.couverture))}" alt="${esc(p.titre)} — série photo d’Antoine Guillou, photographe en Vendée" loading="lazy" decoding="async"></span><span class="t">${esc(p.titre)}</span></button>`).join("");
   const more = $("#morePhotos");
   if (more && GRID.length <= INITIAL) more.hidden = true;
   if (more) more.addEventListener("click", () => {
