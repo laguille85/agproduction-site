@@ -42,8 +42,8 @@ button{font:inherit;color:inherit}
 .nav .right{justify-self:end}
 @media (max-width:760px){.nav .wrap{display:flex;justify-content:space-between}}
 .brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:17px;letter-spacing:-.02em;white-space:nowrap}
-.brand img{width:40px;height:40px;border-radius:50%}
-.flogo{width:84px;height:84px;margin-bottom:14px}
+.brand img{width:32px;height:32px;border-radius:50%}
+.flogo{width:56px;height:56px;margin-bottom:14px}
 .links{display:flex;gap:30px;font-size:13px;color:#333}
 .links a{opacity:.85;transition:opacity .2s;white-space:nowrap}
 .nav .pill{white-space:nowrap}
