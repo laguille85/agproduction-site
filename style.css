@@ -5,7 +5,7 @@
   --ink:#1d1d1f;         /* texte principal */
   --graphite:#6e6e73;    /* texte secondaire */
   --hair:#d2d2d7;        /* filets */
-  --tide:#1d4469;        /* liens et accent : bleu océan */
+  --tide:#86abd2;        /* liens et accent : bleu océan */
   --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI Variable","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   --g:clamp(16px,4vw,48px);
   --max:1180px;
@@ -125,7 +125,7 @@ section{scroll-margin-top:60px}
 .tile .k{font-size:clamp(64px,7vw,116px);font-weight:700;letter-spacing:-.06em;line-height:.92;display:flex;align-items:flex-start}
 .tile .k .unit{font-size:.36em;letter-spacing:-.02em;margin:.22em 0 0 .18em;font-weight:600}
 .tile .k sup{font-size:.4em;line-height:1;margin:.16em 0 0 .04em;color:var(--tide);-webkit-text-fill-color:var(--tide)}
-.tile .k.grad{background:linear-gradient(115deg,#1d1d1f 10%,#1d4469 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tile .k.grad{background:linear-gradient(115deg,#1d1d1f 15%,#0a66d8 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .tile .k.place{font-size:clamp(34px,3.4vw,50px);letter-spacing:-.045em;line-height:1}
 .tile p{margin:12px 0 0;font-size:17px;color:var(--graphite);max-width:20em;line-height:1.38}
 .tile p b{color:var(--ink);font-weight:600}
@@ -168,7 +168,7 @@ section{scroll-margin-top:60px}
 .gps .gh,.gps .gv{position:absolute;background:rgba(255,255,255,.38)}
 .gps .gh{left:0;right:0;top:32%;height:1px}
 .gps .gv{top:0;bottom:0;left:44%;width:1px}
-.gps .pin{position:absolute;left:44%;top:32%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(29,68,105,.55)}
+.gps .pin{position:absolute;left:44%;top:32%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(134,171,210,.55)}
 .gps .pin::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(255,255,255,.8);animation:ping 2.4s cubic-bezier(.2,.7,.2,1) infinite}
 @keyframes ping{from{transform:scale(1);opacity:.9}to{transform:scale(3.4);opacity:0}}
 
@@ -297,7 +297,7 @@ form{display:grid;gap:12px;align-content:start}
 .fl textarea{min-height:140px;resize:vertical}
 .fl select{appearance:none;cursor:pointer;padding-right:40px;text-overflow:ellipsis}
 .fl label{position:absolute;left:17px;top:18px;font-size:17px;color:var(--graphite);pointer-events:none;transition:transform .2s,font-size .2s,top .2s}
-.fl input:focus,.fl select:focus,.fl textarea:focus{outline:none;border-color:var(--tide);box-shadow:0 0 0 4px rgba(29,68,105,.15)}
+.fl input:focus,.fl select:focus,.fl textarea:focus{outline:none;border-color:var(--tide);box-shadow:0 0 0 4px rgba(134,171,210,.15)}
 .fl input:focus + label,.fl input:not(:placeholder-shown) + label,.fl textarea:focus + label,.fl textarea:not(:placeholder-shown) + label,.fl select + label{top:9px;font-size:12px}
 .fl .chev{position:absolute;right:16px;top:50%;width:10px;height:10px;transform:translateY(-50%);stroke:var(--graphite);fill:none;stroke-width:2;pointer-events:none}
 form .pill{justify-self:start;margin-top:6px}
@@ -414,7 +414,7 @@ footer .wrap{padding-block:34px calc(24px + env(safe-area-inset-bottom,0px))}
   .links>a:nth-child(4){transition-delay:0s,0s,.09s,.09s}.links>a:nth-child(5){transition-delay:0s,0s,.12s,.12s}
   .links>a:nth-child(6){transition-delay:0s,0s,.15s,.15s}.links>a:nth-child(7){transition-delay:0s,0s,.18s,.18s}
   .links>a::before{content:"";position:absolute;right:16px;top:50%;width:32px;height:32px;margin-top:-16px;border-radius:50%;transition:background-color .2s;
-           background:var(--cloud) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231d4469' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E") center/16px no-repeat}
+           background:var(--cloud) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2386abd2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E") center/16px no-repeat}
   .links>a:active{background:var(--tide);color:#fff;transform:scale(.985)}
   .links>a:active::before{background-color:#fff}
   .links>a[href="#contact"]{background:var(--ink);color:#fff}
