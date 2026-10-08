@@ -57,24 +57,11 @@
       ]
     },
     {
-      "titre": "[Prénoms]",
-      "lieu": "[Lieu]",
+      "titre": "Anaïs & Maxime",
+      "lieu": "",
       "photos": [
         {
           "image": "/images/particuliers/mariage-2/m2-01.jpg",
-          "cadrage": "50% 40%"
-        },
-        {
-          "image": "/images/particuliers/mariage-2/m2-03.jpg",
-          "cadrage": "50% 40%"
-        },
-        {
-          "image": "/images/particuliers/mariage-2/m2-02.jpg",
-          "cadrage": "50% 40%",
-          "portrait": true
-        },
-        {
-          "image": "/images/particuliers/mariage-2/m2-04.jpg",
           "cadrage": "50% 40%"
         },
         {
@@ -95,6 +82,10 @@
           "portrait": true
         },
         {
+          "image": "/images/particuliers/mariage-2/m2-18.jpg",
+          "cadrage": "50% 40%"
+        },
+        {
           "image": "/images/particuliers/mariage-2/m2-19.jpg",
           "cadrage": "50% 40%"
         },
@@ -102,8 +93,7 @@
           "image": "/images/particuliers/mariage-2/m2-20.jpg",
           "cadrage": "50% 40%"
         }
-      ],
-      "brouillon": true
+      ]
     },
     {
       "titre": "Élise & Julien",

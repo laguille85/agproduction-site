@@ -382,13 +382,13 @@ def viewer(h, k=0):
         lazy = "" if i == 0 else ' loading="lazy"'
         cls = "pt-slide" + (" por" if x.get("portrait") else "") + (" on" if i == 0 else "")
         bg = f'<img class="bg" src="{e(img(thumb(x["image"])))}" alt="" aria-hidden="true"{lazy}>' if x.get("portrait") else ""
-        return (f'<div class="{cls}">{bg}<img src="{src}" alt="{e(t)}, {e(h.get("lieu") or "")}, photo {i + 1} sur {n}" '
+        return (f'<div class="{cls}">{bg}<img src="{src}" alt="{e(t)}{", " + e(h["lieu"]) if h.get("lieu") else ""}, photo {i + 1} sur {n}" '
                 f'style="object-position:{pos}"{lazy} decoding="async"></div>')
     stage = "".join(slide(i, x) for i, x in enumerate(photos))
     ths = "".join(
         f'<button class="pt-th{" on" if i == 0 else ""}" type="button" aria-label="Photo {i + 1}"><img src="{e(img(thumb(x["image"])))}" alt="" loading="lazy"></button>'
         for i, x in enumerate(photos))
-    return (f'<div class="pt-story{" on" if k == 0 else ""}" id="histoire-{k + 1}"><p class="pt-lede">{e(h.get("lieu"))}</p><div class="pt-viewer">'
+    return (f'<div class="pt-story{" on" if k == 0 else ""}" id="histoire-{k + 1}">' + (f'<p class="pt-lede">{e(h.get("lieu"))}</p>' if h.get("lieu") else '<div style="height:8px"></div>') + f'<div class="pt-viewer">'
             f'<figure class="pt-stage" data-images="{e(full)}" data-title="{e(t)}" data-k="0">{stage}'
             f'<button class="pt-nav p" type="button" aria-label="Photo précédente"><svg viewBox="0 0 14 14"><path d="M9 2L4 7l5 5"/></svg></button>'
             f'<button class="pt-nav n" type="button" aria-label="Photo suivante">{ARROW}</button>'
