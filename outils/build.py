@@ -187,7 +187,8 @@ def page_shell(idx, title, description, path, body, ld=None, image=None):
 <meta property="og:url" content="{e(canon)}">
 <meta property="og:image" content="{e(og_img)}">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/images/externes/myportfolio-4ea0e9fd-7a38-434a-b0f5-89aff32a8e5e_rwc_0x0x9890x9890x4096.png">
+<link rel="icon" href="/images/favicon-ag.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
 <link rel="stylesheet" href="/style.css?v={v}">
 {lds}</head>
 <body class="sub">
