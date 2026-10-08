@@ -406,7 +406,7 @@ def stories(hs):
             '<h2 class="pt-h2">Quelques histoires.</h2><div class="pt-tabs" role="tablist" aria-label="Choisir un mariage">' + "".join(
                 f'<button type="button" role="tab" aria-selected="{"true" if i == 0 else "false"}" data-s="{i}">'
                 f'{e(h.get("titre"))}</button>'
-                for i, h in enumerate(hs)) + "</div>")
+                for i, h in enumerate(hs)) + '<span class="pt-ind" aria-hidden="true"></span></div>')
     return (f'<section class="pt-sec"><div class="wrap">{EYEBROW if len(hs) == 1 else ""}{head}'
             + "".join(viewer(h, i) for i, h in enumerate(hs)) + "</div></section>")
 

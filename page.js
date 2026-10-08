@@ -31,15 +31,15 @@
 
   /* Fenêtre */
   const modal = $("#modal"), sheet = $("#sheet");
-  let last = null, imgs = null, k = 0, title = "";
+  let last = null, imgs = null, k = 0, title = "", big = false;
   function open(html, wide){
     last = document.activeElement;
-    sheet.className = "sheet" + (wide ? " wide" : "");
+    sheet.className = "sheet" + (wide ? " wide" : "") + (big ? " pt-lb" : "");
     sheet.innerHTML = `<button class="x" type="button" aria-label="Fermer">${icoX}</button>` + html;
     modal.hidden = false; document.body.style.overflow = "hidden";
     sheet.querySelector(".x").onclick = close; sheet.querySelector(".x").focus();
   }
-  function close(){ modal.hidden = true; sheet.innerHTML = ""; imgs = null; document.body.style.overflow = ""; last && last.focus(); }
+  function close(){ modal.hidden = true; sheet.innerHTML = ""; imgs = null; big = false; document.body.style.overflow = ""; last && last.focus(); }
   modal.addEventListener("click", e => { if (e.target === modal) close(); });
 
   function vimeoUrl(v){
@@ -70,7 +70,7 @@
     const f = e.target.closest("[data-vimeo]");
     if (f) { const list = JSON.parse(f.dataset.vimeo || "[]"); if (list.length) play(list, f.dataset.title || ""); return; }
     const g = e.target.closest("[data-images]");
-    if (g) { imgs = JSON.parse(g.dataset.images || "[]"); k = +(g.dataset.k || 0); title = g.dataset.title || ""; if (imgs.length) show(); }
+    if (g) { big = g.classList.contains("pt-stage"); imgs = JSON.parse(g.dataset.images || "[]"); k = +(g.dataset.k || 0); title = g.dataset.title || ""; if (imgs.length) show(); }
   });
   document.addEventListener("keydown", e => {
     if (modal.hidden) return;
@@ -132,9 +132,11 @@
   });
   /* Onglets entre les histoires */
   document.querySelectorAll(".pt-tabs").forEach(tabs => {
-    const sec = tabs.closest("section"), st = [...sec.querySelectorAll(".pt-story")];
+    const sec = tabs.closest("section"), st = [...sec.querySelectorAll(".pt-story")], ind = tabs.querySelector(".pt-ind");
+    const place = () => { const b = tabs.querySelector('[aria-selected="true"]'); if (b && ind) { ind.style.width = b.offsetWidth + "px"; ind.style.transform = `translateX(${b.offsetLeft}px)`; } };
+    place(); addEventListener("resize", place); if (document.fonts) document.fonts.ready.then(place);
     tabs.querySelectorAll("button").forEach(b => b.addEventListener("click", () => {
-      tabs.querySelectorAll("button").forEach(x => x.setAttribute("aria-selected", x === b));
+      tabs.querySelectorAll("button").forEach(x => x.setAttribute("aria-selected", x === b)); place();
       st.forEach((s, k) => s.classList.toggle("on", k === +b.dataset.s));
       const v = st[+b.dataset.s].querySelector(".pt-viewer"); if (v && v.ptGo) v.ptGo(0);
     }));

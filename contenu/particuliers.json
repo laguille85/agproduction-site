@@ -185,24 +185,11 @@
           "cadrage": "50% 40%"
         },
         {
-          "image": "/images/particuliers/elise-julien/ej-14.jpg",
-          "cadrage": "50% 40%"
-        },
-        {
           "image": "/images/particuliers/elise-julien/ej-09.jpg",
           "cadrage": "50% 40%"
         },
         {
-          "image": "/images/particuliers/elise-julien/ej-13.jpg",
-          "cadrage": "50% 40%"
-        },
-        {
           "image": "/images/particuliers/elise-julien/ej-15.jpg",
-          "cadrage": "50% 30%",
-          "portrait": true
-        },
-        {
-          "image": "/images/particuliers/elise-julien/ej-10.jpg",
           "cadrage": "50% 40%"
         }
       ]
