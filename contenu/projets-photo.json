@@ -1,5 +1,28 @@
 [
   {
+    "onglet": "BWT France",
+    "client": "BWT France",
+    "titre": "Cosmy, le nouveau robot de piscine",
+    "accroche": "Un shooting produit où chaque image est une recherche graphique.",
+    "contexte": "BWT France lançait sa nouvelle gamme de robots de piscine Cosmy et avait besoin d'un fonds d'images produit à la hauteur de son design.",
+    "dispositif": "Quatre jours de prise de vue sur la côte méditerranéenne, dans le sud-est de la France. Un travail de recherche graphique image par image : lumière, cadrage, composition et mise en scène pour révéler les lignes et les matières du produit.",
+    "resultat": "Une série photo pour l'ensemble des supports : sites internet, catalogues, affichage grand public et PLV.",
+    "citation": "",
+    "citation_auteur": "",
+    "couverture": "images/photos/bwt/bwt-02.jpg",
+    "images": [
+      "images/photos/bwt/bwt-01.jpg",
+      "images/photos/bwt/bwt-06.jpg",
+      "images/photos/bwt/bwt-08.jpg",
+      "images/photos/bwt/bwt-03.jpg"
+    ],
+    "serie_photo": "BWT France",
+    "cadrage": "50% 100%",
+    "animation": "images/photos/bwt/bwt-cosmy.mp4",
+    "animation_affiche": "images/photos/bwt/bwt-cosmy-poster.jpg",
+    "texte_en_haut": true
+  },
+  {
     "onglet": "Jeanneau",
     "client": "Jeanneau",
     "titre": "Cap Camarat 6.0 CC : une journée en mer",
@@ -19,25 +42,6 @@
     "serie_photo": "Jeanneau"
   },
   {
-    "onglet": "BWT France",
-    "client": "BWT France",
-    "titre": "Cosmy, le nouveau robot de piscine",
-    "accroche": "Un shooting produit où chaque image est une recherche graphique.",
-    "contexte": "BWT France lançait sa nouvelle gamme de robots de piscine Cosmy et avait besoin d'un fonds d'images produit à la hauteur de son design.",
-    "dispositif": "Quatre jours de prise de vue sur la côte méditerranéenne, dans le sud-est de la France. Un travail de recherche graphique image par image : lumière, cadrage, composition et mise en scène pour révéler les lignes et les matières du produit.",
-    "resultat": "Une série photo pour l'ensemble des supports : sites internet, catalogues, affichage grand public et PLV.",
-    "citation": "",
-    "citation_auteur": "",
-    "couverture": "images/externes/myportfolio-d2ffb8d9-5b3e-45a1-97cb-f344d2081ba7_rwc_211x0x1500x1200x1500.jpg",
-    "images": [
-      "images/externes/myportfolio-42b32cd7-c2fd-41e4-99b2-b4c45135d06c_rw_1200.jpg",
-      "images/externes/myportfolio-8853b579-d404-496b-8659-de6d50c90c00_rw_1200.jpg",
-      "images/externes/myportfolio-a78629d1-6279-448a-b177-a550591d6a52_rw_1200.jpg",
-      "images/externes/myportfolio-a0449c7f-90b6-4a3e-bd20-16cba82a363d_rw_1200.jpg"
-    ],
-    "serie_photo": "BWT France"
-  },
-  {
     "onglet": "FPM",
     "client": "FPM",
     "titre": "Le savoir-faire, de près",
@@ -47,13 +51,14 @@
     "resultat": "Des contenus pour les sites internet, les réseaux sociaux, les catalogues et les supports commerciaux du groupe.",
     "citation": "",
     "citation_auteur": "",
-    "couverture": "images/externes/myportfolio-1f4c625c-ffaa-4755-ae45-f62d5a6ae1f5_rw_1200.jpg",
+    "couverture": "images/externes/myportfolio-80f2ea37-d143-4c71-a9cd-dec101cc416d_rw_1200.jpg",
     "images": [
-      "images/externes/myportfolio-80f2ea37-d143-4c71-a9cd-dec101cc416d_rw_1200.jpg",
       "images/externes/myportfolio-e2b06383-3042-477c-b110-8552c0e3c7c7_rw_1200.jpg",
       "images/externes/myportfolio-010d1bf5-ab6c-4628-9ec2-f1d89e550293_rw_1200.jpg",
+      "images/externes/myportfolio-1f4c625c-ffaa-4755-ae45-f62d5a6ae1f5_rw_1200.jpg",
       "images/externes/myportfolio-e9e39a92-53c5-41c6-b6d9-051b73c9aa38_rw_1200.jpg"
     ],
-    "serie_photo": "FPM"
+    "serie_photo": "FPM",
+    "cadrage": "50% 22%"
   }
 ]

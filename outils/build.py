@@ -113,7 +113,8 @@ def render_index_blocks():
             quote = ""
             if c.get("citation"):
                 quote = f'<blockquote><p>« {e(c["citation"])} »</p>' + (f'<cite>{e(c.get("citation_auteur"))}</cite>' if c.get("citation_auteur") else "") + "</blockquote>"
-            b[art] = (f'<a class="case-cover" href="/projets/{case_slug(c)}/"><img src="{e(img(c.get("couverture")))}" alt="{e(c.get("titre"))} — {e(c.get("client"))}" loading="lazy" decoding="async">'
+            pos = f' style="object-position:{e(c["cadrage"])}"' if c.get("cadrage") else ""
+            b[art] = (f'<a class="case-cover{" top" if c.get("texte_en_haut") else ""}" href="/projets/{case_slug(c)}/"><img src="{e(img(c.get("couverture")))}" alt="{e(c.get("titre"))} — {e(c.get("client"))}" loading="lazy" decoding="async"{pos}>'
                       f'<span class="cin"><span><small>{e(c.get("client"))}</small><strong>{e(c.get("titre"))}</strong></span></span></a>'
                       f'<div class="case-body"><div class="case-lead"><p>{e(c.get("accroche"))}</p>{quote}</div><dl>{dl}</dl></div>')
     case_blocks(CASES, "caseSeg", "case", "film")
@@ -328,7 +329,8 @@ def build_case(idx, c, others, anchor="/#projets"):
     body = (f'<section class="pg-hero wrap">{crumbs(["Projets", c.get("titre")])}<p class="eyebrow">{e(c.get("client"))}</p><h1>{e(c.get("titre"))}</h1>'
             f'<p class="lede">{e(c.get("accroche"))}</p></section>'
             f'<figure class="pg-cover wrap"><img src="{e(img(c.get("couverture")))}" alt="{e(c.get("titre"))} — {e(c.get("client"))}" fetchpriority="high"></figure>'
-            f'<section class="pg-sec wrap case"><div class="case-body"><div class="case-lead">{quote}</div><dl>{dl}</dl></div></section>'
+            + (f'<section class="pg-sec wrap"><div class="case-anim"><video poster="{e(img(c.get("animation_affiche") or c.get("couverture")))}" autoplay muted loop playsinline preload="metadata" aria-label="Animation {e(c.get("titre"))}"><source src="{e(img(c["animation"]))}" type="video/mp4">' + (f'<source src="{e(img(c["animation"][:-4] + ".webm"))}" type="video/webm">' if c["animation"].endswith(".mp4") else "") + '</video></div></section>' if c.get("animation") else "")
+            + f'<section class="pg-sec wrap case"><div class="case-body"><div class="case-lead">{quote}</div><dl>{dl}</dl></div></section>'
             + films_block(films, "Le film" if len(c.get("vimeo") or []) < 2 else "Les films") + gallery
             + series_block(serie, "Le reportage photo")
             + cta_block()

@@ -291,6 +291,22 @@ content:
         type: image
         options:
           media: divers
+      - name: cadrage
+        label: Cadrage de la grande image (ex. 50% 100% pour garder le bas)
+        type: string
+      - name: texte_en_haut
+        label: Titre en haut de la grande image (si le sujet est en bas)
+        type: boolean
+      - name: animation
+        label: Animation (vidéo MP4 courte, en boucle, facultatif)
+        type: file
+        options:
+          media: divers
+      - name: animation_affiche
+        label: Image affichée avant l'animation
+        type: image
+        options:
+          media: divers
       - name: images
         label: Images sous la grande photo (3 ou 4 conseillées)
         type: image

@@ -406,13 +406,17 @@
   },
   {
     "titre": "BWT France",
-    "couverture": "images/externes/myportfolio-d2ffb8d9-5b3e-45a1-97cb-f344d2081ba7_rwc_211x0x1500x1200x1500.jpg",
+    "couverture": "images/photos/bwt/bwt-02.jpg",
     "images": [
-      "images/externes/myportfolio-42b32cd7-c2fd-41e4-99b2-b4c45135d06c_rw_1200.jpg",
-      "images/externes/myportfolio-8853b579-d404-496b-8659-de6d50c90c00_rw_1200.jpg",
-      "images/externes/myportfolio-a78629d1-6279-448a-b177-a550591d6a52_rw_1200.jpg",
-      "images/externes/myportfolio-a0449c7f-90b6-4a3e-bd20-16cba82a363d_rw_1200.jpg",
-      "images/externes/myportfolio-b026e6a2-42d1-43c1-91bf-ce8de4037726_rw_1200.jpg"
+      "images/photos/bwt/bwt-01.jpg",
+      "images/photos/bwt/bwt-02.jpg",
+      "images/photos/bwt/bwt-03.jpg",
+      "images/photos/bwt/bwt-04.jpg",
+      "images/photos/bwt/bwt-05.jpg",
+      "images/photos/bwt/bwt-06.jpg",
+      "images/photos/bwt/bwt-07.jpg",
+      "images/photos/bwt/bwt-08.jpg",
+      "images/photos/bwt/bwt-09.jpg"
     ],
     "galerie": "bande"
   },

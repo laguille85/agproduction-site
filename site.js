@@ -180,8 +180,8 @@ async function load(name){
       const coverAttr = photo ? (serie >= 0 ? `data-p="${serie}"` : `data-ci="-1" data-kind="photo"`) : `data-cv="${n}"`;
       const go = photo ? `<span class="go">${galIco}Voir la série</span>` : (vids.length ? `<span class="go">${playIco}${vids.length > 1 ? `Voir les ${vids.length} films` : "Voir le film"}</span>` : "");
       el.innerHTML = `
-        <button class="case-cover" type="button" ${coverAttr} aria-label="${photo ? "Voir la série" : "Voir le film"} ${esc(c.titre)}">
-          <img src="${esc(src(c.couverture))}" alt="${esc(c.titre)} — ${esc(c.client)}" loading="lazy" decoding="async">
+        <button class="case-cover${c.texte_en_haut ? " top" : ""}" type="button" ${coverAttr} aria-label="${photo ? "Voir la série" : "Voir le film"} ${esc(c.titre)}">
+          <img src="${esc(src(c.couverture))}" alt="${esc(c.titre)} — ${esc(c.client)}" loading="lazy" decoding="async"${c.cadrage ? ` style="object-position:${esc(c.cadrage)}"` : ""}>
           <span class="cin"><span><small>${esc(c.client)}</small><strong>${esc(c.titre)}</strong></span>${go}</span>
         </button>
         <div class="case-body">
@@ -190,6 +190,7 @@ async function load(name){
             <p class="case-more"><a class="more-link" href="/projets/${slugify((c.onglet || c.client || "") + " " + (c.titre || ""))}/">Voir la page du projet ${icoR}</a></p></div>
           <dl>${[["Contexte",c.contexte],["Dispositif",c.dispositif],["Résultat",c.resultat]].filter(x => x[1]).map(([t,d]) => `<div class="k-${t.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase()}"><dt>${t}</dt><dd>${esc(d)}</dd></div>`).join("")}</dl>
         </div>
+        ${c.animation ? `<div class="case-anim"><video poster="${esc(src(c.animation_affiche || c.couverture))}" autoplay muted loop playsinline preload="metadata" aria-label="Animation ${esc(c.titre)}"><source src="${esc(src(c.animation))}" type="video/mp4">${/\.mp4$/.test(c.animation) ? `<source src="${esc(src(c.animation.replace(/\.mp4$/, ".webm")))}" type="video/webm">` : ""}</video></div>` : ""}
         ${cells.length ? `<div class="case-strip" style="--n:${cells.length}">${cells.join("")}</div>` : ""}`;
       el.style.animation = "none"; el.offsetHeight; el.style.animation = "";
       el.dataset.n = n;
