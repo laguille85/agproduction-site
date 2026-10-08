@@ -198,7 +198,7 @@ def page_shell(idx, title, description, path, body, ld=None, image=None):
 </main>
 {footer}
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Contenu" hidden><div class="sheet" id="sheet"></div></div>
-<script>window.__SITE={json.dumps({"instagram": SITE.get("instagram"), "linkedin": SITE.get("linkedin")}, ensure_ascii=False)};</script>
+<script>window.__SITE={json.dumps({"instagram": SITE.get("instagram"), "linkedin": SITE.get("linkedin"), "email": SITE.get("email"), "web3forms_cle": SITE.get("web3forms_cle")}, ensure_ascii=False)};</script>
 <script src="/page.js?v={v}" defer></script>
 </body>
 </html>
@@ -401,8 +401,10 @@ def stories(hs):
     if not hs:
         return ""
     head = (f'<h2 class="pt-h2">{e(hs[0].get("titre"))}.</h2>' if len(hs) == 1 else
-            '<h2 class="pt-h2">Quelques histoires.</h2><div class="pt-tabs" role="tablist">' + "".join(
-                f'<button type="button" role="tab" aria-selected="{"true" if i == 0 else "false"}" data-s="{i}">{e(h.get("titre"))}</button>'
+            '<h2 class="pt-h2">Quelques histoires.</h2><div class="pt-tabs" role="tablist" aria-label="Choisir un mariage">' + "".join(
+                f'<button type="button" role="tab" aria-selected="{"true" if i == 0 else "false"}" data-s="{i}">'
+                f'<img src="{e(img(thumb(h["photos"][0]["image"])))}" alt="" loading="lazy" style="object-position:{e(h["photos"][0].get("cadrage") or "50% 40%")}">'
+                f'<span><strong>{e(h.get("titre"))}</strong>{len(h["photos"])} photos</span></button>'
                 for i, h in enumerate(hs)) + "</div>")
     return (f'<section class="pt-sec"><div class="wrap"><p class="pt-eyebrow">{"Une histoire" if len(hs) == 1 else "Mariages"}</p>{head}'
             + "".join(viewer(h, i) for i, h in enumerate(hs)) + "</div></section>")
@@ -412,31 +414,28 @@ def build_particuliers(idx):
     path = "/particuliers/"
     cover = PART.get("couverture")
     hist = stories(PART.get("histoires") or [])
-    body = (f'<section class="pt-hero"><div class="wrap in"><p class="pt-eyebrow">Particuliers</p><h1>Vos moments, avec le même regard.</h1>'
-            f'<p class="lede">Mariages, couples, familles. Photo, vidéo et drone aux Sables-d\'Olonne, en Vendée et partout en France.</p>'
-            f'<a class="pill" href="{PART_CTA}">Me parler de votre projet</a></div>'
+    email = SITE.get("email") or ""
+    body = (f'<section class="pt-hero"><div class="wrap in"><h1>Vos moments, avec le même regard.</h1>'
+            f'<a class="pill" href="#contact">Me parler de votre projet</a></div>'
             + (f'<figure><img src="{e(img(cover))}" alt="Mariés sur la plage au coucher du soleil, en Vendée" fetchpriority="high" style="object-position:{e(PART.get("couverture_cadrage") or "50% 40%")}"></figure>' if cover else "")
             + "</section>" + hist
-            + '<section class="pg-sec wrap"><div class="pt-offers">'
-              '<div><strong>Mariages</strong><span>En photo, en vidéo ou les deux, selon ce qui compte pour vous.</span></div>'
-              '<div><strong>Couples</strong><span>Une séance avant ou après le grand jour, ou juste pour vous.</span></div>'
-              '<div><strong>Familles</strong><span>Des images simples et vraies, à la maison ou dehors.</span></div>'
-              '<div><strong>Événements privés</strong><span>Anniversaires, fêtes, retrouvailles de famille.</span></div></div></section>'
-            + '<section class="pg-sec wrap"><h2 class="pt-h2">Ma façon de faire.</h2><p class="pt-lede">Je filme le sport depuis des années : anticiper l\'instant, rester discret, réagir vite. J\'applique le même regard à vos moments.</p>'
-              '<div class="pt-approach"><div><span class="n">01</span><h3>Sur le vif</h3><p>Je vous guide quand il le faut, et le reste du temps je me fais oublier.</p></div>'
-              '<div><span class="n">02</span><h3>Photo, vidéo et drone</h3><p>Je maîtrise les trois. On choisit ensemble ce qui a le plus de sens pour votre journée.</p></div>'
-              '<div><span class="n">03</span><h3>Un seul interlocuteur</h3><p>De notre premier échange à la livraison, c\'est moi qui m\'occupe de tout.</p></div></div></section>'
-            + '<section class="pg-sec wrap"><h2 class="pt-h2">Comment ça se passe.</h2><ol class="steps pt-steps">'
-              '<li><strong>On échange</strong><span>Vos envies, la date, le lieu, ce qui compte pour vous.</span></li>'
-              '<li><strong>Je vous fais une proposition</strong><span>Sur mesure, selon la durée et le choix photo, vidéo ou les deux.</span></li>'
-              '<li><strong>Je livre vos images</strong><span>Retouchées une à une, prêtes à partager avec vos proches.</span></li></ol></section>'
             + '<section class="pg-sec wrap"><h2>Questions fréquentes</h2><div class="pg-faq">'
               '<details><summary>Vous déplacez-vous en dehors de la Vendée ?</summary><p>Oui, partout en France. Je suis basé aux Sables-d\'Olonne.</p></details>'
               '<details><summary>Photo, vidéo ou les deux ?</summary><p>Comme vous préférez. On en parle ensemble selon le déroulé de la journée, avec le drone si le lieu et la réglementation le permettent.</p></details>'
               '<details><summary>Quels sont vos tarifs ?</summary><p>Chaque projet fait l\'objet d\'une proposition sur mesure, selon la durée, le lieu et les prestations choisies.</p></details>'
               '<details><summary>Quand vais-je recevoir mes images ?</summary><p>Je vous indique le délai de livraison dans ma proposition.</p></details></div></section>'
-            + f'<section class="pg-sec wrap"><div class="pg-cta"><h2>Parlons de votre projet.</h2><p>Dites-moi la date, le lieu et ce que vous imaginez. Je vous réponds rapidement.</p>'
-              f'<p class="pg-cta-btns"><a class="pill" href="{PART_CTA}">Me parler de votre projet</a></p></div></section>')
+            + f'<section class="sec wrap" id="contact" aria-labelledby="h-contact"><div class="contact"><div>'
+              f'<h2 id="h-contact">Parlons de votre projet.</h2><p class="lede">Dites-moi la date, le lieu et ce que vous imaginez. Je vous réponds rapidement.</p>'
+              f'<div class="direct"><div><small>E-mail</small><a id="mail" href="mailto:{e(email)}">{e(email)}</a><button class="copybtn" id="copy" type="button">Copier</button></div>'
+              f'<div><small>Instagram</small><a href="{e(SITE.get("instagram") or "https://www.instagram.com/aguillouphotography/")}" target="_blank" rel="noopener">@aguillouphotography</a></div>'
+              f'<div><small>Basé à</small><span>Les Sables-d\'Olonne, France</span></div></div></div>'
+              '<form id="form" novalidate><input type="hidden" name="type" value="Particulier">'
+              '<div class="row"><div class="fl"><input id="f-name" name="name" placeholder=" " autocomplete="name" required><label for="f-name">Prénoms</label></div>'
+              '<div class="fl"><input id="f-mail" name="email" type="email" placeholder=" " autocomplete="email" required><label for="f-mail">E-mail</label></div></div>'
+              '<div class="fl"><input id="f-when" name="when" placeholder=" "><label for="f-when">Date et lieu</label></div>'
+              '<div class="fl"><textarea id="f-msg" name="message" placeholder=" " required></textarea><label for="f-msg">Votre projet</label></div>'
+              '<input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" hidden aria-hidden="true">'
+              '<button class="pill" type="submit">Envoyer la demande</button><p class="note" id="note" role="status"></p></form></div></section>')
     body = re.sub(r" ([:;?!])", NBSP + r"\1", body)
     desc = "Mariages, couples, familles : photo, vidéo et drone par Antoine Guillou, aux Sables-d'Olonne, en Vendée et partout en France. Des images vraies, prises sur le vif."
     ld = [{"@context": "https://schema.org", "@type": "Service", "name": "Photographe et vidéaste de mariage", "serviceType": "Photographie et vidéo de mariage",
