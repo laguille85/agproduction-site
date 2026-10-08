@@ -255,12 +255,29 @@ def series_block(series, heading="Séries photo"):
     return f'<section class="pg-sec wrap"><h2>{e(heading)}</h2><div class="pg-photos">{"".join(cards)}</div></section>'
 
 
-def cta_block():
+TYPE_OPTIONS = "<option>Film de marque / corporate</option><option>Sport</option><option>Voile / course au large</option>\n              <option>Événement / salon</option><option>Prises de vue aériennes</option><option>Photographie</option><option>Tirage d'art</option><option value=\"Particulier\">Particulier : mariage, couple, famille</option><option>Autre</option>"
+
+
+def cta_block(default_type=None):
+    """Bloc « Parlons de votre projet » : le même formulaire que sur l'accueil."""
     email = SITE.get("email") or ""
-    return (f'<section class="pg-sec wrap"><div class="pg-cta"><h2>Parlons de votre projet.</h2>'
-            f'<p>Décrivez le projet, les dates et le lieu. Je vous réponds rapidement avec une première proposition.</p>'
-            f'<p class="pg-cta-btns"><a class="pill" href="/#contact">Demander un devis</a>'
-            + (f'<a class="more-link" href="mailto:{e(email)}">{e(email)}</a>' if email else "") + '</p></div></section>')
+    opts = TYPE_OPTIONS
+    if default_type:
+        opts = re.sub(r'<option( value="[^"]*")?>' + re.escape(default_type) + '</option>', lambda m: m.group(0).replace("<option", "<option selected", 1), opts, 1)
+    return (f'<section class="sec wrap" id="contact" aria-labelledby="h-contact"><div class="contact"><div>'
+            f'<h2 id="h-contact">Parlons de votre projet.</h2><p class="lede">Décrivez le projet, les dates et le lieu. Je vous réponds rapidement avec une première proposition.</p>'
+            f'<div class="direct"><div><small>E-mail</small><a id="mail" href="mailto:{e(email)}">{e(email)}</a><button class="copybtn" id="copy" type="button">Copier</button></div>'
+            f'<div><small>LinkedIn</small><a href="{e(SITE.get("linkedin") or "")}" target="_blank" rel="noopener">Antoine Guillou</a></div>'
+            f'<div><small>Basé à</small><span>Les Sables-d\'Olonne, France</span></div></div></div>'
+            '<form id="form" novalidate>'
+            '<div class="row"><div class="fl"><input id="f-name" name="name" placeholder=" " autocomplete="name" required><label for="f-name">Nom</label></div>'
+            '<div class="fl"><input id="f-org" name="company" placeholder=" " autocomplete="organization"><label for="f-org">Société</label></div></div>'
+            '<div class="row"><div class="fl"><input id="f-mail" name="email" type="email" placeholder=" " autocomplete="email" required><label for="f-mail">E-mail</label></div>'
+            f'<div class="fl"><select id="f-type" name="type">{opts}</select><label for="f-type">Type de projet</label><svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4"/></svg></div></div>'
+            '<div class="fl"><input id="f-when" name="when" placeholder=" "><label for="f-when">Dates et lieu</label></div>'
+            '<div class="fl"><textarea id="f-msg" name="message" placeholder=" " required></textarea><label for="f-msg">Votre projet</label></div>'
+            '<input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" hidden aria-hidden="true">'
+            '<button class="pill" type="submit">Envoyer la demande</button><p class="note" id="note" role="status"></p></form></div></section>')
 
 
 def links_block(current_slug):
@@ -344,13 +361,20 @@ def build_case(idx, c, others, anchor="/#projets"):
     return path
 
 
-def build_photo_case(idx, c, others):
-    """Page d'un projet photo : fiche en trois temps puis toute la série."""
+def build_photo_case(idx, c, others, kind="photo"):
+    """Page projet (films ou photo) : en-tête, couverture, fiche en trois temps, médias, formulaire."""
     slug = case_slug(c)
     path = f"/projets/{slug}/"
     serie = next((p for p in PHOTOS if p.get("titre") == c.get("serie_photo")), None)
-    imgs = [img(u) for u in ((serie or {}).get("images") or c.get("images") or [])]
     cover = img(c.get("couverture"))
+    pool = ((serie or {}).get("images") or []) if kind == "photo" else list(c.get("images") or []) + list((serie or {}).get("images") or [])
+    if kind == "photo" and not pool:
+        pool = c.get("images") or []
+    imgs, seen = [], {cover}
+    for u in pool:
+        u = img(u)
+        if u not in seen:
+            seen.add(u); imgs.append(u)
     pos = f' style="object-position:{e(c["cadrage"])}"' if c.get("cadrage") else ""
     steps = "".join(f'<div class="pp-step"><span class="n">0{i}</span><h2>{t}</h2><p>{e(d)}</p></div>'
                     for i, (t, d) in enumerate((("Contexte", c.get("contexte")), ("Dispositif", c.get("dispositif")), ("Résultat", c.get("resultat"))), 1) if d)
@@ -359,6 +383,11 @@ def build_photo_case(idx, c, others):
         a = c["animation"]
         anim = (f'<section class="pg-sec wrap"><div class="case-anim pp-anim"><video poster="{e(img(c.get("animation_affiche") or c.get("couverture")))}" autoplay muted loop playsinline preload="metadata" aria-label="Animation {e(c.get("titre"))}">'
                 f'<source src="{e(img(a))}" type="video/mp4">' + (f'<source src="{e(img(a[:-4] + ".webm"))}" type="video/webm">' if a.endswith(".mp4") else "") + '</video></div></section>')
+    films = ""
+    if kind == "film" and c.get("vimeo"):
+        films = films_block([{"titre": c.get("titre"), "categorie": c.get("client"), "vignette": c.get("couverture"), "vimeo": c.get("vimeo")}],
+                            "Le film" if len(c.get("vimeo") or []) < 2 else "Les films")
+
     def dims(u):
         try:
             from PIL import Image
@@ -367,21 +396,23 @@ def build_photo_case(idx, c, others):
         except Exception:
             return ""
     shots = "".join(f'<button type="button" class="pp-shot" data-images="{e(json.dumps(imgs))}" data-k="{k}" data-title="{e(c.get("titre"))}"><img src="{e(u)}" alt="{e(c.get("titre"))} — photo {k + 1} sur {len(imgs)}"{dims(u)} loading="lazy" decoding="async"></button>' for k, u in enumerate(imgs))
+    gal_title = "La série" if kind == "photo" else ("Le reportage photo" if serie else "En images")
     more = "".join(f'<li><a href="/projets/{case_slug(o)}/">{e(o.get("onglet") or o.get("client"))} — {e(o.get("titre"))}{ARROW}</a></li>' for o in others)
     quote = (f'<section class="pg-sec wrap"><div class="pp-quote"><p>« {e(c["citation"])} »</p>' + (f'<cite>{e(c.get("citation_auteur"))}</cite>' if c.get("citation_auteur") else "") + "</div></section>") if c.get("citation") else ""
-    body = (f'<section class="pg-hero wrap">{crumbs(["Photographie", c.get("titre")])}<p class="eyebrow">{e(c.get("client"))}</p><h1>{e(c.get("titre"))}</h1>'
+    section, anchor = ("Photographie", "/#photographie") if kind == "photo" else ("Projets", "/#projets")
+    body = (f'<section class="pg-hero wrap">{crumbs([section, c.get("titre")])}<p class="eyebrow">{e(c.get("client"))}</p><h1>{e(c.get("titre"))}</h1>'
             f'<p class="lede">{e(c.get("accroche"))}</p></section>'
             f'<figure class="pp-cover"><img src="{e(cover)}" alt="{e(c.get("titre"))} — {e(c.get("client"))}" fetchpriority="high"{pos}></figure>'
             f'<section class="pg-sec wrap"><div class="pp-steps">{steps}</div></section>'
-            + quote + anim
-            + (f'<section class="pg-sec wrap"><div class="pp-head"><h2>La série</h2><span>{len(imgs)} photos</span></div><div class="pp-masonry">{shots}</div></section>' if imgs else "")
-            + cta_block()
-            + (f'<section class="pg-sec wrap"><h2 class="pg-h-sm">Autres projets photo</h2><ul class="pg-links">{more}</ul></section>' if more else ""))
+            + quote + films + anim
+            + (f'<section class="pg-sec wrap"><div class="pp-head"><h2>{gal_title}</h2><span>{len(imgs)} photo{"s" if len(imgs) > 1 else ""}</span></div><div class="pp-masonry">{shots}</div></section>' if imgs else "")
+            + cta_block("Photographie" if kind == "photo" else None)
+            + (f'<section class="pg-sec wrap"><h2 class="pg-h-sm">Autres projets{" photo" if kind == "photo" else ""}</h2><ul class="pg-links">{more}</ul></section>' if more else ""))
     desc = f'{c.get("client")} : {c.get("accroche")}'[:300]
     ld = [{"@context": "https://schema.org", "@type": "CreativeWork", "name": c.get("titre"), "description": c.get("accroche"),
            "url": BASE + path, "image": absurl(c.get("couverture")), "creator": {"@type": "Person", "name": "Antoine Guillou"},
            "sourceOrganization": {"@type": "Organization", "name": "AG Production"}},
-          breadcrumb_ld([("Photographie", "/#photographie"), (c.get("titre"), path)])]
+          breadcrumb_ld([(section, anchor), (c.get("titre"), path)])]
     write(path, page_shell(idx, f'{c.get("titre")} — {c.get("onglet") or c.get("client")} | AG Production', desc, path, body, ld, c.get("couverture")))
     return path
 
@@ -516,7 +547,7 @@ def main():
     for p in PAGES:
         urls.append((build_service(idx, p), "0.9"))
     for c in CASES:
-        urls.append((build_case(idx, c, [o for o in CASES if o is not c]), "0.7"))
+        urls.append((build_photo_case(idx, c, [o for o in CASES if o is not c], "film"), "0.7"))
     for c in PCASES:
         urls.append((build_photo_case(idx, c, [o for o in PCASES if o is not c]), "0.7"))
     if PART.get("histoires"):

@@ -159,8 +159,8 @@
     if (f.botcheck && f.botcheck.checked) return;
     if (!f.checkValidity()) { note.textContent = "Indiquez vos prénoms, un e-mail valide et quelques mots sur le projet."; f.reportValidity(); return; }
     const d = Object.fromEntries(new FormData(f));
-    const subject = `Projet — ${d.type || "Particulier"} — ${d.name}`;
-    const body = `${d.message}\n\nDate et lieu : ${d.when || "à préciser"}\n\n—\n${d.name}\n${d.email}`;
+    const subject = `Projet — ${d.type || "Particulier"}${d.company ? " — " + d.company : " — " + d.name}`;
+    const body = `${d.message}\n\nDates et lieu : ${d.when || "à préciser"}\n\n—\n${d.name}${d.company ? "\n" + d.company : ""}\n${d.email}`;
     if (!SITE.web3forms_cle) {
       location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       note.textContent = "Votre messagerie s'ouvre avec la demande pré-remplie. Sinon, écrivez à " + EMAIL + ".";
@@ -169,7 +169,7 @@
     btn.disabled = true; note.textContent = "Envoi en cours…";
     try {
       const r = await fetch("https://api.web3forms.com/submit", { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" },
-        body: JSON.stringify({ access_key: SITE.web3forms_cle, subject, from_name: "Site AG Production", name: d.name, email: d.email, projet: d.type || "Particulier", dates_et_lieu: d.when || "", message: d.message }) });
+        body: JSON.stringify({ access_key: SITE.web3forms_cle, subject, from_name: "Site AG Production", name: d.name, email: d.email, societe: d.company || "", projet: d.type || "Particulier", dates_et_lieu: d.when || "", message: d.message }) });
       const j = await r.json(); if (!j.success) throw new Error(j.message);
       f.reset(); note.textContent = "Merci, votre demande est envoyée. Je vous réponds rapidement.";
     } catch { note.textContent = "L'envoi n'a pas abouti. Écrivez-moi directement à " + EMAIL + "."; }

@@ -34,10 +34,10 @@
     "citation_auteur": "",
     "couverture": "images/photos/jeanneau/jeanneau-02.jpg",
     "images": [
-      "images/photos/jeanneau/jeanneau-01.jpg",
       "images/photos/jeanneau/jeanneau-03.jpg",
-      "images/photos/jeanneau/jeanneau-04.jpg",
-      "images/photos/jeanneau/jeanneau-05.jpg"
+      "images/photos/jeanneau/jeanneau-05.jpg",
+      "images/photos/jeanneau/jeanneau-06.jpg",
+      "images/photos/jeanneau/jeanneau-07.jpg"
     ],
     "serie_photo": "Jeanneau"
   },
@@ -53,7 +53,7 @@
     "citation_auteur": "",
     "couverture": "images/photos/fpm/fpm-06.jpg",
     "images": [
-      "images/photos/fpm/fpm-02.jpg",
+      "images/photos/fpm/fpm-09.jpg",
       "images/photos/fpm/fpm-03.jpg",
       "images/photos/fpm/fpm-01.jpg",
       "images/photos/fpm/fpm-07.jpg"

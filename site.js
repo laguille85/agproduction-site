@@ -191,7 +191,7 @@ async function load(name){
           <dl>${[["Contexte",c.contexte],["Dispositif",c.dispositif],["Résultat",c.resultat]].filter(x => x[1]).map(([t,d]) => `<div class="k-${t.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase()}"><dt>${t}</dt><dd>${esc(d)}</dd></div>`).join("")}</dl>
         </div>
         ${photo ? (() => {
-          const pool = imgs.filter(u => u !== c.couverture), tot = serie >= 0 ? (PHOTOS[serie].images || []).length : imgs.length + 1;
+          const pool = imgs.filter(u => u !== c.couverture), tot = serie >= 0 ? (PHOTOS[serie].images || []).filter(u => u !== c.couverture).length : imgs.length;
           const vid = c.animation ? `<video poster="${esc(src(c.animation_affiche || c.couverture))}" autoplay muted loop playsinline preload="metadata" aria-label="Animation ${esc(c.titre)}"><source src="${esc(src(c.animation))}" type="video/mp4">${/\.mp4$/.test(c.animation) ? `<source src="${esc(src(c.animation.replace(/\.mp4$/, ".webm")))}" type="video/webm">` : ""}</video>` : "";
           const big = vid || (pool[0] ? `<img src="${esc(src(pool[0]))}" alt="" loading="lazy" decoding="async">` : "");
           const rest = (vid ? pool : pool.slice(1)).slice(0, 2);
