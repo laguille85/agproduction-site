@@ -42,6 +42,26 @@
     "serie_photo": "Jeanneau"
   },
   {
+    "onglet": "Annapurna Courchevel",
+    "client": "Hôtel Annapurna",
+    "titre": "La vie d'un cinq étoiles à Courchevel",
+    "accroche": "Une grande production photo et vidéo avec mannequins, entre l'hôtel et les chalets de la famille Pinturault.",
+    "contexte": "La famille Pinturault possède l'Annapurna, un hôtel cinq étoiles à Courchevel, ainsi que des chalets à Courchevel 1600. Elle voulait des images qui racontent l'expérience de ses clients dans chacun de ces lieux.",
+    "dispositif": "Une production photo et vidéo d'envergure, avec mannequins, dans des cadres très différents : l'arrivée et l'accueil, le ski room, la terrasse au pied des pistes, la piscine extérieure, le spa, les restaurants et les chalets.",
+    "resultat": "Une série photo pour tous les supports de l'hôtel destinés au grand public : site internet, magazines et catalogues.",
+    "citation": "",
+    "citation_auteur": "",
+    "couverture": "images/photos/annapurna/annapurna-06.jpg",
+    "images": [
+      "images/photos/annapurna/annapurna-08.jpg",
+      "images/photos/annapurna/annapurna-16.jpg",
+      "images/photos/annapurna/annapurna-14.jpg"
+    ],
+    "serie_photo": "Annapurna — Courchevel",
+    "cadrage": "50% 45%",
+    "texte_en_haut": true
+  },
+  {
     "onglet": "FPM",
     "client": "FPM",
     "titre": "Le savoir-faire, de près",
