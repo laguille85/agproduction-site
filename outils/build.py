@@ -357,6 +357,80 @@ def build_legal(idx):
     return path
 
 
+# ---------------------------------------------------------------------------
+# 3. Page Particuliers (mariages, couples, familles)
+# ---------------------------------------------------------------------------
+PART = load("particuliers", {})
+PART_CTA = "/?type=particulier#contact"
+
+
+def thumb(path):
+    d, f = os.path.split(path)
+    t = f"{d}/vignettes/{f}"
+    return t if os.path.exists(os.path.join(ROOT, t.lstrip("/"))) else path
+
+
+def viewer(h):
+    photos = [x for x in h.get("photos") or [] if x.get("image")]
+    if not photos:
+        return ""
+    t, n = h.get("titre") or "", len(photos)
+    full = json.dumps([img(x["image"]) for x in photos], ensure_ascii=False)
+    stage = "".join(
+        f'<img src="{e(img(x["image"]))}" alt="{e(t)}, {e(h.get("lieu") or "")}, photo {i + 1} sur {n}" style="object-position:{e(x.get("cadrage") or "50% 50%")}"'
+        + (' class="on"' if i == 0 else ' loading="lazy"') + ' decoding="async">' for i, x in enumerate(photos))
+    ths = "".join(
+        f'<button class="pt-th{" on" if i == 0 else ""}" type="button" aria-label="Photo {i + 1}"><img src="{e(img(thumb(x["image"])))}" alt="" loading="lazy" style="object-position:{e(x.get("cadrage") or "50% 50%")}"></button>'
+        for i, x in enumerate(photos))
+    return (f'<section class="pt-sec"><div class="wrap"><p class="pt-eyebrow">Une histoire</p><h2 class="pt-h2">{e(t)}.</h2>'
+            f'<p class="pt-lede">{e(h.get("lieu"))}</p><div class="pt-viewer">'
+            f'<figure class="pt-stage" data-images="{e(full)}" data-title="{e(t)}" data-k="0">{stage}'
+            f'<button class="pt-nav p" type="button" aria-label="Photo précédente"><svg viewBox="0 0 14 14"><path d="M9 2L4 7l5 5"/></svg></button>'
+            f'<button class="pt-nav n" type="button" aria-label="Photo suivante">{ARROW}</button>'
+            f'<span class="pt-count">01 / {n}</span><span class="pt-prog"><i></i></span></figure>'
+            f'<div class="pt-strip">{ths}</div></div></div></section>')
+
+
+def build_particuliers(idx):
+    path = "/particuliers/"
+    cover = PART.get("couverture")
+    hist = "".join(viewer(h) for h in PART.get("histoires") or [])
+    body = (f'<section class="pt-hero"><div class="wrap in"><p class="pt-eyebrow">Particuliers</p><h1>Vos moments, avec le même regard.</h1>'
+            f'<p class="lede">Mariages, couples, familles. Photo, vidéo et drone aux Sables-d\'Olonne, en Vendée et partout en France.</p>'
+            f'<a class="pill" href="{PART_CTA}">Me parler de votre projet</a></div>'
+            + (f'<figure><img src="{e(img(cover))}" alt="Mariés sur la plage au coucher du soleil, en Vendée" fetchpriority="high" style="object-position:{e(PART.get("couverture_cadrage") or "50% 40%")}"></figure>' if cover else "")
+            + "</section>" + hist
+            + '<section class="pg-sec wrap"><div class="pt-offers">'
+              '<div><strong>Mariages</strong><span>En photo, en vidéo ou les deux, selon ce qui compte pour vous.</span></div>'
+              '<div><strong>Couples</strong><span>Une séance avant ou après le grand jour, ou juste pour vous.</span></div>'
+              '<div><strong>Familles</strong><span>Des images simples et vraies, à la maison ou dehors.</span></div>'
+              '<div><strong>Événements privés</strong><span>Anniversaires, fêtes, retrouvailles de famille.</span></div></div></section>'
+            + '<section class="pg-sec wrap"><h2 class="pt-h2">Ma façon de faire.</h2><p class="pt-lede">Je filme le sport depuis des années : anticiper l\'instant, rester discret, réagir vite. J\'applique le même regard à vos moments.</p>'
+              '<div class="pt-approach"><div><span class="n">01</span><h3>Sur le vif</h3><p>Je vous guide quand il le faut, et le reste du temps je me fais oublier.</p></div>'
+              '<div><span class="n">02</span><h3>Photo, vidéo et drone</h3><p>Je maîtrise les trois. On choisit ensemble ce qui a le plus de sens pour votre journée.</p></div>'
+              '<div><span class="n">03</span><h3>Un seul interlocuteur</h3><p>De notre premier échange à la livraison, c\'est moi qui m\'occupe de tout.</p></div></div></section>'
+            + '<section class="pg-sec wrap"><h2 class="pt-h2">Comment ça se passe.</h2><ol class="steps pt-steps">'
+              '<li><strong>On échange</strong><span>Vos envies, la date, le lieu, ce qui compte pour vous.</span></li>'
+              '<li><strong>Je vous fais une proposition</strong><span>Sur mesure, selon la durée et le choix photo, vidéo ou les deux.</span></li>'
+              '<li><strong>Je livre vos images</strong><span>Retouchées une à une, prêtes à partager avec vos proches.</span></li></ol></section>'
+            + '<section class="pg-sec wrap"><h2>Questions fréquentes</h2><div class="pg-faq">'
+              '<details><summary>Vous déplacez-vous en dehors de la Vendée ?</summary><p>Oui, partout en France. Je suis basé aux Sables-d\'Olonne.</p></details>'
+              '<details><summary>Photo, vidéo ou les deux ?</summary><p>Comme vous préférez. On en parle ensemble selon le déroulé de la journée, avec le drone si le lieu et la réglementation le permettent.</p></details>'
+              '<details><summary>Quels sont vos tarifs ?</summary><p>Chaque projet fait l\'objet d\'une proposition sur mesure, selon la durée, le lieu et les prestations choisies.</p></details>'
+              '<details><summary>Quand vais-je recevoir mes images ?</summary><p>Je vous indique le délai de livraison dans ma proposition.</p></details></div></section>'
+            + f'<section class="pg-sec wrap"><div class="pg-cta"><h2>Parlons de votre projet.</h2><p>Dites-moi la date, le lieu et ce que vous imaginez. Je vous réponds rapidement.</p>'
+              f'<p class="pg-cta-btns"><a class="pill" href="{PART_CTA}">Me parler de votre projet</a></p></div></section>')
+    body = re.sub(r" ([:;?!])", NBSP + r"\1", body)
+    desc = "Mariages, couples, familles : photo, vidéo et drone par Antoine Guillou, aux Sables-d'Olonne, en Vendée et partout en France. Des images vraies, prises sur le vif."
+    ld = [{"@context": "https://schema.org", "@type": "Service", "name": "Photographe et vidéaste de mariage", "serviceType": "Photographie et vidéo de mariage",
+           "description": desc, "url": BASE + path, "provider": {"@type": "ProfessionalService", "name": "AG Production", "url": BASE + "/"},
+           "areaServed": [{"@type": "City", "name": "Les Sables-d'Olonne"}, {"@type": "AdministrativeArea", "name": "Vendée"},
+                          {"@type": "AdministrativeArea", "name": "Pays de la Loire"}, {"@type": "Country", "name": "France"}]},
+          breadcrumb_ld([("Particuliers", path)])]
+    write(path, page_shell(idx, "Photographe et vidéaste de mariage en Vendée | AG Production", desc, path, body, ld, cover))
+    return path
+
+
 def write(path, content):
     d = os.path.join(ROOT, path.strip("/"))
     os.makedirs(d, exist_ok=True)
@@ -377,6 +451,8 @@ def main():
         urls.append((build_service(idx, p), "0.9"))
     for c in CASES:
         urls.append((build_case(idx, c, [o for o in CASES if o is not c]), "0.7"))
+    if PART.get("histoires"):
+        urls.append((build_particuliers(idx), "0.8"))
     urls.append((build_legal(idx), "0.2"))
 
     sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']

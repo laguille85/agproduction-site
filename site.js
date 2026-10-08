@@ -376,6 +376,8 @@ async function load(name){
     try { await navigator.clipboard.writeText(EMAIL); e.target.textContent = "Copié"; }
     catch { const r = document.createRange(); r.selectNodeContents(mail); getSelection().removeAllRanges(); getSelection().addRange(r); }
   });
+  /* Arrivée depuis la page Particuliers : type de projet présélectionné */
+  if (new URLSearchParams(location.search).get("type") === "particulier") { const sel = $("#f-type"); if (sel) sel.value = "Particulier"; }
   $("#form").addEventListener("submit", async e => {
     e.preventDefault();
     const f = e.target, note = $("#note"), btn = f.querySelector("button[type=submit]");

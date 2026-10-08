@@ -1,0 +1,60 @@
+{
+  "couverture": "/images/particuliers/maxence-julie/mj-10.jpg",
+  "couverture_cadrage": "50% 32%",
+  "histoires": [
+    {
+      "titre": "Maxence & Julie",
+      "lieu": "Plage du Veillon, Vendée",
+      "photos": [
+        {
+          "image": "/images/particuliers/maxence-julie/mj-09.jpg",
+          "cadrage": "52% 55%"
+        },
+        {
+          "image": "/images/particuliers/maxence-julie/mj-01.jpg",
+          "cadrage": "68% 50%"
+        },
+        {
+          "image": "/images/particuliers/maxence-julie/mj-02.jpg",
+          "cadrage": "48% 50%"
+        },
+        {
+          "image": "/images/particuliers/maxence-julie/mj-07.jpg",
+          "cadrage": "56% 45%"
+        },
+        {
+          "image": "/images/particuliers/maxence-julie/mj-03.jpg",
+          "cadrage": "50% 50%"
+        },
+        {
+          "image": "/images/particuliers/maxence-julie/mj-06.jpg",
+          "cadrage": "38% 40%"
+        },
+        {
+          "image": "/images/particuliers/maxence-julie/mj-04.jpg",
+          "cadrage": "50% 50%"
+        },
+        {
+          "image": "/images/particuliers/maxence-julie/mj-05.jpg",
+          "cadrage": "50% 50%"
+        },
+        {
+          "image": "/images/particuliers/maxence-julie/mj-08.jpg",
+          "cadrage": "50% 50%"
+        },
+        {
+          "image": "/images/particuliers/maxence-julie/mj-13.jpg",
+          "cadrage": "45% 50%"
+        },
+        {
+          "image": "/images/particuliers/maxence-julie/mj-12.jpg",
+          "cadrage": "58% 45%"
+        },
+        {
+          "image": "/images/particuliers/maxence-julie/mj-11.jpg",
+          "cadrage": "55% 45%"
+        }
+      ]
+    }
+  ]
+}

@@ -82,3 +82,35 @@
   sheet.addEventListener("touchstart", e => { tx = e.touches[0].clientX; }, {passive:true});
   sheet.addEventListener("touchend", e => { if (tx === null || !imgs) return; const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1); tx = null; });
 })();
+
+/* Visionneuse de la page Particuliers : défilement automatique, vignettes, glisser */
+(function(){
+  document.querySelectorAll(".pt-viewer").forEach(v => {
+    const st = v.querySelector(".pt-stage"), im = [...st.querySelectorAll(":scope > img")], th = [...v.querySelectorAll(".pt-th")],
+      cnt = st.querySelector(".pt-count"), strip = v.querySelector(".pt-strip"), bar = st.querySelector(".pt-prog i"), D = 5000;
+    if (im.length < 2) return;
+    const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let i = 0, t, hover = false, seen = false;
+    st.style.setProperty("--d", D + "ms");
+    const run = () => { clearTimeout(t); st.classList.remove("run"); void bar.offsetWidth; if (hover || !seen || still) return; st.classList.add("run"); t = setTimeout(() => go(i + 1), D); };
+    const go = n => {
+      i = (n + im.length) % im.length;
+      im.forEach((e, k) => { e.classList.toggle("on", k === i); if (k === i) e.loading = "eager"; });
+      th.forEach((e, k) => e.classList.toggle("on", k === i));
+      st.dataset.k = i; cnt.textContent = String(i + 1).padStart(2, "0") + " / " + im.length;
+      const a = th[i]; if (a) strip.scrollTo({ left: a.offsetLeft - strip.clientWidth / 2 + a.clientWidth / 2 });
+      new Image().src = im[(i + 1) % im.length].currentSrc || im[(i + 1) % im.length].src;
+      run();
+    };
+    st.querySelector(".n").addEventListener("click", e => { e.stopPropagation(); go(i + 1); });
+    st.querySelector(".p").addEventListener("click", e => { e.stopPropagation(); go(i - 1); });
+    th.forEach((e, k) => e.addEventListener("click", () => go(k)));
+    st.addEventListener("mouseenter", () => { hover = true; run(); });
+    st.addEventListener("mouseleave", () => { hover = false; run(); });
+    let x0 = null, moved = false;
+    st.addEventListener("touchstart", e => { x0 = e.touches[0].clientX; moved = false; }, { passive: true });
+    st.addEventListener("touchend", e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) { moved = true; go(i + (dx < 0 ? 1 : -1)); } x0 = null; });
+    st.addEventListener("click", e => { if (moved) { e.stopPropagation(); moved = false; } }, true);
+    new IntersectionObserver(es => es.forEach(e => { seen = e.isIntersecting; run(); }), { threshold: .4 }).observe(st);
+  });
+})();
