@@ -94,6 +94,77 @@ content:
             - value: classique
               label: Classique (une photo à la fois)
 
+  - name: pages
+    label: Pages prestations (référencement Google)
+    type: file
+    path: contenu/pages.json
+    format: json
+    list:
+      collapsible:
+        collapsed: true
+        summary: "{menu}"
+    fields:
+      - name: slug
+        label: Adresse de la page (ne pas modifier après publication)
+        type: string
+        required: true
+      - name: menu
+        label: Nom court (menus et liens)
+        type: string
+      - name: savoir_faire
+        label: Carte savoir-faire liée (surtitre exact, ex. Sport)
+        type: string
+      - name: titre_seo
+        label: Titre affiché dans Google (60 caractères environ)
+        type: string
+      - name: description
+        label: Description affichée dans Google (155 caractères environ)
+        type: text
+      - name: surtitre
+        label: Surtitre
+        type: string
+      - name: h1
+        label: Grand titre de la page
+        type: string
+      - name: intro
+        label: Texte d'introduction
+        type: text
+      - name: image
+        label: Image principale (sinon celle de la carte savoir-faire)
+        type: image
+        options:
+          media: photos
+      - name: sections
+        label: Blocs de texte
+        type: object
+        list: true
+        fields:
+          - name: titre
+            label: Titre
+            type: string
+          - name: texte
+            label: Texte
+            type: text
+      - name: films
+        label: Films à montrer (titres exacts de la liste des films)
+        type: string
+        list: true
+      - name: series
+        label: Séries photo à montrer (titres exacts)
+        type: string
+        list: true
+      - name: faq
+        label: Questions fréquentes
+        type: object
+        list: true
+        fields:
+          - name: question
+            label: Question
+            type: string
+          - name: reponse
+            label: Réponse
+            type: text
+
   - name: references
     label: Références (logos clients)
     type: file

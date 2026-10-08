@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://antoineguillou.com/</loc>
-    <lastmod>2026-10-08</lastmod>
-  </url>
+  <url><loc>https://antoineguillou.com/</loc><lastmod>2026-10-08</lastmod><priority>1.0</priority></url>
+  <url><loc>https://antoineguillou.com/videaste-vendee/</loc><lastmod>2026-10-08</lastmod><priority>0.9</priority></url>
+  <url><loc>https://antoineguillou.com/film-entreprise/</loc><lastmod>2026-10-08</lastmod><priority>0.9</priority></url>
+  <url><loc>https://antoineguillou.com/videaste-sport/</loc><lastmod>2026-10-08</lastmod><priority>0.9</priority></url>
+  <url><loc>https://antoineguillou.com/voile-course-au-large/</loc><lastmod>2026-10-08</lastmod><priority>0.9</priority></url>
+  <url><loc>https://antoineguillou.com/drone/</loc><lastmod>2026-10-08</lastmod><priority>0.9</priority></url>
+  <url><loc>https://antoineguillou.com/evenementiel/</loc><lastmod>2026-10-08</lastmod><priority>0.9</priority></url>
+  <url><loc>https://antoineguillou.com/photographe/</loc><lastmod>2026-10-08</lastmod><priority>0.9</priority></url>
+  <url><loc>https://antoineguillou.com/projets/pierre-fabre-sur-la-mer-contre-le-cancer/</loc><lastmod>2026-10-08</lastmod><priority>0.7</priority></url>
+  <url><loc>https://antoineguillou.com/projets/air-france-une-soiree-sur-les-toits-de-paris/</loc><lastmod>2026-10-08</lastmod><priority>0.7</priority></url>
+  <url><loc>https://antoineguillou.com/projets/europ-assistance-au-plus-pres-d-un-rapatriement-sanitaire/</loc><lastmod>2026-10-08</lastmod><priority>0.7</priority></url>
+  <url><loc>https://antoineguillou.com/mentions-legales/</loc><lastmod>2026-10-08</lastmod><priority>0.2</priority></url>
 </urlset>

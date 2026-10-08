@@ -11,6 +11,7 @@ const icoL = '<svg viewBox="0 0 14 14"><path d="M9 2L4 7l5 5"/></svg>', icoR = '
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* Chemin d'image : lien complet (https://…) ou fichier du site (/images/… ou images/…) */
+const slugify = s => String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 const src = p => !p ? "" : /^(https?:|data:)/.test(p) ? p : p.replace(/^\/+/, "");
 
 /* Lien Vimeo → identifiant + clé privée éventuelle.
@@ -35,9 +36,9 @@ async function load(name){
 }
 
 (async function init(){
-  let SITE, FILMS, PHOTOS, REFS, SKILLS, CASES, PRINTS;
+  let SITE, FILMS, PHOTOS, REFS, SKILLS, CASES, PRINTS, PAGES;
   try {
-    [SITE, FILMS, PHOTOS, REFS, SKILLS, CASES, PRINTS] = await Promise.all(["site","films","photos","references","savoir-faire","projets","tirages"].map(n => load(n).catch(() => (n === "projets" || n === "tirages") ? [] : Promise.reject(n))));
+    [SITE, FILMS, PHOTOS, REFS, SKILLS, CASES, PRINTS, PAGES] = await Promise.all(["site","films","photos","references","savoir-faire","projets","tirages","pages"].map(n => load(n).catch(() => (n === "projets" || n === "tirages" || n === "pages") ? [] : Promise.reject(n))));
   } catch (e) {
     document.body.insertAdjacentHTML("afterbegin",
       `<p style="margin:0;padding:14px 20px;background:#fff4ce;font:15px/1.4 sans-serif">Le contenu du site ne s'est pas chargé. En local, ouvre le site via un serveur ou son adresse en ligne : un double-clic sur index.html ne suffit pas.</p>`);
@@ -141,7 +142,7 @@ async function load(name){
   $("#segIn").innerHTML = cats.map((c,i) => `<button type="button" data-cat="${esc(c)}" aria-pressed="${i===0}">${esc(c)}</button>`).join("");
   function renderRail(cat){
     rail.innerHTML = FILMS.map((f,i) => (cat === "Tous" || f.categorie === cat) ? `<button class="film" type="button" data-v="${i}" aria-label="Lire ${esc(f.titre)}">
-        <span class="shot"><img src="${esc(src(f.vignette))}" alt="" loading="lazy" decoding="async"><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+        <span class="shot"><img src="${esc(src(f.vignette))}" alt="${esc(f.titre)} — film ${esc(f.categorie)}" loading="lazy" decoding="async"><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
         <span class="meta"><span class="cat">${esc(f.categorie)}</span><strong>${esc(f.titre)}</strong>${(f.vimeo||[]).length > 1 ? `<small>${f.vimeo.length} films</small>` : ""}</span>
       </button>` : "").join("");
     rail.scrollLeft = 0; updateArrows();
@@ -174,13 +175,14 @@ async function load(name){
     caseSeg.querySelectorAll("button").forEach((b,i) => b.setAttribute("aria-pressed", i === n));
     caseEl.innerHTML = `
       <button class="case-cover" type="button" data-cv="${n}" aria-label="Voir le film ${esc(c.titre)}">
-        <img src="${esc(src(c.couverture))}" alt="" loading="lazy" decoding="async">
+        <img src="${esc(src(c.couverture))}" alt="${esc(c.titre)} — ${esc(c.client)}" loading="lazy" decoding="async">
         <span class="cin"><span><small>${esc(c.client)}</small><strong>${esc(c.titre)}</strong></span>
         ${vids.length ? `<span class="go">${playIco}${vids.length > 1 ? `Voir les ${vids.length} films` : "Voir le film"}</span>` : ""}</span>
       </button>
       <div class="case-body">
         <div class="case-lead"><p>${esc(c.accroche)}</p>
-          ${c.citation ? `<blockquote><p>« ${esc(c.citation)} »</p>${c.citation_auteur ? `<cite>${esc(c.citation_auteur)}</cite>` : ""}</blockquote>` : ""}</div>
+          ${c.citation ? `<blockquote><p>« ${esc(c.citation)} »</p>${c.citation_auteur ? `<cite>${esc(c.citation_auteur)}</cite>` : ""}</blockquote>` : ""}
+          <p class="case-more"><a class="more-link" href="/projets/${slugify((c.onglet || c.client || "") + " " + (c.titre || ""))}/">Voir la page du projet ${icoR}</a></p></div>
         <dl>${[["Contexte",c.contexte],["Dispositif",c.dispositif],["Résultat",c.resultat]].filter(x => x[1]).map(([t,d]) => `<div class="k-${t.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase()}"><dt>${t}</dt><dd>${esc(d)}</dd></div>`).join("")}</dl>
       </div>
       ${cells.length ? `<div class="case-strip" style="--n:${cells.length}">${cells.join("")}</div>` : ""}`;
@@ -195,13 +197,13 @@ async function load(name){
   if (!PRINTS.length) $("#tirages").hidden = true;
   if (SITE.tirages_texte) $("#faText").textContent = SITE.tirages_texte;
   $("#faGrid").innerHTML = PRINTS.map((p,i) => `<button class="fa-card" type="button" data-fa="${i}" aria-label="${esc(p.titre)} — voir la série">
-    <span class="img"><img class="photo" src="${esc(src(p.couverture || (p.images||[])[0]))}" alt="" loading="lazy" decoding="async">${p.encadre ? `<img class="frame" src="${esc(src(p.encadre))}" alt="" loading="lazy" decoding="async">` : ""}</span>
+    <span class="img"><img class="photo" src="${esc(src(p.couverture || (p.images||[])[0]))}" alt="Tirage d'art ${esc(p.titre)}" loading="lazy" decoding="async">${p.encadre ? `<img class="frame" src="${esc(src(p.encadre))}" alt="" loading="lazy" decoding="async">` : ""}</span>
     <strong>${esc(p.titre)}<small>${(p.images||[]).length} photos</small></strong></button>`).join("");
   $("#faAsk").addEventListener("click", () => { const sel = $("#f-type"); if (sel) { const o = [...sel.options].find(o => /tirage/i.test(o.text)); if (o) sel.value = o.value; } });
 
   /* ---------- Savoir-faire ---------- */
   $("#skills").innerHTML = SKILLS.map((s,i) => `<button class="skill" type="button" data-s="${i}" aria-label="${esc(s.titre)} — en savoir plus">
-    <img src="${esc(src(s.image))}" alt="" loading="lazy">
+    <img src="${esc(src(s.image))}" alt="${esc(s.titre)}" loading="lazy">
     <span class="txt"><small>${esc(s.surtitre)}</small><strong>${esc(s.titre)}</strong></span>
     <span class="plus"><svg viewBox="0 0 14 14"><path d="M7 1v12M1 7h12"/></svg></span>
   </button>`).join("");
@@ -215,7 +217,7 @@ async function load(name){
   /* ---------- Photographie ---------- */
   const INITIAL = SITE.series_affichees || 12;
   $("#pgrid").innerHTML = PHOTOS.map((p,i) => `<button class="pcard" type="button" data-p="${i}" ${i >= INITIAL ? "hidden" : ""} aria-label="${esc(p.titre)} — voir la série">
-    <span class="img"><img src="${esc(src(p.couverture))}" alt="" loading="lazy" decoding="async"></span><span class="t">${esc(p.titre)}</span></button>`).join("");
+    <span class="img"><img src="${esc(src(p.couverture))}" alt="Série photo ${esc(p.titre)}" loading="lazy" decoding="async"></span><span class="t">${esc(p.titre)}</span></button>`).join("");
   const more = $("#morePhotos");
   if (more && PHOTOS.length <= INITIAL) more.hidden = true;
   if (more) more.addEventListener("click", () => {
@@ -306,7 +308,7 @@ async function load(name){
   function showSkill(i){
     const s = SKILLS[i];
     openSheet(`<div class="detail"><img src="${esc(src(s.image))}" alt=""><div class="in"><small>${esc(s.surtitre)}</small><h3>${esc(s.titre)}</h3><p>${esc(s.texte)}</p>
-      <ul>${(s.livrables||[]).map(x => `<li>${esc(x)}</li>`).join("")}</ul><p style="margin-top:28px"><a class="pill" href="#contact" data-close>Parler de votre projet</a></p></div></div>`);
+      <ul>${(s.livrables||[]).map(x => `<li>${esc(x)}</li>`).join("")}</ul><p style="margin-top:28px;display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center"><a class="pill" href="#contact" data-close>Parler de votre projet</a>${(() => { const pg = (PAGES || []).find(x => x.savoir_faire === s.surtitre); return pg ? `<a class="more-link" href="/${esc(pg.slug)}/">En savoir plus ${icoR}</a>` : ""; })()}</p></div></div>`);
     sheet.querySelector("[data-close]").addEventListener("click", closeSheet);
   }
   function showLegal(){

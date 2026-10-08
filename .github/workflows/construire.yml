@@ -1,0 +1,23 @@
+name: Construire les pages
+on:
+  push:
+    branches: [main]
+    paths: ["contenu/**", "outils/build.py", "index.html", "style.css", "page.js"]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: construire
+  cancel-in-progress: false
+jobs:
+  construire:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 outils/build.py
+      - name: Enregistrer les pages générées
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || (git commit -m "Pages régénérées à partir du contenu" && git pull --rebase && git push)
