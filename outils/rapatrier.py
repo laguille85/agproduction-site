@@ -11,6 +11,9 @@ for url in open("outils/images-a-rapatrier.txt", encoding="utf-8").read().split(
     name = os.path.basename(p.path) or "image"
     if host == "vimeocdn" and "." not in name:
         name += ".jpg"
+    if "ccvproxy" in p.path:                 # vidéos Adobe : une version par largeur
+        q = urllib.parse.parse_qs(p.query)
+        name = f"video-{name}-{q.get('width', ['x'])[0]}.mp4"
     name = re.sub(r"[^A-Za-z0-9._-]", "_", f"{host}-{name}")
     out = os.path.join(DEST, name)
     if os.path.exists(out) and os.path.getsize(out) > 0:
@@ -24,5 +27,5 @@ for url in open("outils/images-a-rapatrier.txt", encoding="utf-8").read().split(
         except Exception as e:
             if attempt == 2:
                 fail += 1; print("ÉCHEC", url, e, file=sys.stderr)
-            time.sleep(2)
+            time.sleep(5)
 print(f"{ok} images OK, {fail} échecs")
