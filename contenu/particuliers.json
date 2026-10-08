@@ -65,6 +65,19 @@
           "cadrage": "50% 40%"
         },
         {
+          "image": "/images/particuliers/mariage-2/m2-02.jpg",
+          "cadrage": "50% 30%",
+          "portrait": true
+        },
+        {
+          "image": "/images/particuliers/mariage-2/m2-03.jpg",
+          "cadrage": "50% 40%"
+        },
+        {
+          "image": "/images/particuliers/mariage-2/m2-04.jpg",
+          "cadrage": "50% 40%"
+        },
+        {
           "image": "/images/particuliers/mariage-2/m2-05.jpg",
           "cadrage": "50% 40%"
         },
@@ -78,8 +91,46 @@
         },
         {
           "image": "/images/particuliers/mariage-2/m2-08.jpg",
-          "cadrage": "50% 40%",
+          "cadrage": "50% 30%",
           "portrait": true
+        },
+        {
+          "image": "/images/particuliers/mariage-2/m2-09.jpg",
+          "cadrage": "50% 40%"
+        },
+        {
+          "image": "/images/particuliers/mariage-2/m2-10.jpg",
+          "cadrage": "50% 40%"
+        },
+        {
+          "image": "/images/particuliers/mariage-2/m2-11.jpg",
+          "cadrage": "50% 30%",
+          "portrait": true
+        },
+        {
+          "image": "/images/particuliers/mariage-2/m2-12.jpg",
+          "cadrage": "50% 40%"
+        },
+        {
+          "image": "/images/particuliers/mariage-2/m2-13.jpg",
+          "cadrage": "50% 40%"
+        },
+        {
+          "image": "/images/particuliers/mariage-2/m2-14.jpg",
+          "cadrage": "50% 30%",
+          "portrait": true
+        },
+        {
+          "image": "/images/particuliers/mariage-2/m2-15.jpg",
+          "cadrage": "50% 40%"
+        },
+        {
+          "image": "/images/particuliers/mariage-2/m2-16.jpg",
+          "cadrage": "50% 40%"
+        },
+        {
+          "image": "/images/particuliers/mariage-2/m2-17.jpg",
+          "cadrage": "50% 40%"
         },
         {
           "image": "/images/particuliers/mariage-2/m2-18.jpg",

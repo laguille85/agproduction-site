@@ -86,8 +86,25 @@
 /* Visionneuse de la page Particuliers : défilement automatique, vignettes, glisser */
 (function(){
   document.querySelectorAll(".pt-viewer").forEach(v => {
-    const st = v.querySelector(".pt-stage"), im = [...st.querySelectorAll(":scope > .pt-slide")], th = [...v.querySelectorAll(".pt-th")],
-      cnt = st.querySelector(".pt-count"), strip = v.querySelector(".pt-strip"), bar = st.querySelector(".pt-prog i"), D = 5000;
+    const st = v.querySelector(".pt-stage"), strip = v.querySelector(".pt-strip"),
+      cnt = st.querySelector(".pt-count"), bar = st.querySelector(".pt-prog i"), D = 5000;
+    /* Sur grand écran, les photos verticales s'affichent deux par deux ; une verticale seule reste entière sur fond clair */
+    if (matchMedia("(min-width: 761px)").matches) {
+      const sl = [...st.querySelectorAll(":scope > .pt-slide")], used = new Set(), order = [];
+      sl.forEach((s, k) => {
+        if (used.has(k)) return; used.add(k);
+        if (!s.classList.contains("por")) { order.push(s); return; }
+        const m = sl.findIndex((x, q) => q > k && !used.has(q) && x.classList.contains("por"));
+        if (m < 0) { s.classList.add("solo"); order.push(s); return; }
+        used.add(m); const o = sl[m];
+        s.classList.add("duo"); s.dataset.n2 = o.dataset.n; s.appendChild(o.querySelector("img")); o.remove(); order.push(s);
+      });
+      order.forEach(s => st.insertBefore(s, cnt));
+      const ths = [...strip.querySelectorAll(".pt-th")], byN = n => ths.find(b => b.dataset.n === n);
+      order.forEach(s => { strip.appendChild(byN(s.dataset.n)); if (s.dataset.n2) strip.appendChild(byN(s.dataset.n2)); });
+    }
+    const im = [...st.querySelectorAll(":scope > .pt-slide")], th = [...strip.querySelectorAll(".pt-th")];
+    const slideOf = b => im.findIndex(s => s.dataset.n === b.dataset.n || s.dataset.n2 === b.dataset.n);
     if (im.length < 2) return;
     const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
     let i = 0, t, hover = false, seen = false;
@@ -96,14 +113,14 @@
     const go = n => {
       i = (n + im.length) % im.length;
       im.forEach((e, k) => { e.classList.toggle("on", k === i); if (k === i || k === (i + 1) % im.length) e.querySelectorAll("img").forEach(x => x.loading = "eager"); });
-      th.forEach((e, k) => e.classList.toggle("on", k === i));
-      st.dataset.k = i; cnt.textContent = String(i + 1).padStart(2, "0") + " / " + im.length;
-      const a = th[i]; if (a) strip.scrollTo({ left: a.offsetLeft - strip.clientWidth / 2 + a.clientWidth / 2 });
+      th.forEach(e => e.classList.toggle("on", slideOf(e) === i));
+      st.dataset.k = im[i].dataset.n; cnt.textContent = String(i + 1).padStart(2, "0") + " / " + im.length;
+      const a = th.find(e => slideOf(e) === i); if (a) strip.scrollTo({ left: a.offsetLeft - strip.clientWidth / 2 + a.clientWidth / 2 });
       run();
     };
     st.querySelector(".n").addEventListener("click", e => { e.stopPropagation(); go(i + 1); });
     st.querySelector(".p").addEventListener("click", e => { e.stopPropagation(); go(i - 1); });
-    th.forEach((e, k) => e.addEventListener("click", () => go(k)));
+    th.forEach(e => e.addEventListener("click", () => go(slideOf(e))));
     st.addEventListener("mouseenter", () => { hover = true; run(); });
     st.addEventListener("mouseleave", () => { hover = false; run(); });
     let x0 = null, moved = false;
