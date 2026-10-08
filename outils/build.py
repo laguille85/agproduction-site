@@ -344,6 +344,48 @@ def build_case(idx, c, others, anchor="/#projets"):
     return path
 
 
+def build_photo_case(idx, c, others):
+    """Page d'un projet photo : fiche en trois temps puis toute la série."""
+    slug = case_slug(c)
+    path = f"/projets/{slug}/"
+    serie = next((p for p in PHOTOS if p.get("titre") == c.get("serie_photo")), None)
+    imgs = [img(u) for u in ((serie or {}).get("images") or c.get("images") or [])]
+    cover = img(c.get("couverture"))
+    pos = f' style="object-position:{e(c["cadrage"])}"' if c.get("cadrage") else ""
+    steps = "".join(f'<div class="pp-step"><span class="n">0{i}</span><h2>{t}</h2><p>{e(d)}</p></div>'
+                    for i, (t, d) in enumerate((("Contexte", c.get("contexte")), ("Dispositif", c.get("dispositif")), ("Résultat", c.get("resultat"))), 1) if d)
+    anim = ""
+    if c.get("animation"):
+        a = c["animation"]
+        anim = (f'<section class="pg-sec wrap"><div class="case-anim pp-anim"><video poster="{e(img(c.get("animation_affiche") or c.get("couverture")))}" autoplay muted loop playsinline preload="metadata" aria-label="Animation {e(c.get("titre"))}">'
+                f'<source src="{e(img(a))}" type="video/mp4">' + (f'<source src="{e(img(a[:-4] + ".webm"))}" type="video/webm">' if a.endswith(".mp4") else "") + '</video></div></section>')
+    def dims(u):
+        try:
+            from PIL import Image
+            with Image.open(os.path.join(ROOT, u.lstrip("/"))) as im:
+                return f' width="{im.width}" height="{im.height}"'
+        except Exception:
+            return ""
+    shots = "".join(f'<button type="button" class="pp-shot" data-images="{e(json.dumps(imgs))}" data-k="{k}" data-title="{e(c.get("titre"))}"><img src="{e(u)}" alt="{e(c.get("titre"))} — photo {k + 1} sur {len(imgs)}"{dims(u)} loading="lazy" decoding="async"></button>' for k, u in enumerate(imgs))
+    more = "".join(f'<li><a href="/projets/{case_slug(o)}/">{e(o.get("onglet") or o.get("client"))} — {e(o.get("titre"))}{ARROW}</a></li>' for o in others)
+    quote = (f'<section class="pg-sec wrap"><div class="pp-quote"><p>« {e(c["citation"])} »</p>' + (f'<cite>{e(c.get("citation_auteur"))}</cite>' if c.get("citation_auteur") else "") + "</div></section>") if c.get("citation") else ""
+    body = (f'<section class="pg-hero wrap">{crumbs(["Photographie", c.get("titre")])}<p class="eyebrow">{e(c.get("client"))}</p><h1>{e(c.get("titre"))}</h1>'
+            f'<p class="lede">{e(c.get("accroche"))}</p></section>'
+            f'<figure class="pp-cover"><img src="{e(cover)}" alt="{e(c.get("titre"))} — {e(c.get("client"))}" fetchpriority="high"{pos}></figure>'
+            f'<section class="pg-sec wrap"><div class="pp-steps">{steps}</div></section>'
+            + quote + anim
+            + (f'<section class="pg-sec wrap"><div class="pp-head"><h2>La série</h2><span>{len(imgs)} photos</span></div><div class="pp-masonry">{shots}</div></section>' if imgs else "")
+            + cta_block()
+            + (f'<section class="pg-sec wrap"><h2 class="pg-h-sm">Autres projets photo</h2><ul class="pg-links">{more}</ul></section>' if more else ""))
+    desc = f'{c.get("client")} : {c.get("accroche")}'[:300]
+    ld = [{"@context": "https://schema.org", "@type": "CreativeWork", "name": c.get("titre"), "description": c.get("accroche"),
+           "url": BASE + path, "image": absurl(c.get("couverture")), "creator": {"@type": "Person", "name": "Antoine Guillou"},
+           "sourceOrganization": {"@type": "Organization", "name": "AG Production"}},
+          breadcrumb_ld([("Photographie", "/#photographie"), (c.get("titre"), path)])]
+    write(path, page_shell(idx, f'{c.get("titre")} — {c.get("onglet") or c.get("client")} | AG Production', desc, path, body, ld, c.get("couverture")))
+    return path
+
+
 def build_legal(idx):
     m = SITE.get("mentions") or {}
     email = SITE.get("email") or ""
@@ -476,7 +518,7 @@ def main():
     for c in CASES:
         urls.append((build_case(idx, c, [o for o in CASES if o is not c]), "0.7"))
     for c in PCASES:
-        urls.append((build_case(idx, c, [o for o in PCASES if o is not c], "/#photographie"), "0.7"))
+        urls.append((build_photo_case(idx, c, [o for o in PCASES if o is not c]), "0.7"))
     if PART.get("histoires"):
         urls.append((build_particuliers(idx), "0.8"))
     urls.append((build_legal(idx), "0.2"))

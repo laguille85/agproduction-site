@@ -190,8 +190,16 @@ async function load(name){
             <p class="case-more"><a class="more-link" href="/projets/${slugify((c.onglet || c.client || "") + " " + (c.titre || ""))}/">Voir la page du projet ${icoR}</a></p></div>
           <dl>${[["Contexte",c.contexte],["Dispositif",c.dispositif],["Résultat",c.resultat]].filter(x => x[1]).map(([t,d]) => `<div class="k-${t.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase()}"><dt>${t}</dt><dd>${esc(d)}</dd></div>`).join("")}</dl>
         </div>
-        ${c.animation ? `<div class="case-anim"><video poster="${esc(src(c.animation_affiche || c.couverture))}" autoplay muted loop playsinline preload="metadata" aria-label="Animation ${esc(c.titre)}"><source src="${esc(src(c.animation))}" type="video/mp4">${/\.mp4$/.test(c.animation) ? `<source src="${esc(src(c.animation.replace(/\.mp4$/, ".webm")))}" type="video/webm">` : ""}</video></div>` : ""}
-        ${cells.length ? `<div class="case-strip" style="--n:${cells.length}">${cells.join("")}</div>` : ""}`;
+        ${photo ? (() => {
+          const pool = imgs.filter(u => u !== c.couverture), tot = serie >= 0 ? (PHOTOS[serie].images || []).length : imgs.length + 1;
+          const vid = c.animation ? `<video poster="${esc(src(c.animation_affiche || c.couverture))}" autoplay muted loop playsinline preload="metadata" aria-label="Animation ${esc(c.titre)}"><source src="${esc(src(c.animation))}" type="video/mp4">${/\.mp4$/.test(c.animation) ? `<source src="${esc(src(c.animation.replace(/\.mp4$/, ".webm")))}" type="video/webm">` : ""}</video>` : "";
+          const big = vid || (pool[0] ? `<img src="${esc(src(pool[0]))}" alt="" loading="lazy" decoding="async">` : "");
+          const rest = (vid ? pool : pool.slice(1)).slice(0, 2);
+          const at = serie >= 0 ? `data-p="${serie}"` : `data-ci="0" data-kind="photo"`;
+          return `<div class="case-mosaic"><button type="button" class="m-big" ${at} aria-label="Voir la série">${big}</button>${rest.map((u,i) => `<button type="button" ${at} aria-label="Voir la série"><img src="${esc(src(u))}" alt="" loading="lazy" decoding="async">${i === rest.length - 1 ? `<span class="m-all"><strong>${tot} photos</strong>Voir la série ${icoR}</span>` : ""}</button>`).join("")}</div>`;
+        })() : ""}
+        ${!photo && c.animation ? `<div class="case-anim"><video poster="${esc(src(c.animation_affiche || c.couverture))}" autoplay muted loop playsinline preload="metadata" aria-label="Animation ${esc(c.titre)}"><source src="${esc(src(c.animation))}" type="video/mp4">${/\.mp4$/.test(c.animation) ? `<source src="${esc(src(c.animation.replace(/\.mp4$/, ".webm")))}" type="video/webm">` : ""}</video></div>` : ""}
+        ${!photo && cells.length ? `<div class="case-strip" style="--n:${cells.length}">${cells.join("")}</div>` : ""}`;
       el.style.animation = "none"; el.offsetHeight; el.style.animation = "";
       el.dataset.n = n;
     }
