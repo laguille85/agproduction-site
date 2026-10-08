@@ -410,7 +410,7 @@ def build_photo_case(idx, c, others, kind="photo"):
             + (cover_html if kind == "film" and c.get("vimeo") else f'<figure class="pp-cover"><img src="{e(cover)}" alt="{e(c.get("titre"))} — {e(c.get("client"))}" fetchpriority="high"{pos}></figure>')
             + f'<section class="pg-sec wrap"><div class="pp-steps">{steps}</div></section>'
             + quote + films + anim
-            + (f'<section class="pg-sec wrap"><div class="pp-head"><h2>{gal_title}</h2><span>{len(imgs)} photo{"s" if len(imgs) > 1 else ""}</span></div><div class="pp-masonry">{shots}</div></section>' if imgs and (kind == "photo" or len(imgs) >= 4) else "")
+            + (f'<section class="pg-sec wrap"><div class="pp-head"><h2>{gal_title}</h2><span>{len(imgs)} photo{"s" if len(imgs) > 1 else ""}</span></div><div class="pp-masonry">{shots}</div></section>' if imgs and kind == "photo" else "")
             + cta_block("Photographie" if kind == "photo" else None)
             + (f'<section class="pg-sec wrap"><h2 class="pg-h-sm">Autres projets{" photo" if kind == "photo" else ""}</h2><ul class="pg-links">{more}</ul></section>' if more else ""))
     desc = f'{c.get("client")} : {c.get("accroche")}'[:300]
