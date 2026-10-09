@@ -212,7 +212,7 @@ async function load(name){
     render(0);
   }
   const caseEl = $("#case"), pcaseEl = $("#pcase");
-  setupCases(CASES, caseEl, $("#caseSeg"), $("#projets"), "film");
+  setupCases(CASES, caseEl, $("#caseSeg"), $("#films"), "film");
   setupCases(PCASES, pcaseEl, $("#pcaseSeg"), $("#photographie"), "photo");
 
   /* ---------- Tirages d'art : photo, et photo encadrée en situation au survol ---------- */

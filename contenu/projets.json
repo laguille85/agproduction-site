@@ -61,5 +61,26 @@
       "images/externes/myportfolio-c1723eec-d960-4516-9aa2-da4582640e6b_rw_1920.jpg"
     ],
     "serie_photo": "Rapatriement sanitaire Europ Assistance"
+  },
+  {
+    "onglet": "BNP Paribas Primrose",
+    "client": "BNP Paribas Primrose Bordeaux",
+    "titre": "Le tournoi, jour après jour",
+    "accroche": "Une semaine de tennis au plus haut niveau, racontée en vidéo à l'issue de chaque journée.",
+    "contexte": "Chaque printemps à Bordeaux, le BNP Paribas Primrose réunit des joueurs du top 100 mondial sur la terre battue de la Villa Primrose. Ce tournoi ATP Challenger a accueilli Stan Wawrinka, Andy Murray, Richard Gasquet, Arthur Fils ou Ugo Humbert. L'organisation voulait faire vivre la compétition en ligne, au rythme des matchs.",
+    "dispositif": "Toute la semaine, trois cadreurs couvrent l'ensemble des matchs, pendant qu'un à deux monteurs travaillent en parallèle pour livrer les vidéos le jour même.",
+    "resultat": "Des vidéos publiées à l'issue de chaque journée sur les réseaux sociaux et la chaîne YouTube du tournoi, et un film de fin d'édition.",
+    "citation": "",
+    "citation_auteur": "",
+    "couverture": "images/projets/bnp-primrose-couverture.jpg",
+    "cadrage": "50% 12%",
+    "texte_en_haut": true,
+    "vimeo": [
+      "https://vimeo.com/1234332616",
+      "https://vimeo.com/956453661",
+      "https://vimeo.com/834345426"
+    ],
+    "images": [],
+    "serie_photo": ""
   }
 ]

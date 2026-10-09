@@ -86,7 +86,7 @@ button{font:inherit;color:inherit}
 /* ---------- Sections ---------- */
 section{scroll-margin-top:60px}
 .sec{padding-block:clamp(90px,11vw,150px) 0}
-#films,#projets{padding-top:clamp(52px,6vw,88px)}   /* chiffres → films → en détail : enchaînement plus serré */
+#films,#autres-films{padding-top:clamp(52px,6vw,88px)}   /* chiffres → films → autres films : enchaînement plus serré */
 .head{text-align:center;max-width:840px;margin:0 auto clamp(36px,5vw,64px)}
 .head h2{margin:0;font-size:clamp(40px,5.6vw,72px);font-weight:700;letter-spacing:-.04em;line-height:1.05;text-wrap:balance}
 .head p{margin:16px auto 0;max-width:34em;font-size:clamp(18px,1.6vw,21px);color:var(--graphite);line-height:1.4}

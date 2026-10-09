@@ -336,7 +336,7 @@ def build_service(idx, p):
     return path
 
 
-def build_case(idx, c, others, anchor="/#projets"):
+def build_case(idx, c, others, anchor="/#films"):
     slug = case_slug(c)
     path = f"/projets/{slug}/"
     dl = "".join(f'<div class="k-{slugify(t)}"><dt>{t}</dt><dd>{e(d)}</dd></div>' for t, d in (("Contexte", c.get("contexte")), ("Dispositif", c.get("dispositif")), ("Résultat", c.get("resultat"))) if d)
@@ -412,7 +412,7 @@ def build_photo_case(idx, c, others, kind="photo"):
     gal_title = "La série" if kind == "photo" else ("Le reportage photo" if serie else "En images")
     more = "".join(f'<li><a href="/projets/{case_slug(o)}/">{e(o.get("onglet") or o.get("client"))} — {e(o.get("titre"))}{ARROW}</a></li>' for o in others)
     quote = (f'<section class="pg-sec wrap"><div class="pp-quote"><p>« {e(c["citation"])} »</p>' + (f'<cite>{e(c.get("citation_auteur"))}</cite>' if c.get("citation_auteur") else "") + "</div></section>") if c.get("citation") else ""
-    section, anchor = ("Photographie", "/#photographie") if kind == "photo" else ("Projets", "/#projets")
+    section, anchor = ("Photographie", "/#photographie") if kind == "photo" else ("Films", "/#films")
     body = (f'<section class="pg-hero wrap">{crumbs([section, c.get("titre")])}<p class="eyebrow">{e(c.get("client"))}</p><h1>{e(c.get("titre"))}</h1>'
             f'<p class="lede">{e(c.get("accroche"))}</p></section>'
             + (cover_html if kind == "film" and c.get("vimeo") else f'<figure class="pp-cover"><img src="{e(cover)}" alt="{e(c.get("titre"))} — {e(c.get("client"))}" fetchpriority="high"{pos}></figure>')
