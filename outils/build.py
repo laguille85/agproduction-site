@@ -62,6 +62,7 @@ def vimeo_id(v):
 
 SITE = load("site", {})
 FILMS = load("films", [])
+HOME_FILMS = [f for f in FILMS if f.get("accueil") is not False]   # films affichés dans « Les films » sur l'accueil
 PHOTOS = load("photos", [])
 REFS = load("references", [])
 SKILLS = load("savoir-faire", [])
@@ -99,12 +100,12 @@ def film_card(f, i):
 
 def render_index_blocks():
     cats = ["Tous"]
-    for f in FILMS:
+    for f in HOME_FILMS:
         if f.get("categorie") and f["categorie"] not in cats:
             cats.append(f["categorie"])
     b = {}
     b["segIn"] = "".join(f'<button type="button" data-cat="{e(c)}" aria-pressed="{"true" if i == 0 else "false"}">{e(c)}</button>' for i, c in enumerate(cats))
-    b["rail"] = "".join(film_card(f, i) for i, f in enumerate(FILMS))
+    b["rail"] = "".join(film_card(f, i) for i, f in enumerate(HOME_FILMS))
     def case_blocks(lst, seg, art, label):
         b[seg] = "".join(f'<button type="button" role="tab" data-case="{i}" aria-pressed="{"true" if i == 0 else "false"}">{e(c.get("onglet") or c.get("client"))}</button>' for i, c in enumerate(lst))
         if lst:

@@ -6,7 +6,8 @@
       "1167293738",
       "1167295918"
     ],
-    "vignette": "images/externes/myportfolio-b2b2f4fd-d695-4ef2-acb0-7cc254cbb181_rwc_47x0x1500x1200x1500.png"
+    "vignette": "images/externes/myportfolio-b2b2f4fd-d695-4ef2-acb0-7cc254cbb181_rwc_47x0x1500x1200x1500.png",
+    "accueil": false
   },
   {
     "titre": "Air France",
@@ -33,10 +34,11 @@
     "vignette": "images/externes/myportfolio-c93c3103-b4b1-4f66-b722-38e7de221110_rwc_47x0x1500x1200x1500.png"
   },
   {
-    "titre": "BNP Paribas Primerose 2024",
+    "titre": "BNP Paribas Primerose",
     "categorie": "Sport",
     "vimeo": [
-      "956453661"
+      "956453661",
+      "834345426"
     ],
     "vignette": "images/externes/myportfolio-141000e0-c05b-4a5a-9a98-b33a26ccb8e7_rwc_47x0x1500x1200x1500.png"
   },
@@ -99,7 +101,7 @@
     "vignette": "images/externes/myportfolio-dab67858-0223-434c-b499-e9c2d00937c2_rwc_47x0x1500x1200x1500.png"
   },
   {
-    "titre": "Tour de Loire-Atlantique 2024",
+    "titre": "Tour de Loire-Atlantique",
     "categorie": "Sport",
     "vimeo": [
       "963008667"
@@ -107,20 +109,12 @@
     "vignette": "images/externes/myportfolio-429655f2-fa66-41e2-8c98-c19df3bcd3cc_rwc_47x0x1500x1200x1500.png"
   },
   {
-    "titre": "Allianz Trade — 2023",
+    "titre": "Allianz Trade",
     "categorie": "Corporate",
     "vimeo": [
       "843141577"
     ],
     "vignette": "images/externes/myportfolio-71f4fba7-f419-4ea3-9853-3b6892933dad_rwc_47x0x1500x1200x1500.png"
-  },
-  {
-    "titre": "BNP Paribas Primerose",
-    "categorie": "Sport",
-    "vimeo": [
-      "834345426"
-    ],
-    "vignette": "images/externes/myportfolio-5cd1ea60-60fb-4503-ae2d-86efd39cba6a_rwc_47x0x1500x1200x1500.png"
   },
   {
     "titre": "Lemerpax",
@@ -195,16 +189,6 @@
     "vignette": "images/externes/myportfolio-18d68167-b4eb-4b10-83ee-61b13a0c1c5a_rwc_47x0x1500x1200x1500.png"
   },
   {
-    "titre": "BWT",
-    "categorie": "Corporate",
-    "vimeo": [
-      "622284549?h=246a44b757",
-      "622297414?h=506e4bc6be",
-      "622302646?h=611e720020"
-    ],
-    "vignette": "images/externes/myportfolio-df14102a-14f0-452b-9d29-e465508e6f5e_rwc_47x0x1500x1200x1500.png"
-  },
-  {
     "titre": "Hina Conradi — Team Volcom",
     "categorie": "Sport",
     "vimeo": [
@@ -213,7 +197,7 @@
     "vignette": "images/externes/myportfolio-027f3d20-8b62-412d-82e0-94df923de1b5_rwc_47x0x1500x1200x1500.png"
   },
   {
-    "titre": "Ironman 70.3 Les Sables-d'Olonne 2021",
+    "titre": "Ironman 70.3 Les Sables-d'Olonne",
     "categorie": "Sport",
     "vimeo": [
       "575251417"

@@ -39,6 +39,7 @@ async function load(name){
   let SITE, FILMS, PHOTOS, REFS, SKILLS, CASES, PRINTS, PAGES, PCASES;
   try {
     [SITE, FILMS, PHOTOS, REFS, SKILLS, CASES, PRINTS, PAGES, PCASES] = await Promise.all(["site","films","photos","references","savoir-faire","projets","tirages","pages","projets-photo"].map(n => load(n).catch(() => (n === "projets" || n === "tirages" || n === "pages" || n === "projets-photo") ? [] : Promise.reject(n))));
+    FILMS = FILMS.filter(f => f.accueil !== false);   /* les films marqués accueil:false restent sur les pages prestations */
   } catch (e) {
     document.body.insertAdjacentHTML("afterbegin",
       `<p style="margin:0;padding:14px 20px;background:#fff4ce;font:15px/1.4 sans-serif">Le contenu du site ne s'est pas chargé. En local, ouvre le site via un serveur ou son adresse en ligne : un double-clic sur index.html ne suffit pas.</p>`);
