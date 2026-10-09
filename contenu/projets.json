@@ -73,15 +73,17 @@
     "resultat": "Des vidéos publiées à l'issue de chaque journée sur les réseaux sociaux et la chaîne YouTube du tournoi, et un film de fin d'édition.",
     "citation": "",
     "citation_auteur": "",
-    "couverture": "images/projets/bnp-primrose-couverture.jpg",
-    "cadrage": "50% 12%",
-    "texte_en_haut": true,
+    "couverture": "images/projets/bnp-primrose-wawrinka.jpg",
+    "cadrage": "50% 28%",
+    "texte_en_haut": false,
     "vimeo": [
       "https://vimeo.com/1234332616",
       "https://vimeo.com/956453661",
       "https://vimeo.com/834345426"
     ],
     "images": [],
-    "serie_photo": ""
+    "serie_photo": "",
+    "format_haut": true,
+    "cadrage_page": "50% 22%"
   }
 ]

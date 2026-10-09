@@ -196,6 +196,7 @@ section{scroll-margin-top:60px}
 .case-cover.top::after{background:linear-gradient(0deg,rgba(0,0,0,0) 40%,rgba(0,0,0,.5) 100%)}
 .case-cover.top .cin{top:clamp(20px,3vw,40px);bottom:auto;align-items:flex-start}
 .case-cover .go svg{width:11px;height:11px;fill:var(--ink)}
+@media (min-width:761px){.case-cover.tall{aspect-ratio:16/9}}   /* couverture verticale (format_haut) : bandeau plus haut */
 .case-body{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,5vw,80px);padding:clamp(36px,5vw,64px) clamp(4px,1vw,12px) clamp(28px,3vw,40px)}
 .case-lead p{margin:0;font-size:clamp(24px,2.5vw,34px);font-weight:600;letter-spacing:-.03em;line-height:1.18;text-wrap:pretty}
 .case-lead blockquote{margin:clamp(24px,3vw,36px) 0 0;padding-left:18px;border-left:2px solid var(--tide);color:var(--graphite);font-size:17px;line-height:1.45}

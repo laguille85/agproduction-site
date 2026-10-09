@@ -181,7 +181,7 @@ async function load(name){
       const coverAttr = photo ? (serie >= 0 ? `data-p="${serie}"` : `data-ci="-1" data-kind="photo"`) : `data-cv="${n}"`;
       const go = photo ? `<span class="go">${galIco}Voir la série</span>` : (vids.length ? `<span class="go">${playIco}${vids.length > 1 ? `Voir les ${vids.length} films` : "Voir le film"}</span>` : "");
       el.innerHTML = `
-        <button class="case-cover${c.texte_en_haut ? " top" : ""}" type="button" ${coverAttr} aria-label="${photo ? "Voir la série" : "Voir le film"} ${esc(c.titre)}">
+        <button class="case-cover${c.texte_en_haut ? " top" : ""}${c.format_haut ? " tall" : ""}" type="button" ${coverAttr} aria-label="${photo ? "Voir la série" : "Voir le film"} ${esc(c.titre)}">
           <img src="${esc(src(c.couverture))}" alt="${esc(c.titre)} — ${esc(c.client)}" loading="lazy" decoding="async"${c.cadrage ? ` style="object-position:${esc(c.cadrage)}"` : ""}>
           <span class="cin"><span><small>${esc(c.client)}</small><strong>${esc(c.titre)}</strong></span>${go}</span>
         </button>

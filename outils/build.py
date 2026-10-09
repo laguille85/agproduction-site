@@ -115,7 +115,7 @@ def render_index_blocks():
             if c.get("citation"):
                 quote = f'<blockquote><p>« {e(c["citation"])} »</p>' + (f'<cite>{e(c.get("citation_auteur"))}</cite>' if c.get("citation_auteur") else "") + "</blockquote>"
             pos = f' style="object-position:{e(c["cadrage"])}"' if c.get("cadrage") else ""
-            b[art] = (f'<a class="case-cover{" top" if c.get("texte_en_haut") else ""}" href="/projets/{case_slug(c)}/"><img src="{e(img(c.get("couverture")))}" alt="{e(c.get("titre"))} — {e(c.get("client"))}" loading="lazy" decoding="async"{pos}>'
+            b[art] = (f'<a class="case-cover{" top" if c.get("texte_en_haut") else ""}{" tall" if c.get("format_haut") else ""}" href="/projets/{case_slug(c)}/"><img src="{e(img(c.get("couverture")))}" alt="{e(c.get("titre"))} — {e(c.get("client"))}" loading="lazy" decoding="async"{pos}>'
                       f'<span class="cin"><span><small>{e(c.get("client"))}</small><strong>{e(c.get("titre"))}</strong></span></span></a>'
                       f'<div class="case-body"><div class="case-lead"><p>{e(c.get("accroche"))}</p>{quote}</div><dl>{dl}</dl></div>')
     case_blocks(CASES, "caseSeg", "case", "film")
@@ -383,7 +383,8 @@ def build_photo_case(idx, c, others, kind="photo"):
         u = img(u)
         if u not in seen:
             seen.add(u); imgs.append(u)
-    pos = f' style="object-position:{e(c["cadrage"])}"' if c.get("cadrage") else ""
+    cad = c.get("cadrage_page") or c.get("cadrage")   # cadrage propre à la page projet (bandeau 21/9), sinon celui de l'accueil
+    pos = f' style="object-position:{e(cad)}"' if cad else ""
     steps = "".join(f'<div class="pp-step"><span class="n">0{i}</span><h2>{t}</h2><p>{e(d)}</p></div>'
                     for i, (t, d) in enumerate((("Contexte", c.get("contexte")), ("Dispositif", c.get("dispositif")), ("Résultat", c.get("resultat"))), 1) if d)
     anim = ""
