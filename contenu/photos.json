@@ -119,6 +119,29 @@
     "galerie": "bande"
   },
   {
+    "titre": "BNP Paribas Primrose",
+    "couverture": "images/photos/bnp-primrose/bnp-01.jpg",
+    "images": [
+      "images/photos/bnp-primrose/bnp-01.jpg",
+      "images/photos/bnp-primrose/bnp-02.jpg",
+      "images/photos/bnp-primrose/bnp-03.jpg",
+      "images/photos/bnp-primrose/bnp-04.jpg",
+      "images/photos/bnp-primrose/bnp-05.jpg",
+      "images/photos/bnp-primrose/bnp-06.jpg",
+      "images/photos/bnp-primrose/bnp-07.jpg",
+      "images/photos/bnp-primrose/bnp-08.jpg",
+      "images/photos/bnp-primrose/bnp-09.jpg",
+      "images/photos/bnp-primrose/bnp-10.jpg",
+      "images/photos/bnp-primrose/bnp-11.jpg",
+      "images/photos/bnp-primrose/bnp-12.jpg",
+      "images/photos/bnp-primrose/bnp-13.jpg",
+      "images/photos/bnp-primrose/bnp-14.jpg",
+      "images/photos/bnp-primrose/bnp-15.jpg",
+      "images/photos/bnp-primrose/bnp-16.jpg"
+    ],
+    "galerie": "bande"
+  },
+  {
     "titre": "Gérard Pasquier",
     "couverture": "images/externes/myportfolio-c17c884a-6c5a-44d0-9efc-1f780ee82dfe_car_5x4.jpg",
     "images": [
@@ -204,6 +227,19 @@
     "galerie": "bande"
   },
   {
+    "titre": "Adeline Pithois Architecte",
+    "couverture": "images/externes/myportfolio-dcaeafa1-4eea-49c9-a0f9-95863f5e5456_rwc_0x0x1688x1351x1688.jpg",
+    "images": [
+      "images/externes/myportfolio-14796ea8-4a85-444f-b7df-a9ccd46b7ae5_rw_1200.jpg",
+      "images/externes/myportfolio-d34108cb-afb8-44db-b1ec-68ffcffbfff5_rw_1200.jpg",
+      "images/externes/myportfolio-c0c1c5b6-d844-4d37-99f0-7eba81cae91f_rw_1200.jpg",
+      "images/externes/myportfolio-798d9be5-6913-456f-968d-52b00d981a3c_rw_1200.jpg",
+      "images/externes/myportfolio-e82effb4-6bf9-49da-9678-1a9500fb7708_rw_1200.jpg",
+      "images/externes/myportfolio-4797738a-a22b-4080-864f-4e6e6e53f79e_rw_1200.jpg"
+    ],
+    "galerie": "bande"
+  },
+  {
     "titre": "Europ Assistance",
     "couverture": "images/externes/myportfolio-feb7ccf0-95ca-453a-8d55-00365c8f6092_rwc_0x347x1365x1092x1365.jpg",
     "images": [
@@ -215,19 +251,6 @@
       "images/externes/myportfolio-beb42d78-c2ab-483b-a4f1-bb2e8eec8f1b_rw_1200.jpg",
       "images/externes/myportfolio-0fa0fed7-e9d3-43da-b634-d35bd8753d9c_rw_1200.jpg",
       "images/externes/myportfolio-67383a01-54c3-4998-b3ef-90a716a43421_rw_1200.jpg"
-    ],
-    "galerie": "bande"
-  },
-  {
-    "titre": "Adeline Pithois Architecte",
-    "couverture": "images/externes/myportfolio-dcaeafa1-4eea-49c9-a0f9-95863f5e5456_rwc_0x0x1688x1351x1688.jpg",
-    "images": [
-      "images/externes/myportfolio-14796ea8-4a85-444f-b7df-a9ccd46b7ae5_rw_1200.jpg",
-      "images/externes/myportfolio-d34108cb-afb8-44db-b1ec-68ffcffbfff5_rw_1200.jpg",
-      "images/externes/myportfolio-c0c1c5b6-d844-4d37-99f0-7eba81cae91f_rw_1200.jpg",
-      "images/externes/myportfolio-798d9be5-6913-456f-968d-52b00d981a3c_rw_1200.jpg",
-      "images/externes/myportfolio-e82effb4-6bf9-49da-9678-1a9500fb7708_rw_1200.jpg",
-      "images/externes/myportfolio-4797738a-a22b-4080-864f-4e6e6e53f79e_rw_1200.jpg"
     ],
     "galerie": "bande"
   },
