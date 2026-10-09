@@ -73,16 +73,25 @@
     "galerie": "bande"
   },
   {
-    "titre": "Joa",
-    "couverture": "images/externes/myportfolio-a997717f-5d5e-4556-9ce6-4541d62ce363_rwc_208x0x2085x1668x2085.jpg",
+    "titre": "BNP Paribas Primrose",
+    "couverture": "images/photos/bnp-primrose/bnp-01.jpg",
     "images": [
-      "images/externes/myportfolio-f630d895-b05c-4800-94ec-e431242c6e25_rw_1200.jpg",
-      "images/externes/myportfolio-6c4845e9-903d-455f-91ab-db2e4cf0b6a7_rw_1200.jpg",
-      "images/externes/myportfolio-0d5c8142-b112-42d8-9e6c-22a6c14daffa_rw_1200.jpg",
-      "images/externes/myportfolio-13c5eecf-f4b0-4629-8054-bcf66888d8f9_rw_1200.jpg",
-      "images/externes/myportfolio-eb0c29d7-9d3e-48fc-a44d-5d1ee6b7c950_rw_1200.jpg",
-      "images/externes/myportfolio-96ca0aef-1521-4f8c-a24f-bf32d81de67a_rw_1200.jpg",
-      "images/externes/myportfolio-fd4504e9-08a1-4623-aae3-8763faed97bc_rw_1200.jpg"
+      "images/photos/bnp-primrose/bnp-01.jpg",
+      "images/photos/bnp-primrose/bnp-02.jpg",
+      "images/photos/bnp-primrose/bnp-03.jpg",
+      "images/photos/bnp-primrose/bnp-04.jpg",
+      "images/photos/bnp-primrose/bnp-05.jpg",
+      "images/photos/bnp-primrose/bnp-06.jpg",
+      "images/photos/bnp-primrose/bnp-07.jpg",
+      "images/photos/bnp-primrose/bnp-08.jpg",
+      "images/photos/bnp-primrose/bnp-09.jpg",
+      "images/photos/bnp-primrose/bnp-10.jpg",
+      "images/photos/bnp-primrose/bnp-11.jpg",
+      "images/photos/bnp-primrose/bnp-12.jpg",
+      "images/photos/bnp-primrose/bnp-13.jpg",
+      "images/photos/bnp-primrose/bnp-14.jpg",
+      "images/photos/bnp-primrose/bnp-15.jpg",
+      "images/photos/bnp-primrose/bnp-16.jpg"
     ],
     "galerie": "bande"
   },
@@ -119,25 +128,16 @@
     "galerie": "bande"
   },
   {
-    "titre": "BNP Paribas Primrose",
-    "couverture": "images/photos/bnp-primrose/bnp-01.jpg",
+    "titre": "Joa",
+    "couverture": "images/externes/myportfolio-a997717f-5d5e-4556-9ce6-4541d62ce363_rwc_208x0x2085x1668x2085.jpg",
     "images": [
-      "images/photos/bnp-primrose/bnp-01.jpg",
-      "images/photos/bnp-primrose/bnp-02.jpg",
-      "images/photos/bnp-primrose/bnp-03.jpg",
-      "images/photos/bnp-primrose/bnp-04.jpg",
-      "images/photos/bnp-primrose/bnp-05.jpg",
-      "images/photos/bnp-primrose/bnp-06.jpg",
-      "images/photos/bnp-primrose/bnp-07.jpg",
-      "images/photos/bnp-primrose/bnp-08.jpg",
-      "images/photos/bnp-primrose/bnp-09.jpg",
-      "images/photos/bnp-primrose/bnp-10.jpg",
-      "images/photos/bnp-primrose/bnp-11.jpg",
-      "images/photos/bnp-primrose/bnp-12.jpg",
-      "images/photos/bnp-primrose/bnp-13.jpg",
-      "images/photos/bnp-primrose/bnp-14.jpg",
-      "images/photos/bnp-primrose/bnp-15.jpg",
-      "images/photos/bnp-primrose/bnp-16.jpg"
+      "images/externes/myportfolio-f630d895-b05c-4800-94ec-e431242c6e25_rw_1200.jpg",
+      "images/externes/myportfolio-6c4845e9-903d-455f-91ab-db2e4cf0b6a7_rw_1200.jpg",
+      "images/externes/myportfolio-0d5c8142-b112-42d8-9e6c-22a6c14daffa_rw_1200.jpg",
+      "images/externes/myportfolio-13c5eecf-f4b0-4629-8054-bcf66888d8f9_rw_1200.jpg",
+      "images/externes/myportfolio-eb0c29d7-9d3e-48fc-a44d-5d1ee6b7c950_rw_1200.jpg",
+      "images/externes/myportfolio-96ca0aef-1521-4f8c-a24f-bf32d81de67a_rw_1200.jpg",
+      "images/externes/myportfolio-fd4504e9-08a1-4623-aae3-8763faed97bc_rw_1200.jpg"
     ],
     "galerie": "bande"
   },
