@@ -9,7 +9,7 @@
     "resultat": "Deux films : un film de marque pour Pierre Fabre et un film de l'événement au Spi Ouest-France.",
     "citation": "Il est de notre devoir de mettre en lumière l'importance de la prévention.",
     "citation_auteur": "Laboratoires Pierre Fabre",
-    "couverture": "images/projets/pierre-fabre-couverture-voile.jpg",
+    "couverture": "images/projets/pierre-fabre-spi.jpg",
     "vimeo": [
       "https://vimeo.com/1167295918",
       "https://vimeo.com/1167293738"
@@ -19,7 +19,8 @@
       "images/savoir-faire/pf-port-drone.jpg"
     ],
     "serie_photo": "",
-    "cadrage": "50% 28%"
+    "cadrage": "50% 74%",
+    "texte_en_haut": true
   },
   {
     "onglet": "Air France",
