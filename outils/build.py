@@ -176,7 +176,7 @@ def page_shell(idx, title, description, path, body, ld=None, image=None):
     css_v = re.search(r'style\.css\?v=([\w-]+)', idx)
     v = css_v.group(1) if css_v else "1"
     canon = BASE + path
-    og_img = absurl(image) if image else absurl("images/partage-ag-production.jpg") + "?v=2"
+    og_img = absurl(image) if image else absurl("images/partage-ag-production.jpg") + "?v=3"
     og_alt = "" if image else '<meta property="og:image:alt" content="AG Production — Antoine Guillou, vidéaste, photographe et télépilote de drone">\n'
 
     lds = "".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>\n' for x in (ld or []))
