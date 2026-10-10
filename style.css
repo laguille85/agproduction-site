@@ -72,6 +72,8 @@ button{font:inherit;color:inherit}
 .hero{text-align:center;padding-block:clamp(56px,9vw,110px) clamp(36px,5vw,56px)}
 .eyebrow{margin:0 0 10px;font-size:clamp(19px,2vw,24px);font-weight:600;color:var(--graphite);letter-spacing:-.01em}
 .hero h1{margin:0;font-size:clamp(52px,9vw,112px);font-weight:700;letter-spacing:-.045em;line-height:1.02}
+.hero h1 .hero-k{display:block;text-wrap:balance;margin:0 0 14px;font-size:clamp(14px,1.5vw,17px);font-weight:600;letter-spacing:0;line-height:1.3;color:var(--tide)}
+.hero h1 #heroBig{display:block}
 .hero .sub{margin:18px auto 0;max-width:30em;font-size:clamp(19px,2vw,24px);line-height:1.35;color:var(--ink);font-weight:500;letter-spacing:-.015em}
 .hero .ctas{display:flex;justify-content:center;align-items:center;gap:26px;flex-wrap:wrap;margin-top:30px}
 .reel-wrap{padding-inline:calc(var(--g) * (1 - var(--p,0)))}
@@ -712,3 +714,10 @@ footer .wrap{padding-block:34px calc(24px + env(safe-area-inset-bottom,0px))}
 .pp-fig .v{display:block;font-size:clamp(52px,6vw,88px);font-weight:700;letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums;background:linear-gradient(115deg,#1d1d1f 15%,#0a66d8 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .pp-fig .v small{font-size:.42em;letter-spacing:-.02em;margin-left:.08em}
 .pp-fig .l{display:block;margin-top:10px;font-size:15px;color:var(--graphite);max-width:14em}
+
+/* Appel à l'action au milieu des pages projets */
+.pp-ask{display:flex;align-items:center;justify-content:space-between;gap:20px 32px;flex-wrap:wrap;background:var(--cloud);border-radius:var(--r-lg);padding:clamp(22px,3vw,34px) clamp(24px,3.4vw,44px)}
+.pp-ask p{margin:0;font-size:clamp(17px,1.6vw,20px);color:var(--graphite);max-width:40em;line-height:1.4}
+.pp-ask strong{color:var(--ink);font-weight:600}
+.pp-ask .pill{flex:none;background:#1d4469}
+.pp-ask .pill:hover{background:#2a5a88}

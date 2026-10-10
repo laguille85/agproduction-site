@@ -93,7 +93,7 @@ def page_for_skill(surtitre):
 def film_card(f, i):
     n = len(f.get("vimeo") or [])
     return (f'<button class="film" type="button" data-v="{i}" aria-label="Lire {e(f.get("titre"))}">'
-            f'<span class="shot"><img src="{e(img(f.get("vignette")))}" alt="{e(f.get("titre"))} — film {e(f.get("categorie"))}" loading="lazy" decoding="async"><span class="play">{PLAY}</span></span>'
+            f'<span class="shot"><img src="{e(img(f.get("vignette")))}"{ss(f.get("vignette"), "(max-width:760px) 80vw, 560px")} alt="{e(f.get("titre"))} — film {e(f.get("categorie"))}" loading="lazy" decoding="async"><span class="play">{PLAY}</span></span>'
             f'<span class="meta"><span class="cat">{e(f.get("categorie"))}</span><strong>{e(f.get("titre"))}</strong>'
             + (f'<small>{n} films</small>' if n > 1 else "") + '</span></button>')
 
@@ -115,14 +115,14 @@ def render_index_blocks():
             if c.get("citation"):
                 quote = f'<blockquote><p>« {e(c["citation"])} »</p>' + (f'<cite>{e(c.get("citation_auteur"))}</cite>' if c.get("citation_auteur") else "") + "</blockquote>"
             pos = f' style="object-position:{e(c["cadrage"])}"' if c.get("cadrage") else ""
-            b[art] = (f'<a class="case-cover{" top" if c.get("texte_en_haut") else ""}{" tall" if c.get("format_haut") else ""}" href="/projets/{case_slug(c)}/"><img src="{e(img(c.get("couverture")))}" alt="{e(c.get("titre"))} — {e(c.get("client"))}" loading="lazy" decoding="async"{pos}>'
+            b[art] = (f'<a class="case-cover{" top" if c.get("texte_en_haut") else ""}{" tall" if c.get("format_haut") else ""}" href="/projets/{case_slug(c)}/"><img src="{e(img(c.get("couverture")))}"{ss(c.get("couverture"), "(max-width:760px) 100vw, 1100px")} alt="{e(c.get("titre"))} — {e(c.get("client"))}" loading="lazy" decoding="async"{pos}>'
                       f'<span class="cin"><span><small>{e(c.get("client"))}</small><strong>{e(c.get("titre"))}</strong></span></span></a>'
                       f'<div class="case-body"><div class="case-lead"><p>{e(c.get("accroche"))}</p>{quote}</div><dl>{dl}</dl></div>')
     case_blocks(CASES, "caseSeg", "case", "film")
     case_blocks(PCASES, "pcaseSeg", "pcase", "photo")
     b["refs"] = "".join(f'<li title="{e(r.get("nom"))}"><img src="{e(img(r.get("logo")))}" alt="{e(r.get("nom"))}" loading="lazy" style="max-height:calc(var(--lh) * {e(r.get("taille") or 1)})"></li>' for r in REFS)
     b["skills"] = "".join(
-        f'<button class="skill" type="button" data-s="{i}" aria-label="{e(s.get("titre"))} — en savoir plus"><img src="{e(img(s.get("image")))}" alt="{e(s.get("titre"))}" loading="lazy">'
+        f'<button class="skill" type="button" data-s="{i}" aria-label="{e(s.get("titre"))} — en savoir plus"><img src="{e(img(s.get("image")))}"{ss(s.get("image"), "(max-width:760px) 72vw, 380px")} alt="{e(s.get("titre"))}" loading="lazy">'
         f'<span class="txt"><small>{e(s.get("surtitre"))}</small><strong>{e(s.get("titre"))}</strong></span>'
         '<span class="plus"><svg viewBox="0 0 14 14"><path d="M7 1v12M1 7h12"/></svg></span></button>' for i, s in enumerate(SKILLS))
     initial = SITE.get("series_affichees") or 12
@@ -130,13 +130,13 @@ def render_index_blocks():
     grid = [(i, p) for i, p in enumerate(PHOTOS) if p.get("titre") not in told]
     b["pgrid"] = "".join(
         f'<button class="pcard" type="button" data-p="{i}" {"hidden " if n >= initial else ""}aria-label="{e(p.get("titre"))} — voir la série">'
-        f'<span class="img"><img src="{e(img(p.get("couverture")))}" alt="{e(p.get("titre"))} — série photo d’Antoine Guillou, photographe en Vendée" loading="lazy" decoding="async"></span><span class="t">{e(p.get("titre"))}</span></button>' for n, (i, p) in enumerate(grid))
+        f'<span class="img"><img src="{e(img(p.get("couverture")))}"{ss(p.get("couverture"), "(max-width:760px) 70vw, 25vw")} alt="{e(p.get("titre"))} — série photo d’Antoine Guillou, photographe en Vendée" loading="lazy" decoding="async"></span><span class="t">{e(p.get("titre"))}</span></button>' for n, (i, p) in enumerate(grid))
     b["aboutCopy"] = (f'<h3>{e(SITE.get("a_propos_titre"))}</h3><p><b>{e(SITE.get("a_propos_intro"))}</b></p>'
                       + "".join(f"<p>{e(p)}</p>" for p in SITE.get("a_propos_paragraphes") or [])
                       + '<ul class="chips" aria-label="Domaines d\'activité">' + "".join(f"<li>{e(d)}</li>" for d in SITE.get("domaines") or []) + "</ul>")
     b["faGrid"] = "".join(
         f'<button class="fa-card" type="button" data-fa="{i}" aria-label="{e(p.get("titre"))} — voir la série"><span class="img"><img class="photo" src="{e(img(p.get("couverture") or (p.get("images") or [""])[0]))}" alt="Tirage d\'art {e(p.get("titre"))}" loading="lazy" decoding="async">'
-        + (f'<img class="frame" src="{e(img(p["encadre"]))}" alt="" loading="lazy" decoding="async">' if p.get("encadre") else "")
+        + (f'<img class="frame" src="{e(img(p["encadre"]))}"{ss(p["encadre"], "(max-width:760px) 70vw, 25vw")} alt="" loading="lazy" decoding="async">' if p.get("encadre") else "")
         + f'</span><strong>{e(p.get("titre"))}<small>{len(p.get("images") or [])} photos</small></strong></button>' for i, p in enumerate(PRINTS))
     b["prestations"] = "".join(f'<li><a href="/{e(p["slug"])}/">{e(p.get("menu"))}</a></li>' for p in PAGES)
     return b
@@ -155,6 +155,17 @@ def inject(htmltext, blocks):
 # ---------------------------------------------------------------------------
 # 2. Gabarit des sous-pages
 # ---------------------------------------------------------------------------
+
+def ss(u, sizes):
+    """srcset vers la version 800 px si elle existe (outils/variantes.py)."""
+    if not u or not str(u).lower().endswith(".jpg") or str(u).endswith("-w800.jpg"):
+        return ""
+    p = str(u).lstrip("/")
+    v = p[:-4] + "-w800.jpg"
+    if not os.path.exists(os.path.join(ROOT, v)):
+        return ""
+    return f' srcset="/{e(v)} 800w, /{e(p)} 2000w" sizes="{sizes}"'
+
 
 def chrome_from_index(idx):
     """Récupère l'en-tête et le pied de page de l'accueil, liens rendus absolus."""
@@ -243,7 +254,7 @@ def films_block(films, heading="Quelques films"):
     for f in films:
         vids = [vimeo_id(v) and str(v) for v in f.get("vimeo") or []]
         cards.append(f'<button class="film pg-film" type="button" data-vimeo="{e(json.dumps(vids))}" data-title="{e(f.get("titre"))}" aria-label="Lire {e(f.get("titre"))}">'
-                     f'<span class="shot"><img src="{e(img(f.get("vignette")))}" alt="{e(f.get("titre"))} — film {e(f.get("categorie"))}" loading="lazy" decoding="async"><span class="play">{PLAY}</span></span>'
+                     f'<span class="shot"><img src="{e(img(f.get("vignette")))}"{ss(f.get("vignette"), "(max-width:760px) 80vw, 560px")} alt="{e(f.get("titre"))} — film {e(f.get("categorie"))}" loading="lazy" decoding="async"><span class="play">{PLAY}</span></span>'
                      f'<span class="meta"><span class="cat">{e(f.get("categorie"))}</span><strong>{e(f.get("titre"))}</strong></span></button>')
     return f'<section class="pg-sec wrap"><h2>{e(heading)}</h2><div class="pg-films">{"".join(cards)}</div></section>'
 
@@ -255,7 +266,7 @@ def series_block(series, heading="Séries photo"):
     for p in series:
         imgs = [img(u) for u in p.get("images") or []]
         cards.append(f'<button class="pcard pg-serie" type="button" data-images="{e(json.dumps(imgs))}" data-title="{e(p.get("titre"))}" aria-label="{e(p.get("titre"))} — voir la série">'
-                     f'<span class="img"><img src="{e(img(p.get("couverture")))}" alt="Série photo {e(p.get("titre"))}" loading="lazy" decoding="async"></span><span class="t">{e(p.get("titre"))}</span></button>')
+                     f'<span class="img"><img src="{e(img(p.get("couverture")))}"{ss(p.get("couverture"), "(max-width:760px) 70vw, 25vw")} alt="Série photo {e(p.get("titre"))}" loading="lazy" decoding="async"></span><span class="t">{e(p.get("titre"))}</span></button>')
     return f'<section class="pg-sec wrap"><h2>{e(heading)}</h2><div class="pg-photos">{"".join(cards)}</div></section>'
 
 
@@ -351,7 +362,7 @@ def build_case(idx, c, others, anchor="/#films"):
     gallery = ""
     if imgs:
         gallery = '<section class="pg-sec wrap"><div class="pg-gallery">' + "".join(
-            f'<button type="button" class="pg-shot" data-images="{e(json.dumps(imgs))}" data-k="{k}" data-title="{e(c.get("titre"))}"><img src="{e(u)}" alt="{e(c.get("titre"))} — image {k + 1}" loading="lazy" decoding="async"></button>' for k, u in enumerate(imgs)) + "</div></section>"
+            f'<button type="button" class="pg-shot" data-images="{e(json.dumps(imgs))}" data-k="{k}" data-title="{e(c.get("titre"))}"><img src="{e(u)}"{ss(u, "(max-width:760px) 50vw, 33vw")} alt="{e(c.get("titre"))} — image {k + 1}" loading="lazy" decoding="async"></button>' for k, u in enumerate(imgs)) + "</div></section>"
     serie = series_by_title([c.get("serie_photo")]) if c.get("serie_photo") else []
     more = "".join(f'<li><a href="/projets/{case_slug(o)}/">{e(o.get("onglet") or o.get("client"))} — {e(o.get("titre"))}{ARROW}</a></li>' for o in others)
     body = (f'<section class="pg-hero wrap">{crumbs(["Projets", c.get("titre")])}<p class="eyebrow">{e(c.get("client"))}</p><h1>{e(c.get("titre"))}</h1>'
@@ -363,13 +374,20 @@ def build_case(idx, c, others, anchor="/#films"):
             + series_block(serie, "Le reportage photo")
             + cta_block()
             + (f'<section class="pg-sec wrap"><h2 class="pg-h-sm">Autres projets</h2><ul class="pg-links">{more}</ul></section>' if more else ""))
-    desc = f'{c.get("client")} : {c.get("accroche")}'[:300]
+    desc = f'{c.get("client")} : {c.get("accroche")}'
+    if len(desc) > 158: desc = desc[:155].rsplit(" ", 1)[0] + "…"
     ld = [{"@context": "https://schema.org", "@type": "CreativeWork", "name": c.get("titre"), "description": c.get("accroche"),
            "url": BASE + path, "image": absurl(c.get("couverture")), "creator": {"@type": "Person", "name": "Antoine Guillou"},
            "sourceOrganization": {"@type": "Organization", "name": "AG Production"}},
           breadcrumb_ld([("Projets", anchor), (c.get("titre"), path)])]
-    write(path, page_shell(idx, f'{c.get("titre")} — {c.get("onglet") or c.get("client")} | AG Production', desc, path, body, ld, c.get("couverture")))
+    write(path, page_shell(idx, case_title(c), desc, path, body, ld, c.get("couverture")))
     return path
+
+
+def case_title(c):
+    """Titre de page projet : la marque d'abord, puis le titre ; « | AG Production » seulement si ça tient en 60 caractères."""
+    t = f'{c.get("onglet") or c.get("client")} — {c.get("titre")}'
+    return t + " | AG Production" if len(t) <= 46 else t
 
 
 def build_photo_case(idx, c, others, kind="photo"):
@@ -412,7 +430,7 @@ def build_photo_case(idx, c, others, kind="photo"):
                 return f' width="{im.width}" height="{im.height}"'
         except Exception:
             return ""
-    shots = "".join(f'<button type="button" class="pp-shot" data-images="{e(json.dumps(imgs))}" data-k="{k}" data-title="{e(c.get("titre"))}"><img src="{e(u)}" alt="{e(c.get("titre"))} — photo {k + 1} sur {len(imgs)}"{dims(u)} loading="lazy" decoding="async"></button>' for k, u in enumerate(imgs))
+    shots = "".join(f'<button type="button" class="pp-shot" data-images="{e(json.dumps(imgs))}" data-k="{k}" data-title="{e(c.get("titre"))}"><img src="{e(u)}"{ss(u, "(max-width:760px) 50vw, 33vw")} alt="{e(c.get("titre"))} — photo {k + 1} sur {len(imgs)}"{dims(u)} loading="lazy" decoding="async"></button>' for k, u in enumerate(imgs))
     gal_title = "La série" if kind == "photo" else ("Le reportage photo" if serie else "En images")
     more = "".join(f'<li><a href="/projets/{case_slug(o)}/">{e(o.get("onglet") or o.get("client"))} — {e(o.get("titre"))}{ARROW}</a></li>' for o in others)
     quote = (f'<section class="pg-sec wrap"><div class="pp-quote"><p>« {e(c["citation"])} »</p>' + (f'<cite>{e(c.get("citation_auteur"))}</cite>' if c.get("citation_auteur") else "") + "</div></section>") if c.get("citation") else ""
@@ -428,16 +446,20 @@ def build_photo_case(idx, c, others, kind="photo"):
             + (cover_html if kind == "film" and c.get("vimeo") else f'<figure class="pp-cover"><img src="{e(cover)}" alt="{e(c.get("titre"))} — {e(c.get("client"))}" fetchpriority="high"{pos}></figure>')
             + f'<section class="pg-sec wrap"><div class="pp-steps">{steps}</div></section>'
             + figs_html
+            + ('<section class="pg-sec wrap"><div class="pp-ask"><p><strong>Un projet dans le même esprit ?</strong> '
+               'Décrivez-le-moi en quelques lignes, je vous réponds avec une première proposition.</p>'
+               '<a class="pill" href="#contact">Demander un devis</a></div></section>')
             + quote + films + anim
             + (f'<section class="pg-sec wrap"><div class="pp-head"><h2>{gal_title}</h2><span>{len(imgs)} photo{"s" if len(imgs) > 1 else ""}</span></div><div class="pp-masonry">{shots}</div></section>' if imgs and kind == "photo" else "")
             + cta_block("Photographie" if kind == "photo" else None)
             + (f'<section class="pg-sec wrap"><h2 class="pg-h-sm">Autres projets{" photo" if kind == "photo" else ""}</h2><ul class="pg-links">{more}</ul></section>' if more else ""))
-    desc = f'{c.get("client")} : {c.get("accroche")}'[:300]
+    desc = f'{c.get("client")} : {c.get("accroche")}'
+    if len(desc) > 158: desc = desc[:155].rsplit(" ", 1)[0] + "…"
     ld = [{"@context": "https://schema.org", "@type": "CreativeWork", "name": c.get("titre"), "description": c.get("accroche"),
            "url": BASE + path, "image": absurl(c.get("couverture")), "creator": {"@type": "Person", "name": "Antoine Guillou"},
            "sourceOrganization": {"@type": "Organization", "name": "AG Production"}},
           breadcrumb_ld([(section, anchor), (c.get("titre"), path)])]
-    write(path, page_shell(idx, f'{c.get("titre")} — {c.get("onglet") or c.get("client")} | AG Production', desc, path, body, ld, c.get("couverture")))
+    write(path, page_shell(idx, case_title(c), desc, path, body, ld, c.get("couverture")))
     return path
 
 
@@ -501,11 +523,11 @@ def viewer(h, k=0):
         src, pos = e(img(x["image"])), e(x.get("cadrage") or "50% 50%")
         lazy = "" if i == 0 else ' loading="lazy"'
         cls = "pt-slide" + (" por" if x.get("portrait") else "") + (" on" if i == 0 else "")
-        return (f'<div class="{cls}" data-n="{i}"><img src="{src}" alt="{e(t)}{", " + e(h["lieu"]) if h.get("lieu") else ""}, photo {i + 1} sur {n}" '
+        return (f'<div class="{cls}" data-n="{i}"><img src="{src}"{ss(x["image"], "(max-width:760px) 100vw, 1400px")} alt="Mariage de {e(t.replace(" & ", " et "))}{" — " + e(h["lieu"]) if h.get("lieu") else ""}, photographe de mariage Antoine Guillou ({i + 1}/{n})" '
                 f'style="object-position:{pos}"{lazy} decoding="async"></div>')
     stage = "".join(slide(i, x) for i, x in enumerate(photos))
     ths = "".join(
-        f'<button class="pt-th{" on" if i == 0 else ""}" type="button" data-n="{i}" aria-label="Photo {i + 1}"><img src="{e(img(thumb(x["image"])))}" alt="" loading="lazy"></button>'
+        f'<button class="pt-th{" on" if i == 0 else ""}" type="button" data-n="{i}" aria-label="Voir la photo {i + 1} du mariage de {e(t.replace(" & ", " et "))}"><img src="{e(img(thumb(x["image"])))}" alt="" loading="lazy"></button>'
         for i, x in enumerate(photos))
     return (f'<div class="pt-story{" on" if k == 0 else ""}" id="histoire-{k + 1}">' + (f'<p class="pt-lede">{e(h.get("lieu"))}</p>' if h.get("lieu") else '<div style="height:8px"></div>') + f'<div class="pt-viewer">'
             f'<figure class="pt-stage" data-images="{e(full)}" data-title="{e(t)}" data-k="0">{stage}'
@@ -557,7 +579,7 @@ def build_particuliers(idx):
               '<input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" hidden aria-hidden="true">'
               '<button class="pill" type="submit">Envoyer la demande</button><p class="note" id="note" role="status"></p></form></div></section>')
     body = re.sub(r" ([:;?!])", NBSP + r"\1", body)
-    desc = "Mariages, couples, familles : photo, vidéo et drone par Antoine Guillou, aux Sables-d'Olonne, en Vendée et partout en France. Des images vraies, prises sur le vif."
+    desc = "Mariages, couples, familles : photo, vidéo et drone par Antoine Guillou, aux Sables-d'Olonne, en Vendée et partout en France. Des images prises sur le vif."
     ld = [{"@context": "https://schema.org", "@type": "Service", "name": "Photographe et vidéaste de mariage", "serviceType": "Photographie et vidéo de mariage",
            "description": desc, "url": BASE + path, "provider": {"@type": "ProfessionalService", "name": "AG Production", "url": BASE + "/"},
            "areaServed": [{"@type": "City", "name": "Les Sables-d'Olonne"}, {"@type": "AdministrativeArea", "name": "Vendée"},
@@ -576,6 +598,11 @@ def write(path, content):
 
 
 def main():
+    try:
+        import importlib.util as _u
+        _s = _u.spec_from_file_location("variantes", os.path.join(ROOT, "outils", "variantes.py")); _m = _u.module_from_spec(_s); _s.loader.exec_module(_m); _m.ensure(ROOT)
+    except Exception:
+        pass
     ip = os.path.join(ROOT, "index.html")
     with open(ip, encoding="utf-8") as f:
         idx = f.read()

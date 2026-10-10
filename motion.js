@@ -3,7 +3,7 @@
    Rien ne s'anime si l'utilisateur a demandé moins d'animations dans les réglages de son appareil. */
 (() => {
   if (matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
-  const SOLO = ".head,.case,.why,.about,.contact,.pp-head,.pp-quote,.pg-faq,.pg-links,.pg-block,.pg-text,.pg-cta,.pt-viewer,.pt-h2";
+  const SOLO = ".head,.case,.why,.about,.contact,.pp-head,.pp-quote,.pp-ask,.pg-faq,.pg-links,.pg-block,.pg-text,.pg-cta,.pt-viewer,.pt-h2";
   const CASCADE = ".bento,.rail,.pgrid,.skills,.refs,.steps,.fa-grid,.pp-steps,.pp-figs,.pp-masonry,.pg-films";
   const ALL = SOLO + "," + CASCADE;
   const els = [...document.querySelectorAll(ALL)].filter(el => !el.parentElement.closest(ALL));

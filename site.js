@@ -13,6 +13,9 @@ const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 /* Chemin d'image : lien complet (https://…) ou fichier du site (/images/… ou images/…) */
 const slugify = s => String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 const src = p => !p ? "" : /^(https?:|data:)/.test(p) ? p : p.replace(/^\/+/, "");
+/* Version allégée (800 px) servie aux petits écrans et dans les grilles ; générée par outils/variantes.py */
+const VAR = /^images\/(photos|projets|particuliers|externes|films|savoir-faire)\/.+(?<!-w800)\.jpg$/i;
+const ss = (u, sizes) => { const p = src(u); return VAR.test(p) ? ` srcset="${esc(p.replace(/\.jpg$/i, "-w800.jpg"))} 800w, ${esc(p)} 2000w" sizes="${sizes}"` : ""; };
 
 /* Lien Vimeo → identifiant + clé privée éventuelle.
    Accepte : https://vimeo.com/123456789 · https://vimeo.com/123456789/abcdef1234 · https://player.vimeo.com/video/123?h=abc · 123?h=abc · 123 */
@@ -48,7 +51,7 @@ async function load(name){
   const EMAIL = SITE.email;
 
   /* ---------- Textes généraux ---------- */
-  if (SITE.accroche_titre) $("#heroTitle").textContent = SITE.accroche_titre;
+  if (SITE.accroche_titre) $("#heroBig").textContent = SITE.accroche_titre;
   if (SITE.accroche_texte) $("#heroSub").textContent = SITE.accroche_texte;
   if (SITE.video_accueil && !SITE.video_accueil_vimeo) {
     /* Ordre de préférence : version mobile (petits écrans) → HEVC (Safari, Chrome récents) → H.264 (tous) */
@@ -104,7 +107,7 @@ async function load(name){
     }
   }
   [["phAnnees","photo_chiffres_annees"],["phDrone","photo_chiffres_drone"],["phInterlocuteur","photo_chiffres_interlocuteur"],["phPort","photo_chiffres_port"]]
-    .forEach(([id,k]) => { if (SITE[k]) $("#"+id).src = src(SITE[k]); });
+    .forEach(([id,k]) => { const el = $("#"+id), u = SITE[k] || el.getAttribute("src"); const m = ss(u, id === "phAnnees" ? "(max-width:760px) 100vw, 50vw" : "(max-width:760px) 100vw, 50vw").match(/srcset="([^"]*)" sizes="([^"]*)"/); if (m) { el.sizes = m[2]; el.srcset = m[1].replace(/&amp;/g,"&"); } if (SITE[k]) el.src = src(SITE[k]); });
   $("#numProjets").textContent = SITE.chiffre_projets;
   $("#numClients").textContent = SITE.chiffre_clients;
   if (SITE.chiffre_annees) $("#years").textContent = SITE.chiffre_annees;
@@ -143,7 +146,7 @@ async function load(name){
   $("#segIn").innerHTML = cats.map((c,i) => `<button type="button" data-cat="${esc(c)}" aria-pressed="${i===0}">${esc(c)}</button>`).join("");
   function renderRail(cat){
     rail.innerHTML = FILMS.map((f,i) => (cat === "Tous" || f.categorie === cat) ? `<button class="film" type="button" data-v="${i}" aria-label="Lire ${esc(f.titre)}">
-        <span class="shot"><img src="${esc(src(f.vignette))}" alt="${esc(f.titre)} — film ${esc(f.categorie)}" loading="lazy" decoding="async"><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+        <span class="shot"><img src="${esc(src(f.vignette))}"${ss(f.vignette,"(max-width:760px) 80vw, 560px")} alt="${esc(f.titre)} — film ${esc(f.categorie)}" loading="lazy" decoding="async"><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
         <span class="meta"><span class="cat">${esc(f.categorie)}</span><strong>${esc(f.titre)}</strong>${(f.vimeo||[]).length > 1 ? `<small>${f.vimeo.length} films</small>` : ""}</span>
       </button>` : "").join("");
     rail.scrollLeft = 0; updateArrows();
@@ -173,7 +176,7 @@ async function load(name){
       const c = LIST[n]; if (!c) return;
       const vids = c.vimeo || [], imgs = c.images || [];
       const serie = c.serie_photo ? PHOTOS.findIndex(p => p.titre === c.serie_photo) : -1;
-      const cells = imgs.map((u,i) => `<button type="button" data-ci="${i}" data-kind="${kind}" aria-label="Agrandir l'image ${i+1}"><img src="${esc(src(u))}" alt="" loading="lazy" decoding="async"></button>`);
+      const cells = imgs.map((u,i) => `<button type="button" data-ci="${i}" data-kind="${kind}" aria-label="Agrandir l'image ${i+1}"><img src="${esc(src(u))}"${ss(u,"(max-width:760px) 50vw, 25vw")} alt="" loading="lazy" decoding="async"></button>`);
       if (serie >= 0) cells.push(`<button type="button" class="more" data-p="${serie}"><small>${kind === "photo" ? "La série complète" : "Reportage photo"}</small><span>Voir la série <svg viewBox="0 0 14 14"><path d="M5 2l5 5-5 5"/></svg></span></button>`);
       seg.querySelectorAll("button").forEach((b,i) => b.setAttribute("aria-pressed", i === n));
       place();
@@ -182,7 +185,7 @@ async function load(name){
       const go = photo ? `<span class="go">${galIco}Voir la série</span>` : (vids.length ? `<span class="go">${playIco}${vids.length > 1 ? `Voir les ${vids.length} films` : "Voir le film"}</span>` : "");
       el.innerHTML = `
         <button class="case-cover${c.texte_en_haut ? " top" : ""}${c.format_haut ? " tall" : ""}" type="button" ${coverAttr} aria-label="${photo ? "Voir la série" : "Voir le film"} ${esc(c.titre)}">
-          <img src="${esc(src(c.couverture))}" alt="${esc(c.titre)} — ${esc(c.client)}" loading="lazy" decoding="async"${c.cadrage ? ` style="object-position:${esc(c.cadrage)}"` : ""}>
+          <img src="${esc(src(c.couverture))}"${ss(c.couverture,"(max-width:760px) 100vw, 1100px")} alt="${esc(c.titre)} — ${esc(c.client)}" loading="lazy" decoding="async"${c.cadrage ? ` style="object-position:${esc(c.cadrage)}"` : ""}>
           <span class="cin"><span><small>${esc(c.client)}</small><strong>${esc(c.titre)}</strong></span>${go}</span>
         </button>
         <div class="case-body">
@@ -194,10 +197,10 @@ async function load(name){
         ${photo ? (() => {
           const pool = imgs.filter(u => u !== c.couverture), tot = serie >= 0 ? (PHOTOS[serie].images || []).filter(u => u !== c.couverture).length : imgs.length;
           const vid = c.animation ? `<video poster="${esc(src(c.animation_affiche || c.couverture))}" autoplay muted loop playsinline preload="metadata" aria-label="Animation ${esc(c.titre)}"><source src="${esc(src(c.animation))}" type="video/mp4">${/\.mp4$/.test(c.animation) ? `<source src="${esc(src(c.animation.replace(/\.mp4$/, ".webm")))}" type="video/webm">` : ""}</video>` : "";
-          const big = vid || (pool[0] ? `<img src="${esc(src(pool[0]))}" alt="" loading="lazy" decoding="async">` : "");
+          const big = vid || (pool[0] ? `<img src="${esc(src(pool[0]))}"${ss(pool[0],"(max-width:760px) 100vw, 60vw")} alt="" loading="lazy" decoding="async">` : "");
           const rest = (vid ? pool : pool.slice(1)).slice(0, 2);
           const at = serie >= 0 ? `data-p="${serie}"` : `data-ci="0" data-kind="photo"`;
-          return `<div class="case-mosaic"><button type="button" class="m-big" ${at} aria-label="Voir la série">${big}</button>${rest.map((u,i) => `<button type="button" ${at} aria-label="Voir la série"><img src="${esc(src(u))}" alt="" loading="lazy" decoding="async">${i === rest.length - 1 ? `<span class="m-all"><strong>${tot} photos</strong>Voir la série ${icoR}</span>` : ""}</button>`).join("")}</div>`;
+          return `<div class="case-mosaic"><button type="button" class="m-big" ${at} aria-label="Voir la série">${big}</button>${rest.map((u,i) => `<button type="button" ${at} aria-label="Voir la série"><img src="${esc(src(u))}"${ss(u,"(max-width:760px) 50vw, 30vw")} alt="" loading="lazy" decoding="async">${i === rest.length - 1 ? `<span class="m-all"><strong>${tot} photos</strong>Voir la série ${icoR}</span>` : ""}</button>`).join("")}</div>`;
         })() : ""}
         ${!photo && c.animation ? `<div class="case-anim"><video poster="${esc(src(c.animation_affiche || c.couverture))}" autoplay muted loop playsinline preload="metadata" aria-label="Animation ${esc(c.titre)}"><source src="${esc(src(c.animation))}" type="video/mp4">${/\.mp4$/.test(c.animation) ? `<source src="${esc(src(c.animation.replace(/\.mp4$/, ".webm")))}" type="video/webm">` : ""}</video></div>` : ""}
         ${!photo && cells.length ? `<div class="case-strip" style="--n:${cells.length}">${cells.join("")}</div>` : ""}`;
@@ -219,13 +222,13 @@ async function load(name){
   if (!PRINTS.length) $("#tirages").hidden = true;
   if (SITE.tirages_texte) $("#faText").textContent = SITE.tirages_texte;
   $("#faGrid").innerHTML = PRINTS.map((p,i) => `<button class="fa-card" type="button" data-fa="${i}" aria-label="${esc(p.titre)} — voir la série">
-    <span class="img"><img class="photo" src="${esc(src(p.couverture || (p.images||[])[0]))}" alt="Tirage d'art ${esc(p.titre)}" loading="lazy" decoding="async">${p.encadre ? `<img class="frame" src="${esc(src(p.encadre))}" alt="" loading="lazy" decoding="async">` : ""}</span>
+    <span class="img"><img class="photo" src="${esc(src(p.couverture || (p.images||[])[0]))}"${ss(p.couverture || (p.images||[])[0],"(max-width:760px) 70vw, 25vw")} alt="Tirage d'art ${esc(p.titre)}" loading="lazy" decoding="async">${p.encadre ? `<img class="frame" src="${esc(src(p.encadre))}"${ss(p.encadre,"(max-width:760px) 70vw, 25vw")} alt="" loading="lazy" decoding="async">` : ""}</span>
     <strong>${esc(p.titre)}<small>${(p.images||[]).length} photos</small></strong></button>`).join("");
   $("#faAsk").addEventListener("click", () => { const sel = $("#f-type"); if (sel) { const o = [...sel.options].find(o => /tirage/i.test(o.text)); if (o) sel.value = o.value; } });
 
   /* ---------- Savoir-faire ---------- */
   $("#skills").innerHTML = SKILLS.map((s,i) => `<button class="skill" type="button" data-s="${i}" aria-label="${esc(s.titre)} — en savoir plus">
-    <img src="${esc(src(s.image))}" alt="${esc(s.titre)}" loading="lazy">
+    <img src="${esc(src(s.image))}"${ss(s.image,"(max-width:760px) 72vw, 380px")} alt="${esc(s.titre)}" loading="lazy">
     <span class="txt"><small>${esc(s.surtitre)}</small><strong>${esc(s.titre)}</strong></span>
     <span class="plus"><svg viewBox="0 0 14 14"><path d="M7 1v12M1 7h12"/></svg></span>
   </button>`).join("");
@@ -241,7 +244,7 @@ async function load(name){
   const TOLD = new Set((PCASES || []).map(c => c.serie_photo).filter(Boolean));   /* séries déjà racontées plus haut */
   const GRID = PHOTOS.map((p,i) => [p,i]).filter(([p]) => !TOLD.has(p.titre));
   $("#pgrid").innerHTML = GRID.map(([p,i],n) => `<button class="pcard" type="button" data-p="${i}" ${n >= INITIAL ? "hidden" : ""} aria-label="${esc(p.titre)} — voir la série">
-    <span class="img"><img src="${esc(src(p.couverture))}" alt="${esc(p.titre)} — série photo d’Antoine Guillou, photographe en Vendée" loading="lazy" decoding="async"></span><span class="t">${esc(p.titre)}</span></button>`).join("");
+    <span class="img"><img src="${esc(src(p.couverture))}"${ss(p.couverture,"(max-width:760px) 70vw, 25vw")} alt="${esc(p.titre)} — série photo d’Antoine Guillou, photographe en Vendée" loading="lazy" decoding="async"></span><span class="t">${esc(p.titre)}</span></button>`).join("");
   const more = $("#morePhotos");
   if (more && GRID.length <= INITIAL) more.hidden = true;
   if (more) more.addEventListener("click", () => {
@@ -301,7 +304,7 @@ async function load(name){
   function showStrip(v = "bande", focus = 0){
     const p = series, imgs = p.images || [];
     mode = "strip"; view = v;
-    const pics = imgs.map((u,i) => `<button type="button" class="g-pic" data-gi="${i}" style="--i:${Math.min(i,12)}" aria-label="Agrandir la photo ${i+1} sur ${imgs.length}"><img src="${esc(src(u))}" alt="" loading="${i < 6 ? "eager" : "lazy"}" decoding="async" onload="this.parentNode.style.aspectRatio=this.naturalWidth+'/'+this.naturalHeight"></button>`).join("");
+    const pics = imgs.map((u,i) => `<button type="button" class="g-pic" data-gi="${i}" style="--i:${Math.min(i,12)}" aria-label="Agrandir la photo ${i+1} sur ${imgs.length}"><img src="${esc(src(u))}"${ss(u,"(max-width:760px) 50vw, 33vw")} alt="" loading="${i < 6 ? "eager" : "lazy"}" decoding="async" onload="this.parentNode.style.aspectRatio=this.naturalWidth+'/'+this.naturalHeight"></button>`).join("");
     const html = `<div class="sheet-head g-head"><div><h3>${esc(p.titre)}</h3><small>${imgs.length} photos</small></div>
         <div class="g-views" role="group" aria-label="Affichage"><button type="button" data-view="bande" aria-pressed="${v==="bande"}">Défilement</button><button type="button" data-view="mosaique" aria-pressed="${v==="mosaique"}">Mosaïque</button></div></div>
       ${v === "bande"

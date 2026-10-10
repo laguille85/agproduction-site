@@ -2,7 +2,7 @@ name: Construire les pages
 on:
   push:
     branches: [main]
-    paths: ["contenu/**", "outils/build.py", "index.html", "style.css", "page.js", "motion.js"]
+    paths: ["contenu/**", "outils/build.py", "index.html", "style.css", "page.js", "motion.js", "images/**"]
   workflow_dispatch:
 permissions:
   contents: write
@@ -14,6 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: pip install --quiet pillow
       - run: python3 outils/build.py
       - name: Enregistrer les pages générées
         run: |
