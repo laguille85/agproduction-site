@@ -20,7 +20,13 @@
     "cadrage": "50% 100%",
     "animation": "images/photos/bwt/bwt-cosmy.mp4",
     "animation_affiche": "images/photos/bwt/bwt-cosmy-poster.jpg",
-    "texte_en_haut": true
+    "texte_en_haut": true,
+    "chiffres": [
+      {
+        "n": 4,
+        "label": "jours de prise de vue"
+      }
+    ]
   },
   {
     "onglet": "Jeanneau",
@@ -39,7 +45,13 @@
       "images/photos/jeanneau/jeanneau-06.jpg",
       "images/photos/jeanneau/jeanneau-07.jpg"
     ],
-    "serie_photo": "Jeanneau"
+    "serie_photo": "Jeanneau",
+    "chiffres": [
+      {
+        "n": 3,
+        "label": "jours de production en mer"
+      }
+    ]
   },
   {
     "onglet": "Annapurna Courchevel",
@@ -59,7 +71,13 @@
     ],
     "serie_photo": "Annapurna — Courchevel",
     "cadrage": "50% 50%",
-    "texte_en_haut": true
+    "texte_en_haut": true,
+    "chiffres": [
+      {
+        "n": 5,
+        "label": "étoiles"
+      }
+    ]
   },
   {
     "onglet": "FPM",
@@ -79,6 +97,12 @@
       "images/photos/fpm/fpm-07.jpg"
     ],
     "serie_photo": "FPM",
-    "cadrage": "50% 38%"
+    "cadrage": "50% 38%",
+    "chiffres": [
+      {
+        "n": 3,
+        "label": "pays : France, Portugal, Thaïlande"
+      }
+    ]
   }
 ]

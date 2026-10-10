@@ -208,6 +208,7 @@ def page_shell(idx, title, description, path, body, ld=None, image=None):
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Contenu" hidden><div class="sheet" id="sheet"></div></div>
 <script>window.__SITE={json.dumps({"instagram": SITE.get("instagram"), "linkedin": SITE.get("linkedin"), "email": SITE.get("email"), "web3forms_cle": SITE.get("web3forms_cle")}, ensure_ascii=False)};</script>
 <script src="/page.js?v={v}" defer></script>
+<script src="/motion.js?v={v}" defer></script>
 </body>
 </html>
 """
@@ -413,11 +414,18 @@ def build_photo_case(idx, c, others, kind="photo"):
     gal_title = "La série" if kind == "photo" else ("Le reportage photo" if serie else "En images")
     more = "".join(f'<li><a href="/projets/{case_slug(o)}/">{e(o.get("onglet") or o.get("client"))} — {e(o.get("titre"))}{ARROW}</a></li>' for o in others)
     quote = (f'<section class="pg-sec wrap"><div class="pp-quote"><p>« {e(c["citation"])} »</p>' + (f'<cite>{e(c.get("citation_auteur"))}</cite>' if c.get("citation_auteur") else "") + "</div></section>") if c.get("citation") else ""
+    figs = list(c.get("chiffres") or [])
+    if kind == "photo" and imgs:
+        figs.append({"n": len(imgs), "label": "photos dans la série"})
+    figs_html = ('<section class="pg-sec wrap"><div class="pp-figs">' + "".join(
+        f'<div class="pp-fig"><span class="v"><span data-count="{int(f["n"])}">{int(f["n"])}</span>{("<small>" + e(f["suffixe"]) + "</small>") if f.get("suffixe") else ""}</span><span class="l">{e(f.get("label"))}</span></div>'
+        for f in figs) + '</div></section>') if figs else ""
     section, anchor = ("Photographie", "/#photographie") if kind == "photo" else ("Films", "/#films")
     body = (f'<section class="pg-hero wrap">{crumbs([section, c.get("titre")])}<p class="eyebrow">{e(c.get("client"))}</p><h1>{e(c.get("titre"))}</h1>'
             f'<p class="lede">{e(c.get("accroche"))}</p></section>'
             + (cover_html if kind == "film" and c.get("vimeo") else f'<figure class="pp-cover"><img src="{e(cover)}" alt="{e(c.get("titre"))} — {e(c.get("client"))}" fetchpriority="high"{pos}></figure>')
             + f'<section class="pg-sec wrap"><div class="pp-steps">{steps}</div></section>'
+            + figs_html
             + quote + films + anim
             + (f'<section class="pg-sec wrap"><div class="pp-head"><h2>{gal_title}</h2><span>{len(imgs)} photo{"s" if len(imgs) > 1 else ""}</span></div><div class="pp-masonry">{shots}</div></section>' if imgs and kind == "photo" else "")
             + cta_block("Photographie" if kind == "photo" else None)

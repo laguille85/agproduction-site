@@ -83,6 +83,20 @@
     ],
     "images": [],
     "serie_photo": "",
-    "cadrage_page": "50% 22%"
+    "cadrage_page": "50% 22%",
+    "chiffres": [
+      {
+        "n": 7,
+        "label": "jours de tournoi"
+      },
+      {
+        "n": 3,
+        "label": "cadreurs sur tous les matchs"
+      },
+      {
+        "n": 3,
+        "label": "films en ligne"
+      }
+    ]
   }
 ]
