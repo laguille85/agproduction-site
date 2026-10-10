@@ -699,13 +699,6 @@ footer .wrap{padding-block:34px calc(24px + env(safe-area-inset-bottom,0px))}
 .mo .rv-st:not(.rv-in)>*{opacity:0;transform:translateY(24px)}
 .mo .rv-st:not(.rv-done)>*{transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i,0) * 70ms)}
 .mo .rv-now,.mo .rv-now>*{transition:none!important}
-/* Rideau : la couverture des projets s'ouvre de gauche à droite */
-.mo .case.rv:not(.rv-in){opacity:1;transform:none}
-.mo .case.rv:not(.rv-in) .case-cover{clip-path:inset(0 100% 0 0 round var(--r-lg))}
-.mo .case.rv:not(.rv-done) .case-cover{transition:clip-path 1s cubic-bezier(.65,0,.25,1)}
-.mo .case.rv:not(.rv-in) .case-body,.mo .case.rv:not(.rv-in) .case-mosaic,.mo .case.rv:not(.rv-in) .case-strip{opacity:0;transform:translateY(24px)}
-.mo .case.rv:not(.rv-done) .case-body,.mo .case.rv:not(.rv-done) .case-mosaic,.mo .case.rv:not(.rv-done) .case-strip{transition:opacity .9s ease .35s,transform .9s cubic-bezier(.2,.7,.2,1) .35s}
-.mo .case.rv.rv-in .case-cover{clip-path:inset(0 0 0 0 round var(--r-lg))}
 /* Étapes : la ligne entre les étapes se trace */
 .mo .steps.rv li::after{transform-origin:left center;transition:transform .7s cubic-bezier(.2,.7,.2,1) calc(var(--i,0) * 120ms + .35s)}
 .mo .steps.rv:not(.rv-in) li::after{transform:scaleX(0)}
