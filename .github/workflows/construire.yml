@@ -2,7 +2,7 @@ name: Construire les pages
 on:
   push:
     branches: [main]
-    paths: ["contenu/**", "outils/build.py", "index.html", "style.css", "page.js"]
+    paths: ["contenu/**", "outils/build.py", "index.html", "style.css", "page.js", "motion.js"]
   workflow_dispatch:
 permissions:
   contents: write

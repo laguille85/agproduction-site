@@ -176,7 +176,9 @@ def page_shell(idx, title, description, path, body, ld=None, image=None):
     css_v = re.search(r'style\.css\?v=([\w-]+)', idx)
     v = css_v.group(1) if css_v else "1"
     canon = BASE + path
-    og_img = absurl(image) if image else absurl(SITE.get("photo_chiffres_port") or "")
+    og_img = absurl(image) if image else absurl("images/partage-ag-production.jpg")
+    og_alt = "" if image else '<meta property="og:image:alt" content="AG Production — Antoine Guillou, vidéaste, photographe et pilote de drone en Vendée">\n'
+
     lds = "".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>\n' for x in (ld or []))
     return f"""<!doctype html>
 <html lang="fr">
@@ -194,7 +196,7 @@ def page_shell(idx, title, description, path, body, ld=None, image=None):
 <meta property="og:description" content="{e(description)}">
 <meta property="og:url" content="{e(canon)}">
 <meta property="og:image" content="{e(og_img)}">
-<meta name="twitter:card" content="summary_large_image">
+{og_alt}<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/images/favicon-ag.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
 <link rel="stylesheet" href="/style.css?v={v}">
@@ -439,6 +441,21 @@ def build_photo_case(idx, c, others, kind="photo"):
     return path
 
 
+
+def build_404(idx):
+    """Page « introuvable » servie par GitHub Pages pour tout lien cassé (non indexée, hors sitemap)."""
+    links = "".join(f'<li><a href="{h}">{t}{ARROW}</a></li>' for h, t in (
+        ("/#films", "Les films"), ("/#photographie", "La photographie"), ("/videaste-vendee/", "Vidéaste en Vendée"),
+        ("/photographe/", "Photographe"), ("/particuliers/", "Mariages et particuliers")))
+    body = (f'<section class="pg-hero wrap"><p class="eyebrow">Erreur 404</p><h1>Cette page n\'existe plus.</h1>'
+            f'<p class="lede">Le lien est peut-être ancien, ou la page a changé d\'adresse. Voici où retrouver mon travail.</p>'
+            f'<p class="pg-cta-btns"><a class="pill" href="/">Retour à l\'accueil</a><a class="more-link" href="/#contact">Me contacter {ARROW}</a></p></section>'
+            f'<section class="pg-sec wrap"><ul class="pg-links">{links}</ul></section>')
+    html = page_shell(idx, "Page introuvable | AG Production", "Cette page n'existe plus. Retrouvez les films, les photos et le contact d'Antoine Guillou.", "/404.html", body)
+    html = html.replace('<link rel="canonical"', '<meta name="robots" content="noindex">\n<link rel="canonical"', 1)
+    with open(os.path.join(ROOT, "404.html"), "w", encoding="utf-8") as f:
+        f.write(html)
+
 def build_legal(idx):
     m = SITE.get("mentions") or {}
     email = SITE.get("email") or ""
@@ -576,6 +593,7 @@ def main():
     if PART.get("histoires"):
         urls.append((build_particuliers(idx), "0.8"))
     urls.append((build_legal(idx), "0.2"))
+    build_404(idx)
 
     sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for u, pr in urls:
