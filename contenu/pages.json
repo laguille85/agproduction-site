@@ -71,6 +71,10 @@
     "image": "",
     "sections": [
       {
+        "titre": "Où je tourne",
+        "texte": "Basé aux Sables-d'Olonne, je tourne pour les entreprises de Vendée et des Pays de la Loire, de La Roche-sur-Yon à Nantes, et partout en France : Paris, la Bretagne, la Haute-Savoie. Je me déplace aussi à l'étranger lorsque le projet le demande."
+      },
+      {
         "titre": "Un film qui sert vos objectifs",
         "texte": "Tout commence par un échange : vos objectifs, votre public, vos dates et vos contraintes de diffusion. Je vous propose ensuite une intention, un plan de tournage et un devis clair. Je filme, je monte et j'étalonne moi-même : vos consignes arrivent directement à la bonne personne."
       },
@@ -121,6 +125,10 @@
     "intro": "Running, trail, triathlon, cyclisme, surf, sports mécaniques, sports de combat. Je tourne des images d'action au plus près des athlètes, et des portraits qui montrent ce qu'il y a derrière la performance.",
     "image": "",
     "sections": [
+      {
+        "titre": "Où je tourne",
+        "texte": "Basé aux Sables-d'Olonne, je couvre les événements sportifs en Vendée et partout en France : Bordeaux pour le tournoi de tennis BNP Paribas Primrose, Chamonix pour l'UTMB, Le Touquet pour l'Enduropale. Sur les grands événements, je travaille avec une équipe de cadreurs et de monteurs pour livrer les vidéos le jour même."
+      },
       {
         "titre": "Événements, équipes et athlètes",
         "texte": "J'ai filmé et photographié l'Ironman 70.3 des Sables-d'Olonne, le Semi-marathon des Olonnes, le Tour de Loire-Atlantique, l'UTMB et l'Enduropale du Touquet. J'ai aussi travaillé avec la Fédération Française de Cyclisme, la Team TotalEnergies, Compressport, Brooks, Adidas et Puma."
@@ -173,6 +181,10 @@
     "image": "images/savoir-faire/voile-imoca-foils.jpg",
     "sections": [
       {
+        "titre": "Où je tourne",
+        "texte": "Basé aux Sables-d'Olonne, port de départ du Vendée Globe, je me déplace sur toute la façade atlantique et au-delà, comme pour la Rolex Fastnet Race et le Spi Ouest-France."
+      },
+      {
         "titre": "Pour les équipes, les partenaires et les marques nautiques",
         "texte": "J'ai suivi le Groupe Dubreuil Sailing Team, filmé l'opération « Sur la mer contre le cancer » des Laboratoires Pierre Fabre et du Centre Eugène Marquis, menée sur plusieurs régates dont la Rolex Fastnet Race et le Spi Ouest-France, et réalisé une série photo pour Jeanneau. Je travaille sur l'eau comme à terre, ainsi qu'au drone."
       },
@@ -220,6 +232,10 @@
     "image": "",
     "sections": [
       {
+        "titre": "Où je vole",
+        "texte": "En Vendée, sur le littoral comme dans les terres, et partout en France. Chaque vol est préparé selon la zone : à proximité d'un aérodrome, en ville ou sur un site protégé, une autorisation préalable est souvent nécessaire, et je m'en occupe en amont du tournage."
+      },
+      {
         "titre": "Des images vues du ciel, intégrées à vos films",
         "texte": "Le drone complète la vidéo et la photo sur un même tournage : plans d'ouverture, suivi de bateaux, vues d'ensemble d'un lieu. Une seule personne s'occupe des trois."
       },
@@ -263,6 +279,14 @@
     "image": "",
     "sections": [
       {
+        "titre": "Quelques événements",
+        "texte": "J'ai filmé la soirée des 20 ans de Flying Blue pour Air France, sur les toits des Galeries Lafayette, l'opération Train des neiges d'Europ Assistance et des événements au Centre de congrès Les Atlantes, aux Sables-d'Olonne. Chaque printemps, je couvre aussi le tournoi BNP Paribas Primrose à Bordeaux, avec des vidéos publiées après chaque journée."
+      },
+      {
+        "titre": "Où j'interviens",
+        "texte": "En Vendée et dans les Pays de la Loire, des Sables-d'Olonne à Nantes, et partout en France pour les salons, conventions et soirées d'entreprise. Je me déplace aussi à l'étranger."
+      },
+      {
         "titre": "Ce que je livre",
         "texte": "Des captations complètes, des films résumés, des interviews, et un reportage photo réalisé sur le même événement."
       }
@@ -299,6 +323,18 @@
     "intro": "Reportage, portrait, sport, produit, architecture et lifestyle. Je photographie pour les entreprises, les marques, les événements et les particuliers, et je m'occupe moi-même de la retouche et des déclinaisons.",
     "image": "",
     "sections": [
+      {
+        "titre": "Un photographe installé en Vendée",
+        "texte": "Installé aux Sables-d'Olonne, je photographie partout en Vendée et dans les Pays de la Loire : La Roche-sur-Yon, Saint-Gilles-Croix-de-Vie, Saint-Jean-de-Monts, Challans, Les Herbiers, Nantes. Mes commandes m'amènent aussi partout en France et à l'étranger, de Courchevel à Bordeaux, jusqu'au Portugal et en Thaïlande."
+      },
+      {
+        "titre": "Des séries pour les marques",
+        "texte": "J'ai photographié le lancement des robots de piscine Cosmy pour BWT France, une journée en mer à bord du Cap Camarat 6.0 CC de Jeanneau, un séjour à l'hôtel cinq étoiles Annapurna à Courchevel et le savoir-faire du groupe FPM dans ses ateliers en France, au Portugal et en Thaïlande. Chaque série est pensée pour les sites, les catalogues, l'affichage et les réseaux sociaux."
+      },
+      {
+        "titre": "Sport, événements et particuliers",
+        "texte": "Je photographie aussi le sport et les événements, comme le tournoi BNP Paribas Primrose à Bordeaux, l'Ironman 70.3 des Sables-d'Olonne ou l'UTMB. Pour les particuliers, je photographie les mariages, les couples et les familles, en Vendée et ailleurs."
+      },
       {
         "titre": "Ce que je livre",
         "texte": "Des photos retouchées prêtes à publier, dans les formats dont vous avez besoin : site, réseaux sociaux, presse, impression."

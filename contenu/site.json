@@ -18,6 +18,7 @@
   "photo_chiffres_port": "images/savoir-faire/sables-olonne-soir.jpg",
   "a_propos_titre": "Je m'appelle Antoine Guillou.",
   "portrait": "images/portrait-antoine.jpg",
+  "photo_a_propos": "images/savoir-faire/antoine-portrait.jpg",
   "a_propos_intro": "Je suis photographe, vidéaste et pilote de drone certifié par la DGAC.",
   "a_propos_paragraphes": [
     "Véritable couteau suisse, je m'adapte aux différents projets, que ce soit en photo ou en vidéo. Dans chaque domaine, j'assure moi-même la prise de vue, la post-production et le montage.",
@@ -28,10 +29,10 @@
     "Sport",
     "Lifestyle",
     "Événementiel",
-    "Corporate",
+    "Entreprise",
     "Architecture",
-    "Music",
-    "Brand content"
+    "Musique",
+    "Contenus de marque"
   ],
   "series_affichees": 12,
   "web3forms_cle": "919db043-5fd0-4811-a3db-54d1de53cefc",

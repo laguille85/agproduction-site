@@ -120,7 +120,16 @@ def render_index_blocks():
                       f'<div class="case-body"><div class="case-lead"><p>{e(c.get("accroche"))}</p>{quote}</div><dl>{dl}</dl></div>')
     case_blocks(CASES, "caseSeg", "case", "film")
     case_blocks(PCASES, "pcaseSeg", "pcase", "photo")
-    b["refs"] = "".join(f'<li title="{e(r.get("nom"))}"><img src="{e(img(r.get("logo")))}" alt="{e(r.get("nom"))}" loading="lazy" style="max-height:calc(var(--lh) * {e(r.get("taille") or 1)})"></li>' for r in REFS)
+    def logo_h(r):
+        """Hauteur à surface visuelle égale : un logo très large est moins haut qu'un logo carré."""
+        try:
+            from PIL import Image
+            with Image.open(os.path.join(ROOT, str(r.get("logo")).lstrip("/"))) as im:
+                k = im.width / im.height
+        except Exception:
+            k = 2
+        return round(min(1.25, 1.25 / k ** .5) * float(r.get("taille") or 1), 3)
+    b["refs"] = "".join(f'<li title="{e(r.get("nom"))}"><img src="{e(img(r.get("logo")))}" alt="{e(r.get("nom"))}" loading="lazy" style="height:calc(var(--lh) * {logo_h(r)})"></li>' for r in REFS)
     b["skills"] = "".join(
         f'<button class="skill" type="button" data-s="{i}" aria-label="{e(s.get("titre"))} — en savoir plus"><img src="{e(img(s.get("image")))}"{ss(s.get("image"), "(max-width:760px) 72vw, 380px")} alt="{e(s.get("titre"))}" loading="lazy">'
         f'<span class="txt"><small>{e(s.get("surtitre"))}</small><strong>{e(s.get("titre"))}</strong></span>'
@@ -131,7 +140,7 @@ def render_index_blocks():
     b["pgrid"] = "".join(
         f'<button class="pcard" type="button" data-p="{i}" {"hidden " if n >= initial else ""}aria-label="{e(p.get("titre"))} — voir la série">'
         f'<span class="img"><img src="{e(img(p.get("couverture")))}"{ss(p.get("couverture"), "(max-width:760px) 70vw, 25vw")} alt="{e(p.get("titre"))} — série photo d’Antoine Guillou, photographe en Vendée" loading="lazy" decoding="async"></span><span class="t">{e(p.get("titre"))}</span></button>' for n, (i, p) in enumerate(grid))
-    b["aboutCopy"] = (f'<h3>{e(SITE.get("a_propos_titre"))}</h3><p><b>{e(SITE.get("a_propos_intro"))}</b></p>'
+    b["aboutCopy"] = (f'<h2 id="h-about">{e(SITE.get("a_propos_titre"))}</h2><p><b>{e(SITE.get("a_propos_intro"))}</b></p>'
                       + "".join(f"<p>{e(p)}</p>" for p in SITE.get("a_propos_paragraphes") or [])
                       + '<ul class="chips" aria-label="Domaines d\'activité">' + "".join(f"<li>{e(d)}</li>" for d in SITE.get("domaines") or []) + "</ul>")
     b["faGrid"] = "".join(
@@ -332,8 +341,10 @@ def build_service(idx, p):
     if p.get("faq"):
         faq = '<section class="pg-sec wrap"><h2>Questions fréquentes</h2><div class="pg-faq">' + "".join(
             f'<details><summary>{e(q.get("question"))}</summary><p>{e(q.get("reponse"))}</p></details>' for q in p["faq"]) + "</div></section>"
+    more_btn = (f'<a class="more-link" href="/#photographie">Voir les séries photo {ARROW}</a>' if p.get("slug") == "photographe"
+                else f'<a class="more-link" href="/#films">Voir tous les films {ARROW}</a>')
     body = (f'<section class="pg-hero wrap">{crumbs([p.get("menu")])}<p class="eyebrow">{e(p.get("surtitre"))}</p><h1>{e(p.get("h1"))}</h1>'
-            f'<p class="lede">{e(p.get("intro"))}</p><p class="pg-cta-btns"><a class="pill" href="/#contact">Demander un devis</a><a class="more-link" href="/#films">Voir tous les films {ARROW}</a></p></section>'
+            f'<p class="lede">{e(p.get("intro"))}</p><p class="pg-cta-btns"><a class="pill" href="/#contact">Demander un devis</a>{more_btn}</p></section>'
             + (f'<figure class="pg-cover wrap"><img src="{e(img(cover))}" alt="{e(p.get("h1"))}" fetchpriority="high"></figure>' if cover else "")
             + f'<section class="pg-sec wrap pg-text">{secs}</section>'
             + films_block(films_by_title(p.get("films")))

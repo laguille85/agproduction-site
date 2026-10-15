@@ -63,7 +63,8 @@ async function load(name){
     v.innerHTML = sources.join("");
     v.load(); if (!reduce) v.play().catch(()=>{});
   }
-  if (SITE.portrait) $(".about .pic img").src = src(SITE.portrait);
+  if (SITE.portrait) $("#aboutFace").src = src(SITE.portrait);
+  if (SITE.photo_a_propos && $("#aboutPhoto").getAttribute("src") !== SITE.photo_a_propos) { const ap = $("#aboutPhoto"); ap.removeAttribute("srcset"); ap.src = src(SITE.photo_a_propos); }
 
   /* Vidéo d'accueil depuis Vimeo (mode « background ») : prioritaire sur les fichiers MP4 si renseignée */
   let vimeoHero = null;
@@ -135,7 +136,7 @@ async function load(name){
   }
 
   /* ---------- À propos ---------- */
-  $("#aboutCopy").innerHTML = `<h3>${esc(SITE.a_propos_titre)}</h3>
+  $("#aboutCopy").innerHTML = `<h2 id="h-about">${esc(SITE.a_propos_titre)}</h2>
     <p><b>${esc(SITE.a_propos_intro)}</b></p>
     ${(SITE.a_propos_paragraphes || []).map(p => `<p>${esc(p)}</p>`).join("")}
     <ul class="chips" aria-label="Domaines d'activité">${(SITE.domaines || []).map(d => `<li>${esc(d)}</li>`).join("")}</ul>`;
@@ -209,7 +210,7 @@ async function load(name){
     }
     seg.classList.add("cs");
     seg.innerHTML = LIST.map((c,i) => `<button type="button" role="tab" data-case="${i}">${esc(c.onglet || c.client)}</button>`).join("") + '<span class="seg-ind" aria-hidden="true"></span>';
-    function place(){ const b = seg.querySelector('[aria-pressed="true"]'), ind = seg.querySelector(".seg-ind"); if (b && ind) { ind.style.width = b.offsetWidth + "px"; ind.style.transform = `translateX(${b.offsetLeft}px)`; } }
+    function place(){ const b = seg.querySelector('[aria-pressed="true"]'), ind = seg.querySelector(".seg-ind"); if (b && ind) { ind.style.width = b.offsetWidth + "px"; ind.style.transform = `translateX(${b.offsetLeft}px)`; } const box = seg.closest(".seg"); if (b && box && box.scrollWidth > box.clientWidth) { const x = b.offsetLeft - (box.clientWidth - b.offsetWidth) / 2; box.scrollLeft = Math.max(0, x); } }
     addEventListener("resize", place); if (document.fonts) document.fonts.ready.then(place);
     seg.addEventListener("click", e => { const b = e.target.closest("[data-case]"); if (b) render(+b.dataset.case); });
     render(0);
@@ -256,13 +257,13 @@ async function load(name){
   });
 
   /* Rails horizontaux sur mobile (savoir-faire, méthode, tirages) : barre de progression */
-  [".why", "#skills", ".steps", "#pgrid", "#faGrid"].forEach(sel => { const rail = document.querySelector(sel); if (!rail) return;
+  ["#skills", ".steps", "#pgrid", "#faGrid"].forEach(sel => { const rail = document.querySelector(sel); if (!rail) return;
     const bar = rail.nextElementSibling && rail.nextElementSibling.classList.contains("sk-bar") ? rail.nextElementSibling.firstElementChild : null; if (!bar) return;
     const upd = () => { const m = rail.scrollWidth - rail.clientWidth; bar.style.transform = `scaleX(${m > 0 ? (rail.scrollLeft + rail.clientWidth) / rail.scrollWidth : 1})`; };
     rail.addEventListener("scroll", upd, {passive:true}); window.addEventListener("resize", upd); upd(); });
 
   /* ---------- Références ---------- */
-  $("#refs").innerHTML = REFS.map(r => `<li title="${esc(r.nom)}"><img src="${esc(src(r.logo))}" alt="${esc(r.nom)}" loading="lazy" style="max-height:calc(var(--lh) * ${Number(r.taille) || 1})" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="word" hidden>${esc(r.nom)}</span></li>`).join("");
+  $("#refs").innerHTML = REFS.map(r => `<li title="${esc(r.nom)}"><img src="${esc(src(r.logo))}" alt="${esc(r.nom)}" loading="lazy" data-t="${Number(r.taille) || 1}" onload="const k=this.naturalWidth/this.naturalHeight||1;this.style.height='calc(var(--lh) * '+(Math.min(1.25,1.25/Math.sqrt(k))*this.dataset.t).toFixed(3)+')'" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="word" hidden>${esc(r.nom)}</span></li>`).join("");
 
   /* =========================================================
      Fenêtre : films, séries, détails, mentions légales

@@ -96,7 +96,8 @@ section{scroll-margin-top:60px}
 .head.left p{margin-left:0}
 
 /* Segmented control */
-.seg{display:flex;justify-content:center;margin:0 auto 30px;max-width:100%;overflow-x:auto;scrollbar-width:none}
+.seg{display:flex;justify-content:flex-start;margin:0 auto 30px;max-width:100%;overflow-x:auto;scrollbar-width:none;scroll-behavior:smooth}
+.seg>.seg-in{margin-inline:auto;flex:none}   /* centré quand ça tient, aligné à gauche (sans coupure) quand ça déborde */
 .seg::-webkit-scrollbar{display:none}
 .seg-in{display:inline-flex;background:var(--cloud);border-radius:980px;padding:4px;gap:2px}
 .seg button{border:0;background:transparent;border-radius:980px;padding:8px 18px;font-size:14px;font-weight:500;color:var(--graphite);cursor:pointer;white-space:nowrap;transition:background .25s,color .25s,box-shadow .25s}
@@ -253,11 +254,6 @@ section{scroll-margin-top:60px}
 .center{display:flex;justify-content:center;margin-top:40px}
 
 /* Pourquoi */
-.why{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.why article{background:var(--cloud);border-radius:var(--r-md);padding:18px 20px;display:grid;align-content:start;grid-template-columns:26px minmax(0,1fr);column-gap:14px;align-items:start}
-.why svg{width:26px;height:26px;fill:none;stroke:var(--tide-l);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;grid-row:span 2;margin-top:1px}
-.why h3{margin:0 0 4px;font-size:17px;font-weight:600;letter-spacing:-.02em;line-height:1.2}
-.why p{margin:0;color:var(--graphite);font-size:14px;line-height:1.45}
 
 /* Savoir-faire */
 .skills{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(280px,27vw,380px);gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;outline:0;
@@ -285,14 +281,6 @@ section{scroll-margin-top:60px}
 .steps span{display:block;font-size:14px;color:var(--graphite);line-height:1.4}
 
 /* À propos */
-.about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}
-.about .card{border-radius:var(--r-lg);background:var(--cloud);overflow:hidden}
-.about .pic{display:grid;place-items:center;padding:clamp(30px,5vw,70px)}
-.about .pic img{width:min(100%,380px);aspect-ratio:1;object-fit:cover;border-radius:50%}
-.about .copy{padding:clamp(28px,4vw,56px);display:flex;flex-direction:column;justify-content:center}
-.about .copy h3{margin:0 0 18px;font-size:clamp(28px,3vw,40px);font-weight:700;letter-spacing:-.035em;line-height:1.1}
-.about .copy p{margin:0 0 14px;color:var(--graphite)}
-.about .copy p b{color:var(--ink);font-weight:600}
 .chips{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
 .chips li{background:#fff;border-radius:980px;padding:6px 14px;font-size:13px;font-weight:500;color:var(--ink)}
 
@@ -300,8 +288,9 @@ section{scroll-margin-top:60px}
 .refs{list-style:none;margin:0 auto;padding:0;display:flex;flex-wrap:wrap;justify-content:center;max-width:1080px}
 .refs li{flex:0 0 calc(100% / 6);height:120px;display:grid;place-items:center;padding:18px}
 .refs{--lh:46px}
-.refs img{max-width:100%;width:auto;height:auto;object-fit:contain;transition:transform .3s}
-.refs li:hover img{transform:scale(1.06)}
+.refs img{max-width:100%;width:auto;height:auto;object-fit:contain;filter:grayscale(1) contrast(1.15) brightness(.9);opacity:.72;transition:filter .35s,opacity .35s,transform .35s}
+.refs li:hover img{filter:none;opacity:1;transform:scale(1.05)}
+.refs li{padding:14px 12px}
 .refs .word{font-weight:700;font-size:17px;letter-spacing:-.02em;text-align:center;overflow-wrap:anywhere}
 
 /* Contact */
@@ -419,7 +408,6 @@ footer .wrap{padding-block:34px calc(24px + env(safe-area-inset-bottom,0px))}
   .t-a{grid-column:span 2;grid-row:auto;min-height:320px}
   .pgrid{grid-template-columns:repeat(3,minmax(0,1fr))}
   .fa-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .why{grid-template-columns:repeat(2,minmax(0,1fr))}
   .steps{grid-template-columns:repeat(3,minmax(0,1fr))}
   .steps li:nth-child(3)::after{display:none}
   .refs li{flex-basis:calc(100% / 4)}
@@ -472,7 +460,7 @@ footer .wrap{padding-block:34px calc(24px + env(safe-area-inset-bottom,0px))}
   .bento .t-e{min-height:340px}
   .bento .t-f{min-height:260px}
   .pgrid{grid-template-columns:1fr 1fr;gap:16px 12px}
-  .why,.about,.contact{grid-template-columns:1fr}
+  .about,.contact,.why-wrap{grid-template-columns:1fr}
   .skill{aspect-ratio:4/5}
   /* Savoir-faire : rail horizontal sur mobile au lieu de 6 cartes empilées */
   .skills{grid-auto-columns:72%;gap:12px;padding-inline:var(--g);scroll-padding-inline:var(--g)}
@@ -486,10 +474,8 @@ footer .wrap{padding-block:34px calc(24px + env(safe-area-inset-bottom,0px))}
   .fa-grid .fa-card{flex:none;width:72%;scroll-snap-align:start}
   .fa-band .sk-bar{background:#fff}
   /* Pourquoi moi + photographie : rails aussi */
-  .why,.pgrid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin-inline:calc(-1 * var(--g));padding:0 var(--g);scroll-padding-inline:var(--g);scrollbar-width:none;overscroll-behavior-x:contain}
-  .why::-webkit-scrollbar,.pgrid::-webkit-scrollbar{display:none}
-  .why article{flex:none;width:70%;scroll-snap-align:start;padding:22px 22px 24px;grid-template-columns:1fr;row-gap:12px}
-  .why svg{grid-row:auto;width:30px;height:30px}
+  .pgrid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin-inline:calc(-1 * var(--g));padding:0 var(--g);scroll-padding-inline:var(--g);scrollbar-width:none;overscroll-behavior-x:contain}
+  .pgrid::-webkit-scrollbar{display:none}
   .pgrid{align-items:flex-start}
   .pgrid .pcard{flex:none;width:62%;scroll-snap-align:start}
   .pgrid .pcard[hidden]{display:grid}
@@ -721,3 +707,41 @@ footer .wrap{padding-block:34px calc(24px + env(safe-area-inset-bottom,0px))}
 .pp-ask strong{color:var(--ink);font-weight:600}
 .pp-ask .pill{flex:none;background:#1d4469}
 .pp-ask .pill:hover{background:#2a5a88}
+
+/* Pourquoi travailler avec moi : mise en page éditoriale, titre à gauche, liste numérotée à droite */
+.why-wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,100px);align-items:start}
+.why-wrap .head{margin:0;position:sticky;top:110px}
+.why-wrap .head p{margin-top:20px}
+.why{counter-reset:w;border-bottom:1px solid var(--hair)}
+.why article{counter-increment:w;display:grid;grid-template-columns:52px minmax(0,1fr);column-gap:12px;padding:clamp(20px,2.2vw,28px) 0;border-top:1px solid var(--hair)}
+.why article::before{content:counter(w,decimal-leading-zero);grid-row:span 2;font-size:15px;font-weight:600;color:var(--tide);font-variant-numeric:tabular-nums;padding-top:5px}
+.why svg{display:none}
+.why h3{margin:0 0 6px;font-size:clamp(19px,1.8vw,24px);font-weight:600;letter-spacing:-.025em;line-height:1.2}
+.why p{margin:0;color:var(--graphite);font-size:clamp(15px,1.25vw,17px);line-height:1.5;max-width:34em}
+@media (max-width:760px){.why-wrap{grid-template-columns:1fr;gap:28px}.why-wrap .head{position:static}.why article{grid-template-columns:40px minmax(0,1fr)}}
+
+/* Derrière la caméra : grande photo en action, texte à côté, sans carte grise */
+.about{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,6vw,100px);align-items:center}
+.about .pic{position:relative;margin:0}
+.about .pic #aboutPhoto{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 62%;border-radius:var(--r-lg)}
+.about .pic .face{position:absolute;right:clamp(-28px,-2vw,-14px);bottom:clamp(24px,4vw,48px);width:clamp(92px,10vw,140px);height:auto;aspect-ratio:1;object-fit:cover;border-radius:50%;border:5px solid var(--paper,#fff);box-shadow:0 12px 30px rgba(0,0,0,.18)}
+.about .kicker{margin:0 0 14px;font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--tide)}
+.about .copy h2{margin:0 0 18px;font-size:clamp(32px,4vw,56px);font-weight:700;letter-spacing:-.04em;line-height:1.04}
+.about .copy p{margin:0 0 14px;color:var(--graphite);max-width:36em}
+.about .copy p b{color:var(--ink);font-weight:600}
+.about .chips{margin-top:18px}
+.about .chips li{background:var(--cloud)}
+@media (max-width:760px){.about{grid-template-columns:1fr;gap:40px}.about .pic #aboutPhoto{aspect-ratio:4/4.4}.about .pic .face{right:14px;bottom:-30px}.about .copy{padding-top:14px}}
+
+/* Tuile « 10+ ans » : bas plus sombre pour que le texte reste lisible sur téléphone */
+.tile.photo.t-a::after{background:linear-gradient(180deg,rgba(0,0,0,.38) 0%,rgba(0,0,0,0) 28%,rgba(0,0,0,.1) 48%,rgba(0,0,0,.78) 100%)}
+.tile.photo.t-a p{color:#fff;text-shadow:0 1px 12px rgba(0,0,0,.35)}
+.tile.photo.t-a .k{text-shadow:0 2px 28px rgba(0,0,0,.4)}
+@media (max-width:760px){.tile.photo.t-a::after{background:linear-gradient(180deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.35) 38%,rgba(0,0,0,.35) 55%,rgba(0,0,0,.85) 100%)}}
+
+/* Titres de chapitre (Les films, La photographie) : alignés à gauche, plus grands, pour casser la répétition des titres centrés */
+.head.chapter{text-align:left;margin-left:0;max-width:none;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:clamp(32px,6vw,100px);align-items:end}
+.head.chapter .kicker{grid-column:1/-1;margin:0 0 10px;font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--tide)}
+.head.chapter h2{font-size:clamp(44px,6.4vw,96px);letter-spacing:-.05em;line-height:.98;margin:0}
+.head.chapter p:not(.kicker){margin:0 0 .5em;max-width:30em}
+@media (max-width:760px){.head.chapter{grid-template-columns:1fr}.head.chapter p:not(.kicker){margin-top:14px}}

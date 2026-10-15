@@ -1,87 +1,104 @@
 [
   {
     "nom": "Air France",
-    "logo": "images/externes/wikimedia-Air_France_Logo.svg",
-    "taille": 1
+    "logo": "images/logos/norm/air-france.png",
+    "taille": 1,
+    "logo_source": "images/externes/wikimedia-Air_France_Logo.svg"
   },
   {
     "nom": "Pierre Fabre",
-    "logo": "images/logos/pierre-fabre.png",
-    "taille": 1.35
+    "logo": "images/logos/norm/pierre-fabre.png",
+    "taille": 1,
+    "logo_source": "images/logos/pierre-fabre.png"
   },
   {
     "nom": "Europ Assistance",
-    "logo": "images/externes/wikimedia-Europ_Assistance_Logo_.png",
-    "taille": 1
+    "logo": "images/logos/norm/europ-assistance.png",
+    "taille": 1,
+    "logo_source": "images/externes/wikimedia-Europ_Assistance_Logo_.png"
   },
   {
     "nom": "Allianz Trade",
-    "logo": "images/logos/allianz-trade.png",
-    "taille": 0.85
+    "logo": "images/logos/norm/allianz-trade.png",
+    "taille": 1,
+    "logo_source": "images/logos/allianz-trade.png"
   },
   {
     "nom": "MSD",
-    "logo": "images/logos/msd.png",
-    "taille": 0.8
+    "logo": "images/logos/norm/msd.png",
+    "taille": 1,
+    "logo_source": "images/logos/msd.png"
   },
   {
     "nom": "TotalEnergies",
-    "logo": "images/externes/wikimedia-Logo_TotalEnergies.svg",
-    "taille": 1
+    "logo": "images/logos/norm/totalenergies.png",
+    "taille": 1,
+    "logo_source": "images/externes/wikimedia-Logo_TotalEnergies.svg"
   },
   {
     "nom": "Groupe Dubreuil",
-    "logo": "images/externes/wikimedia-Groupedubreuil.jpg",
-    "taille": 1.25
+    "logo": "images/logos/norm/groupe-dubreuil.png",
+    "taille": 1,
+    "logo_source": "images/externes/wikimedia-Groupedubreuil.jpg"
   },
   {
     "nom": "Enedis",
-    "logo": "images/logos/enedis.png",
-    "taille": 1
+    "logo": "images/logos/norm/enedis.png",
+    "taille": 1,
+    "logo_source": "images/logos/enedis.png"
   },
   {
     "nom": "Danone",
-    "logo": "images/externes/wikimedia-DANONE_LOGO_HORIZONTAL.png",
-    "taille": 1
+    "logo": "images/logos/norm/danone.png",
+    "taille": 1,
+    "logo_source": "images/externes/wikimedia-DANONE_LOGO_HORIZONTAL.png"
   },
   {
     "nom": "TimeForMed",
-    "logo": "images/logos/timeformed.png",
-    "taille": 1.1
+    "logo": "images/logos/norm/timeformed.png",
+    "taille": 1,
+    "logo_source": "images/logos/timeformed.png"
   },
   {
     "nom": "Adidas",
-    "logo": "images/externes/wikimedia-Adidas_Logo.svg",
-    "taille": 1.1
+    "logo": "images/logos/norm/adidas.png",
+    "taille": 1,
+    "logo_source": "images/externes/wikimedia-Adidas_Logo.svg"
   },
   {
     "nom": "Puma",
-    "logo": "images/externes/wikimedia-Puma.svg",
-    "taille": 1.1
+    "logo": "images/logos/norm/puma.png",
+    "taille": 1,
+    "logo_source": "images/externes/wikimedia-Puma.svg"
   },
   {
     "nom": "Brooks",
-    "logo": "images/externes/wikimedia-Brooks_sports_logo.png",
-    "taille": 1
+    "logo": "images/logos/norm/brooks.png",
+    "taille": 1,
+    "logo_source": "images/externes/wikimedia-Brooks_sports_logo.png"
   },
   {
     "nom": "Compressport",
-    "logo": "images/logos/compressport.jpg",
-    "taille": 0.85
+    "logo": "images/logos/norm/compressport.png",
+    "taille": 1,
+    "logo_source": "images/logos/compressport.jpg"
   },
   {
     "nom": "BWT",
-    "logo": "images/externes/wikimedia-BWT_Logo_2024.svg",
-    "taille": 1
+    "logo": "images/logos/norm/bwt.png",
+    "taille": 1,
+    "logo_source": "images/externes/wikimedia-BWT_Logo_2024.svg"
   },
   {
     "nom": "Richemont",
-    "logo": "images/externes/wikimedia-Logo_Richemont.svg",
-    "taille": 1
+    "logo": "images/logos/norm/richemont.png",
+    "taille": 1,
+    "logo_source": "images/externes/wikimedia-Logo_Richemont.svg"
   },
   {
     "nom": "Fédération Française de Cyclisme",
-    "logo": "images/externes/wikimedia-Logo_FFC.svg",
-    "taille": 1.2
+    "logo": "images/logos/norm/federation-francaise-de-cyclisme.png",
+    "taille": 1,
+    "logo_source": "images/externes/wikimedia-Logo_FFC.svg"
   }
 ]
