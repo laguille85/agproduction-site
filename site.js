@@ -74,20 +74,20 @@ async function load(name){
       const reelBox = $("#reel").parentNode;
       const p = new URLSearchParams({ background:"1", dnt:"1", autopause:"0" });
       if (h) p.set("h", h);
-      /* Qualité de départ selon la définition réelle de l'écran (Vimeo dispose de la 4K) */
-      const px = innerWidth * (window.devicePixelRatio || 1);
-      if (innerWidth > 760) p.set("quality", px > 2600 ? "2160p" : px > 1700 ? "1440p" : "1080p");
+      /* Pas de qualité imposée : Vimeo choisit lui-même selon le débit de la connexion (forcer la 4K faisait saccader) */
       if (SITE.video_accueil_image) reelBox.style.background = `#0e2230 url("${src(SITE.video_accueil_image)}") center/cover`;
       $("#reel").remove();
       reelBox.insertAdjacentHTML("afterbegin", `<iframe id="reelVimeo" src="https://player.vimeo.com/video/${id}?${p}" title="Vidéo d'accueil AG Production" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:50%;left:50%;border:0;pointer-events:none;transform:translate(-50%,-50%)"></iframe>`);
       vimeoHero = $("#reelVimeo");
-      const cover = () => {                 // recadre la vidéo 16:9 pour remplir toute la tuile
-        const w = reelBox.clientWidth, hh = reelBox.clientHeight;
+      /* Recadre la vidéo 16:9 pour remplir la tuile. Calculé sur la taille maximale (tuile élargie à tout l'écran),
+         une seule fois puis au redimensionnement de la fenêtre : jamais pendant le défilement, sinon le lecteur se recalcule en continu. */
+      const cover = () => {
+        const w = document.documentElement.clientWidth, hh = reelBox.clientHeight;
         const r = 16 / 9;
-        vimeoHero.style.width = Math.max(w, hh * r) + "px";
-        vimeoHero.style.height = Math.max(hh, w / r) + "px";
+        vimeoHero.style.width = Math.ceil(Math.max(w, hh * r)) + "px";
+        vimeoHero.style.height = Math.ceil(Math.max(hh, w / r)) + "px";
       };
-      cover(); addEventListener("resize", cover); addEventListener("scroll", cover, {passive:true});
+      cover(); addEventListener("resize", cover);
       /* Boucle sans à-coup : Vimeo marque un temps de chargement en revenant au début.
          On masque ce passage par un fondu au noir volontaire, puis on fait réapparaître l'image. */
       const mask = document.createElement("div"); mask.className = "reel-mask"; vimeoHero.after(mask);
@@ -375,7 +375,9 @@ async function load(name){
     const p = reduce ? 0 : Math.min(1, Math.max(0, (innerHeight * 0.85 - r.top) / (innerHeight * 0.6)));
     wrapR.style.setProperty("--p", p.toFixed(3));
   }
-  grow(); addEventListener("scroll", grow, {passive:true}); addEventListener("resize", grow);
+  let growQ = false;
+  const growSoon = () => { if (growQ) return; growQ = true; requestAnimationFrame(() => { growQ = false; grow(); }); };
+  grow(); addEventListener("scroll", growSoon, {passive:true}); addEventListener("resize", growSoon);
   if (reduce && !vimeoHero) { reel.removeAttribute("autoplay"); reel.pause(); }
   if (vimeoHero) {
     let vPaused = false;
