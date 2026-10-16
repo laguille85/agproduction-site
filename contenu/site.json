@@ -1,11 +1,11 @@
 {
   "accroche_titre": "Films. Photos. Drone.",
   "accroche_texte": "Filmer l'effort, raconter les marques. En France comme à l'étranger.",
-  "video_accueil_vimeo": "",
+  "video_accueil_vimeo": "https://vimeo.com/1230822337",
   "video_accueil": "images/video/showreel-720.mp4",
   "video_accueil_hevc": "",
   "video_accueil_mobile": "",
-  "video_accueil_image": "images/video/affiche-showreel.jpg",
+  "video_accueil_image": "images/externes/vimeocdn-2205828587-892b95b6f37d433055c3120a1aafc3c6ced88e7cdc805a1fe9aed7a619dcadf4-d_1920x1080.jpg",
   "email": "contact@antoineguillou.com",
   "instagram": "https://www.instagram.com/aguillouphotography/",
   "linkedin": "https://www.linkedin.com/in/antoine-guillou-14a02628",
