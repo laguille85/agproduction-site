@@ -61,7 +61,8 @@ async function load(name){
     sources.push(`<source src="${esc(src(SITE.video_accueil))}" type="video/mp4">`);
     if (SITE.video_accueil_image && v.getAttribute("poster") !== SITE.video_accueil_image) v.poster = src(SITE.video_accueil_image);
     /* On ne recharge la vidéo que si les sources diffèrent de celles déjà dans la page (évite un second téléchargement) */
-    const cur = v.querySelector("source"), same = sources.length === 1 && cur && cur.getAttribute("src") === SITE.video_accueil;
+    const want = [SITE.video_accueil_mobile, SITE.video_accueil_hevc, SITE.video_accueil].filter(Boolean).join("|");
+    const same = [...v.querySelectorAll("source")].map(s => s.getAttribute("src")).join("|") === want;
     if (!same) { v.innerHTML = sources.join(""); v.load(); }
     if (!reduce) v.play().catch(()=>{});
   }
