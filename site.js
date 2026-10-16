@@ -59,9 +59,11 @@ async function load(name){
     if (SITE.video_accueil_mobile) sources.push(`<source src="${esc(src(SITE.video_accueil_mobile))}" type="video/mp4" media="(max-width: 760px)">`);
     if (SITE.video_accueil_hevc) sources.push(`<source src="${esc(src(SITE.video_accueil_hevc))}" type='video/mp4; codecs="hvc1"'>`);
     sources.push(`<source src="${esc(src(SITE.video_accueil))}" type="video/mp4">`);
-    if (SITE.video_accueil_image) v.poster = src(SITE.video_accueil_image);
-    v.innerHTML = sources.join("");
-    v.load(); if (!reduce) v.play().catch(()=>{});
+    if (SITE.video_accueil_image && v.getAttribute("poster") !== SITE.video_accueil_image) v.poster = src(SITE.video_accueil_image);
+    /* On ne recharge la vidéo que si les sources diffèrent de celles déjà dans la page (évite un second téléchargement) */
+    const cur = v.querySelector("source"), same = sources.length === 1 && cur && cur.getAttribute("src") === SITE.video_accueil;
+    if (!same) { v.innerHTML = sources.join(""); v.load(); }
+    if (!reduce) v.play().catch(()=>{});
   }
   if (SITE.portrait) $("#aboutFace").src = src(SITE.portrait);
   if (SITE.photo_a_propos && $("#aboutPhoto").getAttribute("src") !== SITE.photo_a_propos) { const ap = $("#aboutPhoto"); ap.removeAttribute("srcset"); ap.src = src(SITE.photo_a_propos); }
