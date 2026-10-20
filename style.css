@@ -5,7 +5,7 @@
   --ink:#1d1d1f;         /* texte principal */
   --graphite:#6e6e73;    /* texte secondaire */
   --hair:#d2d2d7;        /* filets */
-  --tide:#5a86bb;        /* textes et liens : bleu du logo, un peu soutenu pour la lisibilité */
+  --tide:#4572a7;        /* textes et liens : bleu du logo assombri pour un contraste suffisant (4,6 à 5:1, norme AA) */
   --tide-l:#86abd2;      /* icônes et accents : bleu clair des lettres du logo */
   --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI Variable","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   --g:clamp(16px,4vw,48px);
@@ -147,7 +147,7 @@ section{scroll-margin-top:60px}
 .tile.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transform:scale(1.001);transition:transform 1.6s cubic-bezier(.2,.7,.2,1)}
 @media (hover:hover) and (pointer:fine){.tile.photo:hover img{transform:scale(1.05)}}
 .tile.photo::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0) 45%,rgba(0,0,0,.62) 100%)}
-.tile.photo .lbl{color:rgba(255,255,255,.85)}
+.tile.photo .lbl{color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.45)}
 .tile.photo p{color:rgba(255,255,255,.88)}
 .tile.photo .k{color:#fff}
 .tile.dark{background:#1d1d1f;color:#f5f5f7}
@@ -520,7 +520,7 @@ footer .wrap{padding-block:34px calc(24px + env(safe-area-inset-bottom,0px))}
 .pg-hero h1{max-width:15em}
 .pg-hero .eyebrow{margin:0 0 10px;font-size:15px;font-weight:600;color:var(--tide)}
 .pg-hero h1{margin:0;font-size:clamp(38px,6vw,72px);font-weight:700;letter-spacing:-.045em;line-height:1.02;text-wrap:balance}
-.pg-hero .lede{margin:22px 0 0;font-size:clamp(19px,1.8vw,23px);line-height:1.45;color:var(--graphite);max-width:40em;text-wrap:pretty}
+.pg-hero .lede{margin:22px 0 0;font-size:clamp(19px,1.8vw,23px);line-height:1.45;color:var(--graphite);max-width:33em;text-wrap:pretty}
 .pg-cta-btns{display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px;margin:30px 0 0}
 .pg-cover{margin:0 auto}
 .pg-cover img{width:100%;aspect-ratio:2.39/1;object-fit:cover;border-radius:var(--r-lg);background:var(--cloud)}
@@ -736,7 +736,7 @@ footer .wrap{padding-block:34px calc(24px + env(safe-area-inset-bottom,0px))}
 @media (max-width:760px){.about{grid-template-columns:1fr;gap:40px}.about .pic #aboutPhoto{aspect-ratio:4/4.4}.about .pic .face{right:14px;bottom:-30px}.about .copy{padding-top:14px}}
 
 /* Tuile « 10+ ans » : bas plus sombre pour que le texte reste lisible sur téléphone */
-.tile.photo.t-a::after{background:linear-gradient(180deg,rgba(0,0,0,.38) 0%,rgba(0,0,0,0) 28%,rgba(0,0,0,.1) 48%,rgba(0,0,0,.78) 100%)}
+.tile.photo.t-a::after{background:linear-gradient(180deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.18) 22%,rgba(0,0,0,0) 34%,rgba(0,0,0,.1) 48%,rgba(0,0,0,.78) 100%)}
 .tile.photo.t-a p{color:#fff;text-shadow:0 1px 12px rgba(0,0,0,.35)}
 .tile.photo.t-a .k{text-shadow:0 2px 28px rgba(0,0,0,.4)}
 @media (max-width:760px){.tile.photo.t-a::after{background:linear-gradient(180deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.35) 38%,rgba(0,0,0,.35) 55%,rgba(0,0,0,.85) 100%)}}
@@ -753,3 +753,6 @@ html{-webkit-tap-highlight-color:transparent}
 a,button,[role="button"],label,summary{touch-action:manipulation}
 .film,.pcard,.fa-card,.skill,.case-cover,.case-mosaic button,.case-strip button,.g-pic,.pg-shot,.pp-shot,.pp-play{transition:scale .16s cubic-bezier(.23,1,.32,1)}
 .film:active,.pcard:active,.fa-card:active,.skill:active,.case-cover:active,.case-mosaic button:active,.case-strip button:active,.g-pic:active,.pg-shot:active,.pp-shot:active,.pp-play:active{scale:.98}
+
+/* Typographie : évite un mot seul sur la dernière ligne des paragraphes */
+p,dd,li,figcaption{text-wrap:pretty}
