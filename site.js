@@ -373,11 +373,22 @@ async function load(name){
 
   /* ---------- Vidéo d'ouverture ---------- */
   const wrapR = $("#reelWrap");
+  /* La vidéo s'élargit jusqu'aux bords au défilement. On découpe la tuile (clip-path) au lieu de changer ses marges :
+     aucune remise en page, la vidéo garde sa taille, et seule la tuile est touchée (pas de variable CSS héritée). */
+  const reelBoxG = wrapR.querySelector(".reel"), wrapRef = document.querySelector(".wrap"), reelToggle = wrapR.querySelector(".toggle");
+  let gutter = 0, lastClip = "";
+  const measureG = () => { gutter = wrapRef ? parseFloat(getComputedStyle(wrapRef).paddingLeft) || 0 : 0; };
   function grow(){
     const r = wrapR.getBoundingClientRect();
     const p = reduce ? 0 : Math.min(1, Math.max(0, (innerHeight * 0.85 - r.top) / (innerHeight * 0.6)));
-    wrapR.style.setProperty("--p", p.toFixed(3));
+    const k = 1 - p, clip = `inset(0 ${(gutter * k).toFixed(1)}px round ${(28 * k).toFixed(1)}px)`;
+    if (clip !== lastClip) {
+      reelBoxG.style.clipPath = clip; lastClip = clip;
+      const x = (gutter * k).toFixed(1);   // le bouton pause reste à l'intérieur de la partie visible
+      if (reelToggle) reelToggle.style.transform = `translateX(-${x}px)`;
+    }
   }
+  measureG(); addEventListener("resize", measureG);
   let growQ = false;
   const growSoon = () => { if (growQ) return; growQ = true; requestAnimationFrame(() => { growQ = false; grow(); }); };
   grow(); addEventListener("scroll", growSoon, {passive:true}); addEventListener("resize", growSoon);
