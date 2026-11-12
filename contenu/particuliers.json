@@ -206,7 +206,7 @@
     },
     {
       "titre": "Journée et séance couple",
-      "prix": "3 000 €",
+      "prix": "3 100 €",
       "vedette": true,
       "texte": "La journée complète, et une séance à deux avant le mariage.",
       "inclus": [
@@ -218,12 +218,13 @@
     },
     {
       "titre": "Le week-end",
-      "prix": "3 500 €",
-      "texte": "La séance couple, la journée complète, et la veille ou le lendemain.",
+      "prix": "3 800 €",
+      "texte": "La journée complète, et la veille ou le lendemain.",
       "inclus": [
-        "Tout le contenu de la formule précédente",
+        "Tout le contenu de la journée complète",
         "Reportage la veille ou le lendemain : dîner, brunch, retour de noces",
-        "Un seul récit en images, du premier au dernier moment"
+        "Un seul récit en images, du premier au dernier moment",
+        "Séance couple en option"
       ]
     }
   ],
