@@ -53,4 +53,18 @@
     const soon2 = () => { if (!q2) { q2 = true; requestAnimationFrame(upd2); } };
     upd2(); addEventListener("scroll", soon2, { passive: true }); addEventListener("resize", soon2);
   }
+
+  /* En quelques chiffres : chaque chiffre défile comme un compteur mécanique, puis un trait se trace sous le nombre */
+  const bento = document.getElementById("bento");
+  if (bento && "IntersectionObserver" in window) {
+    const roll = el => {
+      const end = String(parseInt(el.dataset.count || el.textContent, 10) || 0);
+      const od = document.createElement("span"); od.className = "odo"; od.setAttribute("aria-label", end);
+      od.innerHTML = [...end].map((d, i) => `<span class="col" aria-hidden="true"><span class="strip" style="--d:${+d + 10 * (i + 1)};--i:${i}">${Array.from({ length: +d + 10 * (i + 1) + 1 }, (_, n) => `<b>${n % 10}</b>`).join("")}</span></span>`).join("");
+      el.hidden = true; el.after(od); return od;
+    };
+    const odos = [...bento.querySelectorAll("[data-count]")].map(roll);
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { bento.classList.add("go"); io.disconnect(); } }), { threshold: .45 });
+    io.observe(bento);
+  }
 })();

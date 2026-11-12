@@ -667,35 +667,6 @@ def build_particuliers(idx):
     return path
 
 
-def build_apercu(idx):
-    """Version d'essai de l'accueil (apercu.html, non référencée) : même contenu, autre mise en page.
-    Vidéo plein écran avec le titre dessus, logos en bandeau, films sur fond sombre, chiffres plus bas."""
-    def cut(s, start, end):
-        a = s.index(start); b = s.index(end, a) + len(end)
-        return s[:a] + s[b:], s[a:b]
-    s = idx
-    s, hero = cut(s, '<section class="hero wrap"', "</section>")
-    s, refs = cut(s, "<!-- RÉFÉRENCES -->", "</section>")
-    s, nums = cut(s, "<!-- CHIFFRES -->", "</section>")
-    hero = hero.replace('class="hero wrap"', 'class="hero"')
-    hero = re.sub(r'<span class="hero-k">.*?</span>', "", hero, 1)   # une seule accroche : le grand titre, puis une phrase
-    hero = hero.replace("</section>", '<p class="hero-loc">Basé aux Sables-d\'Olonne, en Vendée</p></section>', 1)
-    s = s.replace('<div class="reel">', '<div class="reel">' + hero, 1)
-    a = s.index('<div class="reel-wrap"'); b = s.index("<!-- FILMS", a) if "<!-- FILMS" in s[a:] else s.index('<section class="sec wrap" id="films"', a)
-    s = s[:b] + refs + "\n\n  " + s[b:]
-    b = s.index("<!-- POURQUOI -->")
-    s = s[:b] + nums + "\n\n  " + s[b:]
-    s = s.replace('<section class="sec wrap" aria-labelledby="h-why">', '<section class="sec wrap" id="pourquoi" aria-labelledby="h-why">', 1)
-    s = s.replace('href="#savoir-faire"', 'href="#pourquoi"')   # la section « Un regard. Tous les terrains. » est masquée dans l'essai
-    s = s.replace("<html ", '<html class="v2" ', 1) if "<html " in s else s.replace("<html>", '<html class="v2">', 1)
-    s = re.sub(r'<meta name="robots"[^>]*>', "", s)
-    s = s.replace("</title>", '</title>\n<meta name="robots" content="noindex, nofollow">', 1)
-    s = re.sub(r'(<link rel="stylesheet" href="/style\.css\?v=([^"]+)">)', r'\1\n<link rel="stylesheet" href="/v2.css?v=\2">', s, 1)
-    s = s.replace("</body>", '<script src="/v2.js?v=' + re.search(r'style\.css\?v=([^"]+)', s).group(1) + '" defer></script>\n</body>', 1)
-    with open(os.path.join(ROOT, "apercu.html"), "w", encoding="utf-8") as f:
-        f.write(s)
-
-
 def write(path, content):
     d = os.path.join(ROOT, path.strip("/"))
     os.makedirs(d, exist_ok=True)
@@ -715,7 +686,6 @@ def main():
     idx = inject(idx, render_index_blocks())
     with open(ip, "w", encoding="utf-8") as f:
         f.write(idx)
-    build_apercu(idx)
 
     urls = [("/", "1.0")]
     for p in PAGES:
