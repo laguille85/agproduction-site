@@ -93,7 +93,7 @@ def page_for_skill(surtitre):
 def film_card(f, i):
     n = len(f.get("vimeo") or [])
     return (f'<button class="film" type="button" data-v="{i}" aria-label="Lire {e(f.get("titre"))}">'
-            f'<span class="shot"><img src="{e(img(f.get("vignette")))}"{ss(f.get("vignette"), "(max-width:760px) 80vw, 560px")} alt="{e(f.get("titre"))} — film {e(f.get("categorie"))}" loading="lazy" decoding="async"><span class="play">{PLAY}</span></span>'
+            f'<span class="shot"><img src="{e(img(f.get("vignette")))}"{ss(f.get("vignette"), "(max-width:760px) 60vw, 560px")} alt="{e(f.get("titre"))} — film {e(f.get("categorie"))}" loading="lazy" decoding="async"><span class="play">{PLAY}</span></span>'
             f'<span class="meta"><span class="cat">{e(f.get("categorie"))}</span><strong>{e(f.get("titre"))}</strong>'
             + (f'<small>{n} films</small>' if n > 1 else "") + '</span></button>')
 
@@ -131,7 +131,7 @@ def render_index_blocks():
         return round(min(1.25, 1.25 / k ** .5) * float(r.get("taille") or 1), 3)
     b["refs"] = "".join(f'<li title="{e(r.get("nom"))}"><img src="{e(img(r.get("logo")))}" alt="{e(r.get("nom"))}" loading="lazy" style="height:calc(var(--lh) * {logo_h(r)})"></li>' for r in REFS)
     b["skills"] = "".join(
-        f'<button class="skill" type="button" data-s="{i}" aria-label="{e(s.get("titre"))} — en savoir plus"><img src="{e(img(s.get("image")))}"{ss(s.get("image"), "(max-width:760px) 72vw, 380px")} alt="{e(s.get("titre"))}" loading="lazy">'
+        f'<button class="skill" type="button" data-s="{i}" aria-label="{e(s.get("titre"))} — en savoir plus"><img src="{e(img(s.get("image")))}"{ss(s.get("image"), "(max-width:760px) 60vw, 380px")} alt="{e(s.get("titre"))}" loading="lazy">'
         f'<span class="txt"><small>{e(s.get("surtitre"))}</small><strong>{e(s.get("titre"))}</strong></span>'
         '<span class="plus"><svg viewBox="0 0 14 14"><path d="M7 1v12M1 7h12"/></svg></span></button>' for i, s in enumerate(SKILLS))
     initial = SITE.get("series_affichees") or 12
@@ -139,13 +139,13 @@ def render_index_blocks():
     grid = [(i, p) for i, p in enumerate(PHOTOS) if p.get("titre") not in told]
     b["pgrid"] = "".join(
         f'<button class="pcard" type="button" data-p="{i}" {"hidden " if n >= initial else ""}aria-label="{e(p.get("titre"))} — voir la série">'
-        f'<span class="img"><img src="{e(img(p.get("couverture")))}"{ss(p.get("couverture"), "(max-width:760px) 70vw, 25vw")} alt="{e(p.get("titre"))} — série photo d’Antoine Guillou, photographe en Vendée" loading="lazy" decoding="async"></span><span class="t">{e(p.get("titre"))}</span></button>' for n, (i, p) in enumerate(grid))
+        f'<span class="img"><img src="{e(img(p.get("couverture")))}"{ss(p.get("couverture"), "(max-width:760px) 60vw, 25vw")} alt="{e(p.get("titre"))} — série photo d’Antoine Guillou, photographe en Vendée" loading="lazy" decoding="async"></span><span class="t">{e(p.get("titre"))}</span></button>' for n, (i, p) in enumerate(grid))
     b["aboutCopy"] = (f'<h2 id="h-about">{e(SITE.get("a_propos_titre"))}</h2><p><b>{e(SITE.get("a_propos_intro"))}</b></p>'
                       + "".join(f"<p>{e(p)}</p>" for p in SITE.get("a_propos_paragraphes") or [])
                       + '<ul class="chips" aria-label="Domaines d\'activité">' + "".join(f"<li>{e(d)}</li>" for d in SITE.get("domaines") or []) + "</ul>")
     b["faGrid"] = "".join(
         f'<button class="fa-card" type="button" data-fa="{i}" aria-label="{e(p.get("titre"))} — voir la série"><span class="img"><img class="photo" src="{e(img(p.get("couverture") or (p.get("images") or [""])[0]))}" alt="Tirage d\'art {e(p.get("titre"))}" loading="lazy" decoding="async">'
-        + (f'<img class="frame" src="{e(img(p["encadre"]))}"{ss(p["encadre"], "(max-width:760px) 70vw, 25vw")} alt="" loading="lazy" decoding="async">' if p.get("encadre") else "")
+        + (f'<img class="frame" src="{e(img(p["encadre"]))}"{ss(p["encadre"], "(max-width:760px) 60vw, 25vw")} alt="" loading="lazy" decoding="async">' if p.get("encadre") else "")
         + f'</span><strong>{e(p.get("titre"))}<small>{len(p.get("images") or [])} photos</small></strong></button>' for i, p in enumerate(PRINTS))
     b["prestations"] = "".join(f'<li><a href="/{e(p["slug"])}/">{e(p.get("menu"))}</a></li>' for p in PAGES)
     return b
@@ -263,7 +263,7 @@ def films_block(films, heading="Quelques films"):
     for f in films:
         vids = [vimeo_id(v) and str(v) for v in f.get("vimeo") or []]
         cards.append(f'<button class="film pg-film" type="button" data-vimeo="{e(json.dumps(vids))}" data-title="{e(f.get("titre"))}" aria-label="Lire {e(f.get("titre"))}">'
-                     f'<span class="shot"><img src="{e(img(f.get("vignette")))}"{ss(f.get("vignette"), "(max-width:760px) 80vw, 560px")} alt="{e(f.get("titre"))} — film {e(f.get("categorie"))}" loading="lazy" decoding="async"><span class="play">{PLAY}</span></span>'
+                     f'<span class="shot"><img src="{e(img(f.get("vignette")))}"{ss(f.get("vignette"), "(max-width:760px) 60vw, 560px")} alt="{e(f.get("titre"))} — film {e(f.get("categorie"))}" loading="lazy" decoding="async"><span class="play">{PLAY}</span></span>'
                      f'<span class="meta"><span class="cat">{e(f.get("categorie"))}</span><strong>{e(f.get("titre"))}</strong></span></button>')
     return f'<section class="pg-sec wrap"><h2>{e(heading)}</h2><div class="pg-films">{"".join(cards)}</div></section>'
 
@@ -275,7 +275,7 @@ def series_block(series, heading="Séries photo"):
     for p in series:
         imgs = [img(u) for u in p.get("images") or []]
         cards.append(f'<button class="pcard pg-serie" type="button" data-images="{e(json.dumps(imgs))}" data-title="{e(p.get("titre"))}" aria-label="{e(p.get("titre"))} — voir la série">'
-                     f'<span class="img"><img src="{e(img(p.get("couverture")))}"{ss(p.get("couverture"), "(max-width:760px) 70vw, 25vw")} alt="Série photo {e(p.get("titre"))}" loading="lazy" decoding="async"></span><span class="t">{e(p.get("titre"))}</span></button>')
+                     f'<span class="img"><img src="{e(img(p.get("couverture")))}"{ss(p.get("couverture"), "(max-width:760px) 60vw, 25vw")} alt="Série photo {e(p.get("titre"))}" loading="lazy" decoding="async"></span><span class="t">{e(p.get("titre"))}</span></button>')
     return f'<section class="pg-sec wrap"><h2>{e(heading)}</h2><div class="pg-photos">{"".join(cards)}</div></section>'
 
 

@@ -150,7 +150,7 @@ async function load(name){
   $("#segIn").innerHTML = cats.map((c,i) => `<button type="button" data-cat="${esc(c)}" aria-pressed="${i===0}">${esc(c)}</button>`).join("");
   function renderRail(cat){
     rail.innerHTML = FILMS.map((f,i) => (cat === "Tous" || f.categorie === cat) ? `<button class="film" type="button" data-v="${i}" aria-label="Lire ${esc(f.titre)}">
-        <span class="shot"><img src="${esc(src(f.vignette))}"${ss(f.vignette,"(max-width:760px) 80vw, 560px")} alt="${esc(f.titre)} — film ${esc(f.categorie)}" loading="lazy" decoding="async"><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+        <span class="shot"><img src="${esc(src(f.vignette))}"${ss(f.vignette,"(max-width:760px) 60vw, 560px")} alt="${esc(f.titre)} — film ${esc(f.categorie)}" loading="lazy" decoding="async"><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
         <span class="meta"><span class="cat">${esc(f.categorie)}</span><strong>${esc(f.titre)}</strong>${(f.vimeo||[]).length > 1 ? `<small>${f.vimeo.length} films</small>` : ""}</span>
       </button>` : "").join("");
     rail.scrollLeft = 0; updateArrows();
@@ -245,13 +245,13 @@ async function load(name){
   if (!PRINTS.length) $("#tirages").hidden = true;
   if (SITE.tirages_texte) $("#faText").textContent = SITE.tirages_texte;
   $("#faGrid").innerHTML = PRINTS.map((p,i) => `<button class="fa-card" type="button" data-fa="${i}" aria-label="${esc(p.titre)} — voir la série">
-    <span class="img"><img class="photo" src="${esc(src(p.couverture || (p.images||[])[0]))}"${ss(p.couverture || (p.images||[])[0],"(max-width:760px) 70vw, 25vw")} alt="Tirage d'art ${esc(p.titre)}" loading="lazy" decoding="async">${p.encadre ? `<img class="frame" src="${esc(src(p.encadre))}"${ss(p.encadre,"(max-width:760px) 70vw, 25vw")} alt="" loading="lazy" decoding="async">` : ""}</span>
+    <span class="img"><img class="photo" src="${esc(src(p.couverture || (p.images||[])[0]))}"${ss(p.couverture || (p.images||[])[0],"(max-width:760px) 60vw, 25vw")} alt="Tirage d'art ${esc(p.titre)}" loading="lazy" decoding="async">${p.encadre ? `<img class="frame" src="${esc(src(p.encadre))}"${ss(p.encadre,"(max-width:760px) 60vw, 25vw")} alt="" loading="lazy" decoding="async">` : ""}</span>
     <strong>${esc(p.titre)}<small>${(p.images||[]).length} photos</small></strong></button>`).join("");
   $("#faAsk").addEventListener("click", () => { const sel = $("#f-type"); if (sel) { const o = [...sel.options].find(o => /tirage/i.test(o.text)); if (o) sel.value = o.value; } });
 
   /* ---------- Savoir-faire ---------- */
   $("#skills").innerHTML = SKILLS.map((s,i) => `<button class="skill" type="button" data-s="${i}" aria-label="${esc(s.titre)} — en savoir plus">
-    <img src="${esc(src(s.image))}"${ss(s.image,"(max-width:760px) 72vw, 380px")} alt="${esc(s.titre)}" loading="lazy">
+    <img src="${esc(src(s.image))}"${ss(s.image,"(max-width:760px) 60vw, 380px")} alt="${esc(s.titre)}" loading="lazy">
     <span class="txt"><small>${esc(s.surtitre)}</small><strong>${esc(s.titre)}</strong></span>
     <span class="plus"><svg viewBox="0 0 14 14"><path d="M7 1v12M1 7h12"/></svg></span>
   </button>`).join("");
@@ -267,7 +267,7 @@ async function load(name){
   const TOLD = new Set((PCASES || []).map(c => c.serie_photo).filter(Boolean));   /* séries déjà racontées plus haut */
   const GRID = PHOTOS.map((p,i) => [p,i]).filter(([p]) => !TOLD.has(p.titre));
   $("#pgrid").innerHTML = GRID.map(([p,i],n) => `<button class="pcard" type="button" data-p="${i}" ${n >= INITIAL ? "hidden" : ""} aria-label="${esc(p.titre)} — voir la série">
-    <span class="img"><img src="${esc(src(p.couverture))}"${ss(p.couverture,"(max-width:760px) 70vw, 25vw")} alt="${esc(p.titre)} — série photo d’Antoine Guillou, photographe en Vendée" loading="lazy" decoding="async"></span><span class="t">${esc(p.titre)}</span></button>`).join("");
+    <span class="img"><img src="${esc(src(p.couverture))}"${ss(p.couverture,"(max-width:760px) 60vw, 25vw")} alt="${esc(p.titre)} — série photo d’Antoine Guillou, photographe en Vendée" loading="lazy" decoding="async"></span><span class="t">${esc(p.titre)}</span></button>`).join("");
   const more = $("#morePhotos");
   if (more && GRID.length <= INITIAL) more.hidden = true;
   if (more) more.addEventListener("click", () => {

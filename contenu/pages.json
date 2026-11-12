@@ -183,6 +183,64 @@
   ]
  },
  {
+  "slug": "video-recrutement-marque-employeur",
+  "menu": "Vidéo de recrutement",
+  "savoir_faire": "",
+  "titre_seo": "Vidéo de recrutement et marque employeur en Vendée | AG Production",
+  "description": "Vidéo de recrutement et film marque employeur pour les entreprises de Vendée : portraits de collaborateurs, métiers, coulisses. Tournage dans vos locaux.",
+  "surtitre": "Marque employeur · Vendée",
+  "h1": "Vidéo de recrutement et marque employeur.",
+  "intro": "Une offre d'emploi décrit un poste. Une vidéo montre l'atelier, l'équipe et l'ambiance : ce qu'un candidat veut voir avant de postuler. Je réalise des vidéos de recrutement et des films marque employeur pour les entreprises de Vendée et des Pays de la Loire, tournés chez vous, avec vos collaborateurs.",
+  "image": "",
+  "sections": [
+   {
+    "titre": "Ce que je filme",
+    "texte": "Des portraits de collaborateurs qui racontent leur métier avec leurs mots. Les gestes, les machines, les chantiers, les bureaux : le quotidien réel de l'entreprise. Un mot du dirigeant sur le projet et les valeurs. Je prépare les questions avec vous et je mets à l'aise celles et ceux qui n'ont jamais parlé devant une caméra."
+   },
+   {
+    "titre": "Des formats pensés pour vos annonces",
+    "texte": "Un film de présentation d'une à deux minutes pour votre page carrière et vos salons. Des portraits courts par métier pour LinkedIn, Indeed, France Travail ou Welcome to the Jungle. Des versions verticales sous-titrées pour Instagram et TikTok. Un seul tournage suffit en général à produire l'ensemble."
+   },
+   {
+    "titre": "Une journée de tournage, plusieurs mois de contenu",
+    "texte": "Je viens dans vos locaux avec un matériel léger, sans bloquer l'activité. Sur la même journée, je peux réaliser les photos de l'équipe et des postes de travail, et des images aériennes de votre site par drone. Je monte et j'étalonne moi-même : vous avez un seul interlocuteur du premier échange à la livraison."
+   },
+   {
+    "titre": "Basé en Vendée",
+    "texte": "Je suis installé aux Sables-d'Olonne et je me déplace dans tout le département : La Roche-sur-Yon, Les Herbiers, Montaigu, Challans, Fontenay-le-Comte, Luçon. J'ai tourné pour Vrignon Construction ou l'équipe cycliste Vendée U, et pour Air France, Europ Assistance, Allianz Trade ou Enedis."
+   }
+  ],
+  "films": [
+   "Vrignon Construction",
+   "Enedis",
+   "Allianz Trade en France",
+   "Cogedim",
+   "Air France"
+  ],
+  "series": [
+   "Europ Assistance",
+   "Gérard Pasquier"
+  ],
+  "faq": [
+   {
+    "question": "Combien de temps dure le tournage ?",
+    "reponse": "Une journée suffit le plus souvent pour un film de présentation et trois ou quatre portraits. Je fixe le planning avec vous pour perturber le moins possible l'activité."
+   },
+   {
+    "question": "Nos collaborateurs ne sont pas à l'aise devant la caméra, est-ce un problème ?",
+    "reponse": "Non, c'est le cas le plus courant. Je prépare les questions à l'avance, l'entretien se fait sous forme de conversation, et je ne garde au montage que les meilleurs passages."
+   },
+   {
+    "question": "Où pouvons-nous diffuser les vidéos ?",
+    "reponse": "Partout : site carrière, LinkedIn, offres d'emploi en ligne, salons, écrans d'accueil. Je livre chaque vidéo dans les formats adaptés, horizontal et vertical, avec sous-titres."
+   },
+   {
+    "question": "Quel budget prévoir ?",
+    "reponse": "Chaque projet fait l'objet d'un devis sur mesure, selon le nombre de vidéos et de jours de tournage. Décrivez-moi votre besoin et je vous envoie une proposition rapidement."
+   }
+  ]
+ },
+ {
   "slug": "videaste-sport",
   "menu": "Vidéo de sport",
   "savoir_faire": "Sport",
