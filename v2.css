@@ -125,3 +125,34 @@
   .v2 .reel .hero{padding-bottom:26px}
   .v2 .hero .ctas{margin-top:20px}
 }
+
+/* Autres séries : titres sur une ligne, pour que toutes les photos d'une rangée aient la même hauteur */
+.v2 .pcard span.t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+
+/* « Un regard. Tous les terrains. » retiré de l'essai (reprend les filtres des films et les liens du pied de page) */
+.v2 #savoir-faire{display:none}
+
+/* À propos : pastilles en bleu */
+.v2 .about .chips li{background:#eef3f9;color:#1d4469;font-size:14px;font-weight:600;padding:7px 15px}
+.v2 .about .kicker{color:var(--tide)}
+
+/* Pourquoi travailler avec moi : six arguments en grand, reliés par un fil bleu */
+.v2 .why-wrap{grid-template-columns:1fr;gap:clamp(28px,3.4vw,48px)}
+.v2 .why-wrap .head{position:static}
+.v2 .why-wrap .head p{display:none}
+.v2 .why{display:block;position:relative;border:0;padding-left:clamp(34px,4vw,56px);max-width:980px}
+.v2 .why::before,.v2 .why::after{content:"";position:absolute;left:6px;top:18px;width:2px;border-radius:2px}
+.v2 .why::before{bottom:18px;background:var(--hair)}
+.v2 .why::after{height:calc(var(--wp,1) * (100% - 36px));background:#1d4469;transition:height .15s linear}
+.v2 .why article{display:block;position:relative;border:0;padding:clamp(14px,1.6vw,22px) 0}
+.v2 .why article::before{content:"";position:absolute;left:calc(clamp(34px,4vw,56px) * -1 + 0px);top:calc(clamp(14px,1.6vw,22px) + .55em);width:14px;height:14px;border-radius:50%;background:#fff;border:2px solid var(--hair);padding:0;box-sizing:border-box;z-index:1;font-size:clamp(26px,3.4vw,48px);transition:border-color .3s,background .3s,transform .3s}
+.v2 .why h3{font-size:clamp(26px,3.4vw,48px);font-weight:700;letter-spacing:-.04em;line-height:1.08;margin:0 0 8px}
+.v2 .why p{font-size:clamp(16px,1.4vw,19px);max-width:36em;color:var(--graphite)}
+.v2mo .why article{opacity:.28;transition:opacity .45s ease,transform .45s cubic-bezier(.2,.7,.2,1)}
+.v2mo .why article.vu{opacity:.5}
+.v2mo .why article.on{opacity:1;transform:translateX(6px)}
+.v2mo .why article.on h3{color:#1d4469}
+.v2 .why article.on::before,.v2 .why article.vu::before{border-color:#1d4469;background:#1d4469}
+.v2 .why article.on::before{transform:scale(1.25)}
+@media (min-width:900px){.v2 .why{display:block}.v2 .why article{grid-template-columns:none}}
+@media (min-width:900px){.v2 .pgrid .pcard:nth-child(1) .img,.v2 .pgrid .pcard:nth-child(8) .img{contain:size}}

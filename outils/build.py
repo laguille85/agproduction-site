@@ -685,6 +685,8 @@ def build_apercu(idx):
     s = s[:b] + refs + "\n\n  " + s[b:]
     b = s.index("<!-- POURQUOI -->")
     s = s[:b] + nums + "\n\n  " + s[b:]
+    s = s.replace('<section class="sec wrap" aria-labelledby="h-why">', '<section class="sec wrap" id="pourquoi" aria-labelledby="h-why">', 1)
+    s = s.replace('href="#savoir-faire"', 'href="#pourquoi"')   # la section « Un regard. Tous les terrains. » est masquée dans l'essai
     s = s.replace("<html ", '<html class="v2" ', 1) if "<html " in s else s.replace("<html>", '<html class="v2">', 1)
     s = re.sub(r'<meta name="robots"[^>]*>', "", s)
     s = s.replace("</title>", '</title>\n<meta name="robots" content="noindex, nofollow">', 1)

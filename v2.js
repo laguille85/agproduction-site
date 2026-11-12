@@ -37,4 +37,20 @@
     });
     rail.addEventListener("pointerleave", reset);
   }
+
+  /* Pourquoi travailler avec moi : un fil qui se remplit au défilement, l'argument à l'écran s'allume */
+  const why = document.querySelector(".why");
+  if (why) {
+    const arts = [...why.querySelectorAll("article")]; let q2 = false, last = -1;
+    const upd2 = () => {
+      q2 = false; const mid = innerHeight * .52, r = why.getBoundingClientRect();
+      why.style.setProperty("--wp", Math.max(0, Math.min(1, (mid - r.top) / r.height)).toFixed(3));
+      let best = -1, d = 1e9;
+      arts.forEach((a, i) => { const b = a.getBoundingClientRect(), x = Math.abs((b.top + b.bottom) / 2 - mid); if (x < d) { d = x; best = i; } });
+      if (r.top > innerHeight * .85) best = -1; else if (r.bottom < innerHeight * .2) best = arts.length - 1;
+      if (best !== last) { last = best; arts.forEach((a, i) => { a.classList.toggle("on", i === best); a.classList.toggle("vu", i < best); }); }
+    };
+    const soon2 = () => { if (!q2) { q2 = true; requestAnimationFrame(upd2); } };
+    upd2(); addEventListener("scroll", soon2, { passive: true }); addEventListener("resize", soon2);
+  }
 })();
