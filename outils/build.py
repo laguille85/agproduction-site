@@ -590,6 +590,13 @@ PT_BLOCS = [
     ("L'exigence des tournages", "Toute l'année, je travaille pour des marques, des entreprises et des événements sportifs. J'ai l'habitude des lumières difficiles, des journées longues et des moments qui n'arrivent qu'une fois."),
     ("Votre galerie privée", "Après le mariage, vous recevez un lien et un mot de passe. Vos photos y sont rangées par moments de la journée. Vous marquez vos préférées d'un cœur, vous laissez un mot sur une image, et vos proches peuvent faire leur propre sélection."),
 ]
+PT_FACON_PHOTO = "/images/particuliers/elise-julien/ej-06.jpg"
+PT_ICONES = [
+    '<svg viewBox="0 0 24 24"><path d="M2.5 12s3.5-6.5 9.5-6.5 9.5 6.5 9.5 6.5-3.5 6.5-9.5 6.5S2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/></svg>',
+    '<svg viewBox="0 0 24 24"><rect x="9" y="10" width="6" height="4" rx="1.2"/><circle cx="5" cy="6" r="2.6"/><circle cx="19" cy="6" r="2.6"/><circle cx="5" cy="18" r="2.6"/><circle cx="19" cy="18" r="2.6"/><path d="M7 8l2.4 2.4M17 8l-2.4 2.4M7 16l2.4-2.4M17 16l-2.4-2.4"/></svg>',
+    '<svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="12" rx="2.5"/><path d="M8.5 7l1.3-2.5h4.4L15.5 7"/><circle cx="12" cy="13" r="3.2"/></svg>',
+    '<svg viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 8a4.3 4.3 0 0 1 7.5 2.5c0 5.4-7.5 10-7.5 10z"/></svg>',
+]
 PT_ETAPES = [
     ("1", "On se parle", "Vous me donnez la date, le lieu et ce que vous imaginez. Je vous envoie une proposition claire, avec le prix."),
     ("2", "On prépare la journée", "Avant le mariage, on cale ensemble le déroulé, les moments importants et les personnes à ne pas manquer."),
@@ -632,13 +639,15 @@ def build_particuliers(idx):
     tarifs = (("Mes formules commencent à partir de " + fs[0]["prix"] + ". Je ne couvre que des journées complètes. Chaque proposition est ensuite ajustée à votre mariage : lieu, séance couple, veille ou lendemain.") if fs
               else "Chaque projet fait l'objet d'une proposition sur mesure, selon la durée, le lieu et les prestations choisies.")
     faq = "".join(f"<details><summary>{e(q)}</summary><p>{e(a.replace('__TARIFS__', tarifs))}</p></details>" for q, a in PT_FAQ)
-    body = (f'<section class="pt-hero"><div class="wrap in"><h1>Photographe de mariage en Vendée.</h1>'
-            f'<p class="lede">Des photos prises sur le vif, au sol et au drone, pour revivre votre journée telle qu\'elle s\'est passée.</p>'
+    body = (f'<section class="pt-hero"><div class="wrap in"><h1>Photographe de mariage.</h1>'
+            f'<p class="lede">En Vendée, en France et partout dans le monde.</p>'
             f'<a class="pill" href="#contact">Vérifier ma disponibilité</a></div>'
             + (f'<figure><img src="{e(img(cover))}" alt="Mariés sur la plage au coucher du soleil, en Vendée" fetchpriority="high" style="object-position:{e(PART.get("couverture_cadrage") or "50% 40%")}"></figure>' if cover else "")
             + "</section>" + hist
-            + '<section class="pg-sec wrap"><h2>Ma façon de travailler.</h2><div class="pg-text pt-quatre">'
-            + "".join(f'<div class="pg-block"><h3>{e(t)}</h3><p>{e(x)}</p></div>' for t, x in PT_BLOCS) + "</div></section>"
+            + '<section class="pg-sec wrap"><div class="pt-facon">'
+            + f'<figure><img src="{e(img(PT_FACON_PHOTO))}"{ss(PT_FACON_PHOTO, "(max-width:760px) 100vw, 560px")} alt="La mariée arrive au bras de son père, photographiée sur le vif" loading="lazy" decoding="async"></figure>'
+            + '<div><h2>Ma façon de travailler.</h2><ul>'
+            + "".join(f'<li><span class="ic" aria-hidden="true">{PT_ICONES[i]}</span><div><h3>{e(t)}</h3><p>{e(x)}</p></div></li>' for i, (t, x) in enumerate(PT_BLOCS)) + "</ul></div></div></section>"
             + '<section class="pg-sec wrap"><h2>Du premier message à vos images.</h2><ol class="pt-etapes">'
             + "".join(f'<li><span>{n}</span><h3>{e(t)}</h3><p>{e(x)}</p></li>' for n, t, x in PT_ETAPES) + "</ol></section>"
             + formules_block(PART.get("formules"))

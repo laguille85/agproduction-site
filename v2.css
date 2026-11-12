@@ -187,3 +187,15 @@ html:not(.v2mo).v2 #bento .tile .k::after{transform:scaleX(.62)}
 .v2mo .steps.rv li::after{transform:none;transition:none;background:var(--hair)}
 .v2mo .steps.rv li::before{background:var(--ink);transition:none}
 @media (min-width:900px){.v2 .why-wrap{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,100px);align-items:start}.v2 .why-wrap .head{position:sticky;top:110px}}
+
+/* Compteurs : le dernier chiffre n'est plus rogné */
+.v2mo .odo{padding-right:.09em;margin-right:-.03em}
+/* Bandeau de logos : un titre discret pour dire de quoi il s'agit */
+.v2 #clients .head{position:static;width:auto;height:auto;overflow:visible;clip-path:none;margin:0 auto clamp(10px,1.4vw,18px);max-width:none;text-align:center}
+.v2 #clients .head h2{font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--graphite);line-height:1.3}
+.v2 #clients{-webkit-mask-image:none;mask-image:none;padding-top:clamp(24px,2.6vw,36px)}
+.v2 .refs{-webkit-mask-image:none}
+.v2 #clients::before,.v2 #clients::after{content:"";position:absolute;top:0;bottom:0;width:8%;z-index:1;pointer-events:none}
+.v2 #clients{position:relative}
+.v2 #clients::before{left:0;background:linear-gradient(90deg,#fff,rgba(255,255,255,0))}
+.v2 #clients::after{right:0;background:linear-gradient(270deg,#fff,rgba(255,255,255,0))}
