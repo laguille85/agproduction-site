@@ -95,3 +95,22 @@
 @media (max-width:760px){.v2 .about{grid-template-columns:1fr}.v2 .about .pic #aboutPhoto{min-height:0;aspect-ratio:4/5;height:auto}}
 .v2 #bento .tile{grid-column:auto!important;grid-row:auto!important;min-height:0}
 .v2 #bento .tile .k sup{-webkit-text-fill-color:var(--tide-l);color:var(--tide-l)}
+
+/* ---------- Animations (v2.js) ---------- */
+/* 1. Titre mot par mot */
+.v2mo #heroBig .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding:.06em .04em .1em 0;margin:-.06em -.04em -.1em 0}
+.v2mo #heroBig .w>span{display:inline-block;transform:translateY(108%);animation:v2mot .9s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i) * 130ms + 250ms)}
+@keyframes v2mot{to{transform:none}}
+.v2mo .hero .hero-k,.v2mo .hero .sub,.v2mo .hero .ctas{opacity:0;animation:v2monte .8s cubic-bezier(.2,.8,.2,1) forwards}
+.v2mo .hero .hero-k{animation-delay:.1s}.v2mo .hero .sub{animation-delay:.75s}.v2mo .hero .ctas{animation-delay:.9s}
+@keyframes v2monte{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+/* 2. Vidéo qui se resserre en carte */
+.v2mo .reel{clip-path:inset(calc(var(--p,0) * 14px) calc(var(--p,0) * clamp(14px,3.2vw,48px)) calc(var(--p,0) * 14px) round calc(var(--p,0) * 30px))!important}
+.v2mo .reel .hero{opacity:calc(1 - var(--p,0) * 1.5);transform:translateY(calc(var(--p,0) * -28px))}
+/* 4. Les six étapes : la ligne se trace et les pastilles s'allument l'une après l'autre */
+.v2mo .steps.rv li::after{transform:scaleX(0);transform-origin:0 50%;transition:transform .55s cubic-bezier(.4,0,.2,1);transition-delay:calc(var(--i) * 240ms + 450ms);background:var(--ink)}
+.v2mo .steps.rv.rv-in li::after{transform:scaleX(1)}
+.v2mo .steps.rv li::before{background:var(--hair);transition:background .35s ease;transition-delay:calc(var(--i) * 240ms + 250ms)}
+.v2mo .steps.rv.rv-in li::before{background:var(--ink)}
+/* 6. Relief des cartes de films */
+.v2mo .film .shot{transition:transform .25s cubic-bezier(.2,.7,.2,1);will-change:transform}

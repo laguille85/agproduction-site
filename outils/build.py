@@ -686,6 +686,7 @@ def build_apercu(idx):
     s = re.sub(r'<meta name="robots"[^>]*>', "", s)
     s = s.replace("</title>", '</title>\n<meta name="robots" content="noindex, nofollow">', 1)
     s = re.sub(r'(<link rel="stylesheet" href="/style\.css\?v=([^"]+)">)', r'\1\n<link rel="stylesheet" href="/v2.css?v=\2">', s, 1)
+    s = s.replace("</body>", '<script src="/v2.js?v=' + re.search(r'style\.css\?v=([^"]+)', s).group(1) + '" defer></script>\n</body>', 1)
     with open(os.path.join(ROOT, "apercu.html"), "w", encoding="utf-8") as f:
         f.write(s)
 
