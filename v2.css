@@ -114,3 +114,14 @@
 .v2mo .steps.rv.rv-in li::before{background:var(--ink)}
 /* 6. Relief des cartes de films */
 .v2mo .film .shot{transition:transform .25s cubic-bezier(.2,.7,.2,1);will-change:transform}
+
+/* Accueil : la vidéo garde sa proportion (toute la largeur de l'image reste visible) */
+.v2 .reel{height:min(calc(100svh - 52px),56.25vw);min-height:0}
+.v2 .hero-loc{position:absolute;right:clamp(64px,6vw,96px);bottom:clamp(40px,5.8vw,82px);margin:0;color:#fff;font-size:15px;font-weight:500;opacity:.9;text-shadow:0 1px 14px rgba(0,0,0,.45)}
+.v2mo .hero .hero-loc{opacity:0;animation:v2monte .8s cubic-bezier(.2,.8,.2,1) 1.05s forwards}
+@media (max-width:760px){
+  .v2 .reel{height:auto;aspect-ratio:4/5;min-height:0}
+  .v2 .hero-loc{position:static;margin-top:18px;font-size:14px}
+  .v2 .reel .hero{padding-bottom:26px}
+  .v2 .hero .ctas{margin-top:20px}
+}

@@ -810,3 +810,11 @@ p,dd,li,figcaption{text-wrap:pretty}
   .pt-tile{aspect-ratio:1;border-radius:10px}
   .pt-row.tete .pt-tile{grid-column:1/-1;aspect-ratio:3/2;border-radius:14px}
 }
+/* Particuliers : formules sur une bande bleu très clair, formule centrale en bleu */
+#formules{margin-top:clamp(48px,7vw,96px);padding-block:clamp(56px,7vw,96px);background:#eef3f9;box-shadow:0 0 0 100vmax #eef3f9;clip-path:inset(0 -100vmax)}
+#formules .pt-formule{background:#fff}
+#formules .pt-formule.vedette{background:#1d4469;color:#fff}
+#formules .pt-prix{color:#1d4469}
+#formules .pt-formule.vedette .pt-prix{color:#fff}
+#formules .pt-formule.vedette li::before{background:#9dc0ea}
+.pt-etapes li{border-top-color:var(--tide)}

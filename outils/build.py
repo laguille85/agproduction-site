@@ -677,7 +677,10 @@ def build_apercu(idx):
     s, hero = cut(s, '<section class="hero wrap"', "</section>")
     s, refs = cut(s, "<!-- RÉFÉRENCES -->", "</section>")
     s, nums = cut(s, "<!-- CHIFFRES -->", "</section>")
-    s = s.replace('<div class="reel">', '<div class="reel">' + hero.replace('class="hero wrap"', 'class="hero"'), 1)
+    hero = hero.replace('class="hero wrap"', 'class="hero"')
+    hero = re.sub(r'<span class="hero-k">.*?</span>', "", hero, 1)   # une seule accroche : le grand titre, puis une phrase
+    hero = hero.replace("</section>", '<p class="hero-loc">Basé aux Sables-d\'Olonne, en Vendée</p></section>', 1)
+    s = s.replace('<div class="reel">', '<div class="reel">' + hero, 1)
     a = s.index('<div class="reel-wrap"'); b = s.index("<!-- FILMS", a) if "<!-- FILMS" in s[a:] else s.index('<section class="sec wrap" id="films"', a)
     s = s[:b] + refs + "\n\n  " + s[b:]
     b = s.index("<!-- POURQUOI -->")
