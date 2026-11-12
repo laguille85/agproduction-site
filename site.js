@@ -286,6 +286,10 @@ async function load(name){
 
   /* ---------- Références ---------- */
   $("#refs").innerHTML = REFS.map(r => `<li title="${esc(r.nom)}"><img src="${esc(src(r.logo))}" alt="${esc(r.nom)}" loading="lazy" data-t="${Number(r.taille) || 1}" onload="const k=this.naturalWidth/this.naturalHeight||1;this.style.height='calc(var(--lh) * '+(Math.min(1.25,1.25/Math.sqrt(k))*this.dataset.t).toFixed(3)+')'" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="word" hidden>${esc(r.nom)}</span></li>`).join("");
+  if (document.documentElement.classList.contains("v2")) {   /* version d'essai : logos en bandeau défilant (liste doublée pour boucler) */
+    const rf = $("#refs"); rf.insertAdjacentHTML("beforeend", rf.innerHTML);
+    [...rf.children].slice(REFS.length).forEach(li => li.setAttribute("aria-hidden", "true"));
+  }
 
   /* =========================================================
      Fenêtre : films, séries, détails, mentions légales

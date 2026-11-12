@@ -1,0 +1,71 @@
+/* Version d'essai de l'accueil (apercu.html). N'est chargée que par cette page. */
+
+/* 1. Vidéo plein écran, titre posé dessus */
+.v2 .reel{height:calc(100svh - 52px);min-height:520px;clip-path:none!important}
+.v2 .reel::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.18) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,.08) 55%,rgba(0,0,0,.62) 100%)}
+.v2 .reel .hero{position:absolute;z-index:2;left:0;right:0;bottom:0;text-align:left;color:#fff;padding:0 clamp(20px,4.5vw,72px) clamp(34px,5.5vw,76px);pointer-events:none}
+.v2 .reel .hero a{pointer-events:auto}
+.v2 .hero h1{font-size:clamp(48px,8.6vw,132px);letter-spacing:-.05em;line-height:.96;text-shadow:0 2px 30px rgba(0,0,0,.25)}
+.v2 .hero h1 .hero-k{color:#fff;opacity:.86;font-size:clamp(14px,1.3vw,17px);margin-bottom:16px;text-shadow:0 1px 14px rgba(0,0,0,.4)}
+.v2 .hero .sub{margin:20px 0 0;color:#fff;max-width:26em;font-weight:500;text-shadow:0 1px 16px rgba(0,0,0,.4)}
+.v2 .hero .ctas{justify-content:flex-start;margin-top:28px}
+.v2 .hero .pill{background:#fff;color:var(--ink)}
+.v2 .hero .more-link{color:#fff}
+.v2 .reel .toggle{z-index:3;transform:none!important}
+
+/* 2. Logos en bandeau défilant, juste sous la vidéo */
+.v2 #clients{padding-block:clamp(26px,3vw,40px);max-width:none;padding-inline:0;overflow:hidden;border-bottom:1px solid var(--hair);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.v2 #clients .head{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.v2 .refs{--lh:34px;flex-wrap:nowrap;justify-content:flex-start;max-width:none;width:max-content;animation:v2defile 46s linear infinite}
+.v2 .refs li{flex:none;width:clamp(140px,13vw,190px);height:64px;padding:8px 22px}
+.v2 #clients:hover .refs{animation-play-state:paused}
+@keyframes v2defile{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.v2 .refs{animation:none;flex-wrap:wrap;width:auto;justify-content:center}}
+
+/* 3. Films sur fond sombre */
+.v2 #films,.v2 #autres-films{--ink:#f5f5f7;--graphite:#a4a9b3;--cloud:#1b1e24;--hair:#30343c;--tide:#9dc0ea;color:var(--ink);background:#0c0e12}
+.v2 #films{box-shadow:0 0 0 100vmax #0c0e12;clip-path:inset(0 -100vmax);padding-top:clamp(72px,9vw,128px)}
+.v2 #autres-films{padding-bottom:clamp(72px,9vw,128px)}
+.v2 #films .seg button[aria-pressed="true"],.v2 #autres-films .seg button[aria-pressed="true"]{background:#f5f5f7;color:#111;box-shadow:none}
+.v2 #films .seg-in.cs button[aria-pressed="true"]{background:transparent;color:#111}
+.v2 #films .seg-in.cs .seg-ind{background:#f5f5f7;box-shadow:none}
+.v2 #autres-films .film .shot{background:#1b1e24}
+.v2 #autres-films .arrows button,.v2 #autres-films [id="prev"],.v2 #autres-films [id="next"]{background:#1b1e24;color:#fff}
+
+/* 4. Projets racontés : l'image, une phrase, le lien (le détail est sur la page du projet) */
+.v2 .case dl{display:none}
+.v2 .case-body{grid-template-columns:minmax(0,1fr);padding-block:clamp(26px,3vw,40px) clamp(8px,1vw,14px);max-width:900px}
+.v2 #films .case-strip{display:none}
+
+/* 5. Textes secondaires plus lisibles */
+.v2 .film .cat{font-size:14px}
+.v2 .film small{font-size:15px}
+.v2 .pcard span.t{font-size:16px}
+.v2 .case-cover small{font-size:15px}
+.v2 .seg button{font-size:15px}
+.v2 .fa-card small{font-size:15px}
+.v2 .why p{color:#55555b}
+
+/* 6. Séries photo : formats mélangés */
+@media (min-width:900px){
+  .v2 .pgrid{grid-auto-flow:dense}
+  .v2 .pgrid .pcard{grid-template-rows:minmax(0,1fr) auto}
+  .v2 .pgrid .pcard:nth-child(1){grid-column:span 2;grid-row:span 2}
+  .v2 .pgrid .pcard:nth-child(8){grid-column:span 2}
+  .v2 .pgrid .pcard:nth-child(1) .img,.v2 .pgrid .pcard:nth-child(8) .img{aspect-ratio:auto;height:100%;min-height:0}
+}
+
+/* 7. Fondu enchaîné entre les pages (navigateurs récents) */
+@view-transition{navigation:auto}
+
+/* Ajustements */
+.v2 .reel{aspect-ratio:auto;width:100%}
+.v2 #films .case-cover .go{color:#111}
+.v2 #films .case-cover .go svg,.v2 #autres-films .film .play svg{fill:#111}
+.v2 #autres-films{margin-top:-1px}
+@media (max-width:760px){
+  .v2 .reel{height:calc(100svh - 52px);min-height:480px}
+  .v2 .hero h1{font-size:clamp(44px,13vw,64px)}
+  .v2 .refs li{width:120px;height:54px;padding:6px 16px}
+  .v2 .refs{--lh:28px;animation-duration:38s}
+}
