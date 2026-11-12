@@ -70,7 +70,7 @@
     const f = e.target.closest("[data-vimeo]");
     if (f) { const list = JSON.parse(f.dataset.vimeo || "[]"); if (list.length) play(list, f.dataset.title || ""); return; }
     const g = e.target.closest("[data-images]");
-    if (g) { big = g.classList.contains("pt-stage"); imgs = JSON.parse(g.dataset.images || "[]"); k = +(g.dataset.k || 0); title = g.dataset.title || ""; if (imgs.length) show(); }
+    if (g) { const tl = e.target.closest("[data-n]"); big = g.classList.contains("pt-stage") || g.classList.contains("pt-mos") || !!g.closest(".pt-story"); imgs = JSON.parse(g.dataset.images || "[]"); k = +(tl && g.contains(tl) ? tl.dataset.n : g.dataset.k || 0); title = g.dataset.title || ""; if (imgs.length) show(); }
   });
   document.addEventListener("keydown", e => {
     if (modal.hidden) return;

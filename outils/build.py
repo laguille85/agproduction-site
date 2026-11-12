@@ -523,29 +523,49 @@ def thumb(path):
     return t if os.path.exists(os.path.join(ROOT, t.lstrip("/"))) else path
 
 
+def ratio(x):
+    try:
+        from PIL import Image
+        with Image.open(os.path.join(ROOT, x["image"].lstrip("/"))) as im:
+            return round(im.width / im.height, 3)
+    except Exception:
+        return 0.667 if x.get("portrait") else 1.5
+
+
+PT_VISIBLES = 9   # photos montrées dans la planche ; les autres s'ouvrent en plein écran
+
+
 def viewer(h, k=0):
+    """Planche de photos d'un mariage : une grande image, puis des rangées qui respectent le format de chaque photo.
+    Un clic ouvre la photo en plein écran, avec toutes les images du mariage."""
     photos = [x for x in h.get("photos") or [] if x.get("image")]
     if not photos:
         return ""
     t, n = h.get("titre") or "", len(photos)
     full = json.dumps([img(x["image"]) for x in photos], ensure_ascii=False)
+    vis = photos[:PT_VISIBLES]
+    rows, cur, cibles, c = [[(0, vis[0], 2.3)]], [], [4.2, 2.9], 0
+    for i, x in enumerate(vis[1:], 1):
+        cur.append((i, x, ratio(x)))
+        if sum(r for _, _, r in cur) >= cibles[c % 2]:
+            rows.append(cur); cur = []; c += 1
+    if cur:
+        rows.append(cur)
+    nom = e(t.replace(" & ", " et "))
 
-    def slide(i, x):
-        src, pos = e(img(x["image"])), e(x.get("cadrage") or "50% 50%")
-        lazy = "" if i == 0 else ' loading="lazy"'
-        cls = "pt-slide" + (" por" if x.get("portrait") else "") + (" on" if i == 0 else "")
-        return (f'<div class="{cls}" data-n="{i}"><img src="{src}"{ss(x["image"], "(max-width:760px) 100vw, 1400px")} alt="Mariage de {e(t.replace(" & ", " et "))}{" — " + e(h["lieu"]) if h.get("lieu") else ""}, photographe de mariage Antoine Guillou ({i + 1}/{n})" '
-                f'style="object-position:{pos}"{lazy} decoding="async"></div>')
-    stage = "".join(slide(i, x) for i, x in enumerate(photos))
-    ths = "".join(
-        f'<button class="pt-th{" on" if i == 0 else ""}" type="button" data-n="{i}" aria-label="Voir la photo {i + 1} du mariage de {e(t.replace(" & ", " et "))}"><img src="{e(img(thumb(x["image"])))}" alt="" loading="lazy"></button>'
-        for i, x in enumerate(photos))
-    return (f'<div class="pt-story{" on" if k == 0 else ""}" id="histoire-{k + 1}">' + (f'<p class="pt-lede">{e(h.get("lieu"))}</p>' if h.get("lieu") else '<div style="height:8px"></div>') + f'<div class="pt-viewer">'
-            f'<figure class="pt-stage" data-images="{e(full)}" data-title="{e(t)}" data-k="0">{stage}'
-            f'<button class="pt-nav p" type="button" aria-label="Photo précédente"><svg viewBox="0 0 14 14"><path d="M9 2L4 7l5 5"/></svg></button>'
-            f'<button class="pt-nav n" type="button" aria-label="Photo suivante">{ARROW}</button>'
-            f'<span class="pt-count">01 / {n}</span><span class="pt-prog"><i></i></span></figure>'
-            f'<div class="pt-strip">{ths}</div></div></div>')
+    def tile(i, x, r):
+        pos = e(x.get("cadrage") or "50% 50%")
+        lazy = "" if i == 0 and k == 0 else ' loading="lazy"'
+        plus = f'<span class="pt-plus">+ {n - len(vis)} photos</span>' if i == len(vis) - 1 and n > len(vis) else ""
+        return (f'<button class="pt-tile" type="button" data-n="{i}" style="flex:{r} 1 0;--i:{i}" aria-label="Agrandir la photo {i + 1} du mariage de {nom}">'
+                f'<img src="{e(img(x["image"]))}"{ss(x["image"], "(max-width:760px) 100vw, 1400px" if i == 0 else "(max-width:760px) 50vw, 600px")} '
+                f'alt="Mariage de {nom}{" — " + e(h["lieu"]) if h.get("lieu") else ""}, photographe de mariage Antoine Guillou ({i + 1}/{n})" '
+                f'style="object-position:{pos}"{lazy} decoding="async">{plus}</button>')
+    mos = "".join(f'<div class="pt-row{" tete" if j == 0 else ""}" style="--r:{max(sum(r for _, _, r in row), 2.3):.3f}">' + "".join(tile(*x) for x in row) + "</div>"
+                  for j, row in enumerate(rows))
+    return (f'<div class="pt-story{" on" if k == 0 else ""}" id="histoire-{k + 1}">' + (f'<p class="pt-lede">{e(h.get("lieu"))}</p>' if h.get("lieu") else '<div style="height:8px"></div>')
+            + f'<div class="pt-mos" data-images="{e(full)}" data-title="{e(t)}" data-k="0">{mos}</div>'
+            + f'<p class="pt-tout"><button type="button" class="more-link" data-images="{e(full)}" data-title="{e(t)}" data-k="0">Voir les {n} photos en plein écran {ARROW}</button></p></div>')
 
 
 EYEBROW = '<p class="pt-eyebrow">Une histoire</p>'
@@ -613,7 +633,7 @@ def build_particuliers(idx):
               else "Chaque projet fait l'objet d'une proposition sur mesure, selon la durée, le lieu et les prestations choisies.")
     faq = "".join(f"<details><summary>{e(q)}</summary><p>{e(a.replace('__TARIFS__', tarifs))}</p></details>" for q, a in PT_FAQ)
     body = (f'<section class="pt-hero"><div class="wrap in"><h1>Photographe de mariage en Vendée.</h1>'
-            f'<p class="lede">Vos moments, avec le même regard que mes reportages : des images prises sur le vif, au sol et au drone.</p>'
+            f'<p class="lede">Des photos prises sur le vif, au sol et au drone, pour revivre votre journée telle qu\'elle s\'est passée.</p>'
             f'<a class="pill" href="#contact">Vérifier ma disponibilité</a></div>'
             + (f'<figure><img src="{e(img(cover))}" alt="Mariés sur la plage au coucher du soleil, en Vendée" fetchpriority="high" style="object-position:{e(PART.get("couverture_cadrage") or "50% 40%")}"></figure>' if cover else "")
             + "</section>" + hist
