@@ -839,3 +839,4 @@ p,dd,li,figcaption{text-wrap:pretty}
 .pt-facon p{margin:0;color:var(--graphite);line-height:1.55;max-width:34em}
 @media (max-width:760px){.pt-facon{grid-template-columns:1fr}.pt-facon figure{aspect-ratio:4/3}}
 .pt-facon figure img{object-position:50% 92%}
+.pt-facon figure img{transform:scale(1.38);transform-origin:14% 72%}
