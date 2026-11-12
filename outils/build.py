@@ -564,19 +564,64 @@ def stories(hs):
             + "".join(viewer(h, i) for i, h in enumerate(hs)) + "</div></section>")
 
 
+PT_BLOCS = [
+    ("Sur le vif", "Je photographie et je filme ce qui se passe vraiment : les regards, les rires, les gestes qu'on ne refait pas. Très peu de poses, et quelques portraits de vous deux au moment où la lumière est la plus belle."),
+    ("Photo, film et drone", "Je fais les trois. Selon votre journée, je viens seul pour la photo, ou avec un second cadreur de confiance pour le film. Si le lieu et la météo le permettent, j'ajoute des images aériennes : je suis pilote de drone certifié par la DGAC."),
+    ("L'exigence des tournages", "Toute l'année, je travaille pour des marques, des entreprises et des événements sportifs. J'ai l'habitude des lumières difficiles, des journées longues et des moments qui n'arrivent qu'une fois."),
+    ("Votre galerie privée", "Après le mariage, vous recevez un lien et un mot de passe. Vos photos y sont rangées par moments de la journée. Vous marquez vos préférées d'un cœur, vous laissez un mot sur une image, et vos proches peuvent faire leur propre sélection."),
+]
+PT_ETAPES = [
+    ("1", "On se parle", "Vous me donnez la date, le lieu et ce que vous imaginez. Je vous envoie une proposition claire, avec le prix."),
+    ("2", "On prépare la journée", "Avant le mariage, on cale ensemble le déroulé, les moments importants et les personnes à ne pas manquer."),
+    ("3", "Le jour J", "Je suis là des préparatifs à la soirée, selon la formule choisie. Vous profitez, je m'occupe des images."),
+    ("4", "Vos images", "Vous découvrez vos photos dans votre galerie privée, vous faites votre sélection, et je vous livre les fichiers en haute définition."),
+]
+PT_FAQ = [
+    ("Vous déplacez-vous en dehors de la Vendée ?", "Oui. Je suis basé aux Sables-d'Olonne et je me déplace dans toute la Vendée, dans les Pays de la Loire, partout en France et à l'étranger."),
+    ("Photo, vidéo ou les deux ?", "Comme vous préférez. Pour la photo seule, je viens seul. Pour la photo et le film, je viens avec un second cadreur afin de ne rien manquer."),
+    ("Utilisez-vous un drone ?", "Oui, quand le lieu, la réglementation et la météo le permettent. Je suis pilote de drone certifié par la DGAC et je m'occupe des autorisations."),
+    ("Quels sont vos tarifs ?", "__TARIFS__"),
+    ("Comment choisissons-nous nos photos ?", "Dans votre galerie privée en ligne, protégée par un mot de passe. Vous marquez vos photos préférées, vous pouvez commenter une image, puis vous validez votre sélection. Je reçois votre choix directement."),
+    ("Nos proches peuvent-ils voir les photos ?", "Oui, si vous le souhaitez. Vous leur transmettez le lien et le mot de passe de la galerie, et chacun peut faire sa propre sélection."),
+    ("Quand faut-il réserver ?", "Le plus tôt possible : je ne prends qu'un mariage par date. Écrivez-moi dès que la date et le lieu sont fixés."),
+    ("Faites-vous aussi des séances couple ou famille ?", "Oui : séances couple, famille, naissance ou anniversaire, en extérieur ou chez vous."),
+]
+
+
+def formules_block(fs):
+    fs = [f for f in fs or [] if f.get("titre") and f.get("prix")]
+    if not fs:
+        return ""
+    cards = "".join(
+        f'<article class="pt-formule{" vedette" if f.get("vedette") else ""}"><h3>{e(f["titre"])}</h3>'
+        f'<p class="pt-prix"><small>à partir de</small> {e(f["prix"])}</p>'
+        + (f'<p class="pt-ftxt">{e(f.get("texte"))}</p>' if f.get("texte") else "")
+        + "<ul>" + "".join(f"<li>{e(x)}</li>" for x in f.get("inclus") or []) + "</ul></article>" for f in fs)
+    note = PART.get("formules_note") or ""
+    return (f'<section class="pg-sec wrap" id="formules"><h2>Formules.</h2><div class="pt-formules">{cards}</div>'
+            + (f'<p class="pt-fnote">{e(note)}</p>' if note else "") + "</section>")
+
+
 def build_particuliers(idx):
     path = "/particuliers/"
     cover = PART.get("couverture")
     hist = stories(PART.get("histoires") or [])
     email = SITE.get("email") or ""
-    body = (f'<section class="pt-hero"><div class="wrap in"><h1>Vos moments, avec le même regard.</h1></div>'
+    fs = [f for f in PART.get("formules") or [] if f.get("titre") and f.get("prix")]
+    tarifs = (("Mes formules commencent à partir de " + fs[0]["prix"] + ". Chaque proposition est ensuite ajustée à votre journée : durée, lieu, photo seule ou photo et film.") if fs
+              else "Chaque projet fait l'objet d'une proposition sur mesure, selon la durée, le lieu et les prestations choisies.")
+    faq = "".join(f"<details><summary>{e(q)}</summary><p>{e(a.replace('__TARIFS__', tarifs))}</p></details>" for q, a in PT_FAQ)
+    body = (f'<section class="pt-hero"><div class="wrap in"><h1>Photographe et vidéaste de mariage en Vendée.</h1>'
+            f'<p class="lede">Vos moments, avec le même regard que mes films : des images prises sur le vif, en photo, en film et au drone.</p>'
+            f'<a class="pill" href="#contact">Vérifier ma disponibilité</a></div>'
             + (f'<figure><img src="{e(img(cover))}" alt="Mariés sur la plage au coucher du soleil, en Vendée" fetchpriority="high" style="object-position:{e(PART.get("couverture_cadrage") or "50% 40%")}"></figure>' if cover else "")
             + "</section>" + hist
-            + '<section class="pg-sec wrap"><h2>Questions fréquentes</h2><div class="pg-faq">'
-              '<details><summary>Vous déplacez-vous en dehors de la Vendée ?</summary><p>Je suis basé aux Sables-d\'Olonne et je me déplace partout en France et à l\'étranger.</p></details>'
-              '<details><summary>Photo, vidéo ou les deux ?</summary><p>Comme vous préférez. On en parle ensemble selon le déroulé de la journée, avec le drone si le lieu s\'y prête.</p></details>'
-              '<details><summary>Quels sont vos tarifs ?</summary><p>Chaque projet fait l\'objet d\'une proposition sur mesure, selon la durée, le lieu et les prestations choisies.</p></details>'
-              '<details><summary>Quand vais-je recevoir mes images ?</summary><p>Je vous indique le délai de livraison dans ma proposition.</p></details></div></section>'
+            + '<section class="pg-sec wrap"><h2>Ma façon de travailler.</h2><div class="pg-text pt-quatre">'
+            + "".join(f'<div class="pg-block"><h3>{e(t)}</h3><p>{e(x)}</p></div>' for t, x in PT_BLOCS) + "</div></section>"
+            + '<section class="pg-sec wrap"><h2>Du premier message à vos images.</h2><ol class="pt-etapes">'
+            + "".join(f'<li><span>{n}</span><h3>{e(t)}</h3><p>{e(x)}</p></li>' for n, t, x in PT_ETAPES) + "</ol></section>"
+            + formules_block(PART.get("formules"))
+            + f'<section class="pg-sec wrap"><h2>Questions fréquentes</h2><div class="pg-faq">{faq}</div></section>'
             + f'<section class="sec wrap" id="contact" aria-labelledby="h-contact"><div class="contact"><div>'
               f'<h2 id="h-contact">Parlons de votre projet.</h2><p class="lede">Dites-moi la date, le lieu et ce que vous imaginez. Je vous réponds rapidement.</p>'
               f'<div class="direct"><div><small>E-mail</small><a id="mail" href="mailto:{e(email)}">{e(email)}</a><button class="copybtn" id="copy" type="button">Copier</button></div>'
@@ -590,7 +635,7 @@ def build_particuliers(idx):
               '<input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" hidden aria-hidden="true">'
               '<button class="pill" type="submit">Envoyer la demande</button><p class="note" id="note" role="status"></p></form></div></section>')
     body = re.sub(r" ([:;?!])", NBSP + r"\1", body)
-    desc = "Mariages, couples, familles : photo, vidéo et drone par Antoine Guillou, aux Sables-d'Olonne, en Vendée et partout en France. Des images prises sur le vif."
+    desc = "Photographe et vidéaste de mariage aux Sables-d'Olonne, en Vendée : photo, film et drone, galerie privée pour choisir vos images. Mariages, couples, familles."
     ld = [{"@context": "https://schema.org", "@type": "Service", "name": "Photographe et vidéaste de mariage", "serviceType": "Photographie et vidéo de mariage",
            "description": desc, "url": BASE + path, "provider": {"@type": "ProfessionalService", "name": "AG Production", "url": BASE + "/"},
            "areaServed": [{"@type": "City", "name": "Les Sables-d'Olonne"}, {"@type": "AdministrativeArea", "name": "Vendée"},
