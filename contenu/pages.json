@@ -1,373 +1,441 @@
 [
-  {
-    "slug": "videaste-vendee",
-    "menu": "Vidéaste en Vendée",
-    "savoir_faire": "",
-    "titre_seo": "Vidéaste et photographe aux Sables-d'Olonne | AG Production",
-    "description": "Vidéaste, photographe et télépilote de drone aux Sables-d'Olonne. Films, photos et images aériennes en Vendée, Pays de la Loire et partout en France.",
-    "surtitre": "Les Sables-d'Olonne · Vendée",
-    "h1": "Vidéaste et photographe aux Sables-d'Olonne, en Vendée.",
-    "intro": "Je m'appelle Antoine Guillou. Je suis vidéaste, photographe et pilote de drone certifié DGAC, installé aux Sables-d'Olonne. Je tourne en Vendée, dans les Pays de la Loire et partout en France, pour les entreprises, les marques, les collectivités, les organisateurs d'événements et les particuliers.",
-    "image": "images/savoir-faire/sables-olonne-soir.jpg",
-    "sections": [
-      {
-        "titre": "Un vidéaste ancré en Vendée",
-        "texte": "Les Sables-d'Olonne, c'est mon port d'attache. J'y ai filmé le Semi-marathon des Olonnes, l'Ironman 70.3 et un événement au Centre de congrès Les Atlantes, et j'ai suivi la course au large dans le port du Vendée Globe. J'ai aussi tourné pour Vrignon Construction, l'équipe cycliste Vendée U ou le Groupe Dubreuil Sailing Team."
-      },
-      {
-        "titre": "Partout en Vendée et au-delà",
-        "texte": "Je me déplace dans toute la Vendée : La Roche-sur-Yon, Saint-Gilles-Croix-de-Vie, Saint-Jean-de-Monts, Challans, Noirmoutier, Les Herbiers, Luçon, Fontenay-le-Comte. Je tourne aussi dans les Pays de la Loire, de Nantes à Angers, et partout en France : Paris, la Bretagne, la Haute-Savoie. Mes projets m'amènent également à l'étranger."
-      },
-      {
-        "titre": "Entreprises, marques et particuliers",
-        "texte": "Je réalise des films d'entreprise et de marque, des vidéos de sport, des captations d'événements, des reportages photo et des prises de vue aériennes par drone. Je travaille aussi pour les particuliers, pour un événement ou un projet personnel. Pour chaque demande, je reste votre seul interlocuteur, de la préparation à la livraison."
-      }
-    ],
-    "films": [
-      "Semi-marathon des Olonnes",
-      "Ironman 70.3 Les Sables-d'Olonne",
-      "Vendée U",
-      "Centre de Congrès Les Atlantes",
-      "Vrignon Construction",
-      "Groupe Dubreuil Sailing Team"
-    ],
-    "series": [
-      "Ironman 70.3 Les Sables-d'Olonne",
-      "Vendée Globe",
-      "Jeanneau"
-    ],
-    "faq": [
-      {
-        "question": "Vous déplacez-vous en dehors de la Vendée ?",
-        "reponse": "Oui. Je suis basé aux Sables-d'Olonne, mais je tourne partout en France et à l'étranger."
-      },
-      {
-        "question": "Pouvez-vous faire la vidéo, la photo et le drone sur le même tournage ?",
-        "reponse": "Oui, c'est l'un de mes points forts : une seule personne à accueillir pour la vidéo, la photo et les images aériennes."
-      },
-      {
-        "question": "Travaillez-vous pour les particuliers ?",
-        "reponse": "Oui. Décrivez-moi votre projet et vos dates, je vous dis ce que je peux vous proposer."
-      },
-      {
-        "question": "Comment obtenir un devis ?",
-        "reponse": "Décrivez votre projet, vos dates et le lieu dans le formulaire de contact. Je vous réponds rapidement avec une première proposition."
-      },
-      {
-        "question": "Quels sont vos tarifs ?",
-        "reponse": "Chaque projet fait l'objet d'un devis sur mesure, selon la durée, le lieu et les prestations. Décrivez-moi votre besoin et je vous envoie une proposition rapidement."
-      }
-    ]
-  },
-  {
-    "slug": "film-entreprise",
-    "menu": "Film d'entreprise",
-    "savoir_faire": "Corporate",
-    "titre_seo": "Film d'entreprise en Vendée et en France | AG Production",
-    "description": "Films institutionnels, films de marque, portraits et témoignages. Vidéaste aux Sables-d'Olonne, je tourne pour les entreprises en Vendée et en France.",
-    "surtitre": "Corporate",
-    "h1": "Film d'entreprise et film de marque.",
-    "intro": "Films institutionnels, portraits d'entreprise, témoignages de clients ou de collaborateurs. J'écris le film avec vous, à partir de vos messages, de votre public et de vos canaux de diffusion. Air France, Europ Assistance, Allianz Trade, Enedis, BWT et Cogedim m'ont confié des films.",
-    "image": "",
-    "sections": [
-      {
-        "titre": "Où je tourne",
-        "texte": "Basé aux Sables-d'Olonne, je tourne pour les entreprises de Vendée et des Pays de la Loire, de La Roche-sur-Yon à Nantes, et partout en France : Paris, la Bretagne, la Haute-Savoie. Je me déplace aussi à l'étranger lorsque le projet le demande."
-      },
-      {
-        "titre": "Un film qui sert vos objectifs",
-        "texte": "Tout commence par un échange : vos objectifs, votre public, vos dates et vos contraintes de diffusion. Je vous propose ensuite une intention, un plan de tournage et un devis clair. Je filme, je monte et j'étalonne moi-même : vos consignes arrivent directement à la bonne personne."
-      },
-      {
-        "titre": "Ce que je livre",
-        "texte": "Un film principal et ses versions courtes, des formats adaptés aux réseaux sociaux, le sous-titrage, et si besoin des photos réalisées sur le même tournage."
-      }
-    ],
-    "films": [
-      "Air France",
-      "Europ Assistance — 60 ans",
-      "Allianz Trade en France",
-      "Cogedim",
-      "Enedis"
-    ],
-    "series": [
-      "BWT France",
-      "Europ Assistance",
-      "Gérard Pasquier"
-    ],
-    "faq": [
-      {
-        "question": "Combien de temps faut-il pour réaliser un film d'entreprise ?",
-        "reponse": "Cela dépend du film. Je fixe le planning avec vous à l'étape de préparation, avant le tournage."
-      },
-      {
-        "question": "Intervenez-vous en dehors de la Vendée ?",
-        "reponse": "Oui, partout en France et à l'étranger. Je suis basé aux Sables-d'Olonne."
-      },
-      {
-        "question": "Vous occupez-vous du montage ?",
-        "reponse": "Oui. J'assure moi-même la prise de vue, le montage et la post-production, et je m'entoure d'une équipe sur les projets d'envergure."
-      },
-      {
-        "question": "Quels sont vos tarifs ?",
-        "reponse": "Chaque projet fait l'objet d'un devis sur mesure, selon la durée, le lieu et les prestations. Décrivez-moi votre besoin et je vous envoie une proposition rapidement."
-      }
-    ]
-  },
-  {
-    "slug": "videaste-sport",
-    "menu": "Vidéo de sport",
-    "savoir_faire": "Sport",
-    "titre_seo": "Vidéaste et photographe de sport en Vendée | AG Production",
-    "description": "Films et photos de sport au plus près des athlètes : running, trail, triathlon, cyclisme, tennis, surf. Basé en Vendée, je couvre les événements en France.",
-    "surtitre": "Sport",
-    "h1": "Vidéaste et photographe de sport.",
-    "intro": "Running, trail, triathlon, cyclisme, surf, sports mécaniques, sports de combat. Je tourne des images d'action au plus près des athlètes, et des portraits qui montrent ce qu'il y a derrière la performance.",
-    "image": "",
-    "sections": [
-      {
-        "titre": "Où je tourne",
-        "texte": "Basé aux Sables-d'Olonne, je couvre les événements sportifs en Vendée et partout en France : Bordeaux pour le tournoi de tennis BNP Paribas Primrose, Chamonix pour l'UTMB, Le Touquet pour l'Enduropale. Sur les grands événements, je travaille avec une équipe de cadreurs et de monteurs pour livrer les vidéos le jour même."
-      },
-      {
-        "titre": "Événements, équipes et athlètes",
-        "texte": "J'ai filmé et photographié l'Ironman 70.3 des Sables-d'Olonne, le Semi-marathon des Olonnes, le Tour de Loire-Atlantique, l'UTMB et l'Enduropale du Touquet. J'ai aussi travaillé avec la Fédération Française de Cyclisme, la Team TotalEnergies, Compressport, Brooks, Adidas et Puma."
-      },
-      {
-        "titre": "Ce que je livre",
-        "texte": "Des films de course et d'événement, des portraits d'athlètes, des photos pour la presse et les partenaires, et des formats courts pour les réseaux sociaux."
-      }
-    ],
-    "films": [
-      "BNP Paribas Primrose",
-      "Tour de Loire-Atlantique",
-      "Ironman 70.3 Les Sables-d'Olonne",
-      "X-Trial",
-      "Team TotalEnergies",
-      "Fédération Française de Cyclisme"
-    ],
-    "series": [
-      "UTMB",
-      "Rookie's Cup 2023",
-      "Adidas Combat Sport",
-      "Enduropale du Touquet",
-      "Brooks Run Happy Tour",
-      "24 Heures du Mans"
-    ],
-    "faq": [
-      {
-        "question": "Couvrez-vous les événements sportifs partout en France ?",
-        "reponse": "Oui. Je suis basé aux Sables-d'Olonne, en Vendée, et je me déplace sur toute la France."
-      },
-      {
-        "question": "Pouvez-vous faire la photo et la vidéo sur le même événement ?",
-        "reponse": "Oui, je peux couvrir la photo, la vidéo et les images aériennes au drone sur la même épreuve."
-      },
-      {
-        "question": "Quels sont vos tarifs ?",
-        "reponse": "Chaque projet fait l'objet d'un devis sur mesure, selon la durée, le lieu et les prestations. Décrivez-moi votre besoin et je vous envoie une proposition rapidement."
-      }
-    ]
-  },
-  {
-    "slug": "voile-course-au-large",
-    "menu": "Voile et course au large",
-    "savoir_faire": "Voile",
-    "titre_seo": "Photo et vidéo voile, course au large | AG Production",
-    "description": "Films et photos de voile et de course au large, à terre, sur l'eau et à bord. Basé aux Sables-d'Olonne, port du Vendée Globe.",
-    "surtitre": "Voile",
-    "h1": "Voile et course au large, à terre et en mer.",
-    "intro": "Tournages à terre, sur l'eau et à bord, du chantier jusqu'au départ de course. Installé aux Sables-d'Olonne, port du Vendée Globe, je connais le rythme et les contraintes des équipes de course au large.",
-    "image": "images/savoir-faire/voile-imoca-foils.jpg",
-    "sections": [
-      {
-        "titre": "Où je tourne",
-        "texte": "Basé aux Sables-d'Olonne, port de départ du Vendée Globe, je me déplace sur toute la façade atlantique et au-delà, comme pour la Rolex Fastnet Race et le Spi Ouest-France."
-      },
-      {
-        "titre": "Pour les équipes, les partenaires et les marques nautiques",
-        "texte": "J'ai suivi le Groupe Dubreuil Sailing Team, filmé l'opération « Sur la mer contre le cancer » des Laboratoires Pierre Fabre et du Centre Eugène Marquis, menée sur plusieurs régates dont la Rolex Fastnet Race et le Spi Ouest-France, et réalisé une série photo pour Jeanneau. Je travaille sur l'eau comme à terre, ainsi qu'au drone."
-      },
-      {
-        "titre": "Ce que je livre",
-        "texte": "Des films d'équipe et de partenaires, des contenus pour les sponsors, des images pour les médias, et des photos lifestyle et produit pour les marques nautiques."
-      }
-    ],
-    "films": [
-      "Sur la Mer Contre le Cancer",
-      "Groupe Dubreuil Sailing Team"
-    ],
-    "series": [
-      "Jeanneau",
-      "Vendée Globe"
-    ],
-    "faq": [
-      {
-        "question": "Tournez-vous à bord et sur l'eau ?",
-        "reponse": "Oui, à bord, sur l'eau ou au drone, selon le projet et les conditions."
-      },
-      {
-        "question": "Où êtes-vous basé ?",
-        "reponse": "Aux Sables-d'Olonne, port de départ du Vendée Globe. Je me déplace sur tous les ports et toutes les courses, en France et à l'étranger."
-      },
-      {
-        "question": "Faites-vous la photo et la vidéo ?",
-        "reponse": "Oui, photo, vidéo et drone, à terre comme en mer."
-      },
-      {
-        "question": "Quels sont vos tarifs ?",
-        "reponse": "Chaque projet fait l'objet d'un devis sur mesure, selon la durée, le lieu et les prestations. Décrivez-moi votre besoin et je vous envoie une proposition rapidement."
-      }
-    ]
-  },
-  {
-    "slug": "drone",
-    "menu": "Drone",
-    "savoir_faire": "Aérien",
-    "titre_seo": "Prises de vue par drone en Vendée | AG Production",
-    "description": "Photos et vidéos aériennes par drone en Vendée et partout en France. Télépilote certifié DGAC : repérage, analyse de la zone et autorisations compris.",
-    "surtitre": "Aérien",
-    "h1": "Prises de vue aériennes par drone.",
-    "intro": "Je suis pilote de drone certifié DGAC. Je prends en charge le repérage, l'analyse de la zone de vol et les démarches d'autorisation avant chaque tournage, en Vendée comme partout en France.",
-    "image": "",
-    "sections": [
-      {
-        "titre": "Où je vole",
-        "texte": "En Vendée, sur le littoral comme dans les terres, et partout en France. Chaque vol est préparé selon la zone : à proximité d'un aérodrome, en ville ou sur un site protégé, une autorisation préalable est souvent nécessaire, et je m'en occupe en amont du tournage."
-      },
-      {
-        "titre": "Des images vues du ciel, intégrées à vos films",
-        "texte": "Le drone complète la vidéo et la photo sur un même tournage : plans d'ouverture, suivi de bateaux, vues d'ensemble d'un lieu. Une seule personne s'occupe des trois."
-      },
-      {
-        "titre": "Ce que je livre",
-        "texte": "Des plans aériens pour vos films, des photos aériennes et la gestion des démarches réglementaires."
-      }
-    ],
-    "films": [
-      "Sur la Mer Contre le Cancer"
-    ],
-    "series": [],
-    "faq": [
-      {
-        "question": "Peut-on voler partout ?",
-        "reponse": "Non : certaines zones sont réglementées. J'analyse la zone de vol en amont et je m'occupe des demandes d'autorisation quand elles sont nécessaires."
-      },
-      {
-        "question": "Êtes-vous un pilote certifié ?",
-        "reponse": "Oui, je suis pilote de drone certifié par la DGAC."
-      },
-      {
-        "question": "Pouvez-vous combiner le drone avec un tournage au sol ?",
-        "reponse": "Oui, je réalise les images aériennes et les images au sol sur le même tournage."
-      },
-      {
-        "question": "Quels sont vos tarifs ?",
-        "reponse": "Chaque projet fait l'objet d'un devis sur mesure, selon la durée, le lieu et les prestations. Décrivez-moi votre besoin et je vous envoie une proposition rapidement."
-      }
-    ]
-  },
-  {
-    "slug": "evenementiel",
-    "menu": "Événements",
-    "savoir_faire": "Événements",
-    "titre_seo": "Captation vidéo d'événements en Vendée | AG Production",
-    "description": "Captation de conférences, interviews, aftermovies et salons. Vidéaste basé aux Sables-d'Olonne, j'interviens partout en France et à l'étranger.",
-    "surtitre": "Événements",
-    "h1": "Conférences, salons et aftermovies.",
-    "intro": "Captation de conférences, interviews, aftermovies, stands sur les salons professionnels en France et à l'étranger. Un dispositif discret qui s'adapte au déroulé de l'événement.",
-    "image": "",
-    "sections": [
-      {
-        "titre": "Quelques événements",
-        "texte": "J'ai filmé la soirée des 20 ans de Flying Blue pour Air France, sur les toits des Galeries Lafayette, l'opération Train des neiges d'Europ Assistance et des événements au Centre de congrès Les Atlantes, aux Sables-d'Olonne. Chaque printemps, je couvre aussi le tournoi BNP Paribas Primrose à Bordeaux, avec des vidéos publiées après chaque journée."
-      },
-      {
-        "titre": "Où j'interviens",
-        "texte": "En Vendée et dans les Pays de la Loire, des Sables-d'Olonne à Nantes, et partout en France pour les salons, conventions et soirées d'entreprise. Je me déplace aussi à l'étranger."
-      },
-      {
-        "titre": "Ce que je livre",
-        "texte": "Des captations complètes, des films résumés, des interviews, et un reportage photo réalisé sur le même événement."
-      }
-    ],
-    "films": [
-      "Air France",
-      "Centre de Congrès Les Atlantes",
-      "Opération Train des neiges"
-    ],
-    "series": [],
-    "faq": [
-      {
-        "question": "Vous déplacez-vous partout en France ?",
-        "reponse": "Oui. Je suis basé aux Sables-d'Olonne, en Vendée, et je couvre des événements partout en France et à l'étranger."
-      },
-      {
-        "question": "Pouvez-vous faire la photo et la vidéo ?",
-        "reponse": "Oui, sur le même événement, avec le drone si le lieu s'y prête."
-      },
-      {
-        "question": "Quels sont vos tarifs ?",
-        "reponse": "Chaque projet fait l'objet d'un devis sur mesure, selon la durée, le lieu et les prestations. Décrivez-moi votre besoin et je vous envoie une proposition rapidement."
-      }
-    ]
-  },
-  {
-    "slug": "photographe",
-    "menu": "Photographe",
-    "savoir_faire": "Photo et post-production",
-    "titre_seo": "Photographe professionnel en Vendée | AG Production",
-    "description": "Photographe aux Sables-d'Olonne : reportage, portrait, sport, produit, architecture et lifestyle, pour entreprises, marques et particuliers.",
-    "surtitre": "Photographie",
-    "h1": "Photographe en Vendée et partout en France.",
-    "intro": "Reportage, portrait, sport, produit, architecture et lifestyle. Je photographie pour les entreprises, les marques, les événements et les particuliers, et je m'occupe moi-même de la retouche et des déclinaisons.",
-    "image": "",
-    "sections": [
-      {
-        "titre": "Un photographe installé en Vendée",
-        "texte": "Installé aux Sables-d'Olonne, je photographie partout en Vendée et dans les Pays de la Loire : La Roche-sur-Yon, Saint-Gilles-Croix-de-Vie, Saint-Jean-de-Monts, Challans, Les Herbiers, Nantes. Mes commandes m'amènent aussi partout en France et à l'étranger, de Courchevel à Bordeaux, jusqu'au Portugal et en Thaïlande."
-      },
-      {
-        "titre": "Des séries pour les marques",
-        "texte": "J'ai photographié le lancement des robots de piscine Cosmy pour BWT France, une journée en mer à bord du Cap Camarat 6.0 CC de Jeanneau, un séjour à l'hôtel cinq étoiles Annapurna à Courchevel et le savoir-faire du groupe FPM dans ses ateliers en France, au Portugal et en Thaïlande. Chaque série est pensée pour les sites, les catalogues, l'affichage et les réseaux sociaux."
-      },
-      {
-        "titre": "Sport, événements et particuliers",
-        "texte": "Je photographie aussi le sport et les événements, comme le tournoi BNP Paribas Primrose à Bordeaux, l'Ironman 70.3 des Sables-d'Olonne ou l'UTMB. Pour les particuliers, je photographie les mariages, les couples et les familles, en Vendée et ailleurs."
-      },
-      {
-        "titre": "Ce que je livre",
-        "texte": "Des photos retouchées prêtes à publier, dans les formats dont vous avez besoin : site, réseaux sociaux, presse, impression."
-      }
-    ],
-    "films": [],
-    "series": [
-      "Jeanneau",
-      "Rapatriement sanitaire Europ Assistance",
-      "Gentleman Farmer",
-      "BWT France",
-      "Gérard Pasquier",
-      "Adeline Pithois Architecte",
-      "Thuasne",
-      "UTMB"
-    ],
-    "faq": [
-      {
-        "question": "Faites-vous aussi de la vidéo sur le même shooting ?",
-        "reponse": "Oui, je peux réaliser photo, vidéo et drone sur le même tournage."
-      },
-      {
-        "question": "Vous déplacez-vous en dehors de la Vendée ?",
-        "reponse": "Oui. Je suis basé aux Sables-d'Olonne et je travaille partout en France et à l'étranger."
-      },
-      {
-        "question": "Vous occupez-vous de la retouche ?",
-        "reponse": "Oui, je réalise moi-même la sélection et la post-production de toutes les images."
-      },
-      {
-        "question": "Quels sont vos tarifs ?",
-        "reponse": "Chaque projet fait l'objet d'un devis sur mesure, selon la durée, le lieu et les prestations. Décrivez-moi votre besoin et je vous envoie une proposition rapidement."
-      }
-    ]
-  }
+ {
+  "slug": "videaste-vendee",
+  "menu": "Vidéaste en Vendée",
+  "savoir_faire": "",
+  "titre_seo": "Vidéaste en Vendée, aux Sables-d'Olonne | AG Production",
+  "description": "Vidéaste en Vendée, basé aux Sables-d'Olonne : films d'entreprise, sport, événements, photo et drone. Je tourne en Vendée, en Pays de la Loire et en France.",
+  "surtitre": "Les Sables-d'Olonne · Vendée",
+  "h1": "Vidéaste et photographe en Vendée, aux Sables-d'Olonne.",
+  "intro": "Je m'appelle Antoine Guillou. Je suis vidéaste, photographe et pilote de drone certifié DGAC, installé aux Sables-d'Olonne. Je tourne en Vendée, dans les Pays de la Loire et partout en France, pour les entreprises, les marques, les collectivités, les organisateurs d'événements et les particuliers.",
+  "image": "images/savoir-faire/sables-olonne-soir.jpg",
+  "sections": [
+   {
+    "titre": "Un vidéaste ancré en Vendée",
+    "texte": "Les Sables-d'Olonne, c'est mon port d'attache. J'y ai filmé le Semi-marathon des Olonnes, l'Ironman 70.3 et un événement au Centre de congrès Les Atlantes, et j'ai suivi la course au large dans le port du Vendée Globe. J'ai aussi tourné pour Vrignon Construction, l'équipe cycliste Vendée U ou le Groupe Dubreuil Sailing Team."
+   },
+   {
+    "titre": "Partout en Vendée et au-delà",
+    "texte": "Je me déplace dans toute la Vendée : La Roche-sur-Yon, Saint-Gilles-Croix-de-Vie, Saint-Jean-de-Monts, Challans, Noirmoutier, Les Herbiers, Luçon, Fontenay-le-Comte. Je tourne aussi dans les Pays de la Loire, de Nantes à Angers, et partout en France : Paris, la Bretagne, la Haute-Savoie. Mes projets m'amènent également à l'étranger."
+   },
+   {
+    "titre": "Entreprises, marques et particuliers",
+    "texte": "Je réalise des films d'entreprise et de marque, des vidéos de sport, des captations d'événements, des reportages photo et des prises de vue aériennes par drone. Je travaille aussi pour les particuliers, pour un événement ou un projet personnel. Pour chaque demande, je reste votre seul interlocuteur, de la préparation à la livraison."
+   }
+  ],
+  "films": [
+   "Semi-marathon des Olonnes",
+   "Ironman 70.3 Les Sables-d'Olonne",
+   "Vendée U",
+   "Centre de Congrès Les Atlantes",
+   "Vrignon Construction",
+   "Groupe Dubreuil Sailing Team"
+  ],
+  "series": [
+   "Ironman 70.3 Les Sables-d'Olonne",
+   "Vendée Globe",
+   "Jeanneau"
+  ],
+  "faq": [
+   {
+    "question": "Vous déplacez-vous en dehors de la Vendée ?",
+    "reponse": "Oui. Je suis basé aux Sables-d'Olonne, mais je tourne partout en France et à l'étranger."
+   },
+   {
+    "question": "Pouvez-vous faire la vidéo, la photo et le drone sur le même tournage ?",
+    "reponse": "Oui, c'est l'un de mes points forts : une seule personne à accueillir pour la vidéo, la photo et les images aériennes."
+   },
+   {
+    "question": "Travaillez-vous pour les particuliers ?",
+    "reponse": "Oui. Décrivez-moi votre projet et vos dates, je vous dis ce que je peux vous proposer."
+   },
+   {
+    "question": "Comment obtenir un devis ?",
+    "reponse": "Décrivez votre projet, vos dates et le lieu dans le formulaire de contact. Je vous réponds rapidement avec une première proposition."
+   },
+   {
+    "question": "Quels sont vos tarifs ?",
+    "reponse": "Chaque projet fait l'objet d'un devis sur mesure, selon la durée, le lieu et les prestations. Décrivez-moi votre besoin et je vous envoie une proposition rapidement."
+   }
+  ]
+ },
+ {
+  "slug": "film-entreprise",
+  "menu": "Film d'entreprise",
+  "savoir_faire": "Corporate",
+  "titre_seo": "Film d'entreprise et film institutionnel en Vendée | AG Production",
+  "description": "Film d'entreprise, film institutionnel, film de marque, portrait et témoignage. Vidéaste aux Sables-d'Olonne, je tourne en Vendée et partout en France.",
+  "surtitre": "Corporate",
+  "h1": "Film d'entreprise et film institutionnel.",
+  "intro": "Films institutionnels, films de marque, portraits d'entreprise, témoignages de clients ou de collaborateurs. J'écris le film avec vous, à partir de vos messages, de votre public et de vos canaux de diffusion. Air France, Europ Assistance, Allianz Trade, Enedis, BWT et Cogedim m'ont confié des films.",
+  "image": "",
+  "sections": [
+   {
+    "titre": "Où je tourne",
+    "texte": "Basé aux Sables-d'Olonne, je tourne pour les entreprises de Vendée et des Pays de la Loire, de La Roche-sur-Yon à Nantes, et partout en France : Paris, la Bretagne, la Haute-Savoie. Je me déplace aussi à l'étranger lorsque le projet le demande."
+   },
+   {
+    "titre": "Film institutionnel, film de marque, témoignage",
+    "texte": "Le film institutionnel présente votre entreprise, vos métiers et vos équipes : il sert sur votre site, en salon, en recrutement ou en ouverture de réunion. Le film de marque raconte un produit ou un engagement. Le portrait et le témoignage donnent la parole à vos clients et à vos collaborateurs. Je vous aide à choisir le format qui répond à votre besoin, et un même tournage peut en nourrir plusieurs."
+   },
+   {
+    "titre": "Un film qui sert vos objectifs",
+    "texte": "Tout commence par un échange : vos objectifs, votre public, vos dates et vos contraintes de diffusion. Je vous propose ensuite une intention, un plan de tournage et un devis clair. Je filme, je monte et j'étalonne moi-même : vos consignes arrivent directement à la bonne personne."
+   },
+   {
+    "titre": "Ce que je livre",
+    "texte": "Un film principal et ses versions courtes, des formats adaptés aux réseaux sociaux, le sous-titrage, et si besoin des photos réalisées sur le même tournage."
+   }
+  ],
+  "films": [
+   "Air France",
+   "Europ Assistance — 60 ans",
+   "Allianz Trade en France",
+   "Cogedim",
+   "Enedis"
+  ],
+  "series": [
+   "BWT France",
+   "Europ Assistance",
+   "Gérard Pasquier"
+  ],
+  "faq": [
+   {
+    "question": "Quelle différence entre un film d'entreprise et un film institutionnel ?",
+    "reponse": "Le film institutionnel présente l'entreprise dans son ensemble : son histoire, ses métiers, ses équipes. « Film d'entreprise » est le terme général, qui couvre aussi le film de marque, le portrait, le témoignage ou la vidéo de recrutement."
+   },
+   {
+    "question": "Combien de temps faut-il pour réaliser un film d'entreprise ?",
+    "reponse": "Cela dépend du film. Je fixe le planning avec vous à l'étape de préparation, avant le tournage."
+   },
+   {
+    "question": "Intervenez-vous en dehors de la Vendée ?",
+    "reponse": "Oui, partout en France et à l'étranger. Je suis basé aux Sables-d'Olonne."
+   },
+   {
+    "question": "Vous occupez-vous du montage ?",
+    "reponse": "Oui. J'assure moi-même la prise de vue, le montage et la post-production, et je m'entoure d'une équipe sur les projets d'envergure."
+   },
+   {
+    "question": "Quels sont vos tarifs ?",
+    "reponse": "Chaque projet fait l'objet d'un devis sur mesure, selon la durée, le lieu et les prestations. Décrivez-moi votre besoin et je vous envoie une proposition rapidement."
+   }
+  ]
+ },
+ {
+  "slug": "film-entreprise-la-roche-sur-yon",
+  "menu": "Film d'entreprise à La Roche-sur-Yon",
+  "savoir_faire": "",
+  "titre_seo": "Film d'entreprise à La Roche-sur-Yon | AG Production",
+  "description": "Vidéaste pour les entreprises de La Roche-sur-Yon et du centre Vendée : film d'entreprise, film institutionnel, témoignages, photo et drone. Devis sur mesure.",
+  "surtitre": "La Roche-sur-Yon · Vendée",
+  "h1": "Film d'entreprise à La Roche-sur-Yon.",
+  "intro": "Je suis vidéaste, photographe et pilote de drone, basé aux Sables-d'Olonne. Je tourne pour les entreprises de La Roche-sur-Yon et du centre Vendée : films d'entreprise, films institutionnels, portraits et témoignages, captations d'événements. Vous avez un seul interlocuteur, de la préparation à la livraison.",
+  "image": "",
+  "sections": [
+   {
+    "titre": "Un vidéaste vendéen, à côté de chez vous",
+    "texte": "Les Sables-d'Olonne et La Roche-sur-Yon sont voisines : je viens facilement pour un repérage, un rendez-vous de préparation ou une journée de tournage. Je tourne dans toute l'agglomération yonnaise et autour : Aizenay, Les Essarts, Chantonnay, Les Herbiers, Montaigu, Challans."
+   },
+   {
+    "titre": "Ce que je réalise pour les entreprises",
+    "texte": "Film de présentation de votre entreprise, film de marque pour un produit ou un savoir-faire, portraits de collaborateurs pour le recrutement, témoignages de clients, vidéo d'un événement ou d'une inauguration. Sur le même tournage, je peux aussi réaliser vos photos et des images aériennes par drone."
+   },
+   {
+    "titre": "Des références en Vendée et dans de grands groupes",
+    "texte": "En Vendée, j'ai tourné pour Vrignon Construction, l'équipe cycliste Vendée U ou le Groupe Dubreuil Sailing Team. Air France, Europ Assistance, Allianz Trade, Enedis, BWT et Cogedim m'ont aussi confié des films. Vous bénéficiez de la même exigence, avec la proximité d'un indépendant."
+   },
+   {
+    "titre": "Comment se passe un projet",
+    "texte": "Un premier échange pour comprendre vos objectifs, votre public et vos dates. Une proposition avec une intention, un plan de tournage et un devis clair. Le tournage dans vos locaux, puis le montage et l'étalonnage, que j'assure moi-même. Vous recevez un film principal, ses versions courtes pour les réseaux sociaux et le sous-titrage."
+   }
+  ],
+  "films": [
+   "Vrignon Construction",
+   "Vendée U",
+   "Centre de Congrès Les Atlantes",
+   "Air France",
+   "Allianz Trade en France",
+   "Enedis"
+  ],
+  "series": [
+   "BWT France",
+   "Europ Assistance",
+   "Gérard Pasquier"
+  ],
+  "faq": [
+   {
+    "question": "Vous déplacez-vous à La Roche-sur-Yon ?",
+    "reponse": "Oui. Je suis basé aux Sables-d'Olonne et je me déplace dans toute la Vendée, dont La Roche-sur-Yon et son agglomération."
+   },
+   {
+    "question": "Combien coûte un film d'entreprise ?",
+    "reponse": "Chaque projet fait l'objet d'un devis sur mesure, selon la durée du film, le nombre de jours de tournage et les prestations. Décrivez-moi votre besoin et je vous envoie une proposition rapidement."
+   },
+   {
+    "question": "Pouvez-vous faire la vidéo, la photo et le drone le même jour ?",
+    "reponse": "Oui. Je réalise les trois, ce qui évite de faire venir plusieurs prestataires. Je suis télépilote de drone certifié DGAC."
+   },
+   {
+    "question": "Quel délai prévoir ?",
+    "reponse": "Cela dépend du film. Je fixe le planning avec vous pendant la préparation, avant le tournage."
+   }
+  ]
+ },
+ {
+  "slug": "videaste-sport",
+  "menu": "Vidéo de sport",
+  "savoir_faire": "Sport",
+  "titre_seo": "Vidéaste et photographe de sport en Vendée | AG Production",
+  "description": "Films et photos de sport au plus près des athlètes : running, trail, triathlon, cyclisme, tennis, surf. Basé en Vendée, je couvre les événements en France.",
+  "surtitre": "Sport",
+  "h1": "Vidéaste et photographe de sport.",
+  "intro": "Running, trail, triathlon, cyclisme, surf, sports mécaniques, sports de combat. Je tourne des images d'action au plus près des athlètes, et des portraits qui montrent ce qu'il y a derrière la performance.",
+  "image": "",
+  "sections": [
+   {
+    "titre": "Où je tourne",
+    "texte": "Basé aux Sables-d'Olonne, je couvre les événements sportifs en Vendée et partout en France : Bordeaux pour le tournoi de tennis BNP Paribas Primrose, Chamonix pour l'UTMB, Le Touquet pour l'Enduropale. Sur les grands événements, je travaille avec une équipe de cadreurs et de monteurs pour livrer les vidéos le jour même."
+   },
+   {
+    "titre": "Événements, équipes et athlètes",
+    "texte": "J'ai filmé et photographié l'Ironman 70.3 des Sables-d'Olonne, le Semi-marathon des Olonnes, le Tour de Loire-Atlantique, l'UTMB et l'Enduropale du Touquet. J'ai aussi travaillé avec la Fédération Française de Cyclisme, la Team TotalEnergies, Compressport, Brooks, Adidas et Puma."
+   },
+   {
+    "titre": "Ce que je livre",
+    "texte": "Des films de course et d'événement, des portraits d'athlètes, des photos pour la presse et les partenaires, et des formats courts pour les réseaux sociaux."
+   }
+  ],
+  "films": [
+   "BNP Paribas Primrose",
+   "Tour de Loire-Atlantique",
+   "Ironman 70.3 Les Sables-d'Olonne",
+   "X-Trial",
+   "Team TotalEnergies",
+   "Fédération Française de Cyclisme"
+  ],
+  "series": [
+   "UTMB",
+   "Rookie's Cup 2023",
+   "Adidas Combat Sport",
+   "Enduropale du Touquet",
+   "Brooks Run Happy Tour",
+   "24 Heures du Mans"
+  ],
+  "faq": [
+   {
+    "question": "Couvrez-vous les événements sportifs partout en France ?",
+    "reponse": "Oui. Je suis basé aux Sables-d'Olonne, en Vendée, et je me déplace sur toute la France."
+   },
+   {
+    "question": "Pouvez-vous faire la photo et la vidéo sur le même événement ?",
+    "reponse": "Oui, je peux couvrir la photo, la vidéo et les images aériennes au drone sur la même épreuve."
+   },
+   {
+    "question": "Quels sont vos tarifs ?",
+    "reponse": "Chaque projet fait l'objet d'un devis sur mesure, selon la durée, le lieu et les prestations. Décrivez-moi votre besoin et je vous envoie une proposition rapidement."
+   }
+  ]
+ },
+ {
+  "slug": "voile-course-au-large",
+  "menu": "Voile et course au large",
+  "savoir_faire": "Voile",
+  "titre_seo": "Photo et vidéo voile, course au large | AG Production",
+  "description": "Films et photos de voile et de course au large, à terre, sur l'eau et à bord. Basé aux Sables-d'Olonne, port du Vendée Globe.",
+  "surtitre": "Voile",
+  "h1": "Voile et course au large, à terre et en mer.",
+  "intro": "Tournages à terre, sur l'eau et à bord, du chantier jusqu'au départ de course. Installé aux Sables-d'Olonne, port du Vendée Globe, je connais le rythme et les contraintes des équipes de course au large.",
+  "image": "images/savoir-faire/voile-imoca-foils.jpg",
+  "sections": [
+   {
+    "titre": "Où je tourne",
+    "texte": "Basé aux Sables-d'Olonne, port de départ du Vendée Globe, je me déplace sur toute la façade atlantique et au-delà, comme pour la Rolex Fastnet Race et le Spi Ouest-France."
+   },
+   {
+    "titre": "Pour les équipes, les partenaires et les marques nautiques",
+    "texte": "J'ai suivi le Groupe Dubreuil Sailing Team, filmé l'opération « Sur la mer contre le cancer » des Laboratoires Pierre Fabre et du Centre Eugène Marquis, menée sur plusieurs régates dont la Rolex Fastnet Race et le Spi Ouest-France, et réalisé une série photo pour Jeanneau. Je travaille sur l'eau comme à terre, ainsi qu'au drone."
+   },
+   {
+    "titre": "Ce que je livre",
+    "texte": "Des films d'équipe et de partenaires, des contenus pour les sponsors, des images pour les médias, et des photos lifestyle et produit pour les marques nautiques."
+   }
+  ],
+  "films": [
+   "Sur la Mer Contre le Cancer",
+   "Groupe Dubreuil Sailing Team"
+  ],
+  "series": [
+   "Jeanneau",
+   "Vendée Globe"
+  ],
+  "faq": [
+   {
+    "question": "Tournez-vous à bord et sur l'eau ?",
+    "reponse": "Oui, à bord, sur l'eau ou au drone, selon le projet et les conditions."
+   },
+   {
+    "question": "Où êtes-vous basé ?",
+    "reponse": "Aux Sables-d'Olonne, port de départ du Vendée Globe. Je me déplace sur tous les ports et toutes les courses, en France et à l'étranger."
+   },
+   {
+    "question": "Faites-vous la photo et la vidéo ?",
+    "reponse": "Oui, photo, vidéo et drone, à terre comme en mer."
+   },
+   {
+    "question": "Quels sont vos tarifs ?",
+    "reponse": "Chaque projet fait l'objet d'un devis sur mesure, selon la durée, le lieu et les prestations. Décrivez-moi votre besoin et je vous envoie une proposition rapidement."
+   }
+  ]
+ },
+ {
+  "slug": "drone",
+  "menu": "Drone",
+  "savoir_faire": "Aérien",
+  "titre_seo": "Prises de vue par drone en Vendée | AG Production",
+  "description": "Photos et vidéos aériennes par drone en Vendée et partout en France. Télépilote certifié DGAC : repérage, analyse de la zone et autorisations compris.",
+  "surtitre": "Aérien",
+  "h1": "Prises de vue aériennes par drone.",
+  "intro": "Je suis pilote de drone certifié DGAC. Je prends en charge le repérage, l'analyse de la zone de vol et les démarches d'autorisation avant chaque tournage, en Vendée comme partout en France.",
+  "image": "",
+  "sections": [
+   {
+    "titre": "Où je vole",
+    "texte": "En Vendée, sur le littoral comme dans les terres, et partout en France. Chaque vol est préparé selon la zone : à proximité d'un aérodrome, en ville ou sur un site protégé, une autorisation préalable est souvent nécessaire, et je m'en occupe en amont du tournage."
+   },
+   {
+    "titre": "Des images vues du ciel, intégrées à vos films",
+    "texte": "Le drone complète la vidéo et la photo sur un même tournage : plans d'ouverture, suivi de bateaux, vues d'ensemble d'un lieu. Une seule personne s'occupe des trois."
+   },
+   {
+    "titre": "Ce que je livre",
+    "texte": "Des plans aériens pour vos films, des photos aériennes et la gestion des démarches réglementaires."
+   }
+  ],
+  "films": [
+   "Sur la Mer Contre le Cancer"
+  ],
+  "series": [],
+  "faq": [
+   {
+    "question": "Peut-on voler partout ?",
+    "reponse": "Non : certaines zones sont réglementées. J'analyse la zone de vol en amont et je m'occupe des demandes d'autorisation quand elles sont nécessaires."
+   },
+   {
+    "question": "Êtes-vous un pilote certifié ?",
+    "reponse": "Oui, je suis pilote de drone certifié par la DGAC."
+   },
+   {
+    "question": "Pouvez-vous combiner le drone avec un tournage au sol ?",
+    "reponse": "Oui, je réalise les images aériennes et les images au sol sur le même tournage."
+   },
+   {
+    "question": "Quels sont vos tarifs ?",
+    "reponse": "Chaque projet fait l'objet d'un devis sur mesure, selon la durée, le lieu et les prestations. Décrivez-moi votre besoin et je vous envoie une proposition rapidement."
+   }
+  ]
+ },
+ {
+  "slug": "evenementiel",
+  "menu": "Événements",
+  "savoir_faire": "Événements",
+  "titre_seo": "Captation vidéo d'événements en Vendée | AG Production",
+  "description": "Captation de conférences, interviews, aftermovies et salons. Vidéaste basé aux Sables-d'Olonne, j'interviens partout en France et à l'étranger.",
+  "surtitre": "Événements",
+  "h1": "Conférences, salons et aftermovies.",
+  "intro": "Captation de conférences, interviews, aftermovies, stands sur les salons professionnels en France et à l'étranger. Un dispositif discret qui s'adapte au déroulé de l'événement.",
+  "image": "",
+  "sections": [
+   {
+    "titre": "Quelques événements",
+    "texte": "J'ai filmé la soirée des 20 ans de Flying Blue pour Air France, sur les toits des Galeries Lafayette, l'opération Train des neiges d'Europ Assistance et des événements au Centre de congrès Les Atlantes, aux Sables-d'Olonne. Chaque printemps, je couvre aussi le tournoi BNP Paribas Primrose à Bordeaux, avec des vidéos publiées après chaque journée."
+   },
+   {
+    "titre": "Où j'interviens",
+    "texte": "En Vendée et dans les Pays de la Loire, des Sables-d'Olonne à Nantes, et partout en France pour les salons, conventions et soirées d'entreprise. Je me déplace aussi à l'étranger."
+   },
+   {
+    "titre": "Ce que je livre",
+    "texte": "Des captations complètes, des films résumés, des interviews, et un reportage photo réalisé sur le même événement."
+   }
+  ],
+  "films": [
+   "Air France",
+   "Centre de Congrès Les Atlantes",
+   "Opération Train des neiges"
+  ],
+  "series": [],
+  "faq": [
+   {
+    "question": "Vous déplacez-vous partout en France ?",
+    "reponse": "Oui. Je suis basé aux Sables-d'Olonne, en Vendée, et je couvre des événements partout en France et à l'étranger."
+   },
+   {
+    "question": "Pouvez-vous faire la photo et la vidéo ?",
+    "reponse": "Oui, sur le même événement, avec le drone si le lieu s'y prête."
+   },
+   {
+    "question": "Quels sont vos tarifs ?",
+    "reponse": "Chaque projet fait l'objet d'un devis sur mesure, selon la durée, le lieu et les prestations. Décrivez-moi votre besoin et je vous envoie une proposition rapidement."
+   }
+  ]
+ },
+ {
+  "slug": "photographe",
+  "menu": "Photographe",
+  "savoir_faire": "Photo et post-production",
+  "titre_seo": "Photographe professionnel en Vendée | AG Production",
+  "description": "Photographe aux Sables-d'Olonne : reportage, portrait, sport, produit, architecture et lifestyle, pour entreprises, marques et particuliers.",
+  "surtitre": "Photographie",
+  "h1": "Photographe en Vendée et partout en France.",
+  "intro": "Reportage, portrait, sport, produit, architecture et lifestyle. Je photographie pour les entreprises, les marques, les événements et les particuliers, et je m'occupe moi-même de la retouche et des déclinaisons.",
+  "image": "",
+  "sections": [
+   {
+    "titre": "Un photographe installé en Vendée",
+    "texte": "Installé aux Sables-d'Olonne, je photographie partout en Vendée et dans les Pays de la Loire : La Roche-sur-Yon, Saint-Gilles-Croix-de-Vie, Saint-Jean-de-Monts, Challans, Les Herbiers, Nantes. Mes commandes m'amènent aussi partout en France et à l'étranger, de Courchevel à Bordeaux, jusqu'au Portugal et en Thaïlande."
+   },
+   {
+    "titre": "Des séries pour les marques",
+    "texte": "J'ai photographié le lancement des robots de piscine Cosmy pour BWT France, une journée en mer à bord du Cap Camarat 6.0 CC de Jeanneau, un séjour à l'hôtel cinq étoiles Annapurna à Courchevel et le savoir-faire du groupe FPM dans ses ateliers en France, au Portugal et en Thaïlande. Chaque série est pensée pour les sites, les catalogues, l'affichage et les réseaux sociaux."
+   },
+   {
+    "titre": "Sport, événements et particuliers",
+    "texte": "Je photographie aussi le sport et les événements, comme le tournoi BNP Paribas Primrose à Bordeaux, l'Ironman 70.3 des Sables-d'Olonne ou l'UTMB. Pour les particuliers, je photographie les mariages, les couples et les familles, en Vendée et ailleurs."
+   },
+   {
+    "titre": "Ce que je livre",
+    "texte": "Des photos retouchées prêtes à publier, dans les formats dont vous avez besoin : site, réseaux sociaux, presse, impression."
+   }
+  ],
+  "films": [],
+  "series": [
+   "Jeanneau",
+   "Rapatriement sanitaire Europ Assistance",
+   "Gentleman Farmer",
+   "BWT France",
+   "Gérard Pasquier",
+   "Adeline Pithois Architecte",
+   "Thuasne",
+   "UTMB"
+  ],
+  "faq": [
+   {
+    "question": "Faites-vous aussi de la vidéo sur le même shooting ?",
+    "reponse": "Oui, je peux réaliser photo, vidéo et drone sur le même tournage."
+   },
+   {
+    "question": "Vous déplacez-vous en dehors de la Vendée ?",
+    "reponse": "Oui. Je suis basé aux Sables-d'Olonne et je travaille partout en France et à l'étranger."
+   },
+   {
+    "question": "Vous occupez-vous de la retouche ?",
+    "reponse": "Oui, je réalise moi-même la sélection et la post-production de toutes les images."
+   },
+   {
+    "question": "Quels sont vos tarifs ?",
+    "reponse": "Chaque projet fait l'objet d'un devis sur mesure, selon la durée, le lieu et les prestations. Décrivez-moi votre besoin et je vous envoie une proposition rapidement."
+   }
+  ]
+ }
 ]

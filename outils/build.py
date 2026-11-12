@@ -489,6 +489,24 @@ def build_404(idx):
     with open(os.path.join(ROOT, "404.html"), "w", encoding="utf-8") as f:
         f.write(html)
 
+def build_redirects():
+    """Anciennes adresses du portfolio (encore connues de Google) : une page de renvoi immédiat vers la page actuelle la plus proche.
+    GitHub Pages ne sait pas faire de redirection serveur ; Google traite ce renvoi instantané comme une redirection permanente."""
+    n = 0
+    for slug, cible in (load("redirections", {}) or {}).items():
+        slug = slug.strip("/")
+        if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]*", slug) or os.path.exists(os.path.join(ROOT, slug)) and not os.path.exists(os.path.join(ROOT, slug, ".renvoi")):
+            continue   # jamais par-dessus une vraie page ou un dossier du site
+        canon = BASE + cible.split("#")[0]
+        write("/" + slug + "/", f'<!doctype html>\n<html lang="fr"><head><meta charset="utf-8"><title>AG Production</title>\n'
+              f'<link rel="canonical" href="{e(canon)}">\n'
+              f'<meta http-equiv="refresh" content="0; url={e(cible)}"><script>location.replace({json.dumps(cible)})</script></head>\n'
+              f'<body><a href="{e(cible)}">Cette page a changé d\'adresse : continuer</a></body></html>\n')
+        open(os.path.join(ROOT, slug, ".renvoi"), "w").close()
+        n += 1
+    return n
+
+
 def build_legal(idx):
     m = SITE.get("mentions") or {}
     email = SITE.get("email") or ""
@@ -707,6 +725,7 @@ def main():
         urls.append((build_particuliers(idx), "0.8"))
     urls.append((build_legal(idx), "0.2"))
     build_404(idx)
+    print(f"{build_redirects()} anciennes adresses renvoyées")
 
     sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for u, pr in urls:
