@@ -22,15 +22,14 @@
 @keyframes v2defile{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.v2 .refs{animation:none;flex-wrap:wrap;width:auto;justify-content:center}}
 
-/* 3. Films sur fond sombre */
-.v2 #films,.v2 #autres-films{--ink:#f5f5f7;--graphite:#a4a9b3;--cloud:#1b1e24;--hair:#30343c;--tide:#9dc0ea;color:var(--ink);background:#0c0e12}
-.v2 #films{box-shadow:0 0 0 100vmax #0c0e12;clip-path:inset(0 -100vmax);padding-top:clamp(72px,9vw,128px)}
-.v2 #autres-films{padding-bottom:clamp(72px,9vw,128px)}
-.v2 #films .seg button[aria-pressed="true"],.v2 #autres-films .seg button[aria-pressed="true"]{background:#f5f5f7;color:#111;box-shadow:none}
-.v2 #films .seg-in.cs button[aria-pressed="true"]{background:transparent;color:#111}
-.v2 #films .seg-in.cs .seg-ind{background:#f5f5f7;box-shadow:none}
-.v2 #autres-films .film .shot{background:#1b1e24}
-.v2 #autres-films .arrows button,.v2 #autres-films [id="prev"],.v2 #autres-films [id="next"]{background:#1b1e24;color:#fff}
+/* 3. Films sur une bande gris clair (le gris des fonds de tuiles), d'un bord à l'autre de l'écran */
+.v2 #films,.v2 #autres-films{--cloud:#fff;background:#f5f5f7}
+.v2 #films{box-shadow:0 0 0 100vmax #f5f5f7;clip-path:inset(0 -100vmax);padding-top:clamp(72px,9vw,120px)}
+.v2 #autres-films{padding-bottom:clamp(72px,9vw,120px);margin-top:-1px}
+.v2 #films .seg button[aria-pressed="true"],.v2 #autres-films .seg button[aria-pressed="true"]{background:var(--ink);color:#fff;box-shadow:none}
+.v2 #films .seg-in.cs button[aria-pressed="true"]{background:transparent;color:#fff}
+.v2 #films .seg-in.cs .seg-ind{background:var(--ink);box-shadow:none}
+.v2 #clients{border-bottom:0}
 
 /* 4. Projets racontés : l'image, une phrase, le lien (le détail est sur la page du projet) */
 .v2 .case dl{display:none}
@@ -60,12 +59,39 @@
 
 /* Ajustements */
 .v2 .reel{aspect-ratio:auto;width:100%}
-.v2 #films .case-cover .go{color:#111}
-.v2 #films .case-cover .go svg,.v2 #autres-films .film .play svg{fill:#111}
-.v2 #autres-films{margin-top:-1px}
 @media (max-width:760px){
   .v2 .reel{height:calc(100svh - 52px);min-height:480px}
   .v2 .hero h1{font-size:clamp(44px,13vw,64px)}
   .v2 .refs li{width:120px;height:54px;padding:6px 16px}
   .v2 .refs{--lh:28px;animation-duration:38s}
 }
+
+/* En quelques chiffres : trois grands nombres sur une ligne (les autres tuiles répétaient « Pourquoi travailler avec moi ») */
+.v2 #bento{grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:auto;gap:0;max-width:1040px;margin-inline:auto}
+.v2 #bento .t-d,.v2 #bento .t-e,.v2 #bento .t-f,.v2 #bento .t-a img{display:none}
+.v2 #bento .tile{background:none;border-radius:0;color:var(--ink);padding:6px clamp(20px,3.4vw,52px);gap:clamp(18px,2vw,26px);justify-content:flex-start;border-left:1px solid var(--hair)}
+.v2 #bento .tile:first-child{border-left:0;padding-left:0}
+.v2 #bento .tile::after{display:none}
+.v2 #bento .tile .lbl{color:var(--tide);text-shadow:none;font-size:15px}
+.v2 #bento .tile .k{font-size:clamp(72px,9vw,136px);text-shadow:none;background:linear-gradient(115deg,#1d1d1f 15%,#0a66d8 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.v2 #bento .tile .k .unit{-webkit-text-fill-color:var(--ink);color:var(--ink)}
+.v2 #bento .tile p{color:var(--graphite);text-shadow:none;font-size:17px;max-width:17em}
+@media (max-width:760px){
+  .v2 #bento{grid-template-columns:1fr}
+  .v2 #bento .tile{border-left:0;border-top:1px solid var(--hair);padding:26px 0}
+  .v2 #bento .tile:first-child{border-top:0;padding-top:0}
+}
+
+/* À propos : une seule photo, grande, et une première phrase mise en avant */
+.v2 .about{grid-template-columns:minmax(0,6fr) minmax(0,6fr);align-items:stretch;gap:clamp(32px,5vw,84px)}
+.v2 .about .pic .face{display:none}
+.v2 .about .pic{min-height:100%}
+.v2 .about .pic #aboutPhoto{height:100%;min-height:clamp(420px,46vw,680px);aspect-ratio:auto}
+.v2 .about .copy{align-self:center}
+.v2 .about .copy h2{font-size:clamp(36px,4.6vw,68px);margin-bottom:24px}
+.v2 .about #aboutCopy p:first-of-type{font-size:clamp(22px,2.2vw,30px);line-height:1.22;letter-spacing:-.025em;margin-bottom:22px;max-width:22em}
+.v2 .about #aboutCopy p:first-of-type b{font-weight:600}
+.v2 .about #aboutCopy p{font-size:18px;line-height:1.55}
+@media (max-width:760px){.v2 .about{grid-template-columns:1fr}.v2 .about .pic #aboutPhoto{min-height:0;aspect-ratio:4/5;height:auto}}
+.v2 #bento .tile{grid-column:auto!important;grid-row:auto!important;min-height:0}
+.v2 #bento .tile .k sup{-webkit-text-fill-color:var(--tide-l);color:var(--tide-l)}
