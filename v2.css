@@ -199,3 +199,5 @@ html:not(.v2mo).v2 #bento .tile .k::after{transform:scaleX(.62)}
 .v2 #clients{position:relative}
 .v2 #clients::before{left:0;background:linear-gradient(90deg,#fff,rgba(255,255,255,0))}
 .v2 #clients::after{right:0;background:linear-gradient(270deg,#fff,rgba(255,255,255,0))}
+/* Compteurs : on ne masque que le haut et le bas (le défilement), jamais les côtés des chiffres */
+.v2mo .odo{overflow:visible;clip-path:inset(0 -.6em);padding-right:0;margin-right:0}
