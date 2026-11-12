@@ -590,7 +590,7 @@ PT_BLOCS = [
     ("L'exigence des tournages", "Toute l'année, je travaille pour des marques, des entreprises et des événements sportifs. J'ai l'habitude des lumières difficiles, des journées longues et des moments qui n'arrivent qu'une fois."),
     ("Votre galerie privée", "Après le mariage, vous recevez un lien et un mot de passe. Vos photos y sont rangées par moments de la journée. Vous marquez vos préférées d'un cœur, vous laissez un mot sur une image, et vos proches peuvent faire leur propre sélection."),
 ]
-PT_FACON_PHOTO = "/images/particuliers/elise-julien/ej-06.jpg"
+PT_FACON_PHOTO = "/images/particuliers/mariage-2/m2-02.jpg"
 PT_ICONES = [
     '<svg viewBox="0 0 24 24"><path d="M2.5 12s3.5-6.5 9.5-6.5 9.5 6.5 9.5 6.5-3.5 6.5-9.5 6.5S2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/></svg>',
     '<svg viewBox="0 0 24 24"><rect x="9" y="10" width="6" height="4" rx="1.2"/><circle cx="5" cy="6" r="2.6"/><circle cx="19" cy="6" r="2.6"/><circle cx="5" cy="18" r="2.6"/><circle cx="19" cy="18" r="2.6"/><path d="M7 8l2.4 2.4M17 8l-2.4 2.4M7 16l2.4-2.4M17 16l-2.4-2.4"/></svg>',
@@ -645,7 +645,7 @@ def build_particuliers(idx):
             + (f'<figure><img src="{e(img(cover))}" alt="Mariés sur la plage au coucher du soleil, en Vendée" fetchpriority="high" style="object-position:{e(PART.get("couverture_cadrage") or "50% 40%")}"></figure>' if cover else "")
             + "</section>" + hist
             + '<section class="pg-sec wrap"><div class="pt-facon">'
-            + f'<figure><img src="{e(img(PT_FACON_PHOTO))}"{ss(PT_FACON_PHOTO, "(max-width:760px) 100vw, 560px")} alt="La mariée arrive au bras de son père, photographiée sur le vif" loading="lazy" decoding="async"></figure>'
+            + f'<figure><img src="{e(img(PT_FACON_PHOTO))}"{ss(PT_FACON_PHOTO, "(max-width:760px) 100vw, 560px")} alt="Les mariés pendant la cérémonie, leur reflet dans un piano" loading="lazy" decoding="async"></figure>'
             + '<div><h2>Ma façon de travailler.</h2><ul>'
             + "".join(f'<li><span class="ic" aria-hidden="true">{PT_ICONES[i]}</span><div><h3>{e(t)}</h3><p>{e(x)}</p></div></li>' for i, (t, x) in enumerate(PT_BLOCS)) + "</ul></div></div></section>"
             + '<section class="pg-sec wrap"><h2>Du premier message à vos images.</h2><ol class="pt-etapes">'
