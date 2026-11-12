@@ -155,6 +155,25 @@ async function load(name){
       </button>` : "").join("");
     rail.scrollLeft = 0; updateArrows();
   }
+  /* Aperçu vidéo au survol d'un film (souris uniquement) : le film démarre en muet dans la vignette */
+  if (matchMedia("(hover:hover) and (pointer:fine)").matches && !matchMedia("(prefers-reduced-motion:reduce)").matches) {
+    let pvT = 0, pvEl = null;
+    const pvStop = () => { clearTimeout(pvT); if (pvEl) { const x = pvEl; pvEl = null; x.classList.remove("on"); setTimeout(() => x.remove(), 300); } };
+    rail.addEventListener("mouseover", e => {
+      const card = e.target.closest(".film"); if (!card || card.contains(e.relatedTarget)) return;
+      pvStop();
+      const f = FILMS[+card.dataset.v], { id, h } = vimeoParts((f.vimeo || [])[0] || ""); if (!id) return;
+      pvT = setTimeout(() => {
+        const fr = document.createElement("iframe");
+        fr.className = "pv"; fr.tabIndex = -1; fr.setAttribute("aria-hidden", "true"); fr.allow = "autoplay";
+        fr.src = `https://player.vimeo.com/video/${id}?background=1&autoplay=1&muted=1&loop=1&dnt=1${h ? "&h=" + h : ""}`;
+        fr.addEventListener("load", () => setTimeout(() => { if (pvEl === fr) fr.classList.add("on"); }, 700));
+        card.querySelector(".shot").appendChild(fr); pvEl = fr;
+      }, 220);
+    });
+    rail.addEventListener("mouseout", e => { const card = e.target.closest(".film"); if (card && !card.contains(e.relatedTarget)) pvStop(); });
+    rail.addEventListener("click", pvStop, true);
+  }
   function updateArrows(){
     $("#prev").disabled = rail.scrollLeft < 8;
     $("#next").disabled = rail.scrollLeft + rail.clientWidth > rail.scrollWidth - 8;

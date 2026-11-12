@@ -565,20 +565,21 @@ def stories(hs):
 
 
 PT_BLOCS = [
-    ("Sur le vif", "Je photographie et je filme ce qui se passe vraiment : les regards, les rires, les gestes qu'on ne refait pas. Très peu de poses, et quelques portraits de vous deux au moment où la lumière est la plus belle."),
-    ("Photo, film et drone", "Je fais les trois. Selon votre journée, je viens seul pour la photo, ou avec un second cadreur de confiance pour le film. Si le lieu et la météo le permettent, j'ajoute des images aériennes : je suis pilote de drone certifié par la DGAC."),
+    ("Sur le vif", "Je photographie ce qui se passe vraiment : les regards, les rires, les gestes qu'on ne refait pas. Très peu de poses, et quelques portraits de vous deux au moment où la lumière est la plus belle."),
+    ("Au sol et dans les airs", "Je suis là toute la journée, des préparatifs à l'ouverture de bal. Si le lieu et la météo le permettent, j'ajoute des images aériennes : je suis pilote de drone certifié par la DGAC."),
     ("L'exigence des tournages", "Toute l'année, je travaille pour des marques, des entreprises et des événements sportifs. J'ai l'habitude des lumières difficiles, des journées longues et des moments qui n'arrivent qu'une fois."),
     ("Votre galerie privée", "Après le mariage, vous recevez un lien et un mot de passe. Vos photos y sont rangées par moments de la journée. Vous marquez vos préférées d'un cœur, vous laissez un mot sur une image, et vos proches peuvent faire leur propre sélection."),
 ]
 PT_ETAPES = [
     ("1", "On se parle", "Vous me donnez la date, le lieu et ce que vous imaginez. Je vous envoie une proposition claire, avec le prix."),
     ("2", "On prépare la journée", "Avant le mariage, on cale ensemble le déroulé, les moments importants et les personnes à ne pas manquer."),
-    ("3", "Le jour J", "Je suis là des préparatifs à la soirée, selon la formule choisie. Vous profitez, je m'occupe des images."),
-    ("4", "Vos images", "Vous découvrez vos photos dans votre galerie privée, vous faites votre sélection, et je vous livre les fichiers en haute définition."),
+    ("3", "Le jour J", "Je suis là des préparatifs à l'ouverture de bal. Vous profitez, je m'occupe des images."),
+    ("4", "Vos images", "Sous quatre semaines, vous découvrez vos photos dans votre galerie privée. Vous faites votre sélection, et je vous livre les fichiers en haute définition."),
 ]
 PT_FAQ = [
     ("Vous déplacez-vous en dehors de la Vendée ?", "Oui. Je suis basé aux Sables-d'Olonne et je me déplace dans toute la Vendée, dans les Pays de la Loire, partout en France et à l'étranger."),
-    ("Photo, vidéo ou les deux ?", "Comme vous préférez. Pour la photo seule, je viens seul. Pour la photo et le film, je viens avec un second cadreur afin de ne rien manquer."),
+    ("Quand recevons-nous nos photos ?", "Sous quatre semaines après le mariage. Je n'aime pas faire attendre : vos photos arrivent pendant que les souvenirs sont encore tout frais."),
+    ("Proposez-vous aussi un film ?", "Mes formules mariage sont en photo. Je réalise des films toute l'année pour des marques et des événements : si vous en souhaitez un pour votre mariage, parlons-en."),
     ("Utilisez-vous un drone ?", "Oui, quand le lieu, la réglementation et la météo le permettent. Je suis pilote de drone certifié par la DGAC et je m'occupe des autorisations."),
     ("Quels sont vos tarifs ?", "__TARIFS__"),
     ("Comment choisissons-nous nos photos ?", "Dans votre galerie privée en ligne, protégée par un mot de passe. Vous marquez vos photos préférées, vous pouvez commenter une image, puis vous validez votre sélection. Je reçois votre choix directement."),
@@ -608,11 +609,11 @@ def build_particuliers(idx):
     hist = stories(PART.get("histoires") or [])
     email = SITE.get("email") or ""
     fs = [f for f in PART.get("formules") or [] if f.get("titre") and f.get("prix")]
-    tarifs = (("Mes formules commencent à partir de " + fs[0]["prix"] + ". Chaque proposition est ensuite ajustée à votre journée : durée, lieu, photo seule ou photo et film.") if fs
+    tarifs = (("Mes formules commencent à partir de " + fs[0]["prix"] + ". Je ne couvre que des journées complètes. Chaque proposition est ensuite ajustée à votre mariage : lieu, séance couple, veille ou lendemain.") if fs
               else "Chaque projet fait l'objet d'une proposition sur mesure, selon la durée, le lieu et les prestations choisies.")
     faq = "".join(f"<details><summary>{e(q)}</summary><p>{e(a.replace('__TARIFS__', tarifs))}</p></details>" for q, a in PT_FAQ)
-    body = (f'<section class="pt-hero"><div class="wrap in"><h1>Photographe et vidéaste de mariage en Vendée.</h1>'
-            f'<p class="lede">Vos moments, avec le même regard que mes films : des images prises sur le vif, en photo, en film et au drone.</p>'
+    body = (f'<section class="pt-hero"><div class="wrap in"><h1>Photographe de mariage en Vendée.</h1>'
+            f'<p class="lede">Vos moments, avec le même regard que mes reportages : des images prises sur le vif, au sol et au drone.</p>'
             f'<a class="pill" href="#contact">Vérifier ma disponibilité</a></div>'
             + (f'<figure><img src="{e(img(cover))}" alt="Mariés sur la plage au coucher du soleil, en Vendée" fetchpriority="high" style="object-position:{e(PART.get("couverture_cadrage") or "50% 40%")}"></figure>' if cover else "")
             + "</section>" + hist
@@ -635,14 +636,14 @@ def build_particuliers(idx):
               '<input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" hidden aria-hidden="true">'
               '<button class="pill" type="submit">Envoyer la demande</button><p class="note" id="note" role="status"></p></form></div></section>')
     body = re.sub(r" ([:;?!])", NBSP + r"\1", body)
-    desc = "Photographe et vidéaste de mariage aux Sables-d'Olonne, en Vendée : photo, film et drone, galerie privée pour choisir vos images. Mariages, couples, familles."
-    ld = [{"@context": "https://schema.org", "@type": "Service", "name": "Photographe et vidéaste de mariage", "serviceType": "Photographie et vidéo de mariage",
+    desc = "Photographe de mariage aux Sables-d'Olonne, en Vendée : reportage de la journée complète, drone, galerie privée pour choisir vos photos. À partir de 2 500 €."
+    ld = [{"@context": "https://schema.org", "@type": "Service", "name": "Photographe de mariage", "serviceType": "Photographie de mariage",
            "description": desc, "url": BASE + path, "provider": {"@type": "ProfessionalService", "name": "AG Production", "url": BASE + "/"},
            "areaServed": [{"@type": "City", "name": "Les Sables-d'Olonne"}, {"@type": "AdministrativeArea", "name": "Vendée"},
                           {"@type": "AdministrativeArea", "name": "Pays de la Loire"}, {"@type": "Country", "name": "France"}]},
           breadcrumb_ld([("Particuliers", path)]),
           faq_ld([(html.unescape(re.sub("<[^>]+>", "", q)), html.unescape(re.sub("<[^>]+>", "", a))) for q, a in re.findall(r"<summary>(.*?)</summary><p>(.*?)</p>", body)])]
-    write(path, page_shell(idx, "Photographe et vidéaste de mariage en Vendée | AG Production", desc, path, body, ld, cover))
+    write(path, page_shell(idx, "Photographe de mariage en Vendée, Les Sables-d'Olonne | AG Production", desc, path, body, ld, cover))
     return path
 
 

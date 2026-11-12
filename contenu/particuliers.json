@@ -190,5 +190,42 @@
         }
       ]
     }
-  ]
+  ],
+  "formules": [
+    {
+      "titre": "Journée complète",
+      "prix": "2 500 €",
+      "texte": "Toute votre journée, des préparatifs à l'ouverture de bal.",
+      "inclus": [
+        "Photographe présent toute la journée",
+        "Images aériennes au drone, si le lieu et la météo le permettent",
+        "Galerie privée pour choisir vos photos, ouverte à vos proches",
+        "Photos retouchées, livrées en haute définition",
+        "Galerie complète sous quatre semaines"
+      ]
+    },
+    {
+      "titre": "Journée et séance couple",
+      "prix": "3 000 €",
+      "vedette": true,
+      "texte": "La journée complète, et une séance à deux avant le mariage.",
+      "inclus": [
+        "Tout le contenu de la journée complète",
+        "Séance couple avant le mariage, dans le lieu de votre choix",
+        "Des photos à utiliser pour vos faire-part",
+        "Une première rencontre devant l'objectif, avant le jour J"
+      ]
+    },
+    {
+      "titre": "Le week-end",
+      "prix": "3 500 €",
+      "texte": "La séance couple, la journée complète, et la veille ou le lendemain.",
+      "inclus": [
+        "Tout le contenu de la formule précédente",
+        "Reportage la veille ou le lendemain : dîner, brunch, retour de noces",
+        "Un seul récit en images, du premier au dernier moment"
+      ]
+    }
+  ],
+  "formules_note": "Prix TTC, pour un mariage en Vendée. Au-delà, les frais de déplacement sont précisés dans la proposition."
 }

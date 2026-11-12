@@ -778,3 +778,16 @@ p,dd,li,figcaption{text-wrap:pretty}
 .pt-formule.vedette li::before{background:#fff}
 .pt-fnote{margin:18px 0 0;color:var(--graphite);font-size:15px}
 .pt-quatre{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+/* Aperçu vidéo au survol des films */
+.film .shot .pv{position:absolute;top:50%;left:50%;width:114%;aspect-ratio:16/9;transform:translate(-50%,-50%);border:0;pointer-events:none;opacity:0;transition:opacity .35s ease}
+.film .shot .pv.on{opacity:1}
+.film .shot .play{z-index:1}
+/* Accueil resserré */
+.sec{padding-block:clamp(64px,8vw,110px) 0}
+.fa-band{padding-block:clamp(56px,6.5vw,92px);margin-top:clamp(64px,8vw,110px)}
+@media (min-width:900px){
+  .why-wrap{grid-template-columns:1fr;gap:clamp(28px,3vw,40px)}
+  .why-wrap .head{position:static}
+  .why{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:clamp(28px,3vw,44px)}
+}
+@media (min-width:900px){.why article{grid-template-columns:36px minmax(0,1fr)}}
