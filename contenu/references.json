@@ -35,7 +35,8 @@
   "logo": "images/logos/norm/totalenergies.png",
   "taille": 1,
   "logo_source": "images/externes/wikimedia-Logo_TotalEnergies.svg",
-  "bandeau": true
+  "bandeau": true,
+  "film": "Team TotalEnergies"
  },
  {
   "nom": "Groupe Dubreuil",
@@ -43,22 +44,22 @@
   "taille": 1,
   "logo_source": "images/externes/wikimedia-Groupedubreuil.jpg",
   "bandeau": true,
-  "lien": "/voile-course-au-large/"
+  "film": "Groupe Dubreuil Sailing Team"
  },
  {
   "nom": "Enedis",
   "logo": "images/logos/norm/enedis.png",
   "taille": 1,
   "logo_source": "images/logos/enedis.png",
-  "bandeau": true,
-  "lien": "/film-entreprise/"
+  "bandeau": false
  },
  {
   "nom": "Adidas",
   "logo": "images/logos/norm/adidas.png",
   "taille": 1,
   "logo_source": "images/externes/wikimedia-Adidas_Logo.svg",
-  "bandeau": true
+  "bandeau": true,
+  "serie": "Adidas Combat Sport"
  },
  {
   "nom": "Allianz Trade",
@@ -66,14 +67,15 @@
   "taille": 1,
   "logo_source": "images/logos/allianz-trade.png",
   "bandeau": true,
-  "lien": "/film-entreprise/"
+  "film": "Allianz Trade en France"
  },
  {
   "nom": "Danone",
   "logo": "images/logos/norm/danone.png",
   "taille": 1,
   "logo_source": "images/externes/wikimedia-DANONE_LOGO_HORIZONTAL.png",
-  "bandeau": true
+  "bandeau": true,
+  "film": "Danone HiPRO"
  },
  {
   "nom": "BWT",
@@ -88,7 +90,8 @@
   "logo": "images/logos/norm/puma.png",
   "taille": 1,
   "logo_source": "images/externes/wikimedia-Puma.svg",
-  "bandeau": true
+  "bandeau": true,
+  "serie": "Puma"
  },
  {
   "nom": "MSD",

@@ -133,6 +133,10 @@ def render_index_blocks():
         im = f'<img src="{e(img(r.get("logo")))}" alt="{e(r.get("nom"))}" loading="lazy" style="height:calc(var(--lh) * {logo_h(r)})">'
         if r.get("lien"):
             im = f'<a href="{e(r.get("lien"))}" aria-label="{e(r.get("nom"))} : voir le projet">{im}</a>'
+        elif r.get("film"):   # ouvre le film dans le lecteur du site (site.js)
+            im = f'<a href="#autres-films" data-rfilm="{e(r.get("film"))}" aria-label="{e(r.get("nom"))} : voir le film">{im}</a>'
+        elif r.get("serie"):  # ouvre la série photo
+            im = f'<a href="#series-photo" data-rserie="{e(r.get("serie"))}" aria-label="{e(r.get("nom"))} : voir les photos">{im}</a>'
         return f'<li title="{e(r.get("nom"))}">{im}</li>'
     b["refs"] = "".join(ref_li(r) for r in REFS if r.get("bandeau", True))
     b["skills"] = "".join(

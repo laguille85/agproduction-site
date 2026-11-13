@@ -287,7 +287,10 @@ async function load(name){
   /* ---------- Références ---------- */
   const BAND = REFS.filter(r => r.bandeau !== false);
   $("#refs").innerHTML = BAND.map(r => { const im = `<img src="${esc(src(r.logo))}" alt="${esc(r.nom)}" loading="lazy" data-t="${Number(r.taille) || 1}" onload="const k=this.naturalWidth/this.naturalHeight||1;this.style.height='calc(var(--lh) * '+(Math.min(1.25,1.25/Math.sqrt(k))*this.dataset.t).toFixed(3)+')'" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="word" hidden>${esc(r.nom)}</span>`;
-    return `<li title="${esc(r.nom)}">${r.lien ? `<a href="${esc(r.lien)}" aria-label="${esc(r.nom)} : voir le projet">${im}</a>` : im}</li>`; }).join("");
+    const a = r.lien ? `<a href="${esc(r.lien)}" aria-label="${esc(r.nom)} : voir le projet">${im}</a>`
+      : r.film ? `<a href="#autres-films" data-rfilm="${esc(r.film)}" aria-label="${esc(r.nom)} : voir le film">${im}</a>`
+      : r.serie ? `<a href="#series-photo" data-rserie="${esc(r.serie)}" aria-label="${esc(r.nom)} : voir les photos">${im}</a>` : im;
+    return `<li title="${esc(r.nom)}">${a}</li>`; }).join("");
   if (document.documentElement.classList.contains("v2")) {   /* version d'essai : logos en bandeau défilant (liste doublée pour boucler) */
     const rf = $("#refs"); rf.insertAdjacentHTML("beforeend", rf.innerHTML);
     [...rf.children].slice(BAND.length).forEach(li => { li.setAttribute("aria-hidden", "true"); li.querySelectorAll("a").forEach(a => a.tabIndex = -1); });
@@ -378,6 +381,8 @@ async function load(name){
   }
   document.addEventListener("click", e => {
     const v = e.target.closest("[data-v]"); if (v) { playFilm(+v.dataset.v); return; }
+    const rf = e.target.closest("[data-rfilm]"); if (rf) { const i = FILMS.findIndex(f => f.titre === rf.dataset.rfilm); if (i >= 0) { e.preventDefault(); playFilm(i); } return; }
+    const rs = e.target.closest("[data-rserie]"); if (rs) { const ph = PHOTOS.find(x => x.titre === rs.dataset.rserie); if (ph) { e.preventDefault(); openSeries(ph, true); } return; }
     const cv = e.target.closest("[data-cv]"); if (cv) { const c = CASES[+cv.dataset.cv]; if ((c.vimeo||[]).length) playFilm({ titre: c.titre, categorie: c.client, vimeo: c.vimeo }); return; }
     const ci = e.target.closest("[data-ci]"); if (ci) { const ph = ci.dataset.kind === "photo", c = ph ? PCASES[+pcaseEl.dataset.n] : CASES[+caseEl.dataset.n]; series = { titre: c.titre, images: [c.couverture, ...(c.images||[])] }; k = +ci.dataset.ci + 1; showSeries(); return; }
     const p = e.target.closest("[data-p]"); if (p) { openSeries(PHOTOS[+p.dataset.p], true); return; }
