@@ -451,7 +451,7 @@ def build_photo_case(idx, c, others, kind="photo"):
         except Exception:
             return ""
     shots = "".join(f'<button type="button" class="pp-shot" data-images="{e(json.dumps(imgs))}" data-k="{k}" data-title="{e(c.get("titre"))}"><img src="{e(u)}"{ss(u, "(max-width:760px) 50vw, 33vw")} alt="{e(c.get("titre"))} — photo {k + 1} sur {len(imgs)}"{dims(u)} loading="lazy" decoding="async"></button>' for k, u in enumerate(imgs))
-    gal_title = "La série" if kind == "photo" else ("Le reportage photo" if serie else "En images")
+    gal_title = "La série" if kind == "photo" else ("Le reportage photo" if serie else ("En tournage" if not c.get("vimeo") else "En images"))
     more = "".join(f'<li><a href="/projets/{case_slug(o)}/">{e(o.get("onglet") or o.get("client"))} — {e(o.get("titre"))}{ARROW}</a></li>' for o in others)
     quote = (f'<section class="pg-sec wrap"><div class="pp-quote"><p>« {e(c["citation"])} »</p>' + (f'<cite>{e(c.get("citation_auteur"))}</cite>' if c.get("citation_auteur") else "") + "</div></section>") if c.get("citation") else ""
     figs = list(c.get("chiffres") or [])
@@ -470,7 +470,7 @@ def build_photo_case(idx, c, others, kind="photo"):
                'Décrivez-le-moi en quelques lignes, je vous réponds avec une première proposition.</p>'
                '<a class="pill" href="#contact">Demander un devis</a></div></section>')
             + quote + films + anim
-            + (f'<section class="pg-sec wrap"><div class="pp-head"><h2>{gal_title}</h2><span>{len(imgs)} photo{"s" if len(imgs) > 1 else ""}</span></div><div class="pp-masonry">{shots}</div></section>' if imgs and kind == "photo" else "")
+            + (f'<section class="pg-sec wrap"><div class="pp-head"><h2>{gal_title}</h2><span>{len(imgs)} photo{"s" if len(imgs) > 1 else ""}</span></div><div class="pp-masonry">{shots}</div></section>' if imgs and (kind == "photo" or not c.get("vimeo")) else "")
             + cta_block("Photographie" if kind == "photo" else None)
             + (f'<section class="pg-sec wrap"><h2 class="pg-h-sm">Autres projets{" photo" if kind == "photo" else ""}</h2><ul class="pg-links">{more}</ul></section>' if more else ""))
     desc = f'{c.get("client")} : {c.get("accroche")}'
