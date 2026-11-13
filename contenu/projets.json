@@ -106,7 +106,7 @@
     "accroche": "Cadreur sur la série documentaire qui suit cinq équipes IMOCA pendant une saison, diffusée sur CANAL+.",
     "contexte": "True Sailing est une série documentaire en six épisodes produite par Upswing Prod et diffusée sur CANAL+ en mai 2026. Elle raconte la course au large de l'intérieur, entre l'après-Vendée Globe 2024 et la Transat Café L'Or 2025 : les briefings, les arbitrages météo, les réparations, la recherche de sponsors, la fatigue et les doutes des équipes de Jérémie Beyou, Fabrice Amedeo, Arnaud Boissières, Sébastien Simon et Benjamin Dutreux.",
     "dispositif": "Engagé par Upswing Prod comme cadreur, j'ai principalement suivi trois skippers et leurs équipes pendant la saison : Sébastien Simon, Benjamin Dutreux et Arnaud Boissières. Un tournage documentaire au long cours, au plus près des marins et des équipes techniques, sans jamais gêner leur travail.",
-    "resultat": "Six épisodes diffusés en première partie de soirée sur CANAL+ Sport 360 et disponibles sur myCANAL.",
+    "resultat": "Six épisodes diffusés en première partie de soirée sur CANAL+ Sport 360 et disponibles sur myCANAL. La saison 2 est en cours de tournage, et j'y participe à nouveau.",
     "citation": "",
     "citation_auteur": "",
     "couverture": "images/projets/true-sailing-imoca-foils.jpg",
@@ -136,6 +136,7 @@
     "legendes": {
       "images/projets/true-sailing-barre-45.jpg": "Benjamin Dutreux à la barre",
       "images/projets/true-sailing-cockpit-45.jpg": "En tournage, caméra à la main dans le cockpit"
-    }
+    },
+    "sans_devis": true
   }
 ]
