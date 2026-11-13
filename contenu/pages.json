@@ -300,7 +300,7 @@
   "menu": "Voile et course au large",
   "savoir_faire": "Voile",
   "titre_seo": "Photo et vidéo voile, course au large | AG Production",
-  "description": "Films et photos de voile et de course au large, à terre, sur l'eau et à bord. Basé aux Sables-d'Olonne, port du Vendée Globe.",
+  "description": "Films et photos de voile et de course au large, à terre, sur l'eau et à bord. Cadreur sur la série True Sailing (CANAL+). Basé aux Sables-d'Olonne.",
   "surtitre": "Voile",
   "h1": "Voile et course au large, à terre et en mer.",
   "intro": "Tournages à terre, sur l'eau et à bord, du chantier jusqu'au départ de course. Installé aux Sables-d'Olonne, port du Vendée Globe, je connais le rythme et les contraintes des équipes de course au large.",
@@ -309,6 +309,10 @@
    {
     "titre": "Où je tourne",
     "texte": "Basé aux Sables-d'Olonne, port de départ du Vendée Globe, je me déplace sur toute la façade atlantique et au-delà, comme pour la Rolex Fastnet Race et le Spi Ouest-France."
+   },
+   {
+    "titre": "Cadreur sur True Sailing, la série documentaire diffusée sur CANAL+",
+    "texte": "J'ai été cadreur pour Upswing Prod sur la première saison de True Sailing, série documentaire en six épisodes diffusée sur CANAL+ en mai 2026. Elle suit cinq équipes IMOCA entre l'après-Vendée Globe et la Transat Café L'Or : les arbitrages météo, les réparations, la recherche de sponsors, la fatigue des équipes. J'y ai principalement suivi Sébastien Simon, Benjamin Dutreux et Arnaud Boissières, à terre comme en mer."
    },
    {
     "titre": "Pour les équipes, les partenaires et les marques nautiques",
