@@ -315,7 +315,7 @@ async function load(name){
   function playFilm(i, r = 0){
     const f = typeof i === "object" ? i : FILMS[i], list = f.vimeo || [];
     openSheet(`<div class="sheet-head"><h3>${esc(f.titre)}</h3><small>${esc(f.categorie)}</small></div>
-      <div class="player"><iframe src="${vimeoUrl(list[r])}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="${esc(f.titre)}"></iframe></div>
+      <div class="player">${f.fichier ? `<video src="/${esc(f.fichier)}" controls autoplay playsinline preload="auto"></video>` : `<iframe src="${vimeoUrl(list[r])}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="${esc(f.titre)}"></iframe>`}</div>
       ${list.length > 1 ? `<div class="reels">${list.map((_,j) => `<button type="button" data-r="${j}" aria-pressed="${j===r}">Film ${j+1}</button>`).join("")}</div>` : `<div style="height:8px"></div>`}`, true);
     sheet.querySelectorAll("[data-r]").forEach(b => b.onclick = () => playFilm(f, +b.dataset.r));
   }

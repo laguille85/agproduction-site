@@ -28,7 +28,8 @@
   "logo": "images/logos/norm/timeformed.png",
   "taille": 1,
   "logo_source": "images/logos/timeformed.png",
-  "bandeau": true
+  "bandeau": true,
+  "film": "La prescription en oncologie (extrait)"
  },
  {
   "nom": "TotalEnergies",
@@ -74,7 +75,7 @@
   "logo": "images/logos/norm/danone.png",
   "taille": 1,
   "logo_source": "images/externes/wikimedia-DANONE_LOGO_HORIZONTAL.png",
-  "bandeau": true,
+  "bandeau": false,
   "film": "Danone HiPRO"
  },
  {
@@ -90,7 +91,7 @@
   "logo": "images/logos/norm/puma.png",
   "taille": 1,
   "logo_source": "images/externes/wikimedia-Puma.svg",
-  "bandeau": true,
+  "bandeau": false,
   "serie": "Puma"
  },
  {

@@ -223,3 +223,5 @@ html:not(.v2mo).v2 #bento .tile .k::after{transform:scaleX(.62)}
   .v2 .refs li{width:132px;height:62px;padding:6px 16px}
 }
 @media (prefers-reduced-motion:reduce){.v2 #clients{height:auto;display:block;padding:24px 0}.v2 #clients .head{position:static;background:none;padding:0 var(--g);margin-bottom:10px}}
+
+.player video{width:100%;height:100%;display:block;background:#000}
