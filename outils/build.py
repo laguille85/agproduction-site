@@ -470,7 +470,7 @@ def build_photo_case(idx, c, others, kind="photo"):
                'Décrivez-le-moi en quelques lignes, je vous réponds avec une première proposition.</p>'
                '<a class="pill" href="#contact">Demander un devis</a></div></section>')
             + quote + films + anim
-            + (f'<section class="pg-sec wrap"><div class="pp-head"><h2>{gal_title}</h2><span>{len(imgs)} photo{"s" if len(imgs) > 1 else ""}</span></div><div class="pp-masonry">{shots}</div></section>' if imgs and (kind == "photo" or not c.get("vimeo")) else "")
+            + (f'<section class="pg-sec wrap"><div class="pp-head"><h2>{gal_title}</h2><span>{len(imgs)} photo{"s" if len(imgs) > 1 else ""}</span></div><div class="pp-masonry{" duo" if len(imgs) == 2 else ""}">{shots}</div></section>' if imgs and (kind == "photo" or not c.get("vimeo")) else "")
             + cta_block("Photographie" if kind == "photo" else None)
             + (f'<section class="pg-sec wrap"><h2 class="pg-h-sm">Autres projets{" photo" if kind == "photo" else ""}</h2><ul class="pg-links">{more}</ul></section>' if more else ""))
     desc = f'{c.get("client")} : {c.get("accroche")}'
