@@ -1,104 +1,128 @@
 [
-  {
-    "nom": "Air France",
-    "logo": "images/logos/norm/air-france.png",
-    "taille": 1,
-    "logo_source": "images/externes/wikimedia-Air_France_Logo.svg"
-  },
-  {
-    "nom": "Pierre Fabre",
-    "logo": "images/logos/norm/pierre-fabre.png",
-    "taille": 1,
-    "logo_source": "images/logos/pierre-fabre.png"
-  },
-  {
-    "nom": "Europ Assistance",
-    "logo": "images/logos/norm/europ-assistance.png",
-    "taille": 1,
-    "logo_source": "images/externes/wikimedia-Europ_Assistance_Logo_.png"
-  },
-  {
-    "nom": "Allianz Trade",
-    "logo": "images/logos/norm/allianz-trade.png",
-    "taille": 1,
-    "logo_source": "images/logos/allianz-trade.png"
-  },
-  {
-    "nom": "MSD",
-    "logo": "images/logos/norm/msd.png",
-    "taille": 1,
-    "logo_source": "images/logos/msd.png"
-  },
-  {
-    "nom": "TotalEnergies",
-    "logo": "images/logos/norm/totalenergies.png",
-    "taille": 1,
-    "logo_source": "images/externes/wikimedia-Logo_TotalEnergies.svg"
-  },
-  {
-    "nom": "Groupe Dubreuil",
-    "logo": "images/logos/norm/groupe-dubreuil.png",
-    "taille": 1,
-    "logo_source": "images/externes/wikimedia-Groupedubreuil.jpg"
-  },
-  {
-    "nom": "Enedis",
-    "logo": "images/logos/norm/enedis.png",
-    "taille": 1,
-    "logo_source": "images/logos/enedis.png"
-  },
-  {
-    "nom": "Danone",
-    "logo": "images/logos/norm/danone.png",
-    "taille": 1,
-    "logo_source": "images/externes/wikimedia-DANONE_LOGO_HORIZONTAL.png"
-  },
-  {
-    "nom": "TimeForMed",
-    "logo": "images/logos/norm/timeformed.png",
-    "taille": 1,
-    "logo_source": "images/logos/timeformed.png"
-  },
-  {
-    "nom": "Adidas",
-    "logo": "images/logos/norm/adidas.png",
-    "taille": 1,
-    "logo_source": "images/externes/wikimedia-Adidas_Logo.svg"
-  },
-  {
-    "nom": "Puma",
-    "logo": "images/logos/norm/puma.png",
-    "taille": 1,
-    "logo_source": "images/externes/wikimedia-Puma.svg"
-  },
-  {
-    "nom": "Brooks",
-    "logo": "images/logos/norm/brooks.png",
-    "taille": 1,
-    "logo_source": "images/externes/wikimedia-Brooks_sports_logo.png"
-  },
-  {
-    "nom": "Compressport",
-    "logo": "images/logos/norm/compressport.png",
-    "taille": 1,
-    "logo_source": "images/logos/compressport.jpg"
-  },
-  {
-    "nom": "BWT",
-    "logo": "images/logos/norm/bwt.png",
-    "taille": 1,
-    "logo_source": "images/externes/wikimedia-BWT_Logo_2024.svg"
-  },
-  {
-    "nom": "Richemont",
-    "logo": "images/logos/norm/richemont.png",
-    "taille": 1,
-    "logo_source": "images/externes/wikimedia-Logo_Richemont.svg"
-  },
-  {
-    "nom": "Fédération Française de Cyclisme",
-    "logo": "images/logos/norm/federation-francaise-de-cyclisme.png",
-    "taille": 1,
-    "logo_source": "images/externes/wikimedia-Logo_FFC.svg"
-  }
+ {
+  "nom": "Air France",
+  "logo": "images/logos/norm/air-france.png",
+  "taille": 1,
+  "logo_source": "images/externes/wikimedia-Air_France_Logo.svg",
+  "bandeau": true,
+  "lien": "/projets/air-france-une-soiree-sur-les-toits-de-paris/"
+ },
+ {
+  "nom": "Pierre Fabre",
+  "logo": "images/logos/norm/pierre-fabre.png",
+  "taille": 1,
+  "logo_source": "images/logos/pierre-fabre.png",
+  "bandeau": true,
+  "lien": "/projets/pierre-fabre-sur-la-mer-contre-le-cancer/"
+ },
+ {
+  "nom": "Europ Assistance",
+  "logo": "images/logos/norm/europ-assistance.png",
+  "taille": 1,
+  "logo_source": "images/externes/wikimedia-Europ_Assistance_Logo_.png",
+  "bandeau": true,
+  "lien": "/projets/europ-assistance-au-plus-pres-d-un-rapatriement-sanitaire/"
+ },
+ {
+  "nom": "TimeForMed",
+  "logo": "images/logos/norm/timeformed.png",
+  "taille": 1,
+  "logo_source": "images/logos/timeformed.png",
+  "bandeau": true
+ },
+ {
+  "nom": "TotalEnergies",
+  "logo": "images/logos/norm/totalenergies.png",
+  "taille": 1,
+  "logo_source": "images/externes/wikimedia-Logo_TotalEnergies.svg",
+  "bandeau": true
+ },
+ {
+  "nom": "Groupe Dubreuil",
+  "logo": "images/logos/norm/groupe-dubreuil.png",
+  "taille": 1,
+  "logo_source": "images/externes/wikimedia-Groupedubreuil.jpg",
+  "bandeau": true,
+  "lien": "/voile-course-au-large/"
+ },
+ {
+  "nom": "Enedis",
+  "logo": "images/logos/norm/enedis.png",
+  "taille": 1,
+  "logo_source": "images/logos/enedis.png",
+  "bandeau": true,
+  "lien": "/film-entreprise/"
+ },
+ {
+  "nom": "Adidas",
+  "logo": "images/logos/norm/adidas.png",
+  "taille": 1,
+  "logo_source": "images/externes/wikimedia-Adidas_Logo.svg",
+  "bandeau": true
+ },
+ {
+  "nom": "Allianz Trade",
+  "logo": "images/logos/norm/allianz-trade.png",
+  "taille": 1,
+  "logo_source": "images/logos/allianz-trade.png",
+  "bandeau": true,
+  "lien": "/film-entreprise/"
+ },
+ {
+  "nom": "Danone",
+  "logo": "images/logos/norm/danone.png",
+  "taille": 1,
+  "logo_source": "images/externes/wikimedia-DANONE_LOGO_HORIZONTAL.png",
+  "bandeau": true
+ },
+ {
+  "nom": "BWT",
+  "logo": "images/logos/norm/bwt.png",
+  "taille": 1,
+  "logo_source": "images/externes/wikimedia-BWT_Logo_2024.svg",
+  "bandeau": true,
+  "lien": "/projets/bwt-france-cosmy-le-nouveau-robot-de-piscine/"
+ },
+ {
+  "nom": "Puma",
+  "logo": "images/logos/norm/puma.png",
+  "taille": 1,
+  "logo_source": "images/externes/wikimedia-Puma.svg",
+  "bandeau": true
+ },
+ {
+  "nom": "MSD",
+  "logo": "images/logos/norm/msd.png",
+  "taille": 1,
+  "logo_source": "images/logos/msd.png",
+  "bandeau": false
+ },
+ {
+  "nom": "Brooks",
+  "logo": "images/logos/norm/brooks.png",
+  "taille": 1,
+  "logo_source": "images/externes/wikimedia-Brooks_sports_logo.png",
+  "bandeau": false
+ },
+ {
+  "nom": "Compressport",
+  "logo": "images/logos/norm/compressport.png",
+  "taille": 1,
+  "logo_source": "images/logos/compressport.jpg",
+  "bandeau": false
+ },
+ {
+  "nom": "Richemont",
+  "logo": "images/logos/norm/richemont.png",
+  "taille": 1,
+  "logo_source": "images/externes/wikimedia-Logo_Richemont.svg",
+  "bandeau": false
+ },
+ {
+  "nom": "Fédération Française de Cyclisme",
+  "logo": "images/logos/norm/federation-francaise-de-cyclisme.png",
+  "taille": 1,
+  "logo_source": "images/externes/wikimedia-Logo_FFC.svg",
+  "bandeau": false
+ }
 ]

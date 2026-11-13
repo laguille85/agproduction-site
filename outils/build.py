@@ -129,7 +129,12 @@ def render_index_blocks():
         except Exception:
             k = 2
         return round(min(1.25, 1.25 / k ** .5) * float(r.get("taille") or 1), 3)
-    b["refs"] = "".join(f'<li title="{e(r.get("nom"))}"><img src="{e(img(r.get("logo")))}" alt="{e(r.get("nom"))}" loading="lazy" style="height:calc(var(--lh) * {logo_h(r)})"></li>' for r in REFS)
+    def ref_li(r):
+        im = f'<img src="{e(img(r.get("logo")))}" alt="{e(r.get("nom"))}" loading="lazy" style="height:calc(var(--lh) * {logo_h(r)})">'
+        if r.get("lien"):
+            im = f'<a href="{e(r.get("lien"))}" aria-label="{e(r.get("nom"))} : voir le projet">{im}</a>'
+        return f'<li title="{e(r.get("nom"))}">{im}</li>'
+    b["refs"] = "".join(ref_li(r) for r in REFS if r.get("bandeau", True))
     b["skills"] = "".join(
         f'<button class="skill" type="button" data-s="{i}" aria-label="{e(s.get("titre"))} — en savoir plus"><img src="{e(img(s.get("image")))}"{ss(s.get("image"), "(max-width:760px) 60vw, 380px")} alt="{e(s.get("titre"))}" loading="lazy">'
         f'<span class="txt"><small>{e(s.get("surtitre"))}</small><strong>{e(s.get("titre"))}</strong></span>'

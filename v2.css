@@ -201,3 +201,25 @@ html:not(.v2mo).v2 #bento .tile .k::after{transform:scaleX(.62)}
 .v2 #clients::after{right:0;background:linear-gradient(270deg,#fff,rgba(255,255,255,0))}
 /* Compteurs : on ne masque que le haut et le bas (le défilement), jamais les côtés des chiffres */
 .v2mo .odo{overflow:visible;clip-path:inset(0 -.6em);padding-right:0;margin-right:0}
+
+/* Bandeau clients (nov. 2026) : titre fixe à gauche, logos en couleur qui défilent et passent dessous */
+.v2 #clients{display:flex;align-items:center;height:clamp(104px,9.4vw,128px);padding:0;border-bottom:0}
+.v2 #clients .head{position:absolute;left:0;top:0;bottom:0;z-index:2;display:flex;align-items:center;margin:0;padding:0 clamp(60px,7vw,110px) 0 var(--g);text-align:left;background:linear-gradient(90deg,#fff 74%,rgba(255,255,255,0))}
+.v2 #clients .head h2{font-size:clamp(19px,1.65vw,23px);font-weight:700;letter-spacing:-.025em;text-transform:none;color:var(--ink);line-height:1.12}
+.v2 #clients::before{display:none}
+.v2 #clients::after{width:9%}
+.v2 .refs{--lh:44px;animation-duration:64s;gap:0;margin:0}
+.v2 .refs li{width:clamp(170px,15.5vw,224px);height:84px;padding:10px 30px}
+.v2 .refs a{display:grid;place-items:center;width:100%;height:100%;border-radius:12px}
+.v2 .refs a:focus-visible{outline:2px solid var(--tide);outline-offset:2px}
+@media (hover:hover) and (pointer:fine){.v2 .refs li img{transition:transform .35s,opacity .35s}.v2 .refs:hover li img{opacity:.45}.v2 .refs li:hover img{opacity:1;transform:scale(1.07)}}
+@media (max-width:760px){
+  .v2 #clients{display:block;height:auto;padding:22px 0 14px}
+  .v2 #clients .head{position:static;display:block;padding:0 var(--g);margin:0 0 6px;background:none}
+  .v2 #clients .head h2{font-size:18px}.v2 #clients .head h2 br{display:none}
+  .v2 #clients::before{display:block}
+  .v2 #clients::before,.v2 #clients::after{top:auto;bottom:14px;height:62px;width:12%}
+  .v2 .refs{--lh:34px;animation-duration:44s}
+  .v2 .refs li{width:132px;height:62px;padding:6px 16px}
+}
+@media (prefers-reduced-motion:reduce){.v2 #clients{height:auto;display:block;padding:24px 0}.v2 #clients .head{position:static;background:none;padding:0 var(--g);margin-bottom:10px}}
