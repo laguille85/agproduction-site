@@ -382,7 +382,7 @@ def build_case(idx, c, others, anchor="/#films"):
     gallery = ""
     if imgs:
         gallery = '<section class="pg-sec wrap"><div class="pg-gallery">' + "".join(
-            f'<button type="button" class="pg-shot" data-images="{e(json.dumps(imgs))}" data-k="{k}" data-title="{e(c.get("titre"))}"><img src="{e(u)}"{ss(u, "(max-width:760px) 50vw, 33vw")} alt="{e(c.get("titre"))} — image {k + 1}" loading="lazy" decoding="async"></button>' for k, u in enumerate(imgs)) + "</div></section>"
+            f'<button type="button" class="pg-shot" data-images="{e(json.dumps(imgs))}" data-k="{k}" data-title="{e(c.get("titre"))}"><img src="{e(u)}"{ss(u, "(max-width:760px) 50vw, 33vw")} alt="{e(c.get("titre"))} — image {k + 1}" loading="lazy" decoding="async"></button>' + (f'<p class="pp-cap">{e(caps[u.lstrip("/")])}</p>' if caps.get(u.lstrip("/")) else "") for k, u in enumerate(imgs)) + "</div></section>"
     serie = series_by_title([c.get("serie_photo")]) if c.get("serie_photo") else []
     more = "".join(f'<li><a href="/projets/{case_slug(o)}/">{e(o.get("onglet") or o.get("client"))} — {e(o.get("titre"))}{ARROW}</a></li>' for o in others)
     body = (f'<section class="pg-hero wrap">{crumbs(["Projets", c.get("titre")])}<p class="eyebrow">{e(c.get("client"))}</p><h1>{e(c.get("titre"))}</h1>'
@@ -450,7 +450,8 @@ def build_photo_case(idx, c, others, kind="photo"):
                 return f' width="{im.width}" height="{im.height}"'
         except Exception:
             return ""
-    shots = "".join(f'<button type="button" class="pp-shot" data-images="{e(json.dumps(imgs))}" data-k="{k}" data-title="{e(c.get("titre"))}"><img src="{e(u)}"{ss(u, "(max-width:760px) 50vw, 33vw")} alt="{e(c.get("titre"))} — photo {k + 1} sur {len(imgs)}"{dims(u)} loading="lazy" decoding="async"></button>' for k, u in enumerate(imgs))
+    caps = {k.lstrip("/"): v for k, v in (c.get("legendes") or {}).items()}
+    shots = "".join(f'<button type="button" class="pp-shot" data-images="{e(json.dumps(imgs))}" data-k="{k}" data-title="{e(c.get("titre"))}"><img src="{e(u)}"{ss(u, "(max-width:760px) 50vw, 33vw")} alt="{e(c.get("titre"))} — photo {k + 1} sur {len(imgs)}"{dims(u)} loading="lazy" decoding="async"></button>' + (f'<p class="pp-cap">{e(caps[u.lstrip("/")])}</p>' if caps.get(u.lstrip("/")) else "") for k, u in enumerate(imgs))
     gal_title = "La série" if kind == "photo" else ("Le reportage photo" if serie else "En images")
     more = "".join(f'<li><a href="/projets/{case_slug(o)}/">{e(o.get("onglet") or o.get("client"))} — {e(o.get("titre"))}{ARROW}</a></li>' for o in others)
     quote = (f'<section class="pg-sec wrap"><div class="pp-quote"><p>« {e(c["citation"])} »</p>' + (f'<cite>{e(c.get("citation_auteur"))}</cite>' if c.get("citation_auteur") else "") + "</div></section>") if c.get("citation") else ""

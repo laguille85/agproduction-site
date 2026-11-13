@@ -132,6 +132,10 @@
         "n": 3,
         "label": "skippers que j'ai suivis"
       }
-    ]
+    ],
+    "legendes": {
+      "images/projets/true-sailing-barre-43.jpg": "Benjamin Dutreux à la barre",
+      "images/projets/true-sailing-cockpit-43.jpg": "En tournage, caméra à la main dans le cockpit"
+    }
   }
 ]
