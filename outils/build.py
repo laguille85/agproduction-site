@@ -451,7 +451,7 @@ def build_photo_case(idx, c, others, kind="photo"):
         except Exception:
             return ""
     shots = "".join(f'<button type="button" class="pp-shot" data-images="{e(json.dumps(imgs))}" data-k="{k}" data-title="{e(c.get("titre"))}"><img src="{e(u)}"{ss(u, "(max-width:760px) 50vw, 33vw")} alt="{e(c.get("titre"))} — photo {k + 1} sur {len(imgs)}"{dims(u)} loading="lazy" decoding="async"></button>' for k, u in enumerate(imgs))
-    gal_title = "La série" if kind == "photo" else ("Le reportage photo" if serie else ("En tournage" if not c.get("vimeo") else "En images"))
+    gal_title = "La série" if kind == "photo" else ("Le reportage photo" if serie else "En images")
     more = "".join(f'<li><a href="/projets/{case_slug(o)}/">{e(o.get("onglet") or o.get("client"))} — {e(o.get("titre"))}{ARROW}</a></li>' for o in others)
     quote = (f'<section class="pg-sec wrap"><div class="pp-quote"><p>« {e(c["citation"])} »</p>' + (f'<cite>{e(c.get("citation_auteur"))}</cite>' if c.get("citation_auteur") else "") + "</div></section>") if c.get("citation") else ""
     figs = list(c.get("chiffres") or [])

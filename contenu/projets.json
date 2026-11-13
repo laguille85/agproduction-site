@@ -109,13 +109,18 @@
     "resultat": "Six épisodes diffusés en première partie de soirée sur CANAL+ Sport 360 et disponibles sur myCANAL.",
     "citation": "",
     "citation_auteur": "",
-    "couverture": "images/projets/true-sailing-couverture.jpg",
-    "cadrage": "50% 50%",
+    "couverture": "images/projets/true-sailing-imoca-foils.jpg",
+    "cadrage": "50% 45%",
     "texte_en_haut": false,
     "vimeo": [],
-    "images": [],
+    "images": [
+      "images/projets/true-sailing-barre.jpg",
+      "images/projets/true-sailing-imoca-foils.jpg",
+      "images/projets/true-sailing-pont.jpg",
+      "images/projets/true-sailing-cockpit.jpg"
+    ],
     "serie_photo": "",
-    "cadrage_page": "50% 50%",
+    "cadrage_page": "50% 42%",
     "chiffres": [
       {
         "n": 6,
