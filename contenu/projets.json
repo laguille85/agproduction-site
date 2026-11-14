@@ -115,6 +115,7 @@
     "vimeo": [],
     "images": [
       "images/projets/true-sailing-barre-45.jpg",
+      "images/projets/true-sailing-charal-45.jpg",
       "images/projets/true-sailing-cockpit-45.jpg"
     ],
     "serie_photo": "",
@@ -135,7 +136,8 @@
     ],
     "legendes": {
       "images/projets/true-sailing-barre-45.jpg": "Benjamin Dutreux à la barre",
-      "images/projets/true-sailing-cockpit-45.jpg": "En tournage, caméra à la main dans le cockpit"
+      "images/projets/true-sailing-cockpit-45.jpg": "En tournage, caméra à la main dans le cockpit",
+      "images/projets/true-sailing-charal-45.jpg": "L'IMOCA Charal de Jérémie Beyou"
     },
     "sans_devis": true
   }
